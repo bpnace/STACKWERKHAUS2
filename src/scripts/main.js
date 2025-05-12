@@ -11,14 +11,15 @@ gsap.registerPlugin(ScrollTrigger, Draggable); // Register plugins
 document.addEventListener('DOMContentLoaded', () => {
   // --- Initialize Locomotive Scroll ---
   const scrollContainer = document.querySelector('[data-scroll-container]');
+  let locoScroll; // Define locoScroll here to access it later
 
   if (scrollContainer) {
-    const locoScroll = new LocomotiveScroll({
+    locoScroll = new LocomotiveScroll({
       el: scrollContainer,
       smooth: true,
       // Add other Locomotive Scroll options if needed
     });
-    window.locoScroll = locoScroll; // Make instance globally accessible for HMR
+    window.locoScroll = locoScroll; // Make instance globally accessible
 
     // -- Locomotive Scroll event handling --
     locoScroll.on('scroll', ScrollTrigger.update); // Use shorthand
@@ -33,6 +34,40 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       pinType: scrollContainer.style.transform ? 'transform' : 'fixed'
     });
+
+    // --- Card/Overlay Elements and Logic ---
+    const readMoreBtn = document.querySelector('.read-more-btn');
+    const closeCardBtn = document.querySelector('.close-card-btn');
+    const lebenslaufCard = document.querySelector('.lebenslauf-card');
+    const blurOverlay = document.querySelector('.blur-overlay');
+
+    const openCard = () => {
+      if (!lebenslaufCard || !blurOverlay) return;
+      blurOverlay.classList.add('visible');
+      lebenslaufCard.classList.add('visible');
+      locoScroll.stop(); // Stop background scrolling
+    };
+
+    const closeCard = () => {
+      if (!lebenslaufCard || !blurOverlay) return;
+      blurOverlay.classList.remove('visible');
+      lebenslaufCard.classList.remove('visible');
+      locoScroll.start(); // Resume background scrolling
+    };
+
+    if (readMoreBtn) {
+      readMoreBtn.addEventListener('click', openCard);
+    }
+
+    if (closeCardBtn) {
+      closeCardBtn.addEventListener('click', closeCard);
+    }
+
+    // Optional: Close card when clicking overlay
+    if (blurOverlay) {
+      blurOverlay.addEventListener('click', closeCard);
+    }
+    // --- End Card/Overlay Logic ---
 
     // --- Function to Initialize GSAP/ScrollTrigger Animations ---
     const initializeGsapAnimations = () => {
@@ -158,6 +193,39 @@ document.addEventListener('DOMContentLoaded', () => {
     // Animate Scroll Indicator
     if (document.querySelector('.scroll-indicator')) { gsap.to('.scroll-indicator', { y: 10, repeat: -1, yoyo: true, ease: 'power1.inOut', duration: 0.8 }); }
     // Add other non-scroll animations if any
+
+    // --- Card/Overlay Logic without LocoScroll ---
+    // Need to handle this case if LocoScroll might not be present
+    // For now, assuming LocoScroll exists if card is used
+    const readMoreBtn = document.querySelector('.read-more-btn');
+    const closeCardBtn = document.querySelector('.close-card-btn');
+    const lebenslaufCard = document.querySelector('.lebenslauf-card');
+    const blurOverlay = document.querySelector('.blur-overlay');
+
+    const openCardNoScroll = () => {
+      if (!lebenslaufCard || !blurOverlay) return;
+      blurOverlay.classList.add('visible');
+      lebenslaufCard.classList.add('visible');
+      document.body.style.overflow = 'hidden'; // Fallback scroll lock
+    };
+
+    const closeCardNoScroll = () => {
+      if (!lebenslaufCard || !blurOverlay) return;
+      blurOverlay.classList.remove('visible');
+      lebenslaufCard.classList.remove('visible');
+      document.body.style.overflow = ''; // Restore scrolling
+    };
+
+    if (readMoreBtn) {
+      readMoreBtn.addEventListener('click', openCardNoScroll);
+    }
+    if (closeCardBtn) {
+      closeCardBtn.addEventListener('click', closeCardNoScroll);
+    }
+    if (blurOverlay) {
+      blurOverlay.addEventListener('click', closeCardNoScroll);
+    }
+    // --- End Card/Overlay Logic without LocoScroll ---
   }
 
   // Moved non-scroll animations outside the delayed init where possible
