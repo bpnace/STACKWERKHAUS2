@@ -2,9 +2,9 @@
   position: relative; // Needed for z-index stacking
   z-index: 2;         // Ensure it scrolls OVER the pinned hero
   background-color: var(--background-color); // Make it opaque
-  padding: 8rem 4rem; // Example padding
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 8rem 4rem; // Keep padding for spacing
+  // max-width: 1200px; // Removed for full width
+  // margin: 0 auto;    // Removed for full width
 
   .about-content {
     display: grid;
@@ -55,6 +55,58 @@
           margin-left: 0.75rem;
           margin-right: 0.75rem;
         }
+      }
+    }
+  }
+}
+
+.section-headline-large {
+  font-family: 'Montserrat', sans-serif; // Assuming Montserrat is for headings
+  font-size: 5rem; // Large font size, adjust as needed
+  font-weight: 700; // Bold
+  line-height: 0.9; // Tight line height, can make it appear "cut-off" or overlapping
+  text-transform: uppercase;
+  margin-bottom: 1.5rem; // Space below the headline
+  color: #333; // Darker color for the headline for contrast on white bg
+  // To achieve a "cut-off" look, you might need to play with negative margins
+  // or ensure the container has overflow: hidden if the text is truly larger.
+  // For now, this makes it very large.
+
+  .headline-tag {
+    font-size: 1rem; // Smaller size for the tag
+    font-weight: 500; // Medium weight
+    color: #555; // Slightly lighter color for the tag
+    vertical-align: super; // Align with the top of the headline
+    margin-left: 0.5rem;
+    letter-spacing: 0.05em;
+    text-transform: none; // Keep tag in its original case
+  }
+}
+
+.about-text {
+  h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #111;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+      color: #333;
+
+      strong {
+        font-weight: 600;
+        color: #000;
       }
     }
   }
