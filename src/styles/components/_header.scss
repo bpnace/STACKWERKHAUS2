@@ -1,0 +1,35 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 4rem; // Example padding
+  position: fixed; // Make header fixed for Locomotive scroll
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  background-color: transparent; // Start transparent
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease; // Add transitions
+
+  &.scrolled { // Styles when scrolled
+    background-color: rgba(255, 255, 255, 0.95); // Slightly transparent white
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); // Subtle shadow
+    padding: 1rem 4rem; // Optional: Reduce padding slightly
+  }
+
+  .logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--secondary-text-color);
+  }
+
+  nav {
+    a {
+      font-family: 'Montserrat', sans-serif;
+      margin-left: 2rem;
+      font-size: 1rem;
+      color: var(--secondary-text-color);
+    }
+  }
+} 

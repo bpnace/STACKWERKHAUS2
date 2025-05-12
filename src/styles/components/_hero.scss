@@ -1,0 +1,77 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh; // Full viewport height
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  padding: 2rem 4rem;
+  // margin-top: 80px; // Keep commented out for now, LocoScroll handles spacing
+
+  // Background Image properties
+  background-image: url('../../public/assets/images/hero1.webp'); // Path relative to main.scss
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  // Overlay using pseudo-element
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); // Soft dark gray overlay
+    z-index: 0; // Place overlay between background and content
+  }
+
+  // Ensure hero content is positioned above the overlay
+  .hero-content { 
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 800px;
+    color: var(--secondary-text-color);
+  }
+
+  .hero-title {
+    position: relative; // Ensure it's above the overlay
+    z-index: 1;         // Ensure it's above the overlay
+    font-size: clamp(2.5rem, 8vw, 6rem); // Responsive font size
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    text-align: left;
+    color: var(--secondary-text-color);
+
+    span {
+      display: block; // Each word on a new line as per original design idea
+    }
+  }
+
+  .hero-subtitle {
+    position: relative; // Ensure it's above the overlay
+    z-index: 1;         // Ensure it's above the overlay
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    max-width: 600px;
+    margin-bottom: 2rem;
+    text-align: left;
+    color: var(--secondary-text-color);
+  }
+
+  .scroll-indicator {
+    position: absolute; // Position independently for centering
+    z-index: 1;         // Ensure it's above the overlay
+    bottom: 2rem;       // Position from the bottom
+    left: 50%;          // Center horizontally
+    transform: translateX(-50%); // Fine-tune horizontal centering
+    font-size: 1.8rem;  // Adjust size smaller
+    color: var(--secondary-text-color);     // Use variable as requested
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); // Add shadow for visibility
+    // Animation is handled by JS
+  }
+}
+
+// Removed @keyframes 

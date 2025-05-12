@@ -1,0 +1,42 @@
+footer {
+  padding: 6rem 4rem 4rem; // Extra top padding
+  text-align: center;
+  background-color: #eee; // Example footer background
+
+  .contact-prompt {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .social-links {
+    margin-bottom: 3rem;
+    a {
+      display: inline-block;
+      margin: 0 1rem;
+      font-weight: bold;
+      // Replace text with icons later if needed
+    }
+  }
+
+  .signature {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+  }
+
+  /* Basic Responsive */
+  @media (max-width: 768px) {
+     padding: 4rem 2rem 2rem;
+     .contact-prompt {
+       font-size: 1.5rem;
+     }
+     .signature {
+       font-size: 2rem;
+     }
+     .social-links a {
+       margin: 0 0.5rem;
+     }
+  }
+} 

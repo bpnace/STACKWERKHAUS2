@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STACKWERKHAUS</title>
+    <link rel="stylesheet" href="dist/main.css">
+</head>
+<body>
+    <!-- Header Component - Moved outside scroll container for fixed positioning -->
+    <header>
+        <div class="logo">STACKWERKHAUS</div>
+        <nav>
+            <a href="#projects">Projekte</a>
+            <a href="#about">Über Uns</a>
+        </nav>
+    </header>
+
+    <!-- Main scrollable container -->
+    <div data-scroll-container>
+        <!-- Main Content Area -->
+        <main>
+            <!-- Hero Section Component -->
+            <section class="hero">
+                <h1 class="hero-title"><span>INTERDISZIPLINÄRES</span> <span>DESIGN STUDIO</span></h1>
+                <p class="hero-subtitle">Wir gestalten digitale Produkte und Markenerlebnisse.</p>
+                <div class="scroll-indicator">↓</div>
+            </section>
+
+            <!-- About Section Component -->
+            <section id="about" class="about-section">
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Hallo, wir sind STACKWERKHAUS. Ein Design- und Entwicklungsstudio mit Fokus auf wirkungsvolle digitale Erlebnisse. Spezialisiert auf Markenbildung, UI/UX und Webentwicklung.</p>
+                        <div class="contact-links">
+                            <a href="mailto:email@example.com">Email</a>
+                            <a href="#">Instagram</a>
+                            <a href="#">Twitter</a>
+                            <a href="#">LinkedIn</a>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://picsum.photos/seed/tarikportrait/400/500" alt="Portrait of Tarik Marshall">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section Component -->
+            <section id="projects" class="projects-section">
+                <h2>Projekte</h2>
+                <div class="project-grid">
+                    <!-- Project cards will be dynamically inserted here or listed statically -->
+                    <div class="project-card">
+                        <div class="project-image-container">
+                            <img src="https://picsum.photos/seed/project1/400/300" alt="Project 1 Thumbnail">
+                        </div>
+                        <h3>Projekttitel 1</h3>
+                        <p>Kurze Beschreibung von Projekt 1.</p>
+                        <a href="#">Fallstudie Ansehen</a>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image-container">
+                            <img src="https://picsum.photos/seed/project2/400/300" alt="Project 2 Thumbnail">
+                        </div>
+                        <h3>Projekttitel 2</h3>
+                        <p>Kurze Beschreibung von Projekt 2.</p>
+                        <a href="#">Fallstudie Ansehen</a>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image-container">
+                            <img src="https://picsum.photos/seed/project3/400/300" alt="Project 3 Thumbnail">
+                        </div>
+                        <h3>Projekttitel 3</h3>
+                        <p>Kurze Beschreibung von Projekt 3.</p>
+                        <a href="#">Fallstudie Ansehen</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Capabilities Section Component -->
+            <section class="capabilities-section">
+                <h2>Leistungen</h2>
+                <div class="capabilities-container">
+                    <div class="capabilities-grid">
+                        <!-- Capability items will go here -->
+                        <div class="capability-item">Markenbildung</div>
+                        <div class="capability-item">Webdesign</div>
+                        <div class="capability-item">UI/UX Design</div>
+                        <div class="capability-item">Art Direction</div>
+                        <div class="capability-item">Entwicklung</div>
+                        <div class="capability-item">Motion Graphics</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer Component -->
+        <footer>
+            <p class="contact-prompt">Kontakt aufnehmen.</p>
+            <div class="social-links">
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+            </div>
+            <div class="signature">STACKWERKHAUS</div>
+        </footer>
+    </div>
+
+    <!-- Link to compiled JS (e.g., from Webpack) -->
+    <script src="dist/bundle.js"></script>
+</body>
+</html> 

@@ -1,0 +1,61 @@
+.about-section {
+  position: relative; // Needed for z-index stacking
+  z-index: 2;         // Ensure it scrolls OVER the pinned hero
+  background-color: var(--background-color); // Make it opaque
+  padding: 8rem 4rem; // Example padding
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr; // Two equal columns
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about-text {
+    p {
+      margin-bottom: 2rem;
+    }
+    .contact-links {
+      a {
+        display: inline-block;
+        margin-right: 1.5rem;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .about-image {
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      // Add potential styling like border-radius if needed
+    }
+  }
+
+  /* Basic Responsive */
+  @media (max-width: 768px) {
+    padding: 4rem 2rem;
+    .about-content {
+      grid-template-columns: 1fr; // Stack columns on smaller screens
+      gap: 2rem;
+      text-align: center;
+
+      .about-image {
+        order: -1; // Move image above text
+        margin-bottom: 2rem;
+      }
+
+      .contact-links {
+        text-align: center;
+        a {
+          margin-left: 0.75rem;
+          margin-right: 0.75rem;
+        }
+      }
+    }
+  }
+} 

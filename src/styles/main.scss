@@ -1,0 +1,67 @@
+@import '~locomotive-scroll/dist/locomotive-scroll.css'; // Import Locomotive Scroll base styles
+
+// Main SCSS file 
+
+/* Reset styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Font Definitions (Example - replace with actual font files/imports) */
+// @font-face rules removed temporarily
+
+/* Color Scheme Variables */
+:root {
+  --background-color: #FFFFFF;
+  --primary-text-color: #141414;
+  --secondary-text-color: #f6f6f6;
+  --accent-color: #5608ff;
+  --link-hover-color: #000000;
+}
+
+/* Base Body Styles */
+body {
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
+  line-height: 1.6;
+}
+
+/* Basic Heading Styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+  font-weight: bold; /* Assuming headings use bold Montserrat */
+  margin-bottom: 1rem; /* Basic spacing */
+}
+
+/* Basic Link Styles */
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+/* Component Imports */
+@import 'components/header';
+@import 'components/hero';
+@import 'components/about';
+@import 'components/projects';
+@import 'components/capabilities';
+@import 'components/footer';
+
+// /* Placeholder for Component Imports */
+// @import 'components/header';
+// @import 'components/hero';
+// @import 'components/about';
+// @import 'components/projects';
+// @import 'components/capabilities';
+// @import 'components/footer'; 
