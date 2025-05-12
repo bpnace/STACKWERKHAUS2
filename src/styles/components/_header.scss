@@ -29,6 +29,17 @@ header {
     font-size: 1.5rem;
     color: var(--secondary-text-color); // Initial color (light)
     transition: color 0.3s ease; // Add transition directly here too
+    display: flex;
+    align-items: center;
+    max-height: 25px;
+
+    img {
+      display: block;
+      height: 25px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      transition: filter 0.4s ease;
+    }
   }
 
   nav {
@@ -38,6 +49,23 @@ header {
       font-size: 1rem;
       color: var(--secondary-text-color); // Initial color (light)
       transition: color 0.3s ease; // Add transition directly here too
+    }
+  }
+}
+
+header.scrolled {
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
+
+  .logo img {
+    filter: none;
+  }
+
+  nav a {
+    color: var(--primary-text-color);
+
+    &:hover {
+      color: var(--accent-color);
     }
   }
 } 
