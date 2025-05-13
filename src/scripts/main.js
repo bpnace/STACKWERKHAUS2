@@ -9,10 +9,11 @@ import LocomotiveScroll from 'locomotive-scroll'; // Import LocomotiveScroll
 // Import animation modules
 import { initPageLoadAnimation } from './animations/pageLoadAnimations';
 import { initHeroAnimations } from './animations/heroAnimations';
-import { initScrollIndicatorAnimation } from './animations/scrollIndicatorAnimations';
+// import { initScrollIndicatorAnimation } from './animations/scrollIndicatorAnimations'; // Removed
 import { initAboutAnimations } from './animations/aboutAnimations';
 import { initProjectAnimations } from './animations/projectAnimations';
 import { initCapabilitiesAnimations } from './animations/capabilitiesAnimations';
+import { initSeeMoreButtonAnimations } from './animations/seeMoreButtonAnimations'; // Added new button animation
 
 gsap.registerPlugin(ScrollTrigger, Draggable); // Register plugins
 
@@ -21,8 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initPageLoadAnimation();
 
   // --- Initialize Non-Scroll-Dependent Animations (runs regardless of LocoScroll) ---
-  initScrollIndicatorAnimation(); // Moved here, was also in LocoScroll fallback
+  // initScrollIndicatorAnimation(); // Removed
   initCapabilitiesAnimations(); // Moved here, was also in LocoScroll fallback
+  initSeeMoreButtonAnimations(); // Initialize the new button animation
 
   // --- Initialize Locomotive Scroll ---
   const scrollContainer = document.querySelector('[data-scroll-container]');
@@ -90,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
       initHeroAnimations(scrollContainer); // Handles header scroll & hero pinning/parallax
       initAboutAnimations(scrollContainer);
       initProjectAnimations(scrollContainer);
-      
+
       // Note: hero title stagger and scroll indicator animations are called earlier
       // as they don't strictly depend on locoScroll being initialized,
       // though hero title could be tied to a specific trigger later if needed.
@@ -115,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.warn('Locomotive Scroll container not found!');
     // initPageLoadAnimation(); // Already called above
     initHeroAnimations(null); // Call to ensure hero title animation runs
-    // initScrollIndicatorAnimation(); // Already called above
+    // initScrollIndicatorAnimation(); // Removed
     // initCapabilitiesAnimations(); // Already called above
     // initAboutAnimations(null); // Depends on ScrollTrigger & scroller
     // initProjectAnimations(null); // Depends on ScrollTrigger & scroller

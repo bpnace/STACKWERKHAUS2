@@ -41,7 +41,8 @@
     position: relative; // Ensure it's above the overlay
     z-index: 1;         // Ensure it's above the overlay
     font-size: clamp(2.5rem, 8vw, 6rem); // Responsive font size
-    line-height: 1.1;
+    font-weight: 900; // Specific font weight for hero title
+    line-height: 0.8;
     margin-bottom: 1rem;
     text-align: left;
     color: var(--secondary-text-color);
@@ -59,18 +60,6 @@
     margin-bottom: 2rem;
     text-align: left;
     color: var(--secondary-text-color);
-  }
-
-  .scroll-indicator {
-    position: absolute; // Position independently for centering
-    z-index: 1;         // Ensure it's above the overlay
-    bottom: 2rem;       // Position from the bottom
-    left: 50%;          // Center horizontally
-    transform: translateX(-50%); // Fine-tune horizontal centering
-    font-size: 1.8rem;  // Adjust size smaller
-    color: var(--secondary-text-color);     // Use variable as requested
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); // Add shadow for visibility
-    // Animation is handled by JS
   }
 }
 
