@@ -58,7 +58,7 @@ header.scrolled {
   color: var(--primary-text-color);
 
   .logo img {
-    filter: none;
+    filter: brightness(0) invert(0);
   }
 
   nav a {

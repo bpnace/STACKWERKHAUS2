@@ -4,9 +4,9 @@
   // margin: 0 auto;    // Removed for full width
 
   h2 {
-    text-align: center;
-    font-size: 3rem;
-    margin-bottom: 4rem;
+    // text-align: center; // Commented out to allow .section-headline-large to control alignment
+    // font-size: 3rem;    // Commented out to allow .section-headline-large to control font size
+    // margin-bottom: 4rem; // Commented out to allow .section-headline-large to control margin
   }
 
   .project-grid {
@@ -53,8 +53,8 @@
   @media (max-width: 768px) {
     padding: 4rem 2rem;
     h2 {
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
+      // font-size: 2.5rem;
+      // margin-bottom: 3rem;
     }
     .project-grid {
        gap: 2rem;
