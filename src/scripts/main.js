@@ -6,9 +6,24 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'; // Import ScrollTrigger
 import { Draggable } from 'gsap/Draggable'; // Import Draggable
 import LocomotiveScroll from 'locomotive-scroll'; // Import LocomotiveScroll
 
+// Import animation modules
+import { initPageLoadAnimation } from './animations/pageLoadAnimations';
+import { initHeroAnimations } from './animations/heroAnimations';
+import { initScrollIndicatorAnimation } from './animations/scrollIndicatorAnimations';
+import { initAboutAnimations } from './animations/aboutAnimations';
+import { initProjectAnimations } from './animations/projectAnimations';
+import { initCapabilitiesAnimations } from './animations/capabilitiesAnimations';
+
 gsap.registerPlugin(ScrollTrigger, Draggable); // Register plugins
 
 document.addEventListener('DOMContentLoaded', () => {
+  // --- Initialize Page Load Animation (runs regardless of LocoScroll) ---
+  initPageLoadAnimation();
+
+  // --- Initialize Non-Scroll-Dependent Animations (runs regardless of LocoScroll) ---
+  initScrollIndicatorAnimation(); // Moved here, was also in LocoScroll fallback
+  initCapabilitiesAnimations(); // Moved here, was also in LocoScroll fallback
+
   // --- Initialize Locomotive Scroll ---
   const scrollContainer = document.querySelector('[data-scroll-container]');
   let locoScroll; // Define locoScroll here to access it later
@@ -69,104 +84,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // --- End Card/Overlay Logic ---
 
-    // --- Function to Initialize GSAP/ScrollTrigger Animations ---
+    // --- Function to Initialize GSAP/ScrollTrigger Animations (now orchestrates calls) ---
     const initializeGsapAnimations = () => {
-      const headerEl = document.querySelector('header');
-      const heroSectionEl = document.querySelector('.hero');
-      const aboutSectionEl = document.querySelector('.about-section');
-      const projectsSectionEl = document.querySelector('.projects-section');
-      const projectCards = document.querySelectorAll('.project-card'); // Use querySelectorAll
-      const aboutImage = document.querySelector('.about-image');
-      const aboutText = document.querySelector('.about-text');
-      const scrollIndicator = document.querySelector('.scroll-indicator');
-      const capabilitiesGrid = document.querySelector('.capabilities-grid');
-
-      // --- Header Scroll Trigger ---
-      if (headerEl && heroSectionEl) {
-        ScrollTrigger.create({
-          trigger: heroSectionEl,
-          scroller: scrollContainer, 
-          start: "bottom top", 
-          onEnter: () => {
-            headerEl.classList.add("scrolled");
-          },
-          onLeaveBack: () => {
-            headerEl.classList.remove("scrolled");
-          }
-        });
-      }
-
-      // --- Hero Pinning & Parallax Timeline --- 
-      if (heroSectionEl) { 
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: heroSectionEl,
-            scroller: scrollContainer,
-            pin: true,
-            pinSpacing: false, 
-            start: "top top",
-            end: "bottom top", 
-            scrub: 0.5, 
-          }
-        })
-        .to(heroSectionEl, {
-          yPercent: -30, 
-          ease: "none"
-        }, 0); 
-      }
-
-      // Page Load Fade-In (Can stay outside if not scroll dependent)
-      // gsap.from('body', { opacity: 0, duration: 1, ease: 'power2.inOut' });
-
-      // Hero Title Staggered Animation (Not scroll dependent)
-      // gsap.from('.hero-title span', { opacity: 0, y: 50, stagger: 0.2, duration: 1, ease: 'power2.out', delay: 0.5 });
-
-      // Animate Scroll Indicator (Not scroll dependent)
-      if (scrollIndicator) {
-        gsap.to(scrollIndicator, {
-          y: 10, repeat: -1, yoyo: true, ease: 'power1.inOut', duration: 0.8
-        });
-      }
-
-      // About Section Animation
-      if (aboutSectionEl && aboutImage && aboutText) {
-        gsap.from(aboutImage, {
-          scrollTrigger: {
-            trigger: aboutSectionEl,
-            scroller: scrollContainer, 
-            start: 'top 80%', 
-          },
-          x: -100, opacity: 0, duration: 1, ease: 'power2.out'
-        });
-
-        gsap.from(aboutText, {
-          scrollTrigger: {
-            trigger: aboutSectionEl,
-            scroller: scrollContainer, 
-            start: 'top 80%',
-          },
-          x: 100, opacity: 0, duration: 1, ease: 'power2.out'
-        });
-      }
-
-      // Project Cards Animation
-      if (projectCards.length > 0 && projectsSectionEl) { // Check length and section exist
-        gsap.from(projectCards, { // Target the NodeList
-          scrollTrigger: {
-            trigger: projectsSectionEl, // Use section as trigger
-            scroller: scrollContainer, 
-            start: 'top 80%',
-          },
-          opacity: 0, scale: 0.95, y: 50, stagger: 0.2, duration: 0.8, ease: 'power2.out'
-        });
-      }
-
-      // Capabilities Section Draggable (Not scroll dependent)
-      if (capabilitiesGrid) { 
-        Draggable.create(capabilitiesGrid, {
-          type: 'x', bounds: '.capabilities-container', inertia: true, edgeResistance: 0.65, throwProps: true 
-        });
-      }
+      // Animations that depend on LocomotiveScroll's scroller
+      initHeroAnimations(scrollContainer); // Handles header scroll & hero pinning/parallax
+      initAboutAnimations(scrollContainer);
+      initProjectAnimations(scrollContainer);
+      
+      // Note: hero title stagger and scroll indicator animations are called earlier
+      // as they don't strictly depend on locoScroll being initialized,
+      // though hero title could be tied to a specific trigger later if needed.
+      // Capabilities Draggable also called earlier.
     }; // --- End of initializeGsapAnimations function ---
 
     // --- Refresh ScrollTrigger and LocomotiveScroll on updates ---
@@ -185,14 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   } else {
     console.warn('Locomotive Scroll container not found!');
-    // Initialize non-LocoScroll animations here if needed
-    // Page Load Fade-In
-    gsap.from('body', { opacity: 0, duration: 1, ease: 'power2.inOut' });
-    // Hero Title Staggered Animation
-    gsap.from('.hero-title span', { opacity: 0, y: 50, stagger: 0.2, duration: 1, ease: 'power2.out', delay: 0.5 });
-    // Animate Scroll Indicator
-    if (document.querySelector('.scroll-indicator')) { gsap.to('.scroll-indicator', { y: 10, repeat: -1, yoyo: true, ease: 'power1.inOut', duration: 0.8 }); }
-    // Add other non-scroll animations if any
+    // initPageLoadAnimation(); // Already called above
+    initHeroAnimations(null); // Call to ensure hero title animation runs
+    // initScrollIndicatorAnimation(); // Already called above
+    // initCapabilitiesAnimations(); // Already called above
+    // initAboutAnimations(null); // Depends on ScrollTrigger & scroller
+    // initProjectAnimations(null); // Depends on ScrollTrigger & scroller
 
     // --- Card/Overlay Logic without LocoScroll ---
     // Need to handle this case if LocoScroll might not be present
@@ -227,13 +153,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // --- End Card/Overlay Logic without LocoScroll ---
   }
-
-  // Moved non-scroll animations outside the delayed init where possible
-  // Page Load Fade-In (can run immediately)
-  gsap.from('body', { opacity: 0, duration: 1, ease: 'power2.inOut' });
-  // Hero Title Staggered Animation (can run immediately)
-  gsap.from('.hero-title span', { opacity: 0, y: 50, stagger: 0.2, duration: 1, ease: 'power2.out', delay: 0.5 });
-  
 }); // End DOMContentLoaded
 
 // --- Webpack HMR Handling --- 
