@@ -9,7 +9,7 @@ header {
   width: 100%;
   z-index: 10;
   background-color: transparent; // Start transparent
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease; // Padding transition removed for testing
 
   &.scrolled { // Styles when scrolled
     background-color: var(--background-color); // Use opaque background color
@@ -18,8 +18,14 @@ header {
 
     // Change text/link colors for scrolled state
     .logo,
-    nav a {
+    nav a,
+    .header-cta .cta-button { // Ensure CTA button color also changes
       color: var(--primary-text-color);
+    }
+    .header-cta .cta-button { // Adjust button style for scrolled state if needed
+        background-color: var(--accent-color); // Example
+        color: var(--secondary-text-color); // Example
+        border-color: var(--accent-color); // Example
     }
   }
 
@@ -43,19 +49,64 @@ header {
   }
 
   nav {
+    flex-grow: 1; // Allow nav to take available space in the center
+    display: flex; // Use flex to center the links within nav
+    justify-content: center; // Center nav links
+
     a {
       font-family: 'Montserrat', sans-serif;
-      margin-left: 2rem;
+      margin: 0 1.5rem; // Adjusted margin for centering, slightly more space
       font-size: 1rem;
-      color: var(--secondary-text-color); // Initial color (light)
-      transition: color 0.3s ease; // Add transition directly here too
+      color: var(--secondary-text-color);
+      text-decoration: none !important; // Prevent default underlines always
+      position: relative; // For pseudo-element positioning // Space for the underline
+      transition: color 0.3s ease; // Keep color transition if desired
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 1.5px; // Thickness of the underline
+        background-color: var(--secondary-text-color); // Color of the underline
+        transition: width 0.5s ease-in-out; // Slower animation
+      }
+
+      &:hover {
+        color: var(--secondary-text-color); // Explicitly set hover color if it shouldn't change
+        // text-decoration: none !important; // Already set above
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+    }
+  }
+
+  .header-cta {
+    .cta-link { // Changed from .cta-button to .cta-link
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem; // Match nav a font-size
+      color: var(--secondary-text-color);
+      text-decoration: underline;
+      padding: 0.5rem 0; // Adjust padding, no horizontal for a simple link
+      margin-left: 1.5rem; // Space from nav links
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: var(--accent-color);
+        text-decoration: underline; // Keep or remove underline on hover as preferred
+      }
     }
   }
 }
 
 header.scrolled {
   background-color: var(--background-color);
-  color: var(--primary-text-color);
 
   .logo img {
     filter: brightness(0) invert(0);
@@ -63,6 +114,24 @@ header.scrolled {
 
   nav a {
     color: var(--primary-text-color);
+    // text-decoration: none !important; // Already inherited
+
+    &::after { // Underline color for scrolled state
+        background-color: var(--primary-text-color);
+    }
+
+    &:hover {
+      color: var(--primary-text-color); // Explicitly set hover color
+       // Hover for scrolled state - underline width change is handled above
+    }
+     &:hover::after { // Ensure underline color is correct on hover in scrolled state if different
+        background-color: var(--accent-color); // Example: accent color for underline on hover
+    }
+  }
+
+  .header-cta .cta-link { // Scrolled state for CTA link
+    color: var(--primary-text-color);
+    text-decoration: underline;
 
     &:hover {
       color: var(--accent-color);

@@ -5,11 +5,10 @@ export function initProjectAnimations(scrollContainer) {
   const projectsSectionEl = document.querySelector('.projects-section');
   const projectCards = document.querySelectorAll('.project-card');
 
-  if (projectCards.length > 0 && projectsSectionEl && scrollContainer) {
+  if (projectCards.length > 0 && projectsSectionEl) {
     gsap.from(projectCards, {
       scrollTrigger: {
         trigger: projectsSectionEl,
-        scroller: scrollContainer,
         start: 'top 80%',
       },
       opacity: 0,

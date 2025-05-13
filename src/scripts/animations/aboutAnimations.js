@@ -6,11 +6,10 @@ export function initAboutAnimations(scrollContainer) {
   const aboutImage = document.querySelector('.about-image');
   const aboutText = document.querySelector('.about-text');
 
-  if (aboutSectionEl && aboutImage && aboutText && scrollContainer) {
+  if (aboutSectionEl && aboutImage && aboutText) {
     gsap.from(aboutImage, {
       scrollTrigger: {
         trigger: aboutSectionEl,
-        scroller: scrollContainer,
         start: 'top 80%',
       },
       x: -100,
@@ -22,7 +21,6 @@ export function initAboutAnimations(scrollContainer) {
     gsap.from(aboutText, {
       scrollTrigger: {
         trigger: aboutSectionEl,
-        scroller: scrollContainer,
         start: 'top 80%',
       },
       x: 100,

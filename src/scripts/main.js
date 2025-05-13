@@ -4,7 +4,7 @@ import '../styles/main.scss'; // Import main SCSS file for Webpack
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger'; // Import ScrollTrigger
 import { Draggable } from 'gsap/Draggable'; // Import Draggable
-import LocomotiveScroll from 'locomotive-scroll'; // Import LocomotiveScroll
+import Lenis from 'lenis'; // Import Lenis for smooth scrolling
 
 // Import animation modules
 import { initPageLoadAnimation } from './animations/pageLoadAnimations';
@@ -14,148 +14,82 @@ import { initAboutAnimations } from './animations/aboutAnimations';
 import { initProjectAnimations } from './animations/projectAnimations';
 import { initCapabilitiesAnimations } from './animations/capabilitiesAnimations';
 import { initSeeMoreButtonAnimations } from './animations/seeMoreButtonAnimations'; // Added new button animation
+// import { initScrollTriggerAnimations } from './animations/scrollTriggerAnimations'; // Added new scroll trigger animation - File not found
+// import { initCardAnimations } from './animations/cardAnimations'; // Added new card animation - File not found
 
 gsap.registerPlugin(ScrollTrigger, Draggable); // Register plugins
 
 document.addEventListener('DOMContentLoaded', () => {
-  // --- Initialize Page Load Animation (runs regardless of LocoScroll) ---
-  initPageLoadAnimation();
-
-  // --- Initialize Non-Scroll-Dependent Animations (runs regardless of LocoScroll) ---
-  // initScrollIndicatorAnimation(); // Removed
-  initCapabilitiesAnimations(); // Moved here, was also in LocoScroll fallback
-  initSeeMoreButtonAnimations(); // Initialize the new button animation
-
-  // --- Initialize Locomotive Scroll ---
-  const scrollContainer = document.querySelector('[data-scroll-container]');
-  let locoScroll; // Define locoScroll here to access it later
-
-  if (scrollContainer) {
-    locoScroll = new LocomotiveScroll({
-      el: scrollContainer,
-      smooth: true,
-      // Add other Locomotive Scroll options if needed
-    });
-    window.locoScroll = locoScroll; // Make instance globally accessible
-
-    // -- Locomotive Scroll event handling --
-    locoScroll.on('scroll', ScrollTrigger.update); // Use shorthand
-
-    // -- GSAP ScrollTrigger Integration --
-    ScrollTrigger.scrollerProxy(scrollContainer, {
-      scrollTop(value) {
-        return arguments.length ? locoScroll.scrollTo(value, 0, 0) : locoScroll.scroll.instance.scroll.y;
-      },
-      getBoundingClientRect() {
-        return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight};
-      },
-      pinType: scrollContainer.style.transform ? 'transform' : 'fixed'
-    });
-
-    // --- Card/Overlay Elements and Logic ---
-    const readMoreBtn = document.querySelector('.read-more-btn');
-    const closeCardBtn = document.querySelector('.close-card-btn');
-    const lebenslaufCard = document.querySelector('.lebenslauf-card');
-    const blurOverlay = document.querySelector('.blur-overlay');
-
-    const openCard = () => {
-      if (!lebenslaufCard || !blurOverlay) return;
-      blurOverlay.classList.add('visible');
-      lebenslaufCard.classList.add('visible');
-      locoScroll.stop(); // Stop background scrolling
-    };
-
-    const closeCard = () => {
-      if (!lebenslaufCard || !blurOverlay) return;
-      blurOverlay.classList.remove('visible');
-      lebenslaufCard.classList.remove('visible');
-      locoScroll.start(); // Resume background scrolling
-    };
-
-    if (readMoreBtn) {
-      readMoreBtn.addEventListener('click', openCard);
-    }
-
-    if (closeCardBtn) {
-      closeCardBtn.addEventListener('click', closeCard);
-    }
-
-    // Optional: Close card when clicking overlay
-    if (blurOverlay) {
-      blurOverlay.addEventListener('click', closeCard);
-    }
-    // --- End Card/Overlay Logic ---
-
-    // --- Function to Initialize GSAP/ScrollTrigger Animations (now orchestrates calls) ---
-    const initializeGsapAnimations = () => {
-      // Animations that depend on LocomotiveScroll's scroller
-      initHeroAnimations(scrollContainer); // Handles header scroll & hero pinning/parallax
-      initAboutAnimations(scrollContainer);
-      initProjectAnimations(scrollContainer);
-
-      // Note: hero title stagger and scroll indicator animations are called earlier
-      // as they don't strictly depend on locoScroll being initialized,
-      // though hero title could be tied to a specific trigger later if needed.
-      // Capabilities Draggable also called earlier.
-    }; // --- End of initializeGsapAnimations function ---
-
-    // --- Refresh ScrollTrigger and LocomotiveScroll on updates ---
-    ScrollTrigger.addEventListener('refresh', () => locoScroll.update());
-    
-    // Refresh LocomotiveScroll FIRST, then ScrollTrigger
-    locoScroll.update();
-    ScrollTrigger.refresh();
-
-    // Initialize animations after a short delay
-    setTimeout(() => {
-        initializeGsapAnimations();
-        // We might need another refresh AFTER animations are created
-        ScrollTrigger.refresh(); 
-    }, 150); // Increased delay slightly
-
-  } else {
-    console.warn('Locomotive Scroll container not found!');
-    // initPageLoadAnimation(); // Already called above
-    initHeroAnimations(null); // Call to ensure hero title animation runs
-    // initScrollIndicatorAnimation(); // Removed
-    // initCapabilitiesAnimations(); // Already called above
-    // initAboutAnimations(null); // Depends on ScrollTrigger & scroller
-    // initProjectAnimations(null); // Depends on ScrollTrigger & scroller
-
-    // --- Card/Overlay Logic without LocoScroll ---
-    // Need to handle this case if LocoScroll might not be present
-    // For now, assuming LocoScroll exists if card is used
-    const readMoreBtn = document.querySelector('.read-more-btn');
-    const closeCardBtn = document.querySelector('.close-card-btn');
-    const lebenslaufCard = document.querySelector('.lebenslauf-card');
-    const blurOverlay = document.querySelector('.blur-overlay');
-
-    const openCardNoScroll = () => {
-      if (!lebenslaufCard || !blurOverlay) return;
-      blurOverlay.classList.add('visible');
-      lebenslaufCard.classList.add('visible');
-      document.body.style.overflow = 'hidden'; // Fallback scroll lock
-    };
-
-    const closeCardNoScroll = () => {
-      if (!lebenslaufCard || !blurOverlay) return;
-      blurOverlay.classList.remove('visible');
-      lebenslaufCard.classList.remove('visible');
-      document.body.style.overflow = ''; // Restore scrolling
-    };
-
-    if (readMoreBtn) {
-      readMoreBtn.addEventListener('click', openCardNoScroll);
-    }
-    if (closeCardBtn) {
-      closeCardBtn.addEventListener('click', closeCardNoScroll);
-    }
-    if (blurOverlay) {
-      blurOverlay.addEventListener('click', closeCardNoScroll);
-    }
-    // --- End Card/Overlay Logic without LocoScroll ---
+  // 1. Initialize Lenis for smooth scrolling
+  const lenis = new Lenis();
+  // Store on window for HMR or other potential global access if needed
+  // window.lenisInstance = lenis; 
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
   }
-}); // End DOMContentLoaded
+  requestAnimationFrame(raf);
+
+  // 2. Sync ScrollTrigger with Lenis
+  lenis.on('scroll', ScrollTrigger.update);
+
+  // 3. GSAP Ticker (Optional - alternative way to drive Lenis, not usually needed with raf loop)
+  // gsap.ticker.add((time) => {
+  //   lenis.raf(time * 1000); // Lenis expects milliseconds
+  // });
+  // gsap.ticker.lagSmoothing(0);
+
+  // 4. Card/Overlay Logic
+  const readMoreBtnEl = document.querySelector('.read-more-btn');
+  const closeCardBtnEl = document.querySelector('.close-card-btn');
+  const lebenslaufCardEl = document.querySelector('.lebenslauf-card');
+  const blurOverlayEl = document.querySelector('.blur-overlay');
+
+  const openCard = () => {
+    if (!lebenslaufCardEl || !blurOverlayEl) return;
+    blurOverlayEl.classList.add('visible');
+    lebenslaufCardEl.classList.add('visible');
+    lenis.stop(); // Use Lenis API to stop scrolling
+  };
+
+  const closeCard = () => {
+    if (!lebenslaufCardEl || !blurOverlayEl) return;
+    blurOverlayEl.classList.remove('visible');
+    lebenslaufCardEl.classList.remove('visible');
+    lenis.start(); // Use Lenis API to resume scrolling
+  };
+
+  if (readMoreBtnEl) readMoreBtnEl.addEventListener('click', openCard);
+  if (closeCardBtnEl) closeCardBtnEl.addEventListener('click', closeCard);
+  if (blurOverlayEl) blurOverlayEl.addEventListener('click', closeCard);
+
+  // 5. Initialize all Page Animations
+  // These functions should now internally use the default scroller (window)
+  initPageLoadAnimation(); 
+  initHeroAnimations();    
+  initAboutAnimations();   
+  initProjectAnimations(); 
+  initCapabilitiesAnimations(); 
+  initSeeMoreButtonAnimations();
+
+  // 6. Initial GSAP .set() calls for FOUC prevention and stability
+  if (lebenslaufCardEl) gsap.set(lebenslaufCardEl, { opacity: 0, yPercent: 100 });
+  if (blurOverlayEl) gsap.set(blurOverlayEl, { opacity: 0 });
+  if (readMoreBtnEl) gsap.set(readMoreBtnEl, { opacity: 0 });
+
+  const headerLogoEl = document.querySelector('header .logo');
+  const headerNavLinksEl = document.querySelectorAll('header nav a');
+  const headerCtaEl = document.querySelector('header .header-cta');
+  if (headerLogoEl) gsap.set(headerLogoEl, { opacity: 1, x: 0, y: 0, force3D: false });
+  if (headerNavLinksEl.length > 0) gsap.set(headerNavLinksEl, { opacity: 1, x: 0, y: 0, force3D: false });
+  if (headerCtaEl) gsap.set(headerCtaEl, { opacity: 1, x: 0, y: 0, force3D: false });
+  
+  // 7. Initial ScrollTrigger Refresh
+  ScrollTrigger.refresh();
+
+  // 8. Fade in the body
+  gsap.to(document.body, { opacity: 1, duration: 0.5, delay: 0.1 });
+});
 
 // --- Webpack HMR Handling --- 
 if (module.hot) {
@@ -163,34 +97,13 @@ if (module.hot) {
     if (err) {
       console.error('Cannot apply HMR update.', err);
     } else {
-      // 1. Kill existing ScrollTriggers
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-      
-      // 2. Update LocoScroll and Refresh ScrollTrigger after a short delay
-      const scrollContainer = document.querySelector('[data-scroll-container]');
-      if (scrollContainer && window.locoScroll) { 
-          const locoScroll = window.locoScroll; 
-          if (locoScroll) {
-            locoScroll.update(); // Ensure LocoScroll instance updates its internal values
-            // Delay ScrollTrigger refresh slightly to allow DOM/styles to potentially settle
-            setTimeout(() => {
-              ScrollTrigger.refresh(true); // Force hard refresh
-            }, 100); // 100ms delay (adjust if needed)
-          } else {
-             // If LocoScroll wasn't found, still try a delayed refresh
-             setTimeout(() => {
-                ScrollTrigger.refresh(true);
-             }, 100);
-          }
-      } else {
-         // If no LocoScroll, try a delayed refresh
-         setTimeout(() => {
-            ScrollTrigger.refresh(true);
-         }, 100);
-      }
+      // A simple refresh might be best for HMR with Lenis.
+      // Consider re-adding lenis.on('scroll', ScrollTrigger.update) if main.js itself is fully re-run by HMR
+      // and the original lenis instance/listener is lost.
+      setTimeout(() => {
+        ScrollTrigger.refresh(true);
+      }, 150);
     }
   });
-
-  // Optional: More granular cleanup if specific modules are updated
-  // module.hot.accept('./path/to/module.js', () => { ... });
 } 

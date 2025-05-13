@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STACKWERKHAUS</title>
+    <style>
+        /* FOUC Prevention */
+        body {
+            opacity: 0;
+        }
+        /* Initial hide for card, overlay, and its trigger button */
+        .blur-overlay,
+        .lebenslauf-card,
+        .read-more-btn {
+            opacity: 0;
+        }
+        .lebenslauf-card {
+            transform: translateY(100%);
+        }
+    </style>
     <!-- <link rel="stylesheet" href="dist/main.css"> CSS will be injected by HtmlWebpackPlugin -->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
@@ -14,9 +29,12 @@
             <img src="assets/images/logo1.svg" alt="STACKWERKHAUS Logo">
         </div>
         <nav>
-            <a href="#projects">Projekte</a>
             <a href="#about">Über Uns</a>
+            <a href="#projects">Projekte</a>
         </nav>
+        <div class="header-cta">
+            <a href="#kontakt" class="cta-link">Bauplan erstellen</a>
+        </div>
     </header>
 
     <!-- Main scrollable container -->

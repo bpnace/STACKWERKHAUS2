@@ -6,10 +6,9 @@ export function initHeroAnimations(scrollContainer) {
   const heroSectionEl = document.querySelector('.hero');
 
   // Header Scroll Trigger
-  if (headerEl && heroSectionEl && scrollContainer) {
+  if (headerEl && heroSectionEl) {
     ScrollTrigger.create({
       trigger: heroSectionEl,
-      scroller: scrollContainer,
       start: "bottom top",
       onEnter: () => headerEl.classList.add("scrolled"),
       onLeaveBack: () => headerEl.classList.remove("scrolled"),
@@ -17,11 +16,10 @@ export function initHeroAnimations(scrollContainer) {
   }
 
   // Hero Pinning & Parallax Timeline
-  if (heroSectionEl && scrollContainer) {
+  if (heroSectionEl) {
     gsap.timeline({
       scrollTrigger: {
         trigger: heroSectionEl,
-        scroller: scrollContainer,
         pin: true,
         pinSpacing: false,
         start: "top top",
