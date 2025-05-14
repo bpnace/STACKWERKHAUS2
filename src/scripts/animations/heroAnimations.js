@@ -58,10 +58,10 @@ export function initHeroAnimations(scrollContainer) {
     gsap.from(".hero-title .hero-letter", {
       opacity: 0,
       y: 60, // Start further down to be hidden by the parent's overflow
-      stagger: 0.02, // Further decreased stagger for less difference between letters
+      stagger: 0.04, // Further decreased stagger for less difference between letters
       duration: 1.5, // Increased duration for a slower animation
       ease: 'expo.out', // Smoother ease
-      delay: 0.5
+      delay: 0.6
     });
   }
 } 

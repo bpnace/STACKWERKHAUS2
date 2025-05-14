@@ -1,4 +1,18 @@
-@import '~locomotive-scroll/dist/locomotive-scroll.css'; // Import Locomotive Scroll base styles
+body.preload {
+  opacity: 0 !important;
+}
+
+body.fadein {
+  transition: opacity 1.2s cubic-bezier(0.4,0,0.2,1);
+  opacity: 1 !important;
+}
+
+body.preload .blur-overlay,
+body.preload .lebenslauf-card {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translate(-50%, 100%) !important;
+}
 
 // Import Google Fonts
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap'); // Montserrat for all, including 800 for hero

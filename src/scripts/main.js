@@ -19,11 +19,20 @@ import { initSeeMoreButtonAnimations } from './animations/seeMoreButtonAnimation
 
 gsap.registerPlugin(ScrollTrigger, Draggable); // Register plugins
 
+window.addEventListener('load', () => {
+  document.body.classList.remove('preload');
+  document.body.classList.add('fadein');
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Initialize Lenis for smooth scrolling
-  const lenis = new Lenis();
+  const lenis = new Lenis({
+    duration: 1.3, // Smoother, slower scroll
+    easing: (t) => 1 - Math.pow(1 - t, 4), // Extra smooth cubic ease
+    smooth: true,
+  });
   // Store on window for HMR or other potential global access if needed
-  // window.lenisInstance = lenis; 
+  window.lenisInstance = lenis;
   function raf(time) {
     lenis.raf(time);
     requestAnimationFrame(raf);
@@ -39,29 +48,32 @@ document.addEventListener('DOMContentLoaded', () => {
   // });
   // gsap.ticker.lagSmoothing(0);
 
-  // 4. Card/Overlay Logic
-  const readMoreBtnEl = document.querySelector('.read-more-btn');
-  const closeCardBtnEl = document.querySelector('.close-card-btn');
-  const lebenslaufCardEl = document.querySelector('.lebenslauf-card');
-  const blurOverlayEl = document.querySelector('.blur-overlay');
+  // --- Lebenslauf Card Modal Logic ---
+  const readMoreBtn = document.querySelector('.read-more-btn');
+  const blurOverlay = document.querySelector('.blur-overlay');
+  const lebenslaufCard = document.querySelector('.lebenslauf-card');
+  const closeCardBtn = document.querySelector('.close-card-btn');
 
-  const openCard = () => {
-    if (!lebenslaufCardEl || !blurOverlayEl) return;
-    blurOverlayEl.classList.add('visible');
-    lebenslaufCardEl.classList.add('visible');
-    lenis.stop(); // Use Lenis API to stop scrolling
-  };
+  function openCard() {
+    blurOverlay.classList.add('visible');
+    lebenslaufCard.classList.add('visible');
+    document.body.style.overflow = 'hidden'; // Prevent background scroll
+  }
 
-  const closeCard = () => {
-    if (!lebenslaufCardEl || !blurOverlayEl) return;
-    blurOverlayEl.classList.remove('visible');
-    lebenslaufCardEl.classList.remove('visible');
-    lenis.start(); // Use Lenis API to resume scrolling
-  };
+  function closeCard() {
+    blurOverlay.classList.remove('visible');
+    lebenslaufCard.classList.remove('visible');
+    document.body.style.overflow = '';
+  }
 
-  if (readMoreBtnEl) readMoreBtnEl.addEventListener('click', openCard);
-  if (closeCardBtnEl) closeCardBtnEl.addEventListener('click', closeCard);
-  if (blurOverlayEl) blurOverlayEl.addEventListener('click', closeCard);
+  if (readMoreBtn) readMoreBtn.addEventListener('click', openCard);
+  if (closeCardBtn) closeCardBtn.addEventListener('click', closeCard);
+  if (blurOverlay) blurOverlay.addEventListener('click', closeCard);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lebenslaufCard.classList.contains('visible')) {
+      closeCard();
+    }
+  });
 
   // 5. Initialize all Page Animations
   // These functions should now internally use the default scroller (window)
@@ -73,9 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initSeeMoreButtonAnimations();
 
   // 6. Initial GSAP .set() calls for FOUC prevention and stability
-  if (lebenslaufCardEl) gsap.set(lebenslaufCardEl, { opacity: 0, yPercent: 100 });
-  if (blurOverlayEl) gsap.set(blurOverlayEl, { opacity: 0 });
-  if (readMoreBtnEl) gsap.set(readMoreBtnEl, { opacity: 0 });
+  // (Removed for modal elements to prevent FOUC)
+  // if (lebenslaufCard) gsap.set(lebenslaufCard, { opacity: 0, yPercent: 100 });
+  // if (blurOverlay) gsap.set(blurOverlay, { opacity: 0 });
+  // if (readMoreBtn) gsap.set(readMoreBtn, { opacity: 1 });
 
   const headerLogoEl = document.querySelector('header .logo');
   const headerNavLinksEl = document.querySelectorAll('header nav a');

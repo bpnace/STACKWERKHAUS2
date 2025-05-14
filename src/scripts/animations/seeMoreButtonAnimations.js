@@ -55,8 +55,9 @@ export function initSeeMoreButtonAnimations() {
 
   seeMoreButton.addEventListener('click', () => {
     const aboutSection = document.querySelector('#about');
-    if (aboutSection && window.locoScroll) {
-      window.locoScroll.scrollTo(aboutSection);
+    // Use Lenis if available, otherwise fallback to native smooth scroll
+    if (aboutSection && window.lenisInstance) {
+      window.lenisInstance.scrollTo(aboutSection);
     } else if (aboutSection) {
       aboutSection.scrollIntoView({ behavior: 'smooth' });
     }

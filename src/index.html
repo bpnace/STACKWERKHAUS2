@@ -5,24 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STACKWERKHAUS</title>
     <style>
-        /* FOUC Prevention */
-        body {
-            opacity: 0;
-        }
-        /* Initial hide for card, overlay, and its trigger button */
-        .blur-overlay,
-        .lebenslauf-card,
-        .read-more-btn {
-            opacity: 0;
-        }
-        .lebenslauf-card {
-            transform: translateY(100%);
-        }
+      body { opacity: 0; transition: opacity 1.2s cubic-bezier(0.4,0,0.2,1); }
+      body.fadein { opacity: 1; }
+      .blur-overlay, .lebenslauf-card { opacity: 0; pointer-events: none; transform: translate(-50%, 100%); }
+      .lebenslauf-card.visible { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
+      .blur-overlay.visible { opacity: 1; pointer-events: auto; }
+      .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; text-align: left; padding: 2rem 4rem; background: #fff; }
+      /* Add any other above-the-fold/hero styles here if needed */
     </style>
+    <link rel="preload" as="style" href="main.css" onload="this.rel='stylesheet'">
     <!-- <link rel="stylesheet" href="dist/main.css"> CSS will be injected by HtmlWebpackPlugin -->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
-<body>
+<body class="preload">
     <!-- Header Component - Moved outside scroll container for fixed positioning -->
     <header>
         <div class="logo">
@@ -44,7 +39,7 @@
             <!-- Hero Section Component -->
             <section class="hero">
                 <h1 class="hero-title"><span>DEIN BERLINER</span> <span>DESIGN STUDIO</span></h1>
-                <p class="hero-subtitle">Wir gestalten digitale Produkte und Markenerlebnisse.</p>
+                <p class="hero-subtitle">Ich gestalte digitale Produkte und Markenerlebnisse.</p>
                 
                 <button class="see-more-button">
                     <span class="text-content">Mehr erfahren</span>
@@ -59,9 +54,9 @@
             <section id="about" class="about-section">
                 <div class="about-content">
                     <div class="about-text">
-                        <h2 class="section-headline-large">Unser Ansatz <span class="headline-tag">STWKHS™—'25</span></h2>
+                        <h2 class="section-headline-large">Mein Ansatz </br> <span class="headline-tag">STWKHS™—'25</span></h2>
                         <p>Eine Webseite ist heute schnell erstellt. Doch eine, die sich abhebt und Ihre Ziele wirklich erreicht? Genau da kommt <b>STACKWERKHAUS</b> ins Spiel.</p>
-                        <button class="read-more-btn">Mehr erfahren</button>
+                        <button class="read-more-btn">Mehr lesen</button>
                         <p>Als Freelancer mit Sitz in Berlin konzentriere ich mich auf maßgeschneiderte Web-Erlebnisse, die Ästhetik und modernste Technologie vereinen. Ich baue nicht nur Webseiten – ich schaffe digitale Plattformen, die Ihre Marke stärken und Ihr Geschäft voranbringen.</p>
      
                         <div class="contact-links">
@@ -136,37 +131,31 @@
             </div>
             <div class="signature">STACKWERKHAUS</div>
         </footer>
-    </div>
-
-    <!-- Card and Overlay Elements -->
-    <div class="blur-overlay"></div>
-    <div class="lebenslauf-card">
-        <button class="close-card-btn">&times;</button>
-        <h2>Meine Reise als Digital-Pionier</h2>
-        <p>Willkommen! Ich bin ein in Berlin ansässiger Freelance Web-Entwickler und Designer mit einer Leidenschaft für klare Ästhetik und innovative Technologien. Seit über 7 Jahren helfe ich Unternehmen und Kreativen, ihre Visionen in beeindruckende digitale Erlebnisse zu verwandeln.</p>
-        
-        <h3>Philosophie</h3>
-        <p>Mein Ansatz ist kollaborativ und transparent. Ich glaube an die Kraft von gutem Design, das nicht nur schön aussieht, sondern auch intuitiv funktioniert und echte Ergebnisse liefert. Jedes Projekt ist eine neue Chance, Grenzen zu verschieben und maßgeschneiderte Lösungen zu entwickeln, die perfekt auf die Bedürfnisse meiner Kunden zugeschnitten sind.</p>
-
-        <h3>Kernkompetenzen</h3>
-        <ul>
+        <div class="blur-overlay" tabindex="-1"></div>
+        <div class="lebenslauf-card" role="dialog" aria-modal="true" aria-labelledby="lebenslauf-title">
+          <button class="close-card-btn" aria-label="Schließen">&times;</button>
+          <h2 id="lebenslauf-title">Meine Reise als Digital-Pionier</h2>
+          <p>Willkommen! Ich bin ein in Berlin ansässiger Freelance Web-Entwickler und Designer mit einer Leidenschaft für klare Ästhetik und innovative Technologien. Seit über 7 Jahren helfe ich Unternehmen und Kreativen, ihre Visionen in beeindruckende digitale Erlebnisse zu verwandeln.</p>
+          <h3>Philosophie</h3>
+          <p>Mein Ansatz ist kollaborativ und transparent. Ich glaube an die Kraft von gutem Design, das nicht nur schön aussieht, sondern auch intuitiv funktioniert und echte Ergebnisse liefert. Jedes Projekt ist eine neue Chance, Grenzen zu verschieben und maßgeschneiderte Lösungen zu entwickeln, die perfekt auf die Bedürfnisse meiner Kunden zugeschnitten sind.</p>
+          <h3>Kernkompetenzen</h3>
+          <ul>
             <li><strong>Strategische Konzeption:</strong> Von der ersten Idee bis zum fertigen Produkt – immer mit Blick auf Ihre Ziele.</li>
             <li><strong>UI/UX Design:</strong> Nutzerzentriertes Design, das begeistert und konvertiert.</li>
             <li><strong>Frontend-Entwicklung:</strong> Pixelgenaue Umsetzung mit modernen Frameworks (React, Vue, Svelte) und Libraries (GSAP, Three.js).</li>
             <li><strong>Headless CMS Integration:</strong> Flexible Content-Management-Lösungen für zukunftssichere Webseiten.</li>
             <li><strong>Performance-Optimierung:</strong> Schnelle Ladezeiten und reibungslose Interaktionen für ein optimales Nutzererlebnis.</li>
-        </ul>
-
-        <h3>Ausgewählte Projekte & Stationen</h3>
-        <ul>
+          </ul>
+          <h3>Ausgewählte Projekte & Stationen</h3>
+          <ul>
             <li><strong>STACKWERKHAUS (Seit 2020):</strong> Gründer & Lead Developer/Designer.</li>
             <li><strong>InnovateAgentur Berlin (2018-2020):</strong> Senior Frontend Developer – Fokus auf interaktive Kampagnen-Websites.</li>
             <li><strong>TechStartup XYZ (2016-2018):</strong> UI/UX Designer – Entwicklung einer SaaS-Plattform.</li>
             <li>Diverse Freelance-Projekte für internationale Kunden.</li>
-        </ul>
-        <p>Lassen Sie uns gemeinsam Ihr nächstes digitales Meisterwerk erschaffen!</p>
+          </ul>
+          <p>Lassen Sie uns gemeinsam Ihr nächstes digitales Meisterwerk erschaffen!</p>
+        </div>
     </div>
-
     <!-- <script src="dist/bundle.js"></script> JS will be injected by HtmlWebpackPlugin -->
 </body>
 </html> 
