@@ -98,6 +98,7 @@ header {
 
 header.scrolled {
   background-color: var(--background-color);
+  padding: 2rem 4rem;
 
   .logo img {
     filter: brightness(0) invert(0);
