@@ -1,3 +1,5 @@
+@import 'switzer.css';
+
 body.preload {
   opacity: 0 !important;
 }
@@ -13,9 +15,6 @@ body.preload .lebenslauf-card {
   pointer-events: none !important;
   transform: translate(-50%, 100%) !important;
 }
-
-// Import Google Fonts
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap'); // Montserrat for all, including 800 for hero
 
 // Main SCSS file 
 
@@ -35,6 +34,7 @@ body.preload .lebenslauf-card {
 :root {
   --background-color: #FFFFFF;
   --primary-text-color: #141414;
+  --primary-text-light: #555;
   --secondary-text-color: #f6f6f6;
   --accent-color: #5608ff;
   --accent-color-darkened: #4d07e6; // Added 10% darker shade
@@ -43,7 +43,7 @@ body.preload .lebenslauf-card {
 
 /* Base Body Styles */
 body {
-  font-family: 'Montserrat', Helvetica, Arial, sans-serif; // Montserrat for body
+  font-family: 'Switzer', Helvetica, Arial, sans-serif;
   background-color: var(--background-color);
   color: var(--primary-text-color);
   line-height: 1.6;
@@ -53,7 +53,7 @@ body {
 
 /* Basic Heading Styles */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Montserrat', sans-serif; // Montserrat for headings
+  font-family: 'Switzer', Helvetica, Arial, sans-serif;
   font-weight: bold; // Default bold (700) for headings
   margin-bottom: 1rem; /* Basic spacing */
 }

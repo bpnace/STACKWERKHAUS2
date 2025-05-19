@@ -30,7 +30,7 @@ header {
   }
 
   .logo {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Switzer', Helvetica, Arial, sans-serif;
     font-weight: bold;
     font-size: 1.5rem;
     color: var(--secondary-text-color); // Initial color (light)
@@ -54,7 +54,7 @@ header {
     justify-content: center; // Center nav links
 
     a {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Switzer', Helvetica, Arial, sans-serif;
       margin: 0 1.5rem; // Adjusted margin for centering, slightly more space
       font-size: 1rem;
       color: var(--secondary-text-color);
@@ -86,7 +86,7 @@ header {
 
   .header-cta {
     .cta-link { // Changed from .cta-button to .cta-link
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Switzer', Helvetica, Arial, sans-serif;
       font-size: 1rem; // Match nav a font-size
       color: var(--secondary-text-color);
       text-decoration: underline;
