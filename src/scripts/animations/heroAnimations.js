@@ -17,7 +17,8 @@ export function initHeroAnimations(scrollContainer) {
 
   // --- FIXED: True Parallax (Hero scrolls slower than body) ---
   if (heroSectionEl) {
-    ScrollTrigger.create({
+    const maxY = window.innerHeight * 0.6;
+    const st = ScrollTrigger.create({
       trigger: heroSectionEl,
       start: "top top",
       end: () => `+=${window.innerHeight}`,
@@ -25,10 +26,11 @@ export function initHeroAnimations(scrollContainer) {
       onUpdate: self => {
         // Move hero at 0.4x scroll speed (slower than scroll)
         const progress = self.progress;
-        const maxY = window.innerHeight * 0.6; // 1 - 0.4 = 0.6, so hero lags behind
         gsap.to(heroSectionEl, { y: progress * maxY, overwrite: 'auto', ease: 'none', duration: 0 });
       }
     });
+    // Set initial position based on initial progress (fix Chrome jump)
+    gsap.set(heroSectionEl, { y: st.progress * maxY });
   }
 
   // Hero Title Staggered Animation - LETTER BY LETTER
