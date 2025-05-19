@@ -15,19 +15,20 @@ export function initHeroAnimations(scrollContainer) {
     });
   }
 
-  // Hero Pinning & Parallax Timeline
+  // --- FIXED: True Parallax (Hero scrolls slower than body) ---
   if (heroSectionEl) {
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: heroSectionEl,
-        pin: true,
-        pinSpacing: false,
-        start: "top top",
-        end: "bottom top",
-        scrub: 0.5,
+    ScrollTrigger.create({
+      trigger: heroSectionEl,
+      start: "top top",
+      end: () => `+=${window.innerHeight}`,
+      scrub: true,
+      onUpdate: self => {
+        // Move hero at 0.4x scroll speed (slower than scroll)
+        const progress = self.progress;
+        const maxY = window.innerHeight * 0.6; // 1 - 0.4 = 0.6, so hero lags behind
+        gsap.to(heroSectionEl, { y: progress * maxY, overwrite: 'auto', ease: 'none', duration: 0 });
       }
-    })
-    .to(heroSectionEl, { yPercent: -30, ease: "none" }, 0);
+    });
   }
 
   // Hero Title Staggered Animation - LETTER BY LETTER
