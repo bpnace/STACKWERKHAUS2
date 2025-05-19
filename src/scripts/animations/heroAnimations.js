@@ -65,4 +65,21 @@ export function initHeroAnimations(scrollContainer) {
       delay: 0.6
     });
   }
+
+  // Animate hero shadow overlay opacity on scroll
+  const heroShadow = document.querySelector('.hero-shadow-overlay');
+  if (heroShadow && heroSectionEl) {
+    // Ensure overlay starts transparent
+    gsap.set(heroShadow, { opacity: 0 });
+    gsap.to(heroShadow, {
+      opacity: 0.5, // Max 0.5 darkness at end of hero scroll
+      ease: "none",
+      scrollTrigger: {
+        trigger: heroSectionEl,
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+      }
+    });
+  }
 } 
