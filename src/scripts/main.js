@@ -19,6 +19,42 @@ import { initSeeMoreButtonAnimations } from './animations/seeMoreButtonAnimation
 
 gsap.registerPlugin(ScrollTrigger, Draggable); // Register plugins
 
+// --- GSAP Blur Plugin (IIFE) ---
+(function() {
+  const blurProperty = gsap.utils.checkPrefix("filter"),
+        blurExp = /blur\((.+)?px\)/,
+        getBlurMatch = target => (gsap.getProperty(target, blurProperty) || "").match(blurExp) || [];
+
+  gsap.registerPlugin({
+    name: "blur",
+    get(target) {
+      return +(getBlurMatch(target)[1]) || 0;
+    },
+    init(target, endValue) {
+      let data = this,
+          filter = gsap.getProperty(target, blurProperty),
+          endBlur = "blur(" + endValue + "px)",
+          match = getBlurMatch(target)[0],
+          index;
+      if (filter === "none") {
+        filter = "";
+      }
+      if (match) {
+        index = filter.indexOf(match);
+        endValue = filter.substr(0, index) + endBlur + filter.substr(index + match.length);
+      } else {
+        endValue = filter + endBlur;
+        filter += filter ? " blur(0px)" : "blur(0px)";
+      }
+      data.target = target; 
+      data.interp = gsap.utils.interpolate(filter, endValue); 
+    },
+    render(progress, data) {
+      data.target.style[blurProperty] = data.interp(progress);
+    }
+  });
+})();
+
 window.addEventListener('load', () => {
   document.body.classList.remove('preload');
   document.body.classList.add('fadein');
@@ -58,12 +94,19 @@ document.addEventListener('DOMContentLoaded', () => {
     blurOverlay.classList.add('visible');
     lebenslaufCard.classList.add('visible');
     document.body.style.overflow = 'hidden'; // Prevent background scroll
+    // Animate blur in
+    gsap.to(blurOverlay, { blur: 8, opacity: 1, duration: 0.5, ease: 'power2.out' });
   }
 
   function closeCard() {
-    blurOverlay.classList.remove('visible');
-    lebenslaufCard.classList.remove('visible');
-    document.body.style.overflow = '';
+    // Animate blur out, then hide overlay
+    gsap.to(blurOverlay, { blur: 0, opacity: 0, duration: 0.4, ease: 'power2.in', onComplete: () => {
+      blurOverlay.classList.remove('visible');
+      lebenslaufCard.classList.remove('visible');
+      document.body.style.overflow = '';
+      // Reset filter property to avoid accumulation
+      blurOverlay.style.filter = '';
+    }});
   }
 
   if (readMoreBtn) readMoreBtn.addEventListener('click', openCard);
@@ -102,6 +145,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 8. Fade in the body
   gsap.to(document.body, { opacity: 1, duration: 0.5, delay: 0.1 });
+
+  // Smooth scroll for header nav links using Lenis
+  const headerNavLinks = document.querySelectorAll('header nav a, .header-cta a');
+  headerNavLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          lenis.scrollTo(target, { offset: 0, duration: 1.2, easing: (t) => 1 - Math.pow(1 - t, 4) });
+        }
+      }
+    });
+  });
 });
 
 // --- Webpack HMR Handling --- 

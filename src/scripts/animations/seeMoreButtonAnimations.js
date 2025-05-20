@@ -38,8 +38,7 @@ export function initSeeMoreButtonAnimations() {
     .to(circleFill, {
       clipPath: 'inset(0% 0% 0% 0%)', // Reveal downwards
       opacity: 1, // Fade in the blur effect as it reveals
-      backdropFilter: 'blur(8px)',
-      webkitBackdropFilter: 'blur(8px)',
+      blur: 8, // Use GSAP blur plugin for filter: blur
       duration: DURATION_SHUTTER,
       ease: EASE_FLUID // Use the same fluid ease
     }, 0);
