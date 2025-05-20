@@ -1,7 +1,7 @@
 footer {
   padding: 6rem 4rem 4rem; // Extra top padding
   text-align: center;
-  background-color: #eee; // Example footer background
+  background-color: var(--primary-text-color); // Example footer background
 
   .contact-prompt {
     font-size: 1.8rem;

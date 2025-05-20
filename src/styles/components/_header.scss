@@ -2,7 +2,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 4rem; // Always tall padding
+  padding: 1.5rem 4rem; // Always tall padding
   position: fixed; // Make header fixed for Locomotive scroll
   top: 0;
   left: 0;
@@ -98,7 +98,7 @@ header {
 
 header.scrolled {
   background-color: var(--background-color);
-  padding: 2rem 4rem;
+  padding: 1.5rem 4rem;
 
   .logo img {
     filter: brightness(0) invert(0);

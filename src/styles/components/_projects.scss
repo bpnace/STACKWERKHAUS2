@@ -1,63 +1,114 @@
 .projects-section {
-  padding: 6rem 4rem;
+  padding: 5rem 4rem;
   z-index: 3;         // Ensure it scrolls OVER the About section
   background-color: var(--background-color);
 
-  h2 {
-    // text-align: center; // Commented out to allow .section-headline-large to control alignment
-    // font-size: 3rem;    // Commented out to allow .section-headline-large to control font size
-    // margin-bottom: 4rem; // Commented out to allow .section-headline-large to control margin
-  }
 
   .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); // Responsive grid
+    grid-template-columns: repeat(2, 1fr);
     gap: 3rem;
+    width: 100%;
   }
 
-  .project-card {
-    text-align: left;
-    .project-image-container { // Added container for zoom effect
-      overflow: hidden; // Important to clip the scaled image
-      margin-bottom: 1rem;
-      display: block; // Treat as block
-      aspect-ratio: 4 / 3; // Maintain aspect ratio
-    }
-
-    img {
-      max-width: 100%;
-      height: 100%; // Fill container height
-      width: 100%; // Fill container width
-      display: block;
-      object-fit: cover; // Ensure image covers the area
-      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); // Smoother transition
-    }
-    &:hover img { // Apply scale on card hover
-        transform: scale(1.05);
-    }
-
-    h3 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-    p {
-      margin-bottom: 1rem;
-      color: #555; // Slightly muted text color for description
-    }
-    a {
-      font-weight: bold;
-    }
+  .project {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    overflow: hidden;
+    min-height: 540px;
+    height: 80vh;
+    max-height: 700px;
+    width: 100%;
+    margin: 0 auto;
+    text-decoration: none;
+    color: var(--primary-text-color);
+    transition: box-shadow 0.3s;
+  }
+  .project:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+  }
+  .img-wrapper {
+    position: relative;
+    width: 100%;
+    flex: 1 1 auto;
+    min-height: 350px;
+    max-height: 70%;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    background: #eee;
+    overflow: hidden;
+  }
+  .img-wrapper .img {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+    pointer-events: none;
+  }
+  .img-wrapper .imgBlurred {
+    z-index: 1;
+    filter: blur(16px) brightness(0.9);
+    opacity: 1;
+  }
+  .img-wrapper .normalImg {
+    z-index: 2;
+    opacity: 1;
+  }
+  .project:hover .img-wrapper .normalImg,
+  .project:focus .img-wrapper .normalImg {
+    opacity: 0.2;
+  }
+  .website-wrapper {
+    position: absolute;
+    bottom: 0; left: 0; width: 100%;
+    z-index: 3;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .website-wrapper img {
+    width: 80%;
+    max-width: 320px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    border-radius: 8px;
+  }
+  .title {
+    font-family: 'Switzer', Helvetica, Arial, sans-serif;
+    font-size: 2rem;
+    margin-left: -4rem;
+    font-weight: 700;
+    color: var(--primary-text-color);
+    margin: 1.5rem 0 0.5rem 0;
+    line-height: 1.1;
+    display: flex;
+  }
+  .project > span {
+    font-family: 'Switzer', Helvetica, Arial, sans-serif;
+    font-size: 1.15rem;
+    color: var(--primary-text-light);
+    font-weight: 500;
+    margin-bottom: 0;
+    display: block;
   }
 
   /* Basic Responsive */
-  @media (max-width: 768px) {
-    padding: 4rem 2rem;
-    h2 {
-      // font-size: 2.5rem;
-      // margin-bottom: 3rem;
-    }
+  @media (max-width: 900px) {
     .project-grid {
-       gap: 2rem;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .project {
+      min-height: 400px;
+      height: auto;
+      max-height: none;
+    }
+    .img-wrapper {
+      min-height: 220px;
     }
   }
 } 

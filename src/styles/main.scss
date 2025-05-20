@@ -75,15 +75,32 @@ a:hover {
 @import 'components/hero';
 @import 'components/about';
 @import 'components/projects';
-@import 'components/capabilities';
 @import 'components/footer';
 @import 'components/card'; // Import for the new card styles
 @import 'components/seeMoreButton'; // Import for the new see more button
+@import 'components/contact';
 
-// /* Placeholder for Component Imports */
-// @import 'components/header';
-// @import 'components/hero';
-// @import 'components/about';
-// @import 'components/projects';
-// @import 'components/capabilities';
-// @import 'components/footer'; 
+.section-headline-large {
+  font-family: 'Switzer', Helvetica, Arial, sans-serif;
+  font-size: clamp(7rem, 6vw, 4rem);
+  font-weight: 700; // Bold
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -4rem;
+  align-items: flex-end;
+  line-height: -3;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem; // Space below the headline
+  color: var(--primary-text-color); // Darker color for the headline for contrast on white bg
+}
+
+.headline-tag {
+  font-size: 1rem; // Smaller size for the tag
+  font-weight: 600; // Medium weight
+  color: var(--primary-text-light); // Slightly lighter color for the tag
+  vertical-align: super; // Align with the top of the headline
+  margin-left: 0.5rem;
+  letter-spacing: 0.05em;
+  text-transform: none;
+  padding-top: 0.5rem; // Keep tag in its original case
+}

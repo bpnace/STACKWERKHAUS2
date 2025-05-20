@@ -12,10 +12,10 @@ import { initHeroAnimations } from './animations/heroAnimations';
 // import { initScrollIndicatorAnimation } from './animations/scrollIndicatorAnimations'; // Removed
 import { initAboutAnimations } from './animations/aboutAnimations';
 import { initProjectAnimations } from './animations/projectAnimations';
-import { initCapabilitiesAnimations } from './animations/capabilitiesAnimations';
 import { initSeeMoreButtonAnimations } from './animations/seeMoreButtonAnimations'; // Added new button animation
 // import { initScrollTriggerAnimations } from './animations/scrollTriggerAnimations'; // Added new scroll trigger animation - File not found
 // import { initCardAnimations } from './animations/cardAnimations'; // Added new card animation - File not found
+import { initContactAnimations } from './animations/contactAnimations';
 
 gsap.registerPlugin(ScrollTrigger, Draggable); // Register plugins
 
@@ -124,8 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeroAnimations();    
   initAboutAnimations();   
   initProjectAnimations(); 
-  initCapabilitiesAnimations(); 
   initSeeMoreButtonAnimations();
+  initContactAnimations();
 
   // 6. Initial GSAP .set() calls for FOUC prevention and stability
   // (Removed for modal elements to prevent FOUC)
@@ -160,6 +160,19 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // Make logo scroll to hero section on click
+  const headerLogo = document.querySelector('header .logo');
+  if (headerLogo) {
+    headerLogo.style.cursor = 'pointer';
+    headerLogo.addEventListener('click', function(e) {
+      e.preventDefault();
+      const heroSection = document.querySelector('.hero');
+      if (heroSection) {
+        lenis.scrollTo(heroSection, { offset: 0, duration: 1.2, easing: (t) => 1 - Math.pow(1 - t, 4) });
+      }
+    });
+  }
 });
 
 // --- Webpack HMR Handling --- 
