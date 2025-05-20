@@ -2,7 +2,7 @@
   position: relative; // Needed for z-index stacking
   z-index: 2;         // Ensure it scrolls OVER the pinned hero
   background-color: var(--background-color); // Make it opaque
-  padding: 4rem 4rem; // Keep padding for spacing
+  padding: 6rem 4rem; // Keep padding for spacing
   // max-width: 1200px; // Removed for full width
   // margin: 0 auto;    // Removed for full width
 
@@ -10,7 +10,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr; // Two equal columns
     gap: 4rem;
-    align-items: center;
+    align-items: start;
   }
 
   .about-text {
@@ -71,9 +71,12 @@
 
 .section-headline-large {
   font-family: 'Switzer', Helvetica, Arial, sans-serif;
-  font-size: 7rem; // Increased from 5rem
+  font-size: clamp(7rem, 6vw, 4rem);
   font-weight: 700; // Bold
-  line-height: 0.9; // Tight line height, can make it appear "cut-off" or overlapping
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  line-height: -3;
   text-transform: uppercase;
   margin-bottom: 1.5rem; // Space below the headline
   color: var(--primary-text-color); // Darker color for the headline for contrast on white bg
@@ -88,8 +91,18 @@
     vertical-align: super; // Align with the top of the headline
     margin-left: 0.5rem;
     letter-spacing: 0.05em;
-    text-transform: none; // Keep tag in its original case
+    text-transform: none;
+    padding-top: 0.5rem; // Keep tag in its original case
   }
+}
+
+.section-headline-large .about-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.section-headline-large .about-letter {
+  display: inline-block;
 }
 
 .about-text {
