@@ -255,6 +255,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize hero see-more button animation
   initSeeMoreButtonAnimations();
+
+  // Logo video hover effect
+  const logoVideo = document.querySelector('.logo .masked-video');
+  const logo = document.querySelector('.logo');
+  
+  if (logoVideo) {
+    // Set mask-image via JS to avoid Webpack build errors
+    logoVideo.style.maskImage = "url('/assets/images/logo1.svg')";
+    logoVideo.style.webkitMaskImage = "url('/assets/images/logo1.svg')";
+
+    logo.addEventListener('mouseenter', () => {
+      console.log('Logo mouseenter: playing video');
+      logoVideo.play();
+    });
+    
+    logo.addEventListener('mouseleave', () => {
+      console.log('Logo mouseleave: pausing video');
+      setTimeout(() => {
+        logoVideo.pause();
+        logoVideo.currentTime = 0;
+      }, 300); // Match the CSS transition duration
+    });
+  }
 });
 
 // --- Webpack HMR Handling --- 

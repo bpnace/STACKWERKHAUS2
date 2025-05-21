@@ -30,12 +30,48 @@ header {
   }
 
   .logo {
+    position: relative;
+    display: inline-block;
+    
     img {
       display: block;
       height: 25px;
       width: auto;
       filter: brightness(0) invert(1);
       transition: filter 0.4s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    .masked-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* mask-image and -webkit-mask-image will be set via JS to avoid Webpack errors */
+      mask-size: contain;
+      -webkit-mask-size: contain;
+      mask-repeat: no-repeat;
+      -webkit-mask-repeat: no-repeat;
+      mask-position: center;
+      -webkit-mask-position: center;
+      opacity: 0;
+      transition: opacity 0.2s ease-in-out;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    &:hover {
+      .masked-video {
+        opacity: 1;
+      }
+      img {
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
     }
   }
 
