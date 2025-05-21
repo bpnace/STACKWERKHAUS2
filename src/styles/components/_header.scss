@@ -40,57 +40,75 @@ header {
   }
 
   nav {
-    flex-grow: 1; // Allow nav to take available space in the center
-    display: flex; // Use flex to center the links within nav
-    justify-content: center; // Center nav links
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
 
     a {
       font-family: 'Switzer', Helvetica, Arial, sans-serif;
-      margin: 0 1.5rem; // Adjusted margin for centering, slightly more space
+      margin: 0 1.5rem;
       font-size: 1rem;
       color: var(--secondary-text-color);
-      text-decoration: none !important; // Prevent default underlines always
-      position: relative; // For pseudo-element positioning // Space for the underline
-      transition: color 0.3s ease; // Keep color transition if desired
+      text-decoration: none !important;
+      position: relative;
+      transition: color 0.3s ease;
+      font-weight: 600;
+      line-height: 1;
+      padding: 0;
 
       &::after {
         content: '';
         position: absolute;
         left: 0;
-        bottom: 0;
+        bottom: -8px;
         width: 0;
-        height: 1.5px; // Thickness of the underline
-        background-color: var(--secondary-text-color); // Color of the underline
-        transition: width 0.5s ease-in-out; // Slower animation
+        height: 1.5px;
+        background-color: var(--secondary-text-color);
+        transition: width 0.5s ease-in-out, background-color 0.3s;
       }
-
       &:hover {
-        color: var(--secondary-text-color); // Explicitly set hover color if it shouldn't change
-        // text-decoration: none !important; // Already set above
+        color: var(--secondary-text-color);
+        text-decoration: none !important;
       }
-
       &:hover::after {
         width: 100%;
+        background-color: var(--secondary-text-color);
       }
     }
   }
 
   .header-cta {
-    .cta-link { // Changed from .cta-button to .cta-link
+    .cta-link {
       font-family: 'Switzer', Helvetica, Arial, sans-serif;
-      font-size: 1rem; // Match nav a font-size
+      font-size: 1rem;
       color: var(--secondary-text-color);
-      text-decoration: underline;
-      padding: 0.5rem 0; // Adjust padding, no horizontal for a simple link
-      margin-left: 1.5rem; // Space from nav links
+      font-weight: 700;
+      text-decoration: none;
       background-color: transparent;
       border: none;
       cursor: pointer;
+      position: relative;
       transition: color 0.3s ease;
-
+      margin-left: 1.5rem;
+      line-height: 1;
+      padding: 0;
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 0;
+        height: 1.5px;
+        background-color: var(--secondary-text-color);
+        transition: width 0.5s ease-in-out, background-color 0.3s;
+      }
       &:hover {
-        color: var(--accent-color);
-        text-decoration: underline; // Keep or remove underline on hover as preferred
+        color: var(--secondary-text-color);
+        text-decoration: none;
+      }
+      &:hover::after {
+        width: 100%;
+        background-color: var(--secondary-text-color);
       }
     }
   }
@@ -106,27 +124,40 @@ header.scrolled {
 
   nav a {
     color: var(--primary-text-color);
-    // text-decoration: none !important; // Already inherited
-
-    &::after { // Underline color for scrolled state
-        background-color: var(--primary-text-color);
+    font-weight: 700;
+    line-height: 1;
+    padding: 0;
+    &::after {
+      background-color: var(--primary-text-color);
+      bottom: -8px;
     }
-
     &:hover {
-      color: var(--primary-text-color); // Explicitly set hover color
-       // Hover for scrolled state - underline width change is handled above
+      color: var(--primary-text-color);
+      text-decoration: none !important;
     }
-     &:hover::after { // Ensure underline color is correct on hover in scrolled state if different
-        background-color: var(--accent-color); // Example: accent color for underline on hover
+    &:hover::after {
+      background-color: var(--primary-text-color);
+      width: 100%;
     }
   }
 
-  .header-cta .cta-link { // Scrolled state for CTA link
+  .header-cta .cta-link {
     color: var(--primary-text-color);
-    text-decoration: underline;
-
+    text-decoration: none;
+    font-weight: 700;
+    line-height: 1;
+    padding: 0;
+    &::after {
+      background-color: var(--primary-text-color);
+      bottom: -8px;
+    }
     &:hover {
-      color: var(--accent-color);
+      color: var(--primary-text-color);
+      text-decoration: none;
+    }
+    &:hover::after {
+      background-color: var(--primary-text-color);
+      width: 100%;
     }
   }
 } 

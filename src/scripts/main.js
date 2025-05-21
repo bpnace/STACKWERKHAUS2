@@ -14,6 +14,7 @@ import { FocusTrap } from './utils/focusTrap';
 import { initPageLoadAnimation } from './animations/pageLoadAnimations';
 import { initHeroAnimations } from './animations/heroAnimations';
 import './components/ProjectCard'; // Web Component registration
+import { initSeeMoreButtonAnimations } from './animations/seeMoreButtonAnimations';
 
 gsap.registerPlugin(ScrollTrigger, Draggable); // Register plugins
 
@@ -251,6 +252,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize hero animations (including navbar scroll effect)
   initHeroAnimations();
+
+  // Initialize hero see-more button animation
+  initSeeMoreButtonAnimations();
 });
 
 // --- Webpack HMR Handling --- 
