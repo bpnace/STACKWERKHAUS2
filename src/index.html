@@ -1,21 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STACKWERKHAUS</title>
+    <title>STACKWERKHAUS - Dein Berliner Design Studio</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="STACKWERKHAUS - Dein Berliner Design Studio für digitale Produkte und Markenerlebnisse. Webentwicklung, Branding und UI/UX Design.">
+    <meta name="keywords" content="Design Studio, Berlin, Webentwicklung, Branding, UI/UX Design, Digital Design">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="STACKWERKHAUS - Dein Berliner Design Studio">
+    <meta property="og:description" content="Digitale Produkte und Markenerlebnisse aus Berlin">
+    <meta property="og:image" content="https://stackwerkhaus.de/assets/images/og-image.webp">
+    <meta property="og:url" content="https://stackwerkhaus.de">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="STACKWERKHAUS - Dein Berliner Design Studio">
+    <meta name="twitter:description" content="Digitale Produkte und Markenerlebnisse aus Berlin">
+    <meta name="twitter:image" content="https://stackwerkhaus.de/assets/images/twitter-card.webp">
+    
+    <!-- Preload Critical Assets -->
+    <link rel="preload" as="style" href="main.css" onload="this.rel='stylesheet'">
+    <link rel="preload" as="image" href="assets/images/hero.webp" type="image/webp">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <!-- Critical CSS -->
     <style>
       body { opacity: 0; transition: opacity 1.2s cubic-bezier(0.4,0,0.2,1); }
       body.fadein { opacity: 1; }
       .blur-overlay, .lebenslauf-card { opacity: 0; pointer-events: none; transform: translate(-50%, 100%); }
       .lebenslauf-card.visible { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
       .blur-overlay.visible { opacity: 1; pointer-events: auto; }
-      .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; text-align: left; padding: 2rem 4rem; background: #fff; }
-      /* Add any other above-the-fold/hero styles here if needed */
+      .hero { 
+        min-height: 100vh; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: flex-start; 
+        text-align: left; 
+        padding: 2rem 4rem; 
+        background: #fff;
+        background-image: url('assets/images/hero1.webp');
+        background-size: cover;
+        background-position: center;
+      }
     </style>
-    <link rel="preload" as="style" href="main.css" onload="this.rel='stylesheet'">
-    <!-- <link rel="stylesheet" href="dist/main.css"> CSS will be injected by HtmlWebpackPlugin -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "STACKWERKHAUS",
+      "image": "https://stackwerkhaus.de/assets/images/logo.webp",
+      "description": "Dein Berliner Design Studio für digitale Produkte und Markenerlebnisse",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Berlin",
+        "addressCountry": "DE"
+      },
+      "offers": {
+        "@type": "Offer",
+        "name": "Web Development and Design Services"
+      },
+      "url": "https://stackwerkhaus.de",
+      "telephone": "",
+      "priceRange": "€€"
+    }
+    </script>
 </head>
 <body class="preload">
     <!-- Header Component - Moved outside scroll container for fixed positioning -->
@@ -38,7 +93,10 @@
         <main>
             <!-- Hero Section Component -->
             <section class="hero">
-                <h1 class="hero-title"><span>DEIN BERLINER</span> <span>DESIGN STUDIO</span></h1>
+                <h1 class="hero-title section-headline-large">
+                    <span>DEIN BERLINER</span></br>
+                    <span>DESIGN STUDIO</span>
+                </h1>
                 <p class="hero-subtitle">Ich gestalte digitale Produkte und Markenerlebnisse.</p>
                 
                 <div class="hero-shadow-overlay"></div>
@@ -138,16 +196,26 @@
             </div>
             <div class="signature">STACKWERKHAUS</div>
         </footer>
-        <div class="blur-overlay" tabindex="-1"></div>
-        <div class="lebenslauf-card" role="dialog" aria-modal="true" aria-labelledby="lebenslauf-title">
-          <button class="close-card-btn" aria-label="Schließen">&times;</button>
+        <div class="blur-overlay" tabindex="-1" aria-hidden="true"></div>
+        <div 
+          class="lebenslauf-card" 
+          role="dialog" 
+          aria-modal="true" 
+          aria-labelledby="lebenslauf-title"
+          aria-describedby="lebenslauf-description">
+          <button 
+            class="close-card-btn" 
+            aria-label="Schließen"
+            type="button">
+            &times;
+          </button>
           <h2 id="lebenslauf-title">Webentwickler & Sales-Profi aus Berlin</h2>
-          <p>Mit Leidenschaft für KI, Technologie und die digitale Zukunft. Ich helfe kleinen Unternehmen, groß zu denken und nachhaltig zu wachsen.</p>
-          <ul class="lebenslauf-highlights">
-            <li><span class="icon-placeholder">[Icon]</span> <strong>Erfahrung:</strong> 6+ Jahre in Webentwicklung & Vertrieb</li>
-            <li><span class="icon-placeholder">[Icon]</span> <strong>Tech & KI:</strong> Immer am Puls der neuesten Trends</li>
-            <li><span class="icon-placeholder">[Icon]</span> <strong>Kundenfokus:</strong> Maßgeschneiderte Lösungen, die wirklich helfen</li>
-            <li><span class="icon-placeholder">[Icon]</span> <strong>Wachstum:</strong> Gemeinsam neue Chancen erkennen und nutzen</li>
+          <p id="lebenslauf-description">Mit Leidenschaft für KI, Technologie und die digitale Zukunft. Ich helfe kleinen Unternehmen, groß zu denken und nachhaltig zu wachsen.</p>
+          <ul class="lebenslauf-highlights" aria-label="Karriere Highlights">
+            <li><span class="icon-placeholder" aria-hidden="true">[Icon]</span> <strong>Erfahrung:</strong> 6+ Jahre in Webentwicklung & Vertrieb</li>
+            <li><span class="icon-placeholder" aria-hidden="true">[Icon]</span> <strong>Tech & KI:</strong> Immer am Puls der neuesten Trends</li>
+            <li><span class="icon-placeholder" aria-hidden="true">[Icon]</span> <strong>Kundenfokus:</strong> Maßgeschneiderte Lösungen, die wirklich helfen</li>
+            <li><span class="icon-placeholder" aria-hidden="true">[Icon]</span> <strong>Wachstum:</strong> Gemeinsam neue Chancen erkennen und nutzen</li>
           </ul>
           <p class="lebenslauf-cta">Lust auf digitale Innovation? Lassen Sie uns Ihr Projekt anpacken!</p>
         </div>

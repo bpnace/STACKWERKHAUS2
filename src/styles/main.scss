@@ -92,15 +92,29 @@ a:hover {
   text-transform: uppercase;
   margin-bottom: 1.5rem; // Space below the headline
   color: var(--primary-text-color); // Darker color for the headline for contrast on white bg
-}
 
-.headline-tag {
-  font-size: 1rem; // Smaller size for the tag
-  font-weight: 600; // Medium weight
-  color: var(--primary-text-light); // Slightly lighter color for the tag
-  vertical-align: super; // Align with the top of the headline
-  margin-left: 0.5rem;
-  letter-spacing: 0.05em;
-  text-transform: none;
-  padding-top: 0.5rem; // Keep tag in its original case
+  .headline-tag {
+    font-size: 1rem; // Smaller size for the tag
+    font-weight: 600; // Medium weight
+    color: var(--primary-text-light); // Slightly lighter color for the tag
+    vertical-align: super; // Align with the top of the headline
+    margin-left: 0.5rem;
+    letter-spacing: 0.05em;
+    text-transform: none;
+    padding-top: 0.5rem; // Keep tag in its original case
+    display: inline-block; // Ensure proper display
+    opacity: 1 !important; // Prevent animation from affecting opacity
+    transform: none !important; // Prevent animation from affecting position
+  }
+
+  .headline-word {
+    display: inline-block;
+    margin-right: 0.25em;
+  }
+
+  .headline-letter {
+    display: inline-block;
+    transform-origin: bottom;
+    will-change: transform, opacity;
+  }
 }

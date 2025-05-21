@@ -13,7 +13,12 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'public/dist'),
     assetModuleFilename: 'assets/[name][ext][query]', // Define output path for assets
-    publicPath: 'auto' // Ensures assets are served correctly, especially with HtmlWebpackPlugin
+    publicPath: '/' // Set to root path
+  },
+  resolve: {
+    alias: {
+      assets: path.resolve(__dirname, 'public/assets')
+    }
   },
   plugins: [
     // Only add MiniCssExtractPlugin in production mode

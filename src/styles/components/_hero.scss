@@ -11,7 +11,7 @@
   // margin-top: 80px; // Keep commented out for now, LocoScroll handles spacing
 
   // Background Image properties
-  background-image: url('../../public/assets/images/hero1.webp'); // Path relative to main.scss
+  background-image: url('~assets/images/hero1.webp'); // Using webpack alias syntax
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -38,24 +38,33 @@
   }
 
   .hero-title {
-    position: relative; // Ensure it's above the overlay
-    z-index: 1;         // Ensure it's above the overlay
-    font-size: clamp(2.5rem, 8vw, 6rem); // Responsive font size
-    font-weight: 900; // Specific font weight for hero title
-    line-height: 0.8;
-    margin-bottom: 1rem;
-    text-align: left;
-    color: var(--secondary-text-color);
-    font-family: 'Switzer', Helvetica, Arial, sans-serif;
+    position: relative;
+    z-index: 1;
+    margin-left: 0 !important; // Override section-headline-large margin
+    color: var(--secondary-text-color) !important; // Override for light text on dark background
 
     span {
-      display: block; // Each word on a new line as per original design idea
+      display: block;
+      line-height: 0.9;
+    }
+
+    .headline-tag {
+      color: var(--secondary-text-color) !important; // Override for light text
+      opacity: 0.8 !important; // Slightly transparent
+    }
+
+    .headline-word {
+      margin-right: 0; // Override default margin for hero layout
+    }
+
+    .headline-letter {
+      color: var(--secondary-text-color);
     }
   }
 
   .hero-subtitle {
-    position: relative; // Ensure it's above the overlay
-    z-index: 1;         // Ensure it's above the overlay
+    position: relative;
+    z-index: 1;
     font-size: clamp(1rem, 2.5vw, 1.5rem);
     max-width: 600px;
     margin-bottom: 2rem;

@@ -1,7 +1,9 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-export function initHeroAnimations(scrollContainer) {
+gsap.registerPlugin(ScrollTrigger);
+
+export function initHeroAnimations() {
   const headerEl = document.querySelector('header');
   const heroSectionEl = document.querySelector('.hero');
 
@@ -9,28 +11,36 @@ export function initHeroAnimations(scrollContainer) {
   if (headerEl && heroSectionEl) {
     ScrollTrigger.create({
       trigger: heroSectionEl,
-      start: "bottom top",
+      start: "bottom 80px", // When hero bottom reaches header height
+      end: "bottom 80px",
       onEnter: () => headerEl.classList.add("scrolled"),
-      onLeaveBack: () => headerEl.classList.remove("scrolled"),
+      onLeaveBack: () => headerEl.classList.remove("scrolled")
     });
   }
 
-  // --- FIXED: True Parallax (Hero scrolls slower than body) ---
+  // --- TRUE PARALLAX: Hero scrolls at 0.4x speed, both directions ---
   if (heroSectionEl) {
-    const maxY = window.innerHeight * 0.6;
-    const st = ScrollTrigger.create({
-      trigger: heroSectionEl,
-      start: "top top",
-      end: () => `+=${window.innerHeight}`,
-      scrub: true,
-      onUpdate: self => {
-        // Move hero at 0.4x scroll speed (slower than scroll)
-        const progress = self.progress;
-        gsap.to(heroSectionEl, { y: progress * maxY, overwrite: 'auto', ease: 'none', duration: 0 });
-      }
-    });
-    // Set initial position based on initial progress (fix Chrome jump)
-    gsap.set(heroSectionEl, { y: st.progress * maxY });
+    let st;
+    function setupParallax() {
+      const maxY = window.innerHeight * 0.4;
+      if (st) st.kill();
+      st = ScrollTrigger.create({
+        trigger: heroSectionEl,
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+        invalidateOnRefresh: true,
+        onUpdate: self => {
+          const progress = self.progress;
+          gsap.set(heroSectionEl, { y: progress * maxY });
+        }
+      });
+      // Set initial position based on initial progress (fix Chrome jump)
+      gsap.set(heroSectionEl, { y: st.progress * maxY });
+      ScrollTrigger.refresh();
+    }
+    setupParallax();
+    window.addEventListener('resize', setupParallax);
   }
 
   // Hero Title Staggered Animation - LETTER BY LETTER
@@ -40,14 +50,9 @@ export function initHeroAnimations(scrollContainer) {
     heroTitleWordSpans.forEach(wordSpan => {
       const text = wordSpan.textContent;
       const letters = text.split('');
-      wordSpan.innerHTML = ''; // Clear the original word span
-      
-      // Style the wordSpan to act as a clipping mask for the letters
+      wordSpan.innerHTML = '';
       wordSpan.style.display = 'inline-block';
       wordSpan.style.overflow = 'hidden';
-      // Optional: Add a tiny padding if letters get clipped at the bottom.
-      // wordSpan.style.paddingBottom = '2px'; 
-
       letters.forEach(letter => {
         const letterSpan = document.createElement('span');
         letterSpan.className = 'hero-letter';
@@ -56,25 +61,22 @@ export function initHeroAnimations(scrollContainer) {
         wordSpan.appendChild(letterSpan);
       });
     });
-
-    // Animate all .hero-letter elements
     gsap.from(".hero-title .hero-letter", {
       opacity: 0,
-      y: 60, // Start further down to be hidden by the parent's overflow
-      stagger: 0.04, // Further decreased stagger for less difference between letters
-      duration: 1.5, // Increased duration for a slower animation
-      ease: 'expo.out', // Smoother ease
+      y: 60,
+      stagger: 0.04,
+      duration: 1.5,
+      ease: 'expo.out',
       delay: 0.6
     });
   }
 
-  // Animate hero shadow overlay opacity on scroll
+  // Hero Shadow Overlay Animation
   const heroShadow = document.querySelector('.hero-shadow-overlay');
   if (heroShadow && heroSectionEl) {
-    // Ensure overlay starts transparent
     gsap.set(heroShadow, { opacity: 0 });
     gsap.to(heroShadow, {
-      opacity: 0.5, // Max 0.5 darkness at end of hero scroll
+      opacity: 0.5,
       ease: "none",
       scrollTrigger: {
         trigger: heroSectionEl,

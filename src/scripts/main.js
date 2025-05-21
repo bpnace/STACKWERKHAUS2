@@ -6,16 +6,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'; // Import ScrollTrigger
 import { Draggable } from 'gsap/Draggable'; // Import Draggable
 import Lenis from 'lenis'; // Import Lenis for smooth scrolling
 
+// Import our new utilities
+import { headlineAnimator, scrollFadeIn, createParallax } from './utils/animationUtils';
+import { FocusTrap } from './utils/focusTrap';
+
 // Import animation modules
 import { initPageLoadAnimation } from './animations/pageLoadAnimations';
 import { initHeroAnimations } from './animations/heroAnimations';
-// import { initScrollIndicatorAnimation } from './animations/scrollIndicatorAnimations'; // Removed
-import { initAboutAnimations } from './animations/aboutAnimations';
-import { initProjectAnimations } from './animations/projectAnimations';
-import { initSeeMoreButtonAnimations } from './animations/seeMoreButtonAnimations'; // Added new button animation
-// import { initScrollTriggerAnimations } from './animations/scrollTriggerAnimations'; // Added new scroll trigger animation - File not found
-// import { initCardAnimations } from './animations/cardAnimations'; // Added new card animation - File not found
-import { initContactAnimations } from './animations/contactAnimations';
+import './components/ProjectCard'; // Web Component registration
 
 gsap.registerPlugin(ScrollTrigger, Draggable); // Register plugins
 
@@ -63,9 +61,13 @@ window.addEventListener('load', () => {
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Initialize Lenis for smooth scrolling
   const lenis = new Lenis({
-    duration: 1.3, // Smoother, slower scroll
-    easing: (t) => 1 - Math.pow(1 - t, 4), // Extra smooth cubic ease
-    smooth: true,
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    orientation: 'vertical',
+    gestureOrientation: 'vertical',
+    smoothWheel: true,
+    smoothTouch: false,
+    touchMultiplier: 2,
   });
   // Store on window for HMR or other potential global access if needed
   window.lenisInstance = lenis;
@@ -89,11 +91,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const blurOverlay = document.querySelector('.blur-overlay');
   const lebenslaufCard = document.querySelector('.lebenslauf-card');
   const closeCardBtn = document.querySelector('.close-card-btn');
+  const focusTrap = new FocusTrap(lebenslaufCard);
 
   function openCard() {
     blurOverlay.classList.add('visible');
     lebenslaufCard.classList.add('visible');
     document.body.style.overflow = 'hidden'; // Prevent background scroll
+    focusTrap.trap();
     // Animate blur in
     gsap.to(blurOverlay, { blur: 8, opacity: 1, duration: 0.5, ease: 'power2.out' });
   }
@@ -106,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.style.overflow = '';
       // Reset filter property to avoid accumulation
       blurOverlay.style.filter = '';
+      focusTrap.release();
     }});
   }
 
@@ -121,11 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // 5. Initialize all Page Animations
   // These functions should now internally use the default scroller (window)
   initPageLoadAnimation(); 
-  initHeroAnimations();    
-  initAboutAnimations();   
-  initProjectAnimations(); 
-  initSeeMoreButtonAnimations();
-  initContactAnimations();
 
   // 6. Initial GSAP .set() calls for FOUC prevention and stability
   // (Removed for modal elements to prevent FOUC)
@@ -161,18 +161,96 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Make logo scroll to hero section on click
+  // Make logo scroll to top of page on click
   const headerLogo = document.querySelector('header .logo');
   if (headerLogo) {
     headerLogo.style.cursor = 'pointer';
     headerLogo.addEventListener('click', function(e) {
       e.preventDefault();
-      const heroSection = document.querySelector('.hero');
-      if (heroSection) {
-        lenis.scrollTo(heroSection, { offset: 0, duration: 1.2, easing: (t) => 1 - Math.pow(1 - t, 4) });
+      if (window.lenisInstance) {
+        window.lenisInstance.scrollTo(0, { duration: 1.2, easing: (t) => 1 - Math.pow(1 - t, 4) });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     });
   }
+
+  // Initialize Modal with Focus Trap
+  const heroSection = document.querySelector('.hero');
+  // REMOVE createParallax for hero section to avoid conflict
+  // if (heroSection) {
+  //   createParallax(heroSection, { speed: 0.4 });
+  // }
+
+  // Animate headlines using our utility
+  const headlines = document.querySelectorAll('.section-headline-large');
+  headlines.forEach(headline => {
+    headlineAnimator.splitText(headline);
+    scrollFadeIn(headline, {
+      start: 'top 80%',
+      y: 100,
+      duration: 1
+    });
+  });
+
+  // Convert existing project cards to web components
+  const projectGrid = document.querySelector('.project-grid');
+  if (projectGrid) {
+    const projects = Array.from(projectGrid.querySelectorAll('.project'));
+    projects.forEach(project => {
+      const title = project.querySelector('.title').textContent;
+      const subtitle = project.querySelector('span').textContent;
+      const normalImg = project.querySelector('.normalImg').src;
+      const blurredImg = project.querySelector('.imgBlurred').src;
+      
+      const projectCard = document.createElement('project-card');
+      projectCard.setAttribute('title', title);
+      projectCard.setAttribute('subtitle', subtitle);
+      projectCard.setAttribute('image', normalImg);
+      projectCard.setAttribute('blurred-image', blurredImg);
+      
+      project.replaceWith(projectCard);
+    });
+  }
+
+  // Animate hero title immediately on load
+  const heroTitle = document.querySelector('.hero-title');
+  if (heroTitle) {
+    const splitHeroText = headlineAnimator.splitText(heroTitle);
+    if (splitHeroText) {
+      headlineAnimator.animateHeadline(splitHeroText, {
+        stagger: 0.05,
+        duration: 0.8,
+        ease: 'power2.out',
+        y: 100,
+        delay: 0.2, // Slight delay for initial load
+        scrollTrigger: false // No scroll trigger for hero
+      });
+    }
+  }
+
+  // Initialize other section headlines with scroll trigger
+  const sectionHeadlines = document.querySelectorAll('.section-headline-large:not(.hero-title)');
+  sectionHeadlines.forEach(headline => {
+    const splitText = headlineAnimator.splitText(headline);
+    if (splitText) {
+      headlineAnimator.animateHeadline(splitText, {
+        stagger: 0.03,
+        duration: 0.6,
+        ease: 'power2.out',
+        y: 50,
+        scrollTrigger: {
+          trigger: headline,
+          start: 'top 80%',
+          end: 'top 20%',
+          toggleActions: 'play none none reverse'
+        }
+      });
+    }
+  });
+
+  // Initialize hero animations (including navbar scroll effect)
+  initHeroAnimations();
 });
 
 // --- Webpack HMR Handling --- 
