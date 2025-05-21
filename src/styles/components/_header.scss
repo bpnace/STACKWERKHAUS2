@@ -59,7 +59,7 @@ header {
       mask-position: center;
       -webkit-mask-position: center;
       opacity: 0;
-      transition: opacity 0.2s ease-in-out;
+      transition: opacity 0.3s ease-in-out;
       pointer-events: none;
       z-index: 1;
     }
@@ -156,6 +156,7 @@ header.scrolled {
 
   .logo img {
     filter: brightness(0) invert(0);
+    transition: filter 0.4s ease, opacity 0.3s ease-in-out;
   }
 
   nav a {
