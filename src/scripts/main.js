@@ -266,16 +266,19 @@ document.addEventListener('DOMContentLoaded', () => {
     logoVideo.style.webkitMaskImage = "url('/assets/images/logo1.svg')";
 
     logo.addEventListener('mouseenter', () => {
-      console.log('Logo mouseenter: playing video');
       logoVideo.play();
     });
     
     logo.addEventListener('mouseleave', () => {
-      console.log('Logo mouseleave: pausing video');
-      setTimeout(() => {
-        logoVideo.pause();
-        logoVideo.currentTime = 0;
-      }, 300); // Match the CSS transition duration
+      // Listen for transitionend to pause/reset video after fade-out
+      const onTransitionEnd = (e) => {
+        if (e.propertyName === 'opacity') {
+          logoVideo.pause();
+          logoVideo.currentTime = 0;
+          logoVideo.removeEventListener('transitionend', onTransitionEnd);
+        }
+      };
+      logoVideo.addEventListener('transitionend', onTransitionEnd);
     });
   }
 });

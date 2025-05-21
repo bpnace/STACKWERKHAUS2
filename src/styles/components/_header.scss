@@ -38,7 +38,7 @@ header {
       height: 25px;
       width: auto;
       filter: brightness(0) invert(1);
-      transition: filter 0.4s ease;
+      transition: filter 0.4s ease, opacity 0.6s cubic-bezier(0.4,0,0.2,1);
       position: relative;
       z-index: 2;
     }
@@ -59,7 +59,7 @@ header {
       mask-position: center;
       -webkit-mask-position: center;
       opacity: 0;
-      transition: opacity 0.3s ease-in-out;
+      transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1);
       pointer-events: none;
       z-index: 1;
     }
