@@ -15,6 +15,8 @@ import { initPageLoadAnimation } from './animations/pageLoadAnimations';
 import { initHeroAnimations } from './animations/heroAnimations';
 import './components/ProjectCard'; // Web Component registration
 import { initSeeMoreButtonAnimations } from './animations/seeMoreButtonAnimations';
+import { initContactAnimations } from './animations/contactAnimations';
+import { initCustomCheckbox } from './components/ContactForm';
 
 gsap.registerPlugin(ScrollTrigger, Draggable); // Register plugins
 
@@ -281,6 +283,10 @@ document.addEventListener('DOMContentLoaded', () => {
       logoVideo.addEventListener('transitionend', onTransitionEnd);
     });
   }
+
+  // Initialize contact animations and form
+  initContactAnimations();
+  initCustomCheckbox();
 });
 
 // --- Webpack HMR Handling --- 

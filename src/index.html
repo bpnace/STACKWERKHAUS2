@@ -109,7 +109,7 @@
             <section id="about" class="about-section">
                 <div class="about-content">
                     <div class="about-text">
-                        <h2 class="section-headline-large"><span>Mein</span> <br> <span>Ansatz</span> <br> <span class="headline-tag">STWKHS™—'25</span></h2>
+                        <h2 class="section-headline-large"><span>Mein Ansatz</span> <br> <span class="headline-tag">STWKHS™—'25</span></h2>
                         <p>Eine Webseite ist heute schnell erstellt. Doch eine, die sich abhebt und Ihre Ziele wirklich erreicht? Genau da kommt <b>STACKWERKHAUS</b> ins Spiel.</p>
                         <button class="read-more-btn">Mehr lesen</button>
                         <p>Als Freelancer mit Sitz in Berlin konzentriere ich mich auf maßgeschneiderte Web-Erlebnisse, die Ästhetik und modernste Technologie vereinen. Ich baue nicht nur Webseiten – ich schaffe digitale Plattformen, die Ihre Marke stärken und Ihr Geschäft voranbringen.</p>
@@ -157,27 +157,121 @@
             <section id="kontakt" class="contact">
                 <h2 class="section-headline-large">Kontakt <span class="headline-tag">STWKHS™—'25</span></h2>
                 <div class="contact-grid">
+                    <!-- Contact Form Card -->
                     <div class="contact-card">
-                        <h2 class="title">Jetzt Termin buchen</h2>
-                        <span>Unverbindliches Erstgespräch</span>
-                        <p>Du möchtest dein Projekt besprechen oder hast Fragen? Buche ganz einfach einen Termin für ein kostenloses Beratungsgespräch. Ich freue mich darauf, dich kennenzulernen und gemeinsam deine Ideen zu verwirklichen!</p>
-                        <p>Oder schreib mir eine E-Mail: <a href="mailto:info@stackwerkhaus.de">info@stackwerkhaus.de</a></p>
-                    </div>
-                    <div class="calendly-widget-wrapper">
-                        <div class="calendly-calendar-header">
-                            <svg class="calendar-icon" viewBox="0 0 24 24">
-                              <rect x="3" y="4" width="18" height="18" rx="4" fill="#5608ff" opacity="0.1"/>
-                              <rect x="3" y="4" width="18" height="18" rx="4" stroke="#5608ff" stroke-width="2" fill="none"/>
-                              <line x1="8" y1="2" x2="8" y2="6" stroke="#5608ff" stroke-width="2"/>
-                              <line x1="16" y1="2" x2="16" y2="6" stroke="#5608ff" stroke-width="2"/>
-                              <rect x="7" y="10" width="2" height="2" fill="#5608ff"/>
-                              <rect x="11" y="10" width="2" height="2" fill="#5608ff"/>
-                              <rect x="15" y="10" width="2" height="2" fill="#5608ff"/>
-                            </svg>
-                            <h3>Wähle deinen Termin</h3>
+                        <div class="contact-form-header">
+                            <h2 class="contact-title">Lass uns zusammenarbeiten</h2>
+                            <p class="contact-description">Teile mir mit, woran du arbeitest und wie ich dir helfen kann</p>
                         </div>
-                        <div class="calendly-inline-widget" data-url="https://calendly.com/stackwerkhaus-info" style="min-width:320px;height:750px;"></div>
-                        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                        
+                        <form action="https://formspree.io/f/xrgnkzvg" method="POST" class="contact-form" id="contact-form" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" placeholder="Dein Name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">E-Mail</label>
+                                <input type="email" id="email" name="email" placeholder="deine@email.de" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Nachricht</label>
+                                <textarea id="message" name="message" placeholder="Wie kann ich dir helfen?" rows="4" required></textarea>
+                            </div>
+                            
+                            <div class="form-group file-upload-group">
+                                <label for="attachment">Anhang (optional)</label>
+                                <input type="file" id="attachment" name="attachment" accept=".jpg,.jpeg,.png">
+                                <div class="file-upload-note">Erlaubte Dateitypen: JPG, PNG. Max. 5MB.</div>
+                            </div>
+                            
+                            <div class="checkbox-group-inline">
+                                <div class="custom-checkbox-container">
+                                    <button type="button" id="custom-checkbox" class="custom-checkbox" aria-checked="false">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="custom-checkbox-icon">
+                                            <path class="checkbox-checkmark" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M4.5 12.75l6 6 9-13.5" />
+                                        </svg>
+                                    </button>
+                                    <input type="checkbox" id="terms" name="terms" class="sr-only" required>
+                                </div>
+                                <label for="terms" class="terms-label-inline">Ich stimme den <a href="#" target="_blank">Datenschutzbestimmungen</a> zu</label>
+                            </div>
+                            
+                            <button type="submit" class="contact-submit-button">
+                                <span>Nachricht senden</span>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                        </form>
+
+                        <div class="contact-or-divider">
+                            <span>oder</span>
+                        </div>
+
+                        <div class="calendly-link-container">
+                            <p>Buche einen Termin direkt in meinem Kalender:</p>
+                            <!-- Calendly Link-Widget -->
+                            <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+                            <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+                            <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/stackwerkhaus-info'});return false;" class="calendly-link">
+                                <svg class="calendar-icon" viewBox="0 0 24 24">
+                                    <rect x="3" y="4" width="18" height="18" rx="4" fill="#5608ff" opacity="0.1"/>
+                                    <rect x="3" y="4" width="18" height="18" rx="4" stroke="#5608ff" stroke-width="2" fill="none"/>
+                                    <line x1="8" y1="2" x2="8" y2="6" stroke="#5608ff" stroke-width="2"/>
+                                    <line x1="16" y1="2" x2="16" y2="6" stroke="#5608ff" stroke-width="2"/>
+                                    <rect x="7" y="10" width="2" height="2" fill="#5608ff"/>
+                                    <rect x="11" y="10" width="2" height="2" fill="#5608ff"/>
+                                    <rect x="15" y="10" width="2" height="2" fill="#5608ff"/>
+                                </svg>
+                                <span>Calendly</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Info Card -->
+                    <div class="contact-info-card">
+                        <div class="contact-info-content">
+                            <h2 class="contact-info-title">Kontaktinfo</h2>
+                            
+                            <div class="contact-info-item">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M2 12H4M12 2V4M22 12H20M12 22V20M19.0784 19.0784L17.6642 17.6642M19.0784 4.99994L17.6642 6.41415M4.92157 19.0784L6.33578 17.6642M4.92157 4.99994L6.33578 6.41415" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                                <div>
+                                    <h3>Standort</h3>
+                                    <p>Berlin, Deutschland</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-info-item">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22 12.2039V13.725C22 17.6258 22 19.5763 20.8284 20.7881C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.7881C2 19.5763 2 17.6258 2 13.725V12.2039C2 9.91549 2 8.77128 2.5192 7.82274C3.0384 6.87421 3.98695 6.28551 5.88403 5.10813L7.88403 3.86687C9.88939 2.62229 10.8921 2 12 2C13.1079 2 14.1106 2.62229 16.116 3.86687L18.116 5.10812C20.0131 6.28551 20.9616 6.87421 21.4808 7.82274" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <path d="M15 18H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                                <div>
+                                    <h3>E-Mail</h3>
+                                    <a href="mailto:info@stackwerkhaus.de">info@stackwerkhaus.de</a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-info-item">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 16.1C2 19.6287 4.85786 22.5 8.36364 22.5C11.8694 22.5 14.7273 19.6287 14.7273 16.1C14.7273 14.1786 13.8754 12.4459 12.5091 11.25H4.21818C2.85186 12.4459 2 14.1786 2 16.1Z" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M14.7273 16.1C14.7273 19.6287 17.5851 22.5 21.0909 22.5C21.0909 22.5 22 22.5 22 21.5857C22 20.6714 21.0909 16.1 21.0909 16.1C21.0909 12.5713 18.233 9.7 14.7273 9.7C14.7273 9.7 14.7273 12.5713 14.7273 16.1Z" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M8.36364 9.7C11.8694 9.7 14.7273 6.82868 14.7273 3.3C14.7273 3.3 13.8182 1.5 8.36364 1.5C2.90909 1.5 2 3.3 2 3.3C2 6.82868 4.85786 9.7 8.36364 9.7Z" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                                <div>
+                                    <h3>Social Media</h3>
+                                    <div class="social-links-inline">
+                                        <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
