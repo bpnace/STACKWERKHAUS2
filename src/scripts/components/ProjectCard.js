@@ -8,7 +8,7 @@ class ProjectCard extends HTMLElement {
     const title = this.getAttribute('title');
     const subtitle = this.getAttribute('subtitle');
     const image = this.getAttribute('image');
-    const blurredImage = this.getAttribute('blurred-image');
+    const revealedImage = this.getAttribute('revealed-image');
     
     this.shadowRoot.innerHTML = `
       <style>
@@ -30,9 +30,7 @@ class ProjectCard extends HTMLElement {
         .img-wrapper {
           position: relative;
           width: 100%;
-          flex: 1 1 auto;
-          min-height: 350px;
-          max-height: 70%;
+          aspect-ratio: 3 / 5;
           display: flex;
           align-items: stretch;
           justify-content: center;
@@ -40,50 +38,44 @@ class ProjectCard extends HTMLElement {
           overflow: hidden;
         }
 
-        .img {
+        .pixelated-image-card__default,
+        .pixelated-image-card__active,
+        .pixelated-image-card__pixels {
+          width: 100%;
+          height: 100%;
           position: absolute;
           top: 0;
           left: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-          transition: opacity 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+        }
+
+        .pixelated-image-card__default {
+          z-index: 1;
+        }
+
+        .pixelated-image-card__active {
+          z-index: 2;
+          display: none;
+        }
+
+        .pixelated-image-card__pixels {
+          z-index: 3;
           pointer-events: none;
         }
 
-        .imgBlurred {
-          z-index: 1;
-          filter: blur(16px) brightness(0.9);
-          opacity: 1;
+        .pixelated-image-card__pixel {
+          background: var(--accent-color, #00b894);
+          opacity: 0.7;
+          border-radius: 2px;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          display: none;
         }
 
-        .normalImg {
-          z-index: 2;
-          opacity: 1;
-        }
-
-        .project:hover .normalImg,
-        .project:focus .normalImg {
-          opacity: 0.2;
-        }
-
-        .title {
-          font-family: 'Switzer', Helvetica, Arial, sans-serif;
-          font-size: 2rem;
-          font-weight: 700;
-          color: var(--primary-text-color);
-          margin: 1.5rem 0 0.5rem 0;
-          line-height: 1.1;
-          display: flex;
-        }
-
-        .subtitle {
-          font-family: 'Switzer', Helvetica, Arial, sans-serif;
-          font-size: 1.15rem;
-          color: var(--primary-text-light);
-          font-weight: 500;
-          margin-bottom: 0;
+        .pixelated-image-card__img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
           display: block;
         }
 
@@ -99,9 +91,14 @@ class ProjectCard extends HTMLElement {
         }
       </style>
       <a class="project" href="#" tabindex="0">
-        <div class="img-wrapper">
-          <img class="img imgBlurred" src="${blurredImage}" alt="${title} blurred" />
-          <img class="img normalImg" src="${image}" alt="${title}" />
+        <div class="img-wrapper" data-pixelated-image-reveal>
+          <div class="pixelated-image-card__default">
+            <img class="pixelated-image-card__img" src="${image}" alt="${title}" />
+          </div>
+          <div class="pixelated-image-card__active" data-pixelated-image-reveal-active>
+            <img class="pixelated-image-card__img" src="${revealedImage}" alt="${title} revealed" />
+          </div>
+          <div class="pixelated-image-card__pixels" data-pixelated-image-reveal-grid></div>
         </div>
         <h2 class="title">${title}</h2>
         <span class="subtitle">${subtitle}</span>

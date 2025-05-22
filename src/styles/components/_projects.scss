@@ -1,5 +1,5 @@
 .projects-section {
-  padding: 5rem 4rem;
+  padding: 4rem 4rem;
   z-index: 3;         // Ensure it scrolls OVER the About section
   background-color: var(--background-color);
 
@@ -57,10 +57,6 @@
   .img-wrapper .normalImg {
     z-index: 2;
     opacity: 1;
-  }
-  .project:hover .img-wrapper .normalImg,
-  .project:focus .img-wrapper .normalImg {
-    opacity: 0.2;
   }
   .website-wrapper {
     position: absolute;

@@ -3,7 +3,6 @@ import '../styles/main.scss'; // Import main SCSS file for Webpack
 // Main JavaScript file 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger'; // Import ScrollTrigger
-import { Draggable } from 'gsap/Draggable'; // Import Draggable
 import Lenis from 'lenis'; // Import Lenis for smooth scrolling
 
 // Import our new utilities
@@ -18,7 +17,7 @@ import { initSeeMoreButtonAnimations } from './animations/seeMoreButtonAnimation
 import { initContactAnimations } from './animations/contactAnimations';
 import { initCustomCheckbox } from './components/ContactForm';
 
-gsap.registerPlugin(ScrollTrigger, Draggable); // Register plugins
+gsap.registerPlugin(ScrollTrigger); // Only register ScrollTrigger, not Draggable
 
 // --- GSAP Blur Plugin (IIFE) ---
 (function() {
@@ -158,7 +157,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const target = document.querySelector(href);
         if (target) {
           e.preventDefault();
-          lenis.scrollTo(target, { offset: 0, duration: 1.2, easing: (t) => 1 - Math.pow(1 - t, 4) });
+          // Use easeInOutSine for slow-fast-slow effect
+          lenis.scrollTo(target, { offset: 0, duration: 1.2, easing: (t) => -(Math.cos(Math.PI * t) - 1) / 2 });
         }
       }
     });
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
     headerLogo.addEventListener('click', function(e) {
       e.preventDefault();
       if (window.lenisInstance) {
-        window.lenisInstance.scrollTo(0, { duration: 1.2, easing: (t) => 1 - Math.pow(1 - t, 4) });
+        window.lenisInstance.scrollTo(0, { duration: 1.2, easing: (t) => -(Math.cos(Math.PI * t) - 1) / 2 });
       } else {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
@@ -203,15 +203,15 @@ document.addEventListener('DOMContentLoaded', () => {
     projects.forEach(project => {
       const title = project.querySelector('.title').textContent;
       const subtitle = project.querySelector('span').textContent;
-      const normalImg = project.querySelector('.normalImg').src;
-      const blurredImg = project.querySelector('.imgBlurred').src;
-      
+      const normalImgEl = project.querySelector('.normalImg');
+      const normalImg = normalImgEl.src;
+      const revealedImg = normalImgEl.getAttribute('data-revealed-img'); // <-- Read from HTML
+
       const projectCard = document.createElement('project-card');
       projectCard.setAttribute('title', title);
       projectCard.setAttribute('subtitle', subtitle);
-      projectCard.setAttribute('image', normalImg);
-      projectCard.setAttribute('blurred-image', blurredImg);
-      
+      projectCard.setAttribute('image', normalImg); // Default image
+      projectCard.setAttribute('revealed-image', revealedImg); // Revealed image
       project.replaceWith(projectCard);
     });
   }
@@ -287,6 +287,74 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize contact animations and form
   initContactAnimations();
   initCustomCheckbox();
+
+  // --- Remove GSAP zoom/brightness hover effect for project images ---
+  // --- Add Osmo pixelated image reveal effect for project-card ---
+  const gridSize = 7;
+  const animationStepDuration = 0.3;
+  const pixelSize = 100 / gridSize;
+  const projectCards = document.querySelectorAll('project-card');
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia("(pointer: coarse)").matches;
+
+  projectCards.forEach(card => {
+    const imgWrapper = card.shadowRoot.querySelector('[data-pixelated-image-reveal]');
+    const pixelGrid = card.shadowRoot.querySelector('[data-pixelated-image-reveal-grid]');
+    const defaultImgWrap = card.shadowRoot.querySelector('.pixelated-image-card__default');
+    const revealedImgWrap = card.shadowRoot.querySelector('.pixelated-image-card__active');
+    if (!imgWrapper || !pixelGrid || !defaultImgWrap || !revealedImgWrap) return;
+    pixelGrid.innerHTML = '';
+    for (let row = 0; row < gridSize; row++) {
+      for (let col = 0; col < gridSize; col++) {
+        const pixel = document.createElement('div');
+        pixel.classList.add('pixelated-image-card__pixel');
+        pixel.style.width = `${pixelSize}%`;
+        pixel.style.height = `${pixelSize}%`;
+        pixel.style.left = `${col * pixelSize}%`;
+        pixel.style.top = `${row * pixelSize}%`;
+        pixelGrid.appendChild(pixel);
+      }
+    }
+    const pixels = pixelGrid.querySelectorAll('.pixelated-image-card__pixel');
+    const totalPixels = pixels.length;
+    const staggerDuration = animationStepDuration / totalPixels;
+    let isActive = false;
+    let delayedCall;
+    // Hide all pixels and revealed image by default
+    gsap.set(pixels, { display: 'none' });
+    revealedImgWrap.style.display = 'none';
+    defaultImgWrap.style.display = 'block';
+    const animatePixels = (activate) => {
+      isActive = activate;
+      gsap.killTweensOf(pixels);
+      if (delayedCall) delayedCall.kill();
+      gsap.set(pixels, { display: 'none' });
+      gsap.to(pixels, {
+        display: 'block',
+        duration: 0,
+        stagger: { each: staggerDuration, from: 'random' }
+      });
+      delayedCall = gsap.delayedCall(animationStepDuration, () => {
+        if (activate) {
+          defaultImgWrap.style.display = 'none';
+          revealedImgWrap.style.display = 'block';
+        } else {
+          defaultImgWrap.style.display = 'block';
+          revealedImgWrap.style.display = 'none';
+        }
+        gsap.to(pixels, {
+          display: 'none',
+          duration: 0,
+          stagger: { each: staggerDuration, from: 'random' }
+        });
+      });
+    };
+    if (isTouchDevice) {
+      imgWrapper.addEventListener('click', () => animatePixels(!isActive));
+    } else {
+      imgWrapper.addEventListener('mouseenter', () => { if (!isActive) animatePixels(true); });
+      imgWrapper.addEventListener('mouseleave', () => { if (isActive) animatePixels(false); });
+    }
+  });
 });
 
 // --- Webpack HMR Handling --- 

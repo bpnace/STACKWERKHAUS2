@@ -39,7 +39,9 @@
 
   .hero-title {
     position: relative;
+    font-family: 'Switzer', Helvetica, Arial, sans-serif;
     z-index: 1;
+    font-weight: 900;
     margin-left: 0 !important; // Override section-headline-large margin
     color: var(--secondary-text-color) !important; // Override for light text on dark background
 
