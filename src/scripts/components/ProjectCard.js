@@ -12,15 +12,17 @@ class ProjectCard extends HTMLElement {
     
     this.shadowRoot.innerHTML = `
       <style>
+        /*
+          1080x1350px ratio = 4:5 (portrait)
+        */
         .project {
           display: flex;
           flex-direction: column;
           background: #fff;
           overflow: hidden;
-          min-height: 540px;
-          height: 80vh;
-          max-height: 700px;
           width: 100%;
+          height: 100%;
+          aspect-ratio: 4 / 5;
           margin: 0 auto;
           text-decoration: none;
           color: var(--primary-text-color);
@@ -30,7 +32,8 @@ class ProjectCard extends HTMLElement {
         .img-wrapper {
           position: relative;
           width: 100%;
-          aspect-ratio: 3 / 5;
+          height: 100%;
+          aspect-ratio: 4 / 5;
           display: flex;
           align-items: stretch;
           justify-content: center;

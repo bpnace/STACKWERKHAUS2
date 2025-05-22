@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Remove GSAP zoom/brightness hover effect for project images ---
   // --- Add Osmo pixelated image reveal effect for project-card ---
-  const gridSize = 7;
+  const gridSize = 12; // Use a square grid for square pixels
   const animationStepDuration = 0.3;
   const pixelSize = 100 / gridSize;
   const projectCards = document.querySelectorAll('project-card');
@@ -307,10 +307,10 @@ document.addEventListener('DOMContentLoaded', () => {
       for (let col = 0; col < gridSize; col++) {
         const pixel = document.createElement('div');
         pixel.classList.add('pixelated-image-card__pixel');
-        pixel.style.width = `${pixelSize}%`;
-        pixel.style.height = `${pixelSize}%`;
-        pixel.style.left = `${col * pixelSize}%`;
-        pixel.style.top = `${row * pixelSize}%`;
+        pixel.style.width = `${100 / gridSize}%`;
+        pixel.style.height = `${100 / gridSize}%`;
+        pixel.style.left = `${col * (100 / gridSize)}%`;
+        pixel.style.top = `${row * (100 / gridSize)}%`;
         pixelGrid.appendChild(pixel);
       }
     }
