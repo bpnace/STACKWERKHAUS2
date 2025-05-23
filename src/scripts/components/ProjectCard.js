@@ -21,14 +21,12 @@ class ProjectCard extends HTMLElement {
         .project {
           display: flex;
           flex-direction: column;
-          background: #fff;
           overflow: hidden;
           width: 100%;
           height: auto;
           aspect-ratio: 4 / 5;
           margin: 0 auto;
           text-decoration: none;
-          color: var(--primary-text-color);
           transition: box-shadow 0.3s;
         }
 
@@ -40,7 +38,6 @@ class ProjectCard extends HTMLElement {
           display: flex;
           align-items: stretch;
           justify-content: center;
-          background: #eee;
           overflow: hidden;
         }
 
@@ -69,7 +66,7 @@ class ProjectCard extends HTMLElement {
         }
 
         .pixelated-image-card__pixel {
-          background: var(--accent-color, #00b894);
+          background: var(--accent-color);
           opacity: 0.7;
           border-radius: 0;
           position: absolute;
@@ -98,8 +95,12 @@ class ProjectCard extends HTMLElement {
             min-height: 180px;
           }
         }
+
+        .title, .subtitle {
+          color: inherit !important;
+        }
       </style>
-      <a class="project" href="#" tabindex="0">
+      <div class="project">
         <div class="img-wrapper" data-pixelated-image-reveal>
           <div class="pixelated-image-card__default">
             <img class="pixelated-image-card__img" src="${image}" alt="${title}" />
@@ -111,7 +112,7 @@ class ProjectCard extends HTMLElement {
         </div>
         <h2 class="title">${title}</h2>
         <span class="subtitle">${subtitle}</span>
-      </a>
+      </div>
     `;
   }
 }
