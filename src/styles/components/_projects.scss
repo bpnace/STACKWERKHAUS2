@@ -23,13 +23,11 @@
     background: #fff;
     overflow: hidden;
     width: 100%;
-    height: 100%;
+    height: auto;
     margin: 0 auto;
     text-decoration: none;
     color: var(--primary-text-color);
     transition: box-shadow 0.3s;
-    max-width: 540px;
-    max-height: 675px;
     aspect-ratio: 4 / 5;
   }
   .project:focus {
@@ -39,15 +37,13 @@
   .img-wrapper {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: auto;
     aspect-ratio: 4 / 5;
     display: flex;
     align-items: stretch;
     justify-content: center;
     background: #eee;
     overflow: hidden;
-    max-width: 540px;
-    max-height: 675px;
   }
   .img-wrapper .img {
     position: absolute;
@@ -107,8 +103,9 @@
       padding: 0 1rem;
     }
     .project, .img-wrapper {
-      max-width: 100vw;
-      max-height: 80vw;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5;
     }
   }
 
@@ -118,15 +115,17 @@
       gap: 2rem;
     }
     .project {
-      min-height: 400px;
+      min-height: 300px;
       height: auto;
       max-height: none;
-      max-width: 100vw;
+      width: 100%;
+      aspect-ratio: 4 / 5;
     }
     .img-wrapper {
-      min-height: 220px;
-      max-width: 100vw;
-      max-height: 80vw;
+      min-height: 180px;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5;
     }
   }
 } 

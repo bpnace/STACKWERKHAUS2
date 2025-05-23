@@ -15,13 +15,16 @@ class ProjectCard extends HTMLElement {
         /*
           1080x1350px ratio = 4:5 (portrait)
         */
+        *, *::before, *::after {
+          box-sizing: border-box;
+        }
         .project {
           display: flex;
           flex-direction: column;
           background: #fff;
           overflow: hidden;
           width: 100%;
-          height: 100%;
+          height: auto;
           aspect-ratio: 4 / 5;
           margin: 0 auto;
           text-decoration: none;
@@ -32,7 +35,7 @@ class ProjectCard extends HTMLElement {
         .img-wrapper {
           position: relative;
           width: 100%;
-          height: 100%;
+          height: auto;
           aspect-ratio: 4 / 5;
           display: flex;
           align-items: stretch;
@@ -68,11 +71,13 @@ class ProjectCard extends HTMLElement {
         .pixelated-image-card__pixel {
           background: var(--accent-color, #00b894);
           opacity: 0.7;
-          border-radius: 2px;
+          border-radius: 0;
           position: absolute;
           width: 100%;
           height: 100%;
           display: none;
+          margin: 0;
+          box-sizing: border-box;
         }
 
         .pixelated-image-card__img {
@@ -80,16 +85,17 @@ class ProjectCard extends HTMLElement {
           height: 100%;
           object-fit: cover;
           display: block;
+          position: relative;
         }
 
         @media (max-width: 900px) {
           .project {
-            min-height: 400px;
+            min-height: 300px;
             height: auto;
             max-height: none;
           }
           .img-wrapper {
-            min-height: 220px;
+            min-height: 180px;
           }
         }
       </style>
