@@ -16,7 +16,6 @@ import './components/ProjectCard'; // Web Component registration
 import { initSeeMoreButtonAnimations } from './animations/seeMoreButtonAnimations';
 import { initContactAnimations } from './animations/contactAnimations';
 import { initCustomCheckbox } from './components/ContactForm';
-import { initParticles } from './animations/particles';
 
 gsap.registerPlugin(ScrollTrigger); // Only register ScrollTrigger, not Draggable
 
@@ -288,14 +287,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize contact animations and form
   initContactAnimations();
   initCustomCheckbox();
-
-  // Initialize particles effect for contact info card
-  initParticles('.contact-info-card .particles-bg', {
-    quantity: 60,
-    color: '#fff',
-    size: 3,
-    staticity: 60
-  });
 
   // --- Remove GSAP zoom/brightness hover effect for project images ---
   // --- Add Osmo pixelated image reveal effect for project-card ---
