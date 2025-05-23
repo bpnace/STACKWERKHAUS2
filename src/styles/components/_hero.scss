@@ -11,7 +11,7 @@
   // margin-top: 80px; // Keep commented out for now, LocoScroll handles spacing
 
   // Background Image properties
-  background-image: url('../../public/assets/images/hero1.webp'); // Path relative to main.scss
+  background-image: url('~assets/images/hero1.webp'); // Using webpack alias syntax
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -38,29 +38,67 @@
   }
 
   .hero-title {
-    position: relative; // Ensure it's above the overlay
-    z-index: 1;         // Ensure it's above the overlay
-    font-size: clamp(2.5rem, 8vw, 6rem); // Responsive font size
-    font-weight: 900; // Specific font weight for hero title
-    line-height: 0.8;
-    margin-bottom: 1rem;
-    text-align: left;
-    color: var(--secondary-text-color);
+    position: relative;
+    font-family: 'Switzer', Helvetica, Arial, sans-serif;
+    z-index: 1;
+    line-height: 0.1;
+    font-weight: 900;
+    margin-left: 0 !important; // Override section-headline-large margin
+    color: var(--secondary-text-color) !important; // Override for light text on dark background
+    font-size: clamp(2.5rem, 10vw, 7rem);
+    text-wrap: balance;
 
     span {
-      display: block; // Each word on a new line as per original design idea
+      display: block;
+      line-height: 0.9;
+    }
+
+    .headline-tag {
+      color: var(--secondary-text-color) !important; // Override for light text
+      opacity: 0.8 !important; // Slightly transparent
+    }
+
+    .headline-word {
+      margin-right: 0; // Override default margin for hero layout
+    }
+
+    .headline-letter {
+      color: var(--secondary-text-color);
     }
   }
 
   .hero-subtitle {
-    position: relative; // Ensure it's above the overlay
-    z-index: 1;         // Ensure it's above the overlay
+    position: relative;
+    z-index: 1;
     font-size: clamp(1rem, 2.5vw, 1.5rem);
     max-width: 600px;
     margin-bottom: 2rem;
     text-align: left;
     color: var(--secondary-text-color);
+    font-family: 'Switzer', Helvetica, Arial, sans-serif;
   }
 }
 
+.hero-shadow-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  background: #000; // Solid black for uniform darkening
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 2;
+}
+
 // Removed @keyframes 
+
+@media (max-width: 700px) {
+  .hero {
+    padding: 2rem 1rem;
+  }
+  .hero-title span {
+    line-height: 1.1;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+} 

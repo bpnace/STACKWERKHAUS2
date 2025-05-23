@@ -36,12 +36,11 @@ export function initSeeMoreButtonAnimations() {
     }, 0)
     // Shutter/Blur effect on .circle-fill
     .to(circleFill, {
-      clipPath: 'inset(0% 0% 0% 0%)', // Reveal downwards
-      opacity: 1, // Fade in the blur effect as it reveals
-      backdropFilter: 'blur(8px)',
-      webkitBackdropFilter: 'blur(8px)',
+      clipPath: 'inset(0% 0% 0% 0%)',
+      opacity: 1,
+      filter: 'blur(8px)',
       duration: DURATION_SHUTTER,
-      ease: EASE_FLUID // Use the same fluid ease
+      ease: EASE_FLUID
     }, 0);
     // backgroundColor for circleFill is set in SCSS and doesn't need to animate here
 

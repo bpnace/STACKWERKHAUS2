@@ -1,3 +1,5 @@
+@import 'switzer.css';
+
 body.preload {
   opacity: 0 !important;
 }
@@ -13,9 +15,6 @@ body.preload .lebenslauf-card {
   pointer-events: none !important;
   transform: translate(-50%, 100%) !important;
 }
-
-// Import Google Fonts
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap'); // Montserrat for all, including 800 for hero
 
 // Main SCSS file 
 
@@ -35,6 +34,7 @@ body.preload .lebenslauf-card {
 :root {
   --background-color: #FFFFFF;
   --primary-text-color: #141414;
+  --primary-text-light: #555;
   --secondary-text-color: #f6f6f6;
   --accent-color: #5608ff;
   --accent-color-darkened: #4d07e6; // Added 10% darker shade
@@ -43,17 +43,15 @@ body.preload .lebenslauf-card {
 
 /* Base Body Styles */
 body {
-  font-family: 'Montserrat', Helvetica, Arial, sans-serif; // Montserrat for body
+  font-family: 'Switzer', Helvetica, Arial, sans-serif;
   background-color: var(--background-color);
   color: var(--primary-text-color);
-  line-height: 1.6;
-  /* opacity: 0; */ /* Moved to inline style in HTML for FOUC prevention */
-  /* transition: opacity 0.5s ease-in-out; // Optional: Keep or remove */
+  line-height: 0.6;
 }
 
 /* Basic Heading Styles */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Montserrat', sans-serif; // Montserrat for headings
+  font-family: 'Switzer', Helvetica, Arial, sans-serif;
   font-weight: bold; // Default bold (700) for headings
   margin-bottom: 1rem; /* Basic spacing */
 }
@@ -75,15 +73,45 @@ a:hover {
 @import 'components/hero';
 @import 'components/about';
 @import 'components/projects';
-@import 'components/capabilities';
 @import 'components/footer';
 @import 'components/card'; // Import for the new card styles
 @import 'components/seeMoreButton'; // Import for the new see more button
+@import 'components/contact';
 
-// /* Placeholder for Component Imports */
-// @import 'components/header';
-// @import 'components/hero';
-// @import 'components/about';
-// @import 'components/projects';
-// @import 'components/capabilities';
-// @import 'components/footer'; 
+.section-headline-large {
+  font-family: 'Switzer', Helvetica, Arial, sans-serif;
+  font-size: clamp(7rem, 6vw, 4rem);
+  font-weight: 700; // Bold
+  flex-wrap: wrap;
+  margin-left: -4rem;
+  align-items: flex-end;
+  line-height: -3;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem; // Space below the headline
+  color: var(--primary-text-color); // Darker color for the headline for contrast on white bg
+
+  .headline-tag {
+    font-size: 1rem; // Smaller size for the tag
+    font-weight: 600; // Medium weight
+    color: var(--primary-text-light); // Slightly lighter color for the tag
+    vertical-align: super; // Align with the top of the headline
+    margin-left: 0.5rem;
+    letter-spacing: 0.05em;
+    text-transform: none;
+    padding-top: 0.5rem; // Keep tag in its original case
+    display: inline-block; // Ensure proper display
+    opacity: 1 !important; // Prevent animation from affecting opacity
+    transform: none !important; // Prevent animation from affecting position
+  }
+
+  .headline-word {
+    display: inline-block;
+    margin-right: 0.25em;
+  }
+
+  .headline-letter {
+    display: inline-block;
+    transform-origin: bottom;
+    will-change: transform, opacity;
+  }
+}

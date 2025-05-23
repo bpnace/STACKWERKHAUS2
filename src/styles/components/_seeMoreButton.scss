@@ -17,6 +17,7 @@
   cursor: pointer;
   // GSAP will handle transitions, but keep for border-radius as it's not in all GSAP tweens
   transition: border-radius 450ms ease; 
+  font-family: 'Switzer', Helvetica, Arial, sans-serif;
 
   .text-content {
     position: relative;

@@ -2,8 +2,6 @@
   position: fixed;
   inset: 0;
   background: rgba(255,255,255,0.3);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   z-index: 1000;
   opacity: 0;
   pointer-events: none;
@@ -22,15 +20,16 @@
   opacity: 0;
   z-index: 1001;
   width: 100%;
-  max-width: 550px;
-  max-height: 85vh;
+  max-width: 70%;
+  max-height: 80%;
   background: #fff;
-  color: #141414;
+  color: var(--primary-text-color);
   border-radius: 12px 12px 0 0;
   box-shadow: 0 -5px 25px rgba(0,0,0,0.15);
   padding: 2.5rem 2rem 2rem 2rem;
   overflow-y: auto;
   transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.4s;
+  font-family: 'Switzer', Helvetica, Arial, sans-serif;
   &.visible {
     transform: translate(-50%, 0);
     opacity: 1;
@@ -47,4 +46,67 @@
     transition: color 0.2s;
     &:hover { color: #000; }
   }
+}
+
+.lebenslauf-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+
+  li {
+    display: flex;
+    align-items: center;
+    font-size: 1.08rem;
+    font-family: 'Switzer', Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    color: var(--primary-text-color);
+    letter-spacing: 0.01em;
+    line-height: 1.5;
+    background: none;
+    border: none;
+    padding: 0;
+    strong {
+      font-weight: 600;
+      color: var(--accent-color);
+      margin-left: 0.3em;
+    }
+  }
+}
+
+.icon-placeholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6em;
+  height: 1.6em;
+  margin-right: 0.7em;
+  font-size: 1.1em;
+  color: var(--accent-color);
+  background: none;
+  /* Replace with SVG later */
+}
+
+.lebenslauf-card h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-text-color);
+  margin-bottom: 0.7rem;
+  letter-spacing: 0.01em;
+}
+
+.lebenslauf-card p {
+  font-size: 1.08rem;
+  color: var(--primary-text-light);
+  margin-bottom: 0.5rem;
+}
+
+.lebenslauf-cta {
+  margin-top: 1.5rem;
+  font-size: 1.13rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  letter-spacing: 0.01em;
 } 

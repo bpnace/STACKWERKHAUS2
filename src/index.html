@@ -1,34 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STACKWERKHAUS</title>
+    <title>STACKWERKHAUS - Dein Berliner Design Studio</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="STACKWERKHAUS - Dein Berliner Design Studio für digitale Produkte und Markenerlebnisse. Webentwicklung, Branding und UI/UX Design.">
+    <meta name="keywords" content="Design Studio, Berlin, Webentwicklung, Branding, UI/UX Design, Digital Design">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="STACKWERKHAUS - Dein Berliner Design Studio">
+    <meta property="og:description" content="Digitale Produkte und Markenerlebnisse aus Berlin">
+    <meta property="og:image" content="https://stackwerkhaus.de/assets/images/og-image.webp">
+    <meta property="og:url" content="https://stackwerkhaus.de">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="STACKWERKHAUS - Dein Berliner Design Studio">
+    <meta name="twitter:description" content="Digitale Produkte und Markenerlebnisse aus Berlin">
+    <meta name="twitter:image" content="https://stackwerkhaus.de/assets/images/twitter-card.webp">
+    
+    <!-- Preload Critical Assets -->
+    <link rel="preload" as="style" href="main.css" onload="this.rel='stylesheet'">
+    <link rel="preload" as="image" href="assets/images/hero.webp" type="image/webp">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <!-- Critical CSS -->
     <style>
       body { opacity: 0; transition: opacity 1.2s cubic-bezier(0.4,0,0.2,1); }
       body.fadein { opacity: 1; }
       .blur-overlay, .lebenslauf-card { opacity: 0; pointer-events: none; transform: translate(-50%, 100%); }
       .lebenslauf-card.visible { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
       .blur-overlay.visible { opacity: 1; pointer-events: auto; }
-      .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; text-align: left; padding: 2rem 4rem; background: #fff; }
-      /* Add any other above-the-fold/hero styles here if needed */
+      .hero { 
+        min-height: 100vh; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: flex-start; 
+        text-align: left; 
+        padding: 2rem 4rem; 
+        background: #fff;
+        background-image: url('assets/images/hero1.webp');
+        background-size: cover;
+        background-position: center;
+      }
     </style>
-    <link rel="preload" as="style" href="main.css" onload="this.rel='stylesheet'">
-    <!-- <link rel="stylesheet" href="dist/main.css"> CSS will be injected by HtmlWebpackPlugin -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "STACKWERKHAUS",
+      "image": "https://stackwerkhaus.de/assets/images/logo.webp",
+      "description": "Dein Berliner Design Studio für digitale Produkte und Markenerlebnisse",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Berlin",
+        "addressCountry": "DE"
+      },
+      "offers": {
+        "@type": "Offer",
+        "name": "Web Development and Design Services"
+      },
+      "url": "https://stackwerkhaus.de",
+      "telephone": "",
+      "priceRange": "€€"
+    }
+    </script>
 </head>
 <body class="preload">
     <!-- Header Component - Moved outside scroll container for fixed positioning -->
     <header>
         <div class="logo">
             <img src="assets/images/logo1.svg" alt="STACKWERKHAUS Logo">
+            <video class="masked-video" playsinline muted loop aria-hidden="true">
+                <source src="assets/video/logo_bg1.webm" type="video/webm">
+            </video>
         </div>
         <nav>
-            <a href="#about">Über Uns</a>
-            <a href="#projects">Projekte</a>
+            <a href="#about">Vergangenheit</a>
+            <a href="#projects">Gegenwart</a>
         </nav>
         <div class="header-cta">
-            <a href="#kontakt" class="cta-link">Bauplan erstellen</a>
+            <a href="#kontakt" class="cta-link">Zukunft!</a>
         </div>
     </header>
 
@@ -38,27 +96,23 @@
         <main>
             <!-- Hero Section Component -->
             <section class="hero">
-                <h1 class="hero-title"><span>DEIN BERLINER</span> <span>DESIGN STUDIO</span></h1>
+                <h1 class="hero-title section-headline-large">
+                    <span>DEIN BERLINER</span></br>
+                    <span>DESIGN STUDIO</span>
+                </h1>
                 <p class="hero-subtitle">Ich gestalte digitale Produkte und Markenerlebnisse.</p>
                 
-                <button class="see-more-button">
-                    <span class="text-content">Mehr erfahren</span>
-                    <span class="arrow-down">
-                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14m7-7l-7 7-7-7"></path></svg>
-                    </span>
-                    <span class="circle-fill"></span>
-                </button>
+                <div class="hero-shadow-overlay"></div>
             </section>
 
             <!-- About Section Component -->
             <section id="about" class="about-section">
+                <h2 class="section-headline-large"><span>Mein Ansatz</span> <span class="headline-tag">STWKHS™—'25</span></h2>
                 <div class="about-content">
                     <div class="about-text">
-                        <h2 class="section-headline-large">Mein Ansatz </br> <span class="headline-tag">STWKHS™—'25</span></h2>
                         <p>Eine Webseite ist heute schnell erstellt. Doch eine, die sich abhebt und Ihre Ziele wirklich erreicht? Genau da kommt <b>STACKWERKHAUS</b> ins Spiel.</p>
                         <button class="read-more-btn">Mehr lesen</button>
                         <p>Als Freelancer mit Sitz in Berlin konzentriere ich mich auf maßgeschneiderte Web-Erlebnisse, die Ästhetik und modernste Technologie vereinen. Ich baue nicht nur Webseiten – ich schaffe digitale Plattformen, die Ihre Marke stärken und Ihr Geschäft voranbringen.</p>
-     
                         <div class="contact-links">
                             <a href="mailto:email@example.com">Email</a>
                             <a href="#">Instagram</a>
@@ -76,84 +130,195 @@
             <section id="projects" class="projects-section">
                 <h2 class="section-headline-large">Projekte <span class="headline-tag">STWKHS™—'25</span></h2>
                 <div class="project-grid">
-                    <!-- Project cards will be dynamically inserted here or listed statically -->
-                    <div class="project-card">
-                        <div class="project-image-container">
-                            <img src="https://picsum.photos/seed/project1/400/300" alt="Project 1 Thumbnail">
+                    <a class="project" href="#" tabindex="0">
+                        <div class="img-wrapper">
+                            <img class="img normalImg" src="assets/projects/1.webp" alt="Project 1" data-revealed-img="assets/projects/1.webp" />
+                            <div class="website-wrapper">
+                                <img src="https://picsum.photos/seed/website1/400/200" alt="Project 1 website preview" />
+                            </div>
                         </div>
-                        <h3>Projekttitel 1</h3>
-                        <p>Kurze Beschreibung von Projekt 1.</p>
-                        <a href="#">Fallstudie Ansehen</a>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-image-container">
-                            <img src="https://picsum.photos/seed/project2/400/300" alt="Project 2 Thumbnail">
+                        <h2 class="title">Bloom</h2>
+                        <span>Full Homepage</span>
+                    </a>
+                    <a class="project" href="#" tabindex="0">
+                        <div class="img-wrapper">
+                            <img class="img normalImg" src="https://picsum.photos/seed/normal2/800/600" alt="Project 2" data-revealed-img="https://picsum.photos/seed/revealed2/800/600" />
                         </div>
-                        <h3>Projekttitel 2</h3>
-                        <p>Kurze Beschreibung von Projekt 2.</p>
-                        <a href="#">Fallstudie Ansehen</a>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-image-container">
-                            <img src="https://picsum.photos/seed/project3/400/300" alt="Project 3 Thumbnail">
+                        <h2 class="title">Project 2</h2>
+                        <span>Branding & Web</span>
+                    </a>
+                    <!-- New Project Card 3 -->
+                    <a class="project" href="#" tabindex="0">
+                        <div class="img-wrapper">
+                            <img class="img normalImg" src="https://picsum.photos/seed/normal3/800/600" alt="Project 3" data-revealed-img="https://picsum.photos/seed/revealed3/800/600" />
                         </div>
-                        <h3>Projekttitel 3</h3>
-                        <p>Kurze Beschreibung von Projekt 3.</p>
-                        <a href="#">Fallstudie Ansehen</a>
-                    </div>
+                        <h2 class="title">Project 3</h2>
+                        <span>UI/UX & App Design</span>
+                    </a>
+                    <!-- Placeholder Card inviting viewer -->
+                    <a class="project placeholder-card" href="#kontakt" tabindex="0" style="border: 2px dashed var(--accent-color); background: rgba(86,8,255,0.07); display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 320px;">
+                        <div class="img-wrapper" style="justify-content: center; align-items: center; min-height: 120px;">
+                            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="32" cy="32" r="30" stroke="var(--accent-color)" stroke-width="4" fill="none"/>
+                                <text x="32" y="38" text-anchor="middle" fill="var(--accent-color)" font-size="32" font-family="'Switzer', Helvetica, Arial, sans-serif" dy=".3em">?</text>
+                            </svg>
+                        </div>
+                        <h2 class="title" style="margin: 1.5rem 0 0.5rem 0; text-align: center;">Dein Projekt?</h2>
+                        <span style="text-align: center; color: var(--accent-color); font-weight: 600;">Werde Teil des Rosters!<br>Jetzt anfragen &rarr;</span>
+                    </a>
                 </div>
             </section>
 
-            <!-- Capabilities Section Component -->
-            <section class="capabilities-section">
-                <h2>Leistungen</h2>
-                <div class="capabilities-container">
-                    <div class="capabilities-grid">
-                        <!-- Capability items will go here -->
-                        <div class="capability-item">Markenbildung</div>
-                        <div class="capability-item">Webdesign</div>
-                        <div class="capability-item">UI/UX Design</div>
-                        <div class="capability-item">Art Direction</div>
-                        <div class="capability-item">Entwicklung</div>
-                        <div class="capability-item">Motion Graphics</div>
+            <!-- Contact Section Component -->
+            <section id="kontakt" class="contact">
+                <h2 class="section-headline-large">Kontakt <span class="headline-tag">STWKHS™—'25</span></h2>
+                <div class="contact-grid">
+                    <!-- Contact Form Card -->
+                    <div class="contact-card">
+                        <div class="contact-form-header">
+                            <h2 class="contact-title">Lass uns zusammenarbeiten</h2>
+                            <p class="contact-description">Teile mir mit, woran du arbeitest und wie ich dir helfen kann</p>
+                        </div>
+                        
+                        <form action="https://formspree.io/f/xrgnkzvg" method="POST" class="contact-form" id="contact-form" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" placeholder="Dein Name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">E-Mail</label>
+                                <input type="email" id="email" name="email" placeholder="deine@email.de" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Nachricht</label>
+                                <textarea id="message" name="message" placeholder="Wie kann ich dir helfen?" rows="4" required></textarea>
+                            </div>
+                            
+                            <div class="form-group file-upload-group">
+                                <label for="attachment">Anhang (optional)</label>
+                                <input type="file" id="attachment" name="attachment" accept=".jpg,.jpeg,.png">
+                                <div class="file-upload-note">Erlaubte Dateitypen: JPG, PNG. Max. 5MB.</div>
+                            </div>
+                            
+                            <div class="checkbox-group-inline">
+                                <div class="custom-checkbox-container">
+                                    <button type="button" id="custom-checkbox" class="custom-checkbox" aria-checked="false">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="custom-checkbox-icon">
+                                            <path class="checkbox-checkmark" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M4.5 12.75l6 6 9-13.5" />
+                                        </svg>
+                                    </button>
+                                    <input type="checkbox" id="terms" name="terms" class="sr-only" required>
+                                </div>
+                                <label for="terms" class="terms-label-inline">Ich stimme den <a href="#" target="_blank">Datenschutzbestimmungen</a> zu</label>
+                            </div>
+                            
+                            <button type="submit" class="contact-submit-button">
+                                <span>Nachricht senden</span>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                        </form>
+
+                        <div class="contact-or-divider">
+                            <span>oder</span>
+                        </div>
+
+                        <div class="calendly-link-container">
+                            <p>Buche einen Termin direkt in meinem Kalender:</p>
+                            <!-- Calendly Link-Widget -->
+                            <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+                            <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+                            <a href="" onclick="Calendly.initPopupWidget({url: 'https:www.calendly.com/stackwerkhaus-info'});return false;" class="calendly-link">
+                                <span>Videochat buchen!</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Info Card -->
+                    <div class="contact-info-card">
+                        <div class="contact-info-content">
+                            <h2 class="contact-info-title">Kontaktinfo</h2>
+                            
+                            <div class="contact-info-item">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M2 12H4M12 2V4M22 12H20M12 22V20M19.0784 19.0784L17.6642 17.6642M19.0784 4.99994L17.6642 6.41415M4.92157 19.0784L6.33578 17.6642M4.92157 4.99994L6.33578 6.41415" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                                <div>
+                                    <h3>Standort</h3>
+                                    <p>Berlin, Deutschland</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-info-item">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22 12.2039V13.725C22 17.6258 22 19.5763 20.8284 20.7881C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.7881C2 19.5763 2 17.6258 2 13.725V12.2039C2 9.91549 2 8.77128 2.5192 7.82274C3.0384 6.87421 3.98695 6.28551 5.88403 5.10813L7.88403 3.86687C9.88939 2.62229 10.8921 2 12 2C13.1079 2 14.1106 2.62229 16.116 3.86687L18.116 5.10812C20.0131 6.28551 20.9616 6.87421 21.4808 7.82274" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <path d="M15 18H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                                <div>
+                                    <h3>E-Mail</h3>
+                                    <a href="mailto:info@stackwerkhaus.de">info@stackwerkhaus.de</a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-info-item">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 16.1C2 19.6287 4.85786 22.5 8.36364 22.5C11.8694 22.5 14.7273 19.6287 14.7273 16.1C14.7273 14.1786 13.8754 12.4459 12.5091 11.25H4.21818C2.85186 12.4459 2 14.1786 2 16.1Z" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M14.7273 16.1C14.7273 19.6287 17.5851 22.5 21.0909 22.5C21.0909 22.5 22 22.5 22 21.5857C22 20.6714 21.0909 16.1 21.0909 16.1C21.0909 12.5713 18.233 9.7 14.7273 9.7C14.7273 9.7 14.7273 12.5713 14.7273 16.1Z" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M8.36364 9.7C11.8694 9.7 14.7273 6.82868 14.7273 3.3C14.7273 3.3 13.8182 1.5 8.36364 1.5C2.90909 1.5 2 3.3 2 3.3C2 6.82868 4.85786 9.7 8.36364 9.7Z" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                                <div>
+                                    <h3>Social Media</h3>
+                                    <div class="social-links-inline">
+                                        <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
         </main>
 
         <!-- Footer Component -->
-        <footer>
-            <p class="contact-prompt">Kontakt aufnehmen.</p>
-            <div class="social-links">
+        <footer class="footer">
+            <div class="footer-social">
                 <a href="#">Instagram</a>
                 <a href="#">Twitter</a>
                 <a href="#">LinkedIn</a>
             </div>
-            <div class="signature">STACKWERKHAUS</div>
+            <div class="footer-logo-scroll">
+                <div class="footer-logo-track">
+                    <span>STACKWERKHAUS</span><span>STACKWERKHAUS</span><span>STACKWERKHAUS</span><span>STACKWERKHAUS</span><span>STACKWERKHAUS</span>
+                </div>
+            </div>
         </footer>
-        <div class="blur-overlay" tabindex="-1"></div>
-        <div class="lebenslauf-card" role="dialog" aria-modal="true" aria-labelledby="lebenslauf-title">
-          <button class="close-card-btn" aria-label="Schließen">&times;</button>
-          <h2 id="lebenslauf-title">Meine Reise als Digital-Pionier</h2>
-          <p>Willkommen! Ich bin ein in Berlin ansässiger Freelance Web-Entwickler und Designer mit einer Leidenschaft für klare Ästhetik und innovative Technologien. Seit über 7 Jahren helfe ich Unternehmen und Kreativen, ihre Visionen in beeindruckende digitale Erlebnisse zu verwandeln.</p>
-          <h3>Philosophie</h3>
-          <p>Mein Ansatz ist kollaborativ und transparent. Ich glaube an die Kraft von gutem Design, das nicht nur schön aussieht, sondern auch intuitiv funktioniert und echte Ergebnisse liefert. Jedes Projekt ist eine neue Chance, Grenzen zu verschieben und maßgeschneiderte Lösungen zu entwickeln, die perfekt auf die Bedürfnisse meiner Kunden zugeschnitten sind.</p>
-          <h3>Kernkompetenzen</h3>
-          <ul>
-            <li><strong>Strategische Konzeption:</strong> Von der ersten Idee bis zum fertigen Produkt – immer mit Blick auf Ihre Ziele.</li>
-            <li><strong>UI/UX Design:</strong> Nutzerzentriertes Design, das begeistert und konvertiert.</li>
-            <li><strong>Frontend-Entwicklung:</strong> Pixelgenaue Umsetzung mit modernen Frameworks (React, Vue, Svelte) und Libraries (GSAP, Three.js).</li>
-            <li><strong>Headless CMS Integration:</strong> Flexible Content-Management-Lösungen für zukunftssichere Webseiten.</li>
-            <li><strong>Performance-Optimierung:</strong> Schnelle Ladezeiten und reibungslose Interaktionen für ein optimales Nutzererlebnis.</li>
+        <div class="blur-overlay" tabindex="-1" aria-hidden="true"></div>
+        <div 
+          class="lebenslauf-card" 
+          role="dialog" 
+          aria-modal="true" 
+          aria-labelledby="lebenslauf-title"
+          aria-describedby="lebenslauf-description">
+          <button 
+            class="close-card-btn" 
+            aria-label="Schließen"
+            type="button">
+            &times;
+          </button>
+          <h2 id="lebenslauf-title">Webentwickler & Sales-Profi aus Berlin</h2>
+          <p id="lebenslauf-description">Mit Leidenschaft für KI, Technologie und die digitale Zukunft. Ich helfe kleinen Unternehmen, groß zu denken und nachhaltig zu wachsen.</p>
+          <ul class="lebenslauf-highlights" aria-label="Karriere Highlights">
+            <li><span class="icon-placeholder" aria-hidden="true">[Icon]</span> <strong>Erfahrung:</strong> 6+ Jahre in Webentwicklung & Vertrieb</li>
+            <li><span class="icon-placeholder" aria-hidden="true">[Icon]</span> <strong>Tech & KI:</strong> Immer am Puls der neuesten Trends</li>
+            <li><span class="icon-placeholder" aria-hidden="true">[Icon]</span> <strong>Kundenfokus:</strong> Maßgeschneiderte Lösungen, die wirklich helfen</li>
+            <li><span class="icon-placeholder" aria-hidden="true">[Icon]</span> <strong>Wachstum:</strong> Gemeinsam neue Chancen erkennen und nutzen</li>
           </ul>
-          <h3>Ausgewählte Projekte & Stationen</h3>
-          <ul>
-            <li><strong>STACKWERKHAUS (Seit 2020):</strong> Gründer & Lead Developer/Designer.</li>
-            <li><strong>InnovateAgentur Berlin (2018-2020):</strong> Senior Frontend Developer – Fokus auf interaktive Kampagnen-Websites.</li>
-            <li><strong>TechStartup XYZ (2016-2018):</strong> UI/UX Designer – Entwicklung einer SaaS-Plattform.</li>
-            <li>Diverse Freelance-Projekte für internationale Kunden.</li>
-          </ul>
-          <p>Lassen Sie uns gemeinsam Ihr nächstes digitales Meisterwerk erschaffen!</p>
+          <p class="lebenslauf-cta">Lust auf digitale Innovation? Lassen Sie uns Ihr Projekt anpacken!</p>
         </div>
     </div>
     <!-- <script src="dist/bundle.js"></script> JS will be injected by HtmlWebpackPlugin -->
