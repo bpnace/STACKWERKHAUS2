@@ -44,6 +44,8 @@
     font-weight: 900;
     margin-left: 0 !important; // Override section-headline-large margin
     color: var(--secondary-text-color) !important; // Override for light text on dark background
+    font-size: clamp(2.5rem, 10vw, 7rem);
+    text-wrap: balance;
 
     span {
       display: block;
@@ -88,3 +90,17 @@
 }
 
 // Removed @keyframes 
+
+@media (max-width: 700px) {
+  .hero {
+    padding: 2rem 1rem;
+  }
+  .hero-title {
+    font-size: clamp(1.5rem, 7vw, 3.5rem);
+  }
+  .hero-title span {
+    line-height: 0.95;
+    margin-bottom: 0.1em;
+    margin-top: 0.1em;
+  }
+} 

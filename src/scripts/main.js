@@ -204,6 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const title = project.querySelector('.title').textContent;
       const subtitle = project.querySelector('span').textContent;
       const normalImgEl = project.querySelector('.normalImg');
+      if (!normalImgEl) return; // Skip if no image (e.g., placeholder card)
       const normalImg = normalImgEl.src;
       const revealedImg = normalImgEl.getAttribute('data-revealed-img'); // <-- Read from HTML
 

@@ -1,5 +1,4 @@
 footer {
-  padding: 3rem 4rem 4rem; 
   margin-top: 4rem;
   text-align: left;
   background-color: var(--primary-text-color); // Example footer background
@@ -40,12 +39,15 @@ footer {
 
   .footer-logo-scroll {
     width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
     overflow: hidden;
-    background: transparent !important; // Transparent so only text is visible
+    background: transparent !important;
     height: 4vw;
     min-height: 160px;
-    position: relative;
     z-index: 1;
+    box-sizing: border-box;
   }
 
   .footer-logo-track {
@@ -63,6 +65,7 @@ footer {
     user-select: none;
     will-change: transform;
     transform: translateY(20%);
+    box-sizing: border-box;
     span {
       display: block;
       margin: 0;
