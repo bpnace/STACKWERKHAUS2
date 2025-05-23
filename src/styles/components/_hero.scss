@@ -41,6 +41,7 @@
     position: relative;
     font-family: 'Switzer', Helvetica, Arial, sans-serif;
     z-index: 1;
+    line-height: 0.1;
     font-weight: 900;
     margin-left: 0 !important; // Override section-headline-large margin
     color: var(--secondary-text-color) !important; // Override for light text on dark background
@@ -95,12 +96,9 @@
   .hero {
     padding: 2rem 1rem;
   }
-  .hero-title {
-    font-size: clamp(1.5rem, 7vw, 3.5rem);
-  }
   .hero-title span {
-    line-height: 0.95;
-    margin-bottom: 0.1em;
-    margin-top: 0.1em;
+    line-height: 1.1;
+    margin-bottom: 0;
+    margin-top: 0;
   }
 } 
