@@ -355,6 +355,31 @@ document.addEventListener('DOMContentLoaded', () => {
       imgWrapper.addEventListener('mouseleave', () => { if (isActive) animatePixels(false); });
     }
   });
+
+  // --- Footer Logo GSAP Animation ---
+  const footerLogoTrack = document.querySelector('.footer-logo-track');
+  if (footerLogoTrack) {
+    // Ensure the track is at least as wide as the viewport for seamless looping
+    const trackWidth = footerLogoTrack.scrollWidth;
+    const viewportWidth = window.innerWidth;
+    // If the track is not wide enough, duplicate the text until it is
+    if (trackWidth < viewportWidth * 2) {
+      const text = footerLogoTrack.innerHTML;
+      while (footerLogoTrack.scrollWidth < viewportWidth * 2) {
+        footerLogoTrack.innerHTML += text;
+      }
+    }
+    gsap.set(footerLogoTrack, { x: 0 });
+    gsap.to(footerLogoTrack, {
+      x: () => `-=${footerLogoTrack.scrollWidth / 2}`,
+      duration: 18,
+      ease: 'linear',
+      repeat: -1,
+      modifiers: {
+        x: gsap.utils.unitize(x => parseFloat(x) % (footerLogoTrack.scrollWidth / 2))
+      }
+    });
+  }
 });
 
 // --- Webpack HMR Handling --- 
