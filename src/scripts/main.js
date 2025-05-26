@@ -340,9 +340,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (activate) {
           defaultImgWrap.style.display = 'none';
           revealedImgWrap.style.display = 'block';
+          // Play video if present
+          if (typeof card.playRevealedVideo === 'function') card.playRevealedVideo();
         } else {
           defaultImgWrap.style.display = 'block';
           revealedImgWrap.style.display = 'none';
+          // Pause video if present
+          if (typeof card.pauseRevealedVideo === 'function') card.pauseRevealedVideo();
         }
         gsap.to(pixels, {
           display: 'none',
