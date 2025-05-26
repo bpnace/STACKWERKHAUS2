@@ -1,0 +1,91 @@
+.lebenslauf-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 700px;
+  height: 70vh;
+  max-height: 70vh;
+  background-color: var(--background-color, #FFFFFF);
+  color: var(--primary-text-color, #141414);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2), 0 0 0 1px rgba(var(--primary-text-color-rgb, '20, 20, 20'), 0.05);
+  padding: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1300;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.lebenslauf-card > * {
+  min-width: 0;
+}
+
+#lebenslauf-title {
+  font-family: 'Switzer-Bold', Helvetica, Arial, sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--primary-text-color);
+  line-height: 1.2;
+}
+
+#lebenslauf-description {
+  font-size: 1.1rem;
+  color: var(--primary-text-light);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.lebenslauf-section {
+  margin-bottom: 2rem;
+}
+
+.lebenslauf-section h3 {
+  font-family: 'Switzer-Semibold', Helvetica, Arial, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  margin-bottom: 0.75rem;
+  margin-top: 0;
+}
+
+.lebenslauf-section p {
+  font-size: 1rem;
+  color: var(--primary-text-color);
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.lebenslauf-section ul {
+  list-style: disc inside;
+  padding-left: 1.2em;
+  margin: 0 0 0.5rem 0;
+}
+
+.lebenslauf-section li {
+  font-size: 1rem;
+  color: var(--primary-text-color);
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.lebenslauf-section li strong {
+  font-weight: 600;
+  color: var(--primary-text-color);
+}
+
+.lebenslauf-section li em {
+  color: var(--primary-text-light);
+}
+
+body.modal-open {
+  overflow: hidden !important;
+  position: fixed;
+  width: 100vw;
+} 

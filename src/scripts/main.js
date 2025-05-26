@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function openCard() {
     blurOverlay.classList.add('visible');
     lebenslaufCard.classList.add('visible');
-    document.body.style.overflow = 'hidden'; // Prevent background scroll
+    document.body.classList.add('modal-open'); // Prevent background scroll
     focusTrap.trap();
     // Animate blur in
     gsap.to(blurOverlay, { blur: 8, opacity: 1, duration: 0.5, ease: 'power2.out' });
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     gsap.to(blurOverlay, { blur: 0, opacity: 0, duration: 0.4, ease: 'power2.in', onComplete: () => {
       blurOverlay.classList.remove('visible');
       lebenslaufCard.classList.remove('visible');
-      document.body.style.overflow = '';
+      document.body.classList.remove('modal-open');
       // Reset filter property to avoid accumulation
       blurOverlay.style.filter = '';
       focusTrap.release();
@@ -129,6 +129,15 @@ document.addEventListener('DOMContentLoaded', () => {
       closeCard();
     }
   });
+
+  // Ensure mouse wheel always scrolls the lebenslauf card when open
+  lebenslaufCard.addEventListener('wheel', function(e) {
+    if (lebenslaufCard.classList.contains('visible')) {
+      // Only scroll the card, not the background
+      e.stopPropagation();
+      // Allow default scroll
+    }
+  }, { passive: false });
 
   // 5. Initialize all Page Animations
   // These functions should now internally use the default scroller (window)
