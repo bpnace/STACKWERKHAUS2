@@ -1,3 +1,8 @@
+/* Remove the following lines as Babel will auto-inject polyfills with 'usage': */
+/* Prepending polyfill imports for polyfill support as per Babel config */
+/* import 'core-js/stable';
+import 'regenerator-runtime/runtime'; */
+
 import '../styles/main.scss'; // Import main SCSS file for Webpack
 
 // Main JavaScript file 
@@ -268,21 +273,9 @@ document.addEventListener('DOMContentLoaded', () => {
     logoVideo.style.maskImage = "url('/assets/images/logo1.svg')";
     logoVideo.style.webkitMaskImage = "url('/assets/images/logo1.svg')";
 
-    logo.addEventListener('mouseenter', () => {
-      logoVideo.play();
-    });
-    
-    logo.addEventListener('mouseleave', () => {
-      // Listen for transitionend to pause/reset video after fade-out
-      const onTransitionEnd = (e) => {
-        if (e.propertyName === 'opacity') {
-          logoVideo.pause();
-          logoVideo.currentTime = 0;
-          logoVideo.removeEventListener('transitionend', onTransitionEnd);
-        }
-      };
-      logoVideo.addEventListener('transitionend', onTransitionEnd);
-    });
+    // Removed event listeners to let the video autoplay continuously
+    // The video element now has autoplay, muted, loop attributes in HTML,
+    // and CSS hover in _header.scss changes opacity.
   }
 
   // Initialize contact animations and form
