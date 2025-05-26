@@ -90,6 +90,28 @@
 
 // Removed @keyframes 
 
+.hero-credits {
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+  color: #fff;
+  opacity: 0.5;
+  font-size: 0.95rem;
+  font-family: 'Switzer', Helvetica, Arial, sans-serif;
+  z-index: 2;
+  text-align: right;
+  pointer-events: auto;
+  a {
+    color: #fff;
+    opacity: 0.7;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
 @media (max-width: 700px) {
   .hero {
     padding: 2rem 1rem;
@@ -98,5 +120,11 @@
     line-height: 1.1;
     margin-bottom: 0;
     margin-top: 0;
+  }
+  .hero-credits {
+    right: 1rem;
+    bottom: 1rem;
+    font-size: 0.8rem;
+    text-align: right;
   }
 } 
