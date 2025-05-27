@@ -43,6 +43,13 @@ footer {
       color: #fff;
       text-decoration: none;
       transition: color 0.2s;
+      font-family: 'Switzer', Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
       &:hover { color: var(--accent-color, #00b894); }
     }
   }
@@ -87,7 +94,6 @@ footer {
     display: flex;
     gap: 1rem;
     justify-content: center;
-    margin-top: 1rem;
   }
 
   /* Basic Responsive */
@@ -121,6 +127,10 @@ footer {
     .footer-social { 
       font-size: 1.1rem; 
       margin-bottom: 2rem; 
+      
+      a, .legal-btn {
+        font-size: 1.1rem;
+      }
     }
   }
 } 
