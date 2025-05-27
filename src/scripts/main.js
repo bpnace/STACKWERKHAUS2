@@ -13,6 +13,7 @@ import Lenis from 'lenis'; // Import Lenis for smooth scrolling
 // Import our new utilities
 import { headlineAnimator, scrollFadeIn, createParallax } from './utils/animationUtils';
 import { FocusTrap } from './utils/focusTrap';
+import popupManager from './utils/popupManager'; // Import the new popup manager
 
 // Import animation modules
 import { initPageLoadAnimation } from './animations/pageLoadAnimations';
@@ -97,62 +98,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // });
   // gsap.ticker.lagSmoothing(0);
 
-  // --- Lebenslauf Card Modal Logic ---
-  const readMoreBtn = document.querySelector('.read-more-btn');
-  const blurOverlay = document.querySelector('.blur-overlay');
-  const lebenslaufCard = document.querySelector('.lebenslauf-card');
-  const closeCardBtn = document.querySelector('.close-card-btn');
-  const focusTrap = new FocusTrap(lebenslaufCard);
-
-  function openCard() {
-    blurOverlay.classList.add('visible');
-    lebenslaufCard.classList.add('visible');
-    document.body.classList.add('modal-open'); // Prevent background scroll
-    focusTrap.trap();
-    // Animate blur in
-    gsap.to(blurOverlay, { blur: 8, opacity: 1, duration: 0.5, ease: 'power2.out' });
-  }
-
-  function closeCard() {
-    // Animate blur out, then hide overlay
-    gsap.to(blurOverlay, { blur: 0, opacity: 0, duration: 0.4, ease: 'power2.in', onComplete: () => {
-      blurOverlay.classList.remove('visible');
-      lebenslaufCard.classList.remove('visible');
-      document.body.classList.remove('modal-open');
-      // Reset filter property to avoid accumulation
-      blurOverlay.style.filter = '';
-      focusTrap.release();
-    }});
-  }
-
-  if (readMoreBtn) readMoreBtn.addEventListener('click', openCard);
-  if (closeCardBtn) closeCardBtn.addEventListener('click', closeCard);
-  if (blurOverlay) blurOverlay.addEventListener('click', closeCard);
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lebenslaufCard.classList.contains('visible')) {
-      closeCard();
-    }
-  });
-
-  // Ensure mouse wheel always scrolls the lebenslauf card when open
-  lebenslaufCard.addEventListener('wheel', function(e) {
-    if (lebenslaufCard.classList.contains('visible')) {
-      // Only scroll the card, not the background
-      e.stopPropagation();
-      // Allow default scroll
-    }
-  }, { passive: false });
-
   // 5. Initialize all Page Animations
   // These functions should now internally use the default scroller (window)
   initPageLoadAnimation(); 
 
   // 6. Initial GSAP .set() calls for FOUC prevention and stability
-  // (Removed for modal elements to prevent FOUC)
-  // if (lebenslaufCard) gsap.set(lebenslaufCard, { opacity: 0, yPercent: 100 });
-  // if (blurOverlay) gsap.set(blurOverlay, { opacity: 0 });
-  // if (readMoreBtn) gsap.set(readMoreBtn, { opacity: 1 });
-
   const headerLogoEl = document.querySelector('header .logo');
   const headerNavLinksEl = document.querySelectorAll('header nav a');
   const headerCtaEl = document.querySelector('header .header-cta');
@@ -209,13 +159,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-
-  // Initialize Modal with Focus Trap
-  const heroSection = document.querySelector('.hero');
-  // REMOVE createParallax for hero section to avoid conflict
-  // if (heroSection) {
-  //   createParallax(heroSection, { speed: 0.4 });
-  // }
 
   // Animate headlines using our utility
   const headlines = document.querySelectorAll('.section-headline-large');

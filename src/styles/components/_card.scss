@@ -7,7 +7,7 @@
   z-index: 1000;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s;
+  transition: opacity 0.25s;
   &.visible {
     opacity: 1;
     pointer-events: auto;
@@ -18,7 +18,8 @@
 .lebenslauf-card,
 .legal-card {
   position: fixed;
-  top: 50%;
+  top: auto;
+  bottom: 0;
   left: 50%;
   transform: translate(-50%, 100%);
   width: 90%;
@@ -29,17 +30,17 @@
   background: var(--background-color);
   padding: 2.5rem;
   z-index: 1001;
-  border-radius: 12px;
+  border-radius: 12px 12px 0 0;
   box-shadow: 0 10px 40px rgba(0,0,0,0.15);
   display: flex;
   flex-direction: column;
   overflow: visible;
   opacity: 0;
   pointer-events: none;
-  transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.4s;
+  transition: transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.25s;
   
   &.visible {
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0);
     opacity: 1;
     pointer-events: auto;
   }
@@ -78,7 +79,7 @@
     font-size: 2.5rem;
     color: #888;
     cursor: pointer;
-    transition: color 0.2s;
+    transition: color 0.15s;
     z-index: 3;
     &:hover { 
       color: var(--primary-text-color); 
@@ -93,6 +94,8 @@
   overflow-y: auto;
   min-height: 0;
   padding-right: 0.5rem;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   
   &::-webkit-scrollbar {
     width: 6px;
@@ -206,8 +209,8 @@
   .lebenslauf-card,
   .legal-card {
     width: 95%;
-    height: 80vh;
-    max-height: 80vh;
+    height: 75vh;
+    max-height: 75vh;
     padding: 2rem 1.5rem;
     
     h2 {
@@ -240,14 +243,6 @@
     height: 85vh;
     max-height: 85vh;
     padding: 1.5rem 1rem;
-    border-radius: 12px 12px 0 0;
-    top: auto;
-    bottom: 0;
-    transform: translate(-50%, 100%);
-    
-    &.visible {
-      transform: translate(-50%, 0);
-    }
     
     h2 {
       font-size: 1.5rem;
