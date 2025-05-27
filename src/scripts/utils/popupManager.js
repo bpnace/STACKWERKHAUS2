@@ -120,6 +120,19 @@ class PopupManager {
   openPopup(popup) {
     if (!popup) return;
     
+    // Force overlay repaint to ensure it's visible before showing
+    if (this.blurOverlay) {
+      this.blurOverlay.style.display = 'none';
+      this.blurOverlay.offsetHeight; // Force reflow
+      this.blurOverlay.style.display = 'block';
+    }
+    
+    // Set explicit z-index on popup to ensure it's above overlay
+    popup.style.zIndex = '1001';
+    
+    // Make sure popup background is solid
+    popup.style.backgroundColor = 'var(--background-color)';
+    
     // Add visible class to overlay and popup
     this.blurOverlay.classList.add('visible');
     popup.classList.add('visible');
@@ -133,7 +146,9 @@ class PopupManager {
 
   closeAllPopups() {
     // Remove visible class from overlay
-    this.blurOverlay.classList.remove('visible');
+    if (this.blurOverlay) {
+      this.blurOverlay.classList.remove('visible');
+    }
     
     // Find all visible popups and hide them
     const visiblePopups = document.querySelectorAll('.legal-card.visible, .lebenslauf-card.visible');
@@ -157,9 +172,6 @@ class PopupManager {
     setTimeout(() => {
       // Focus the content to enable mouse wheel scrolling
       content.focus({preventScroll: true});
-      
-      // Set a high z-index on content when visible to ensure it receives events
-      content.style.zIndex = '10';
       
       // Make sure pointer events go to content
       content.style.pointerEvents = 'auto';
