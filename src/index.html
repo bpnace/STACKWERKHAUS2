@@ -30,8 +30,8 @@
     <style>
       body { opacity: 0; transition: opacity 1.2s cubic-bezier(0.4,0,0.2,1); }
       body.fadein { opacity: 1; }
-      .blur-overlay, .lebenslauf-card { opacity: 0; pointer-events: none; transform: translate(-50%, 100%); }
-      .lebenslauf-card.visible { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
+      .blur-overlay, .lebenslauf-card, .legal-card { opacity: 0; pointer-events: none; transform: translate(-50%, 100%); }
+      .lebenslauf-card.visible, .legal-card.visible { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
       .blur-overlay.visible { opacity: 1; pointer-events: auto; }
       .hero { 
         min-height: 100vh; 
@@ -45,6 +45,69 @@
         background-image: url('assets/images/hero1.webp');
         background-size: cover;
         background-position: center;
+      }
+      .footer-legal {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+      }
+      .legal-btn {
+        background: none;
+        border: none;
+        color: var(--secondary-text-color);
+        font-size: 1rem;
+        cursor: pointer;
+        text-decoration: none;
+        opacity: 0.8;
+        transition: opacity 0.3s;
+        padding: 0;
+        margin: 0;
+        font-family: inherit;
+      }
+      .legal-btn:hover {
+        opacity: 1;
+      }
+      .legal-card {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 90%;
+        max-width: 800px;
+        max-height: 85vh;
+        background: var(--background-color);
+        padding: 2.5rem;
+        z-index: 1000;
+        border-radius: 12px;
+        overflow-y: auto;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      }
+      .legal-content {
+        margin-top: 1.5rem;
+      }
+      .legal-section {
+        margin-bottom: 1.5rem;
+      }
+      .legal-section h3 {
+        margin-bottom: 0.75rem;
+        font-size: 1.2rem;
+      }
+      .legal-section h4 {
+        margin: 1rem 0 0.5rem;
+        font-size: 1rem;
+      }
+      .legal-section p {
+        margin-bottom: 0.75rem;
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+      .legal-section ul {
+        padding-left: 1.2rem;
+        margin-bottom: 0.75rem;
+      }
+      .legal-section li {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 0.5rem;
       }
     </style>
 
@@ -81,14 +144,30 @@
                 <source src="assets/video/logo_bg1.mp4" type="video/mp4">
             </video>
         </div>
-        <nav>
+        <nav class="desktop-nav">
             <a href="#about">Hinter STWKHS</a>
             <a href="#projects">Projekte</a>
         </nav>
         <div class="header-cta">
             <a href="#kontakt" class="cta-link">Kontakt!</a>
         </div>
+        
+        <!-- Mobile menu button -->
+        <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
     </header>
+
+    <!-- Mobile navigation overlay -->
+    <div class="mobile-nav-overlay">
+        <nav class="mobile-nav">
+            <a href="#about">Hinter STWKHS</a>
+            <a href="#projects">Projekte</a>
+            <a href="#kontakt">Kontakt!</a>
+        </nav>
+    </div>
 
     <!-- Main scrollable container -->
     <div data-scroll-container>
@@ -120,9 +199,8 @@
                         <button class="read-more-btn">Meine Reise & Expertise</button>
                         <div class="contact-links" style="text-align:center; margin-top:2rem;">
                             <a href="mailto:info@stackwerkhaus.de">Email</a>
-                            <a href="https://www.instagram.com/stackwerkhaus/" target="_blank">Instagram</a>
-                            <a href="https://twitter.com/stackwerkhaus" target="_blank">Twitter</a>
-                            <a href="https://www.linkedin.com/in/tarik-marshall/" target="_blank">LinkedIn</a>
+                            <a href="https://www.instagram.com/stackwerkhaus" target="_blank">Instagram</a>
+                            <a href="https://www.linkedin.com/in/tarik-arthur-marshall-6112b2239" target="_blank">LinkedIn</a>
                         </div>
                     </div>
                     <div class="about-image">
@@ -292,8 +370,8 @@
                                 <div>
                                     <h3>Social Media</h3>
                                     <div class="social-links-inline">
-                                        <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
-                                        <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                                        <a href="https://www.instagram.com/stackwerkhaus" target="_blank" rel="noopener noreferrer">Instagram</a>
+                                        <a href="https://www.linkedin.com/in/tarik-arthur-marshall-6112b2239" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                                     </div>
                                 </div>
                             </div>
@@ -306,9 +384,12 @@
         <!-- Footer Component -->
         <footer class="footer">
             <div class="footer-social">
-                <a href="#">Instagram</a>
-                <a href="#">Twitter</a>
-                <a href="#">LinkedIn</a>
+                <a href="https://www.instagram.com/stackwerkhaus" target="_blank">Instagram</a>
+                <a href="https://www.linkedin.com/in/tarik-arthur-marshall-6112b2239" target="_blank">LinkedIn</a>
+            </div>
+            <div class="footer-social footer-legal">
+                <button class="legal-btn" id="impressum-btn">Impressum</button>
+                <button class="legal-btn" id="datenschutz-btn">Datenschutzerklärung</button>
             </div>
             <div class="footer-logo-scroll">
                 <div class="footer-logo-track">
@@ -329,34 +410,210 @@
             type="button">
             &times;
           </button>
-          <h2 id="lebenslauf-title">Tarik Marshall: Digitale Evolution durch Technologie & KI</h2>
+          <h2 id="lebenslauf-title">Tarik Marshall: <br>Digitale Evolution durch Technologie & KI</h2>
           <p id="lebenslauf-description">Mein Weg und die Expertise, die STACKWERKHAUS antreibt – für Ihren digitalen Erfolg.</p>
           <div class="lebenslauf-section">
             <h3>Philosophie & Ansatz</h3>
-            <p>Ich verbinde strategisches Denken mit der Präzision neuester Technologien und der Effizienz von KI-Systemen, um digitale Produkte zu schaffen, die nicht nur ästhetisch überzeugen, sondern vor allem nachhaltige Werte für Ihr Unternehmen generieren. Effizienz, Skalierbarkeit und Nutzerzentrierung stehen im Mittelpunkt meiner Arbeit.</p>
+            <p>Ich verbinde meine langjährige B2B/B2C-Erfahrung mit technischer Expertise und KI-Innovation, um digitale Produkte zu schaffen, die nicht nur ästhetisch überzeugen, sondern vor allem nachhaltige Werte für Ihr Unternehmen generieren. Mein Ansatz beruht auf tiefgehendem Kundenverständnis – ich extrahiere die entscheidenden Informationen, um maßgeschneiderte Lösungen zu entwickeln, die genau Ihre Zielgruppe ansprechen. In einem Deutschland, das bei KI-Adoption noch aufholt, biete ich Ihnen einen entscheidenden Wettbewerbsvorteil.</p>
           </div>
           <div class="lebenslauf-section">
             <h3>Kernkompetenzen & Technologien</h3>
             <ul>
-              <li><strong>Web & App Entwicklung:</strong> Full-Stack Lösungen mit Fokus auf moderne JavaScript Frameworks (z.B. React, Vue, Node.js), Python, und Headless CMS-Architekturen.</li>
-              <li><strong>KI-Integration:</strong> Einsatz von KI-Agenten und Machine Learning Modellen zur Prozessoptimierung, Personalisierung und für innovative Features.</li>
-              <li><strong>UI/UX & Branding:</strong> Gestaltung intuitiver Benutzeroberflächen und starker Markenidentitäten, die Ihre Zielgruppe ansprechen.</li>
-              <li><strong>Agile Projektmethoden:</strong> Transparente und iterative Entwicklungsprozesse für schnelle Ergebnisse und kontinuierliche Verbesserung.</li>
-              <li><strong>Performance & Kosten-Effizienz:</strong> Optimierung von Ladezeiten, Code-Qualität und Infrastruktur für maximale Rentabilität.</li>
-              <li><em>Weitere Skills hier einfügen (z.B. spezifische Software, Datenbanken, Cloud-Plattformen aus Ihrem CV)</em></li>
+              <li><strong>Web & App Entwicklung:</strong> Full-Stack Lösungen mit TypeScript, React, Next.js, Node.js und modernen Headless CMS-Architekturen.</li>
+              <li><strong>KI-Integration:</strong> Einsatz von KI-Agenten und Machine Learning Modellen zur Prozessoptimierung, Personalisierung und für innovative Nutzererlebnisse.</li>
+              <li><strong>UI/UX Design:</strong> Gestaltung intuitiver Benutzeroberflächen mit Figma und Canva, die Ihre Markenidentität stärken und Nutzer begeistern.</li>
+              <li><strong>Projektmanagement:</strong> Transparente Organisation mit Notion und agilen Methoden für effiziente Zusammenarbeit und schnelle Ergebnisse.</li>
+              <li><strong>Business & Strategie:</strong> 7+ Jahre Erfahrung als Key Account Manager im B2B/B2C-Bereich mit mittelständischen und großen Unternehmen.</li>
+              <li><strong>Kommunikation:</strong> Fähigkeit, komplexe technische Konzepte verständlich zu vermitteln und Kundenbedürfnisse präzise zu erfassen.</li>
             </ul>
           </div>
           <div class="lebenslauf-section">
-            <h3>Ausgewählte Erfahrungen & Projekte</h3>
-            <p><em>Hier können Sie 2-3 prägnante Beispiele Ihrer wichtigsten Projekte oder Karrierestationen aus Ihrem CV einfügen. Betonen Sie Herausforderungen, Lösungen und Ergebnisse.</em></p>
+            <h3>Beruflicher Werdegang</h3>
             <ul>
-              <li><strong>Beispiel Projekt 1:</strong> Entwicklung einer KI-gestützten Analyseplattform für KMU zur Markttrend-Erkennung. Ergebnis: 30% schnellere Entscheidungsfindung für Kunden.</li>
-              <li><strong>Beispiel Rolle:</strong> Lead Developer bei [Vorheriger Arbeitgeber/Projekt], verantwortlich für [Ihre Hauptaufgaben und Erfolge].</li>
-              <li><em>Fügen Sie hier weitere relevante Punkte hinzu.</em></li>
+              <li><strong>STACKWERKHAUS:</strong> Gründer und Inhaber eines Design Studios mit Fokus auf KI-gestützte Webentwicklung und digitale Transformation.</li>
+              <li><strong>Key Account Management:</strong> 7-8 Jahre Erfahrung in verschiedenen B2B/B2C-Sektoren, Betreuung mittelständischer bis großer Unternehmen.</li>
+              <li><strong>Agenturerfahrung:</strong> Langjährige Zusammenarbeit mit diversen Agenturen im Bereich Webdesign und digitale Produktentwicklung.</li>
+              <li><strong>Ausbildung:</strong> Abschluss im Bereich Webdesign mit kontinuierlicher Weiterbildung in neuen Technologien und KI-Anwendungen.</li>
             </ul>
+          </div>
+          <div class="lebenslauf-section">
+            <h3>Leitprinzipien & Werte</h3>
+            <ul>
+              <li><strong>Tech trifft Business:</strong> Die Verbindung von Verkaufspsychologie und technischem Know-how schafft digitale Produkte, die nicht nur funktionieren, sondern auch konvertieren.</li>
+              <li><strong>KI als Multiplikator:</strong> Ich setze KI nicht als Ersatz, sondern als Verstärker menschlicher Kreativität ein – für bessere Ergebnisse in kürzerer Zeit zu fairen Preisen.</li>
+              <li><strong>Transparenz & Partnerschaft:</strong> Klare Kommunikation, ehrliches Feedback und ein partnerschaftlicher Ansatz bilden die Grundlage jeder erfolgreichen Zusammenarbeit.</li>
+              <li><strong>Berliner Innovation:</strong> Als Teil der Berliner Tech-Szene bringe ich frische Perspektiven und zukunftsweisende Lösungen in Ihr Unternehmen – immer einen Schritt voraus.</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Impressum Popup -->
+        <div 
+          class="legal-card impressum-card" 
+          role="dialog" 
+          aria-modal="true" 
+          aria-labelledby="impressum-title"
+          aria-describedby="impressum-content">
+          <button 
+            class="close-card-btn" 
+            aria-label="Schließen"
+            type="button">
+            &times;
+          </button>
+          <h2 id="impressum-title">Impressum</h2>
+          <div class="legal-content" id="impressum-content">
+            <div class="legal-section">
+              <h3>Angaben gemäß § 5 TMG</h3>
+              <p>Tarik Marshall<br>
+              STACKWERKHAUS<br>
+              Sigmaringer Str. 27<br>
+              10713 Berlin<br>
+              Deutschland</p>
+            </div>
+            <div class="legal-section">
+              <h3>Kontakt</h3>
+              <p>Telefon: 0176 31378294<br>
+              E-Mail: info@stackwerkhaus.de<br>
+              Website: <a href="https://www.stackwerkhaus.de">www.stackwerkhaus.de</a></p>
+            </div>
+            <div class="legal-section">
+              <h3>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
+              <p>Tarik Marshall<br>
+              Sigmaringer Str. 27<br>
+              10713 Berlin</p>
+            </div>
+            <div class="legal-section">
+              <h3>Umsatzsteuer-ID</h3>
+              <p>Noch nicht vorhanden</p>
+            </div>
+            <div class="legal-section">
+              <h3>Berufshaftpflichtversicherung</h3>
+              <p>Derzeit nicht vorhanden</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Datenschutzerklärung Popup -->
+        <div 
+          class="legal-card datenschutz-card" 
+          role="dialog" 
+          aria-modal="true" 
+          aria-labelledby="datenschutz-title"
+          aria-describedby="datenschutz-content">
+          <button 
+            class="close-card-btn" 
+            aria-label="Schließen"
+            type="button">
+            &times;
+          </button>
+          <h2 id="datenschutz-title">Datenschutzerklärung</h2>
+          <div class="legal-content" id="datenschutz-content">
+            <p>Diese Datenschutzerklärung klärt dich über die Art, den Umfang und Zweck der Verarbeitung von personenbezogenen Daten (nachfolgend „Daten") innerhalb meines Onlineangebotes auf.</p>
+            
+            <div class="legal-section">
+              <h3>Verantwortlicher</h3>
+              <p>Tarik Marshall<br>
+              STACKWERKHAUS<br>
+              Sigmaringer Str. 27<br>
+              10713 Berlin<br>
+              E-Mail: info@stackwerkhaus.de</p>
+            </div>
+            
+            <div class="legal-section">
+              <h3>Zugriffsdaten und Hosting</h3>
+              <p>Beim Besuch dieser Website werden automatisch Informationen (sogenannte Server-Logfiles) wie IP-Adresse, Zeitpunkt des Zugriffs, Browsertyp usw. erhoben. Diese Daten dienen ausschließlich der Sicherstellung eines störungsfreien Betriebs und werden nicht zur Identifikation deiner Person verwendet.</p>
+              <p>Das Hosting erfolgt über die STRATO AG, Otto-Ostrowski-Straße 7, 10249 Berlin. Mit dem Anbieter wurde ein Vertrag zur Auftragsverarbeitung geschlossen.</p>
+            </div>
+            
+            <div class="legal-section">
+              <h3>Kontaktformular</h3>
+              <p>Wenn du mich über das Kontaktformular kontaktierst, werden deine Angaben zwecks Bearbeitung der Anfrage sowie für mögliche Anschlussfragen gespeichert. Diese Daten werden nicht ohne deine ausdrückliche Einwilligung weitergegeben.</p>
+            </div>
+            
+            <div class="legal-section">
+              <h3>Cookies und Tracking</h3>
+              <p>Aktuell werden keine Tracking-Cookies verwendet. Zukünftig kann funktionales Tracking (z. B. für Terminbuchungen via Calendly) hinzukommen. In diesem Fall wird eine aktualisierte Cookie- und Datenschutzerklärung bereitgestellt.</p>
+            </div>
+            
+            <div class="legal-section">
+              <h3>Rechtsgrundlagen der Verarbeitung</h3>
+              <ul>
+                <li>Art. 6 Abs. 1 lit. b DSGVO – zur Erfüllung eines Vertrags oder vorvertraglicher Maßnahmen</li>
+                <li>Art. 6 Abs. 1 lit. f DSGVO – berechtigtes Interesse an einer funktionierenden Website</li>
+              </ul>
+            </div>
+            
+            <div class="legal-section">
+              <h3>Deine Rechte</h3>
+              <p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung sowie Datenübertragbarkeit. Zudem kannst du jederzeit Widerspruch gegen die Verarbeitung deiner Daten einlegen.</p>
+            </div>
+            
+            <div class="legal-section">
+              <h3>Beschwerderecht</h3>
+              <p>Du hast das Recht, dich bei der zuständigen Aufsichtsbehörde zu beschweren:<br>
+              Berliner Beauftragte für Datenschutz und Informationsfreiheit<br>
+              Alt-Moabit 59-61, 10555 Berlin<br>
+              E-Mail: mailbox@datenschutz-berlin.de</p>
+            </div>
+            
+            <div class="legal-section">
+              <h3>Änderungen dieser Datenschutzerklärung</h3>
+              <p>Ich behalte mir vor, diese Erklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht.</p>
+            </div>
           </div>
         </div>
     </div>
     <!-- <script src="dist/bundle.js"></script> JS will be injected by HtmlWebpackPlugin -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Popup functionality for Impressum and Datenschutz
+        const impressumBtn = document.getElementById('impressum-btn');
+        const datenschutzBtn = document.getElementById('datenschutz-btn');
+        const blurOverlay = document.querySelector('.blur-overlay');
+        const impressumCard = document.querySelector('.impressum-card');
+        const datenschutzCard = document.querySelector('.datenschutz-card');
+        const closeButtons = document.querySelectorAll('.legal-card .close-card-btn');
+        
+        // Function to open a specific popup
+        function openPopup(popup) {
+          blurOverlay.classList.add('visible');
+          popup.classList.add('visible');
+          document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+        
+        // Function to close all popups
+        function closePopups() {
+          blurOverlay.classList.remove('visible');
+          impressumCard.classList.remove('visible');
+          datenschutzCard.classList.remove('visible');
+          document.body.style.overflow = ''; // Re-enable scrolling
+        }
+        
+        // Open Impressum popup
+        impressumBtn.addEventListener('click', function() {
+          openPopup(impressumCard);
+        });
+        
+        // Open Datenschutz popup
+        datenschutzBtn.addEventListener('click', function() {
+          openPopup(datenschutzCard);
+        });
+        
+        // Close popup when clicking on overlay
+        blurOverlay.addEventListener('click', closePopups);
+        
+        // Close popup when clicking on close button
+        closeButtons.forEach(button => {
+          button.addEventListener('click', closePopups);
+        });
+        
+        // Close popup when pressing Escape key
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            closePopups();
+          }
+        });
+      });
+    </script>
 </body>
 </html> 

@@ -378,36 +378,78 @@
 }
 
 /* Responsive */
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
   .contact {
-    padding: 4rem 2rem;
+    padding: 4rem 3rem;
+  }
+  
+  .contact-grid {
+    gap: 2.5rem;
+  }
+  
+  .contact-card, .contact-info-card {
+    padding: 2.25rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .contact {
+    padding: 3.5rem 2.5rem;
+  }
+  
+  .contact-grid {
+    gap: 2rem;
+  }
+  
+  .contact-card, .contact-info-card {
+    padding: 2rem;
+  }
+  
+  .contact-form-header .contact-title {
+    font-size: 1.6rem;
+  }
+  
+  .contact-info-title {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact {
+    padding: 3rem 2rem;
   }
 
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
+    max-width: 600px;
+    margin: 0 auto;
   }
 
-  .contact-card {
-    padding: 2rem 1.5rem;
+  .contact-card, .contact-info-card {
+    padding: 2rem 1.75rem;
   }
-
+  
   .contact-info-card {
-    padding: 2rem 1.5rem;
+    order: -1; // Move contact info above form on mobile
   }
 }
 
 @media (max-width: 480px) {
   .contact {
-    padding: 3rem 1.5rem;
+    padding: 2.5rem 1.5rem;
   }
 
-  .contact-card {
+  .contact-card, .contact-info-card {
     padding: 1.5rem 1.25rem;
   }
 
   .contact-form-header .contact-title {
     font-size: 1.5rem;
+  }
+  
+  .contact-form-header .contact-description {
+    font-size: 1rem;
   }
 
   .form-group label {
@@ -417,23 +459,49 @@
   .form-group input, 
   .form-group textarea {
     padding: 0.75rem;
+    font-size: 0.95rem;
   }
 
   .contact-submit-button {
     padding: 0.75rem 1.25rem;
+    width: 100%; // Full width button on small screens
   }
 
   .contact-info-content {
-    padding: 1.5rem 1.25rem;
+    padding: 0;
   }
 
   .contact-info-title {
     font-size: 1.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   .contact-info-item {
     margin-bottom: 1.5rem;
+    gap: 0.75rem;
+  }
+  
+  .checkbox-group-inline {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .terms-label-inline {
+    font-size: 0.9rem;
+    text-align: left;
+    display: inline;
+  }
+  
+  .calendly-link-container {
+    p {
+      font-size: 1rem;
+    }
+    
+    .calendly-link {
+      width: 100%;
+      text-align: center;
+    }
   }
 }
 

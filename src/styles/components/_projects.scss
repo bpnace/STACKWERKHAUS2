@@ -20,7 +20,6 @@
     max-width: 1200px;
     margin: 0 auto;
     overflow: visible; // Ensure grid grows with content
-    /* No height or min-height set */
   }
 
   .project {
@@ -116,36 +115,61 @@
     }
   }
 
-  /* Basic Responsive */
+  /* Enhanced Responsive */
   @media (max-width: 1200px) {
+    padding: 4rem 3rem;
+    
     .project-grid {
-      max-width: 100vw;
-      padding: 0 1rem;
+      max-width: 100%;
+      gap: 2rem;
     }
-    .project, .img-wrapper {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 4 / 5;
+    
+    .title {
+      font-size: 1.75rem;
+    }
+    
+    .project > span, .subtitle {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    padding: 3rem 2.5rem;
+    
+    .project-grid {
+      gap: 1.75rem;
     }
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 768px) {
+    padding: 3rem 2rem 4rem;
+    
     .project-grid {
       grid-template-columns: 1fr;
+      max-width: 500px;
+      margin: 0 auto;
+      gap: 3rem;
+    }
+    
+    .project {
+      max-width: 100%;
+    }
+    
+    .title {
+      font-size: 1.5rem;
+      margin: 1.25rem 0 0.5rem 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 2.5rem 1.5rem 3.5rem;
+    
+    .project-grid {
       gap: 2rem;
     }
-    .project {
-      min-height: 300px;
-      height: auto;
-      max-height: none;
-      width: 100%;
-      aspect-ratio: 4 / 5;
-    }
-    .img-wrapper {
-      min-height: 180px;
-      width: 100%;
-      height: auto;
-      aspect-ratio: 4 / 5;
+    
+    .placeholder-card {
+      padding: 2rem !important;
     }
   }
 }

@@ -21,6 +21,7 @@ import './components/ProjectCard'; // Web Component registration
 import { initSeeMoreButtonAnimations } from './animations/seeMoreButtonAnimations';
 import { initContactAnimations } from './animations/contactAnimations';
 import { initCustomCheckbox } from './components/ContactForm';
+import { initMobileNav } from './components/MobileNav'; // Import mobile nav
 
 gsap.registerPlugin(ScrollTrigger); // Only register ScrollTrigger, not Draggable
 
@@ -86,6 +87,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 2. Sync ScrollTrigger with Lenis
   lenis.on('scroll', ScrollTrigger.update);
+
+  // Initialize mobile navigation
+  initMobileNav();
 
   // 3. GSAP Ticker (Optional - alternative way to drive Lenis, not usually needed with raf loop)
   // gsap.ticker.add((time) => {
