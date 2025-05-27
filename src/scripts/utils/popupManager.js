@@ -75,11 +75,42 @@ class PopupManager {
       }
     });
     
-    // Fix iOS Safari scroll issues
-    const scrollContainers = document.querySelectorAll('.legal-content, .lebenslauf-content');
-    scrollContainers.forEach(container => {
-      // Prevent default touch behavior to ensure scrolling works
-      container.addEventListener('touchstart', function(e) {
+    // Fix scrolling in all cards
+    this.fixScrollingForAllCards();
+  }
+
+  fixScrollingForAllCards() {
+    // Get all cards and their content areas
+    const cards = document.querySelectorAll('.legal-card, .lebenslauf-card');
+    
+    cards.forEach(card => {
+      const content = card.querySelector('.legal-content, .lebenslauf-content');
+      if (!content) return;
+      
+      // Make content directly scrollable
+      content.setAttribute('tabindex', '0');
+      
+      // Ensure wheel events on the card are handled correctly
+      card.addEventListener('wheel', (e) => {
+        if (card.classList.contains('visible')) {
+          if (content.scrollHeight > content.clientHeight) {
+            // Only if content is scrollable
+            e.stopPropagation();
+          }
+        }
+      }, { passive: false });
+      
+      // Also handle mousewheel for older browsers
+      card.addEventListener('mousewheel', (e) => {
+        if (card.classList.contains('visible')) {
+          if (content.scrollHeight > content.clientHeight) {
+            e.stopPropagation();
+          }
+        }
+      }, { passive: false });
+      
+      // Fix iOS Safari scroll issues
+      content.addEventListener('touchstart', (e) => {
         if (e.target.closest('a')) return; // Allow links to be clickable
         e.stopPropagation();
       }, { passive: true });
@@ -124,7 +155,14 @@ class PopupManager {
     
     // Ensure the content is focusable and scrollable
     setTimeout(() => {
+      // Focus the content to enable mouse wheel scrolling
       content.focus({preventScroll: true});
+      
+      // Set a high z-index on content when visible to ensure it receives events
+      content.style.zIndex = '10';
+      
+      // Make sure pointer events go to content
+      content.style.pointerEvents = 'auto';
     }, 100);
   }
 }

@@ -74,6 +74,13 @@ footer {
     }
   }
 
+  .footer-legal {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
   /* Basic Responsive */
   @media (max-width: 768px) {
      padding: 4rem 2rem 2rem;

@@ -24,8 +24,8 @@
   transform: translate(-50%, 100%);
   width: 90%;
   max-width: 800px;
-  height: 70vh;
-  max-height: 70vh;
+  height: 80vh;
+  max-height: 80vh;
   min-height: 0;
   background: var(--background-color);
   padding: 2.5rem;
@@ -85,17 +85,30 @@
       color: var(--primary-text-color); 
     }
   }
+  
+  /* Fix for mouse wheel scrolling */
+  &.visible {
+    overflow-y: hidden; /* Prevent card itself from scrolling */
+  }
 }
 
 /* Scrollable content area */
 .legal-content,
 .lebenslauf-content {
   flex: 1 1 auto;
-  overflow-y: auto;
+  overflow-y: auto !important;
   min-height: 0;
   padding-right: 0.5rem;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
+  
+  /* Ensure mouse wheel works */
+  &:focus {
+    outline: none; /* Remove focus outline */
+  }
+  
+  /* Explicitly handle wheel events */
+  pointer-events: auto !important;
   
   &::-webkit-scrollbar {
     width: 6px;
@@ -209,8 +222,8 @@
   .lebenslauf-card,
   .legal-card {
     width: 95%;
-    height: 75vh;
-    max-height: 75vh;
+    height: 80vh;
+    max-height: 80vh;
     padding: 2rem 1.5rem;
     
     h2 {
