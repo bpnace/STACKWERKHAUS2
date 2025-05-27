@@ -46,7 +46,8 @@ body.fadein {
 }
 
 body.preload .blur-overlay,
-body.preload .lebenslauf-card {
+body.preload .lebenslauf-card,
+body.preload .legal-card {
   opacity: 0 !important;
   pointer-events: none !important;
   transform: translate(-50%, 100%) !important;

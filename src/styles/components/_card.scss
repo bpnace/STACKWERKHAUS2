@@ -1,7 +1,9 @@
+/* Common Overlay for all popup cards */
 .blur-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(3px);
   z-index: 1000;
   opacity: 0;
   pointer-events: none;
@@ -12,44 +14,143 @@
   }
 }
 
-.lebenslauf-card {
+/* Base styles for all cards */
+.lebenslauf-card,
+.legal-card {
   position: fixed;
+  top: 50%;
   left: 50%;
-  bottom: 0;
   transform: translate(-50%, 100%);
-  opacity: 0;
+  width: 90%;
+  max-width: 800px;
+  height: 70vh;
+  max-height: 70vh;
+  min-height: 0;
+  background: var(--background-color);
+  padding: 2.5rem;
   z-index: 1001;
-  width: 100%;
-  max-width: 70%;
-  max-height: 80%;
-  background: #fff;
-  line-height: 1.6;
-  color: var(--primary-text-color);
-  border-radius: 12px 12px 0 0;
-  box-shadow: 0 -5px 25px rgba(0,0,0,0.15);
-  padding: 2.5rem 2rem 2rem 2rem;
-  overflow-y: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  opacity: 0;
+  pointer-events: none;
   transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.4s;
-  font-family: 'Switzer', Helvetica, Arial, sans-serif;
+  
   &.visible {
-    transform: translate(-50%, 0);
+    transform: translate(-50%, -50%);
     opacity: 1;
-    line-height: 1.6;
+    pointer-events: auto;
   }
+  
+  /* Card header with fixed position */
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-text-color);
+    margin-bottom: 0.7rem;
+    padding-right: 2rem; /* Space for close button */
+    letter-spacing: 0.01em;
+    line-height: 1.2;
+    position: sticky;
+    top: 0;
+    background: var(--background-color);
+    padding-top: 0.5rem;
+    z-index: 2;
+  }
+  
+  /* Description text below title */
+  > p {
+    font-size: 1.08rem;
+    color: var(--primary-text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+  }
+  
+  /* Close button */
   .close-card-btn {
     position: absolute;
-    top: 1rem;
-    right: 1.5rem;
+    top: 2rem;
+    right: 2rem;
     background: none;
     border: none;
     font-size: 2.5rem;
     color: #888;
     cursor: pointer;
     transition: color 0.2s;
-    &:hover { color: #000; }
+    z-index: 3;
+    &:hover { 
+      color: var(--primary-text-color); 
+    }
   }
 }
 
+/* Scrollable content area */
+.legal-content,
+.lebenslauf-content {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  min-height: 0;
+  padding-right: 0.5rem;
+  
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 10px;
+  }
+}
+
+/* Section styles for all cards */
+.legal-section,
+.lebenslauf-section {
+  margin-bottom: 1.5rem;
+  
+  h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    font-weight: 600;
+  }
+  
+  h4 {
+    margin: 1rem 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  p {
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--primary-text-color);
+  }
+  
+  ul {
+    padding-left: 1.2rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  li {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+    
+    strong {
+      font-weight: 600;
+      color: var(--primary-text-color);
+    }
+  }
+}
+
+/* Specific styles for lebenslauf card */
 .lebenslauf-highlights {
   list-style: none;
   padding: 0;
@@ -70,6 +171,7 @@
     background: none;
     border: none;
     padding: 0;
+    
     strong {
       font-weight: 600;
       color: var(--accent-color);
@@ -89,23 +191,6 @@
   font-size: 1.1em;
   color: var(--accent-color);
   background: none;
-  /* Replace with SVG later */
-}
-
-.lebenslauf-card h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--primary-text-color);
-  margin-bottom: 0.7rem;
-  letter-spacing: 0.01em;
-  line-height: 1.2;
-}
-
-.lebenslauf-card p {
-  font-size: 1.08rem;
-  color: var(--primary-text-light);
-  margin-bottom: 0.5rem;
-  line-height: 1.2;
 }
 
 .lebenslauf-cta {
@@ -114,4 +199,70 @@
   font-weight: 600;
   color: var(--accent-color);
   letter-spacing: 0.01em;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .lebenslauf-card,
+  .legal-card {
+    width: 95%;
+    height: 80vh;
+    max-height: 80vh;
+    padding: 2rem 1.5rem;
+    
+    h2 {
+      font-size: 1.7rem;
+    }
+    
+    .close-card-btn {
+      top: 1.5rem;
+      right: 1.5rem;
+      font-size: 2rem;
+    }
+  }
+  
+  .legal-section,
+  .lebenslauf-section {
+    h3 {
+      font-size: 1.1rem;
+    }
+    
+    p, li {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .lebenslauf-card,
+  .legal-card {
+    width: 100%;
+    height: 85vh;
+    max-height: 85vh;
+    padding: 1.5rem 1rem;
+    border-radius: 12px 12px 0 0;
+    top: auto;
+    bottom: 0;
+    transform: translate(-50%, 100%);
+    
+    &.visible {
+      transform: translate(-50%, 0);
+    }
+    
+    h2 {
+      font-size: 1.5rem;
+      padding-right: 1.5rem;
+    }
+    
+    > p {
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    
+    .close-card-btn {
+      top: 1.2rem;
+      right: 1rem;
+      font-size: 1.8rem;
+    }
+  }
 } 
