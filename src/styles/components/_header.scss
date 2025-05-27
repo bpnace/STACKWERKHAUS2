@@ -88,7 +88,7 @@ header {
       text-decoration: none !important;
       position: relative;
       transition: color 0.3s ease;
-      font-weight: 600;
+      font-weight: 500;
       line-height: 1;
       padding: 0;
 
@@ -117,7 +117,7 @@ header {
     .cta-link {
       font-family: 'Switzer', Helvetica, Arial, sans-serif;
       font-size: 1rem;
-      color: var(--secondary-text-color);
+      color: var(--accent-color);
       font-weight: 700;
       text-decoration: none;
       background-color: transparent;
@@ -161,7 +161,7 @@ header.scrolled {
 
   nav a {
     color: var(--primary-text-color);
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1;
     padding: 0;
     &::after {

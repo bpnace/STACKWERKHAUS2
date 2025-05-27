@@ -2,7 +2,7 @@
   position: relative; // Needed for z-index stacking
   z-index: 2;         // Ensure it scrolls OVER the pinned hero
   background-color: var(--background-color); // Make it opaque
-  padding: 6rem 4rem; // Keep padding for spacing
+  padding: 4rem 4rem; // Keep padding for spacing
 
   .container {
     max-width: 1100px;

@@ -178,6 +178,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Add smooth scroll for the placeholder card and any other in-page links
+  const inPageLinks = document.querySelectorAll('a[href^="#"]:not(header nav a):not(.header-cta a)');
+  inPageLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = link.getAttribute('href');
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        // Use the same easing as navigation links
+        lenis.scrollTo(target, { offset: 0, duration: 1.2, easing: (t) => -(Math.cos(Math.PI * t) - 1) / 2 });
+      }
+    });
+  });
+
   // Make logo scroll to top of page on click
   const headerLogo = document.querySelector('header .logo');
   if (headerLogo) {
@@ -363,27 +377,36 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // --- Footer Logo GSAP Animation ---
+  // --- Footer Logo GSAP Animation (Seamless Loop) ---
   const footerLogoTrack = document.querySelector('.footer-logo-track');
   if (footerLogoTrack) {
-    // Ensure the track is at least as wide as the viewport for seamless looping
-    const trackWidth = footerLogoTrack.scrollWidth;
+    // First ensure we have enough content to create a proper loop
+    const originalContent = footerLogoTrack.innerHTML;
     const viewportWidth = window.innerWidth;
-    // If the track is not wide enough, duplicate the text until it is
-    if (trackWidth < viewportWidth * 2) {
-      const text = footerLogoTrack.innerHTML;
-      while (footerLogoTrack.scrollWidth < viewportWidth * 2) {
-        footerLogoTrack.innerHTML += text;
-      }
+    
+    // Clear and rebuild with clean content
+    footerLogoTrack.innerHTML = originalContent;
+    
+    // Now ensure we have enough copies for smooth looping
+    // (at least 3 sets to ensure seamless transition)
+    while (footerLogoTrack.scrollWidth < viewportWidth * 3) {
+      footerLogoTrack.innerHTML += originalContent;
     }
-    gsap.set(footerLogoTrack, { x: 0 });
-    gsap.to(footerLogoTrack, {
-      x: () => `-=${footerLogoTrack.scrollWidth / 2}`,
-      duration: 18,
-      ease: 'linear',
-      repeat: -1,
-      modifiers: {
-        x: gsap.utils.unitize(x => parseFloat(x) % (footerLogoTrack.scrollWidth / 2))
+    
+    // Calculate animation duration based on content width (consistent speed regardless of width)
+    const totalWidth = footerLogoTrack.scrollWidth;
+    const singleSetWidth = totalWidth / (footerLogoTrack.innerHTML.split(originalContent).length - 1);
+    const duration = singleSetWidth * 0.03; // adjust this multiplier to control speed
+    
+    // Create seamless animation - animate to exactly one set width
+    const tl = gsap.timeline({ repeat: -1, defaults: {ease: 'none'} });
+    tl.to(footerLogoTrack, {
+      x: -singleSetWidth,
+      duration: duration,
+      ease: "linear",
+      onComplete: function() {
+        // Reset position without visual jump by adjusting the x position
+        gsap.set(footerLogoTrack, { x: 0 });
       }
     });
   }
