@@ -9,6 +9,7 @@ class ProjectCard extends HTMLElement {
     const subtitle = this.getAttribute('subtitle');
     const image = this.getAttribute('image');
     const revealedImage = this.getAttribute('revealed-image');
+    const isVideo = revealedImage && (revealedImage.endsWith('.webm') || revealedImage.endsWith('.mp4'));
     
     this.shadowRoot.innerHTML = `
       <style>
@@ -106,7 +107,10 @@ class ProjectCard extends HTMLElement {
             <img class="pixelated-image-card__img" src="${image}" alt="${title}" />
           </div>
           <div class="pixelated-image-card__active" data-pixelated-image-reveal-active>
-            <img class="pixelated-image-card__img" src="${revealedImage}" alt="${title} revealed" />
+            ${isVideo
+              ? `<video class="pixelated-image-card__video" src="${revealedImage}" muted loop playsinline preload="auto" style="width:100%;height:100%;object-fit:cover;display:block;"></video>`
+              : `<img class="pixelated-image-card__img" src="${revealedImage}" alt="${title} revealed" />`
+            }
           </div>
           <div class="pixelated-image-card__pixels" data-pixelated-image-reveal-grid></div>
         </div>
@@ -114,6 +118,25 @@ class ProjectCard extends HTMLElement {
         <span class="subtitle">${subtitle}</span>
       </div>
     `;
+    // Expose a method to play/pause video for reveal logic
+    this.playRevealedVideo = () => {
+      if (isVideo) {
+        const video = this.shadowRoot.querySelector('.pixelated-image-card__video');
+        if (video) {
+          video.currentTime = 0;
+          video.play();
+        }
+      }
+    };
+    this.pauseRevealedVideo = () => {
+      if (isVideo) {
+        const video = this.shadowRoot.querySelector('.pixelated-image-card__video');
+        if (video) {
+          video.pause();
+          video.currentTime = 0;
+        }
+      }
+    };
   }
 }
 

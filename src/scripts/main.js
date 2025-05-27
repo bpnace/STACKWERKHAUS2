@@ -1,3 +1,8 @@
+/* Remove the following lines as Babel will auto-inject polyfills with 'usage': */
+/* Prepending polyfill imports for polyfill support as per Babel config */
+/* import 'core-js/stable';
+import 'regenerator-runtime/runtime'; */
+
 import '../styles/main.scss'; // Import main SCSS file for Webpack
 
 // Main JavaScript file 
@@ -98,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function openCard() {
     blurOverlay.classList.add('visible');
     lebenslaufCard.classList.add('visible');
-    document.body.style.overflow = 'hidden'; // Prevent background scroll
+    document.body.classList.add('modal-open'); // Prevent background scroll
     focusTrap.trap();
     // Animate blur in
     gsap.to(blurOverlay, { blur: 8, opacity: 1, duration: 0.5, ease: 'power2.out' });
@@ -109,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     gsap.to(blurOverlay, { blur: 0, opacity: 0, duration: 0.4, ease: 'power2.in', onComplete: () => {
       blurOverlay.classList.remove('visible');
       lebenslaufCard.classList.remove('visible');
-      document.body.style.overflow = '';
+      document.body.classList.remove('modal-open');
       // Reset filter property to avoid accumulation
       blurOverlay.style.filter = '';
       focusTrap.release();
@@ -124,6 +129,15 @@ document.addEventListener('DOMContentLoaded', () => {
       closeCard();
     }
   });
+
+  // Ensure mouse wheel always scrolls the lebenslauf card when open
+  lebenslaufCard.addEventListener('wheel', function(e) {
+    if (lebenslaufCard.classList.contains('visible')) {
+      // Only scroll the card, not the background
+      e.stopPropagation();
+      // Allow default scroll
+    }
+  }, { passive: false });
 
   // 5. Initialize all Page Animations
   // These functions should now internally use the default scroller (window)
@@ -160,6 +174,20 @@ document.addEventListener('DOMContentLoaded', () => {
           // Use easeInOutSine for slow-fast-slow effect
           lenis.scrollTo(target, { offset: 0, duration: 1.2, easing: (t) => -(Math.cos(Math.PI * t) - 1) / 2 });
         }
+      }
+    });
+  });
+
+  // Add smooth scroll for the placeholder card and any other in-page links
+  const inPageLinks = document.querySelectorAll('a[href^="#"]:not(header nav a):not(.header-cta a)');
+  inPageLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = link.getAttribute('href');
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        // Use the same easing as navigation links
+        lenis.scrollTo(target, { offset: 0, duration: 1.2, easing: (t) => -(Math.cos(Math.PI * t) - 1) / 2 });
       }
     });
   });
@@ -268,21 +296,9 @@ document.addEventListener('DOMContentLoaded', () => {
     logoVideo.style.maskImage = "url('/assets/images/logo1.svg')";
     logoVideo.style.webkitMaskImage = "url('/assets/images/logo1.svg')";
 
-    logo.addEventListener('mouseenter', () => {
-      logoVideo.play();
-    });
-    
-    logo.addEventListener('mouseleave', () => {
-      // Listen for transitionend to pause/reset video after fade-out
-      const onTransitionEnd = (e) => {
-        if (e.propertyName === 'opacity') {
-          logoVideo.pause();
-          logoVideo.currentTime = 0;
-          logoVideo.removeEventListener('transitionend', onTransitionEnd);
-        }
-      };
-      logoVideo.addEventListener('transitionend', onTransitionEnd);
-    });
+    // Removed event listeners to let the video autoplay continuously
+    // The video element now has autoplay, muted, loop attributes in HTML,
+    // and CSS hover in _header.scss changes opacity.
   }
 
   // Initialize contact animations and form
@@ -338,9 +354,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (activate) {
           defaultImgWrap.style.display = 'none';
           revealedImgWrap.style.display = 'block';
+          // Play video if present
+          if (typeof card.playRevealedVideo === 'function') card.playRevealedVideo();
         } else {
           defaultImgWrap.style.display = 'block';
           revealedImgWrap.style.display = 'none';
+          // Pause video if present
+          if (typeof card.pauseRevealedVideo === 'function') card.pauseRevealedVideo();
         }
         gsap.to(pixels, {
           display: 'none',
@@ -357,27 +377,36 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // --- Footer Logo GSAP Animation ---
+  // --- Footer Logo GSAP Animation (Seamless Loop) ---
   const footerLogoTrack = document.querySelector('.footer-logo-track');
   if (footerLogoTrack) {
-    // Ensure the track is at least as wide as the viewport for seamless looping
-    const trackWidth = footerLogoTrack.scrollWidth;
+    // First ensure we have enough content to create a proper loop
+    const originalContent = footerLogoTrack.innerHTML;
     const viewportWidth = window.innerWidth;
-    // If the track is not wide enough, duplicate the text until it is
-    if (trackWidth < viewportWidth * 2) {
-      const text = footerLogoTrack.innerHTML;
-      while (footerLogoTrack.scrollWidth < viewportWidth * 2) {
-        footerLogoTrack.innerHTML += text;
-      }
+    
+    // Clear and rebuild with clean content
+    footerLogoTrack.innerHTML = originalContent;
+    
+    // Now ensure we have enough copies for smooth looping
+    // (at least 3 sets to ensure seamless transition)
+    while (footerLogoTrack.scrollWidth < viewportWidth * 3) {
+      footerLogoTrack.innerHTML += originalContent;
     }
-    gsap.set(footerLogoTrack, { x: 0 });
-    gsap.to(footerLogoTrack, {
-      x: () => `-=${footerLogoTrack.scrollWidth / 2}`,
-      duration: 18,
-      ease: 'linear',
-      repeat: -1,
-      modifiers: {
-        x: gsap.utils.unitize(x => parseFloat(x) % (footerLogoTrack.scrollWidth / 2))
+    
+    // Calculate animation duration based on content width (consistent speed regardless of width)
+    const totalWidth = footerLogoTrack.scrollWidth;
+    const singleSetWidth = totalWidth / (footerLogoTrack.innerHTML.split(originalContent).length - 1);
+    const duration = singleSetWidth * 0.03; // adjust this multiplier to control speed
+    
+    // Create seamless animation - animate to exactly one set width
+    const tl = gsap.timeline({ repeat: -1, defaults: {ease: 'none'} });
+    tl.to(footerLogoTrack, {
+      x: -singleSetWidth,
+      duration: duration,
+      ease: "linear",
+      onComplete: function() {
+        // Reset position without visual jump by adjusting the x position
+        gsap.set(footerLogoTrack, { x: 0 });
       }
     });
   }

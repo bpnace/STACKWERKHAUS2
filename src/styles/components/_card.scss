@@ -23,6 +23,7 @@
   max-width: 70%;
   max-height: 80%;
   background: #fff;
+  line-height: 1.6;
   color: var(--primary-text-color);
   border-radius: 12px 12px 0 0;
   box-shadow: 0 -5px 25px rgba(0,0,0,0.15);
@@ -33,6 +34,7 @@
   &.visible {
     transform: translate(-50%, 0);
     opacity: 1;
+    line-height: 1.6;
   }
   .close-card-btn {
     position: absolute;
@@ -64,7 +66,7 @@
     font-weight: 500;
     color: var(--primary-text-color);
     letter-spacing: 0.01em;
-    line-height: 1.5;
+    line-height: 1.6;
     background: none;
     border: none;
     padding: 0;
@@ -72,6 +74,7 @@
       font-weight: 600;
       color: var(--accent-color);
       margin-left: 0.3em;
+      line-height: 1.6;
     }
   }
 }
@@ -95,12 +98,14 @@
   color: var(--primary-text-color);
   margin-bottom: 0.7rem;
   letter-spacing: 0.01em;
+  line-height: 1.2;
 }
 
 .lebenslauf-card p {
   font-size: 1.08rem;
   color: var(--primary-text-light);
   margin-bottom: 0.5rem;
+  line-height: 1.2;
 }
 
 .lebenslauf-cta {

@@ -23,8 +23,7 @@
     <meta name="twitter:image" content="https://stackwerkhaus.de/assets/images/twitter-card.webp">
     
     <!-- Preload Critical Assets -->
-    <link rel="preload" as="style" href="main.css" onload="this.rel='stylesheet'">
-    <link rel="preload" as="image" href="assets/images/hero.webp" type="image/webp">
+    <link rel="preload" as="image" href="assets/images/hero1.webp" type="image/webp">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     
     <!-- Critical CSS -->
@@ -77,16 +76,17 @@
     <header>
         <div class="logo">
             <img src="assets/images/logo1.svg" alt="STACKWERKHAUS Logo">
-            <video class="masked-video" playsinline muted loop aria-hidden="true">
+            <video class="masked-video" playsinline muted loop autoplay>
                 <source src="assets/video/logo_bg1.webm" type="video/webm">
+                <source src="assets/video/logo_bg1.mp4" type="video/mp4">
             </video>
         </div>
         <nav>
-            <a href="#about">Vergangenheit</a>
-            <a href="#projects">Gegenwart</a>
+            <a href="#about">Hinter STWKHS</a>
+            <a href="#projects">Projekte</a>
         </nav>
         <div class="header-cta">
-            <a href="#kontakt" class="cta-link">Zukunft!</a>
+            <a href="#kontakt" class="cta-link">Kontakt!</a>
         </div>
     </header>
 
@@ -97,27 +97,32 @@
             <!-- Hero Section Component -->
             <section class="hero">
                 <h1 class="hero-title section-headline-large">
-                    <span>DEIN BERLINER</span></br>
-                    <span>DESIGN STUDIO</span>
+                    <span>Von Rohbau</span></br>
+                    <span>bis Launch</span>
                 </h1>
-                <p class="hero-subtitle">Ich gestalte digitale Produkte und Markenerlebnisse.</p>
+                <p class="hero-subtitle">Weniger Fassade, mehr Substanz. Digitale Lösungen, die mit dir wachsen.</p>
                 
                 <div class="hero-shadow-overlay"></div>
+                <div class="hero-credits">
+                    Foto: <a href="https://unsplash.com/@herrherrmann" target="_blank" rel="noopener noreferrer">Sebastian Herrmann</a> / <a href="https://unsplash.com/photos/blick-auf-eine-stadt-bei-sonnenuntergang-5656" target="_blank" rel="noopener noreferrer">Unsplash</a>
+                </div>
             </section>
 
             <!-- About Section Component -->
             <section id="about" class="about-section">
-                <h2 class="section-headline-large"><span>Mein Ansatz</span> <span class="headline-tag">STWKHS™—'25</span></h2>
+                <h2 class="section-headline-large"> Hinter STWKHS<span class="headline-tag">STWKHS—'25</span></h2>
                 <div class="about-content">
                     <div class="about-text">
-                        <p>Eine Webseite ist heute schnell erstellt. Doch eine, die sich abhebt und Ihre Ziele wirklich erreicht? Genau da kommt <b>STACKWERKHAUS</b> ins Spiel.</p>
-                        <button class="read-more-btn">Mehr lesen</button>
-                        <p>Als Freelancer mit Sitz in Berlin konzentriere ich mich auf maßgeschneiderte Web-Erlebnisse, die Ästhetik und modernste Technologie vereinen. Ich baue nicht nur Webseiten – ich schaffe digitale Plattformen, die Ihre Marke stärken und Ihr Geschäft voranbringen.</p>
-                        <div class="contact-links">
-                            <a href="mailto:email@example.com">Email</a>
-                            <a href="#">Instagram</a>
-                            <a href="#">Twitter</a>
-                            <a href="#">LinkedIn</a>
+                        <h2>Das Stackwerkhaus</h2>
+                        <p class="about-intro"><strong>Klar. Direkt. Digital.</strong> Ich helfe dir, deine Online-Präsenz easy aufs nächste Level zu bringen – mit smarter Technik, die einfach funktioniert und Spaß macht.</p>
+                        <p>Ich bin Tarik aus Berlin – dein Partner für smarte und digitale Lösungen. Ob du Freelancer bist, ein kleines Business führst oder einfach eine moderne Website suchst: Wir entwickeln gemeinsam genau das, was zu dir passt.
+                            Ohne Blabla, ohne Fachjargon – einfach klar, kreativ und auf den Punkt.</p>
+                        <button class="read-more-btn">Meine Reise & Expertise</button>
+                        <div class="contact-links" style="text-align:center; margin-top:2rem;">
+                            <a href="mailto:info@stackwerkhaus.de">Email</a>
+                            <a href="https://www.instagram.com/stackwerkhaus/" target="_blank">Instagram</a>
+                            <a href="https://twitter.com/stackwerkhaus" target="_blank">Twitter</a>
+                            <a href="https://www.linkedin.com/in/tarik-marshall/" target="_blank">LinkedIn</a>
                         </div>
                     </div>
                     <div class="about-image">
@@ -128,11 +133,11 @@
 
             <!-- Projects Section Component -->
             <section id="projects" class="projects-section">
-                <h2 class="section-headline-large">Projekte <span class="headline-tag">STWKHS™—'25</span></h2>
+                <h2 class="section-headline-large">Projekte <span class="headline-tag">STWKHS—'25</span></h2>
                 <div class="project-grid">
                     <a class="project" href="#" tabindex="0">
                         <div class="img-wrapper">
-                            <img class="img normalImg" src="assets/projects/1.webp" alt="Project 1" data-revealed-img="assets/projects/1.webp" />
+                            <img class="img normalImg" src="assets/projects/1.webp" alt="Project 1" data-revealed-img="assets/video/out-2-2.webm" />
                             <div class="website-wrapper">
                                 <img src="https://picsum.photos/seed/website1/400/200" alt="Project 1 website preview" />
                             </div>
@@ -142,36 +147,50 @@
                     </a>
                     <a class="project" href="#" tabindex="0">
                         <div class="img-wrapper">
-                            <img class="img normalImg" src="https://picsum.photos/seed/normal2/800/600" alt="Project 2" data-revealed-img="https://picsum.photos/seed/revealed2/800/600" />
+                            <img class="img normalImg" src="assets/projects/2.webp" alt="Project 2" data-revealed-img="assets/projects/2.webp" />
                         </div>
-                        <h2 class="title">Project 2</h2>
+                        <h2 class="title">Recruitr</h2>
                         <span>Branding & Web</span>
                     </a>
                     <!-- New Project Card 3 -->
                     <a class="project" href="#" tabindex="0">
                         <div class="img-wrapper">
-                            <img class="img normalImg" src="https://picsum.photos/seed/normal3/800/600" alt="Project 3" data-revealed-img="https://picsum.photos/seed/revealed3/800/600" />
+                            <img class="img normalImg" src="assets/projects/3.webp" alt="Project 3" data-revealed-img="assets/projects/uncloud.webp" />
                         </div>
-                        <h2 class="title">Project 3</h2>
+                        <h2 class="title">uncloud - Mental health App</h2>
                         <span>UI/UX & App Design</span>
                     </a>
                     <!-- Placeholder Card inviting viewer -->
-                    <a class="project placeholder-card" href="#kontakt" tabindex="0" style="border: 2px dashed var(--accent-color); background: rgba(86,8,255,0.07); display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 320px;">
-                        <div class="img-wrapper" style="justify-content: center; align-items: center; min-height: 120px;">
-                            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="32" cy="32" r="30" stroke="var(--accent-color)" stroke-width="4" fill="none"/>
-                                <text x="32" y="38" text-anchor="middle" fill="var(--accent-color)" font-size="32" font-family="'Switzer', Helvetica, Arial, sans-serif" dy=".3em">?</text>
+                    <a class="project placeholder-card smooth-scroll" href="#kontakt" tabindex="0" style="background: var(--primary-text-color); display: flex; flex-direction: column; justify-content: space-between; min-height: 320px; position: relative; overflow: hidden; padding: 2.5rem; transition: transform 0.3s ease;">
+                        <div style="position: absolute; top: 0; right: 0; width: 150px; height: 150px; overflow: hidden;">
+                            <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: -50px; right: -50px; opacity: 0.08;">
+                                <path d="M100 0L200 100L100 200L0 100L100 0Z" fill="var(--accent-color)"/>
                             </svg>
                         </div>
-                        <h2 class="title" style="margin: 1.5rem 0 0.5rem 0; text-align: center;">Dein Projekt?</h2>
-                        <span style="text-align: center; color: var(--accent-color); font-weight: 600;">Werde Teil des Rosters!<br>Jetzt anfragen &rarr;</span>
+                        <div style="z-index: 2; text-align: left;">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 4L29.2908 19.7092L45 24L29.2908 28.2908L24 44L18.7092 28.2908L3 24L18.7092 19.7092L24 4Z" stroke="var(--accent-color)" stroke-width="2.5" fill="none"/>
+                            </svg>
+                            <h2 class="title" style="margin: 1.5rem 0 0.5rem 0; text-align: left; color: var(--secondary-text-color); font-size: 2.2rem;">Dein Projekt?</h2>
+                        </div>
+                        <div style="z-index: 2; margin-top: 2rem;">
+                            <span style="text-align: left; color: var(--secondary-text-color); font-weight: 500; display: block; margin-bottom: 1.5rem; opacity: 0.9;">Werde Teil des STACKWERKHAUS Portfolios</span>
+                            <div style="display: flex; align-items: center;">
+                                <span style="color: var(--accent-color); font-weight: 600; display: inline-flex; align-items: center; transition: transform 0.3s ease;">
+                                    Jetzt anfragen 
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 8px; transition: transform 0.3s ease;">
+                                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
                     </a>
                 </div>
             </section>
 
             <!-- Contact Section Component -->
             <section id="kontakt" class="contact">
-                <h2 class="section-headline-large">Kontakt <span class="headline-tag">STWKHS™—'25</span></h2>
+                <h2 class="section-headline-large">Kontakt <span class="headline-tag">STWKHS—'25</span></h2>
                 <div class="contact-grid">
                     <!-- Contact Form Card -->
                     <div class="contact-card">
@@ -310,15 +329,32 @@
             type="button">
             &times;
           </button>
-          <h2 id="lebenslauf-title">Webentwickler & Sales-Profi aus Berlin</h2>
-          <p id="lebenslauf-description">Mit Leidenschaft für KI, Technologie und die digitale Zukunft. Ich helfe kleinen Unternehmen, groß zu denken und nachhaltig zu wachsen.</p>
-          <ul class="lebenslauf-highlights" aria-label="Karriere Highlights">
-            <li><span class="icon-placeholder" aria-hidden="true">[Icon]</span> <strong>Erfahrung:</strong> 6+ Jahre in Webentwicklung & Vertrieb</li>
-            <li><span class="icon-placeholder" aria-hidden="true">[Icon]</span> <strong>Tech & KI:</strong> Immer am Puls der neuesten Trends</li>
-            <li><span class="icon-placeholder" aria-hidden="true">[Icon]</span> <strong>Kundenfokus:</strong> Maßgeschneiderte Lösungen, die wirklich helfen</li>
-            <li><span class="icon-placeholder" aria-hidden="true">[Icon]</span> <strong>Wachstum:</strong> Gemeinsam neue Chancen erkennen und nutzen</li>
-          </ul>
-          <p class="lebenslauf-cta">Lust auf digitale Innovation? Lassen Sie uns Ihr Projekt anpacken!</p>
+          <h2 id="lebenslauf-title">Tarik Marshall: Digitale Evolution durch Technologie & KI</h2>
+          <p id="lebenslauf-description">Mein Weg und die Expertise, die STACKWERKHAUS antreibt – für Ihren digitalen Erfolg.</p>
+          <div class="lebenslauf-section">
+            <h3>Philosophie & Ansatz</h3>
+            <p>Ich verbinde strategisches Denken mit der Präzision neuester Technologien und der Effizienz von KI-Systemen, um digitale Produkte zu schaffen, die nicht nur ästhetisch überzeugen, sondern vor allem nachhaltige Werte für Ihr Unternehmen generieren. Effizienz, Skalierbarkeit und Nutzerzentrierung stehen im Mittelpunkt meiner Arbeit.</p>
+          </div>
+          <div class="lebenslauf-section">
+            <h3>Kernkompetenzen & Technologien</h3>
+            <ul>
+              <li><strong>Web & App Entwicklung:</strong> Full-Stack Lösungen mit Fokus auf moderne JavaScript Frameworks (z.B. React, Vue, Node.js), Python, und Headless CMS-Architekturen.</li>
+              <li><strong>KI-Integration:</strong> Einsatz von KI-Agenten und Machine Learning Modellen zur Prozessoptimierung, Personalisierung und für innovative Features.</li>
+              <li><strong>UI/UX & Branding:</strong> Gestaltung intuitiver Benutzeroberflächen und starker Markenidentitäten, die Ihre Zielgruppe ansprechen.</li>
+              <li><strong>Agile Projektmethoden:</strong> Transparente und iterative Entwicklungsprozesse für schnelle Ergebnisse und kontinuierliche Verbesserung.</li>
+              <li><strong>Performance & Kosten-Effizienz:</strong> Optimierung von Ladezeiten, Code-Qualität und Infrastruktur für maximale Rentabilität.</li>
+              <li><em>Weitere Skills hier einfügen (z.B. spezifische Software, Datenbanken, Cloud-Plattformen aus Ihrem CV)</em></li>
+            </ul>
+          </div>
+          <div class="lebenslauf-section">
+            <h3>Ausgewählte Erfahrungen & Projekte</h3>
+            <p><em>Hier können Sie 2-3 prägnante Beispiele Ihrer wichtigsten Projekte oder Karrierestationen aus Ihrem CV einfügen. Betonen Sie Herausforderungen, Lösungen und Ergebnisse.</em></p>
+            <ul>
+              <li><strong>Beispiel Projekt 1:</strong> Entwicklung einer KI-gestützten Analyseplattform für KMU zur Markttrend-Erkennung. Ergebnis: 30% schnellere Entscheidungsfindung für Kunden.</li>
+              <li><strong>Beispiel Rolle:</strong> Lead Developer bei [Vorheriger Arbeitgeber/Projekt], verantwortlich für [Ihre Hauptaufgaben und Erfolge].</li>
+              <li><em>Fügen Sie hier weitere relevante Punkte hinzu.</em></li>
+            </ul>
+          </div>
         </div>
     </div>
     <!-- <script src="dist/bundle.js"></script> JS will be injected by HtmlWebpackPlugin -->

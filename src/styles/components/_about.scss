@@ -2,7 +2,7 @@
   position: relative; // Needed for z-index stacking
   z-index: 2;         // Ensure it scrolls OVER the pinned hero
   background-color: var(--background-color); // Make it opaque
-  padding: 3rem 4rem; // Keep padding for spacing
+  padding: 4rem 4rem; // Keep padding for spacing
   border-bottom: 1px solid var(--primary-text-light); // Section underline
   // max-width: 1200px; // Removed for full width
   // margin: 0 auto;    // Removed for full width
@@ -17,9 +17,10 @@
   .about-text {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     p {
       margin-bottom: 2rem;
+      line-height: 1.6;
     }
     .contact-links {
       a {

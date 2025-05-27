@@ -1,5 +1,5 @@
 .projects-section {
-  padding: 3rem 4rem;
+  padding: 4rem 4rem;
   position: relative;
   z-index: 10;
   background-color: var(--primary-text-color);
@@ -100,6 +100,20 @@
     font-weight: 500;
     margin-bottom: 0;
     display: block;
+  }
+
+  /* Placeholder Card styles */
+  .placeholder-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    &:hover, &:focus {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      
+      svg:last-child {
+        transform: translateX(5px);
+      }
+    }
   }
 
   /* Basic Responsive */
