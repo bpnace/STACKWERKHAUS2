@@ -1,0 +1,29 @@
+STACKWERKHAUS - Dein Berliner Design Studio für Webentwicklung, Branding und UI/UX Design
+
+FREQUENTLY ASKED QUESTIONS:
+
+Q: Was kostet eine professionelle Website für ein Berliner Unternehmen?
+A: Eine maßgeschneiderte Website kostet bei STACKWERKHAUS zwischen 2.000€ und 5.000€, je nach Umfang und Funktionen. Im Preis enthalten sind: Responsive Design für alle Geräte, SEO-Grundoptimierung für lokale Sichtbarkeit in Berlin, Content Management System, Kontaktformular und Kartenintegration. Anders als bei großen Agenturen zahlst du nur für das, was du wirklich brauchst – ohne versteckte Kosten.
+
+Q: Wie lange dauert die Entwicklung einer Website für ein Berliner Unternehmen?
+A: Die Entwicklungszeit für eine Website in Berlin beträgt je nach Umfang: 3-5 Wochen für kleine Business-Websites, 6-8 Wochen für mittelgroße Unternehmenswebsites und 8-12 Wochen für E-Commerce oder komplexe Web-Apps. Nach unserem Erstgespräch erhältst du innerhalb von 5 Werktagen einen detaillierten Zeitplan mit allen Projektphasen und Meilensteinen.
+
+Q: Welche technischen Lösungen eignen sich am besten für Berliner Unternehmen?
+A: Für Berliner Kleinunternehmen empfehle ich WordPress mit individuell entwickeltem Theme – benutzerfreundlich und kosteneffizient. Für wachsende Unternehmen ist ein Headless CMS mit React/Next.js optimal für maximale Performance und Flexibilität. Für Online-Shops bieten sich WooCommerce oder Shopify mit lokalen Funktionen wie Click & Collect an. Bei STACKWERKHAUS wähle ich die Technologie basierend auf deinen spezifischen Anforderungen, Budget und Wachstumszielen.
+
+Q: Wie kann KI meine Website für den Berliner Markt verbessern?
+A: KI bietet für Berliner Websites konkrete Vorteile durch: Lokale Personalisierung (standortbasierte Inhalte für Bezirke wie Mitte oder Kreuzberg), intelligente Chatbots (24/7 Kundensupport mit Berlin-spezifischem Wissen), automatisierte SEO-Texterstellung mit lokalem Kontext und datenbasierte Nutzeranalysen für den Berliner Markt. STACKWERKHAUS setzt KI strategisch ein für bessere Nutzererfahrung und höhere Conversion-Raten – nicht als Gimmick, sondern als effektives Business-Tool.
+
+Q: Gibt es laufende Kosten nach dem Launch einer Website?
+A: Ja, für den langfristigen Erfolg deiner Website fallen diese transparenten Kosten an: Hosting: 5-15€/Monat (je nach Besucherzahlen), Domain: ca. 15€/Jahr, SSL-Zertifikat: meist kostenlos mit Hosting. Optional bietet STACKWERKHAUS ein Wartungspaket ab 50€/Monat für regelmäßige Updates, Sicherheitspatches und kleinere Änderungen – alles ohne versteckte Gebühren und mit klarer Kostenaufstellung.
+
+Q: Ist eine günstige Website für 500€ sinnvoll für mein Berliner Startup?
+A: Eine 500€-Website kann ein Startpunkt sein, hat aber erhebliche Einschränkungen für Berliner Startups: meist nur vorgefertigte Templates ohne Individualisierung, begrenzte Anpassungsmöglichkeiten an deine Marke, kaum SEO-Optimierung für den Berliner Markt und oft versteckte Folgekosten für Erweiterungen. STACKWERKHAUS bietet faire Einstiegslösungen ab 2.000€, die professionell wirken, lokale SEO-Vorteile bieten und mit deinem Unternehmen mitwachsen können.
+
+ABOUT STACKWERKHAUS:
+STACKWERKHAUS ist ein Berliner Design Studio, gegründet von Tarik Marshall. Wir bieten maßgeschneiderte digitale Lösungen für Unternehmen aller Größen, mit Fokus auf Webentwicklung, UI/UX Design, Branding und KI-Integration. Unsere Projekte vereinen ästhetisches Design mit technischer Exzellenz und strategischem Business-Denken. Wir verstehen uns als Partner, der transparent arbeitet und nachhaltige digitale Produkte entwickelt, die mit Ihrem Unternehmen wachsen.
+
+KONTAKT:
+Website: https://stackwerkhaus.de
+Email: info@stackwerkhaus.de
+Standort: Berlin, Deutschland 

@@ -1,0 +1,30 @@
+/* Add styles for the view-all-faq link */
+.view-all-faq {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.faq-link {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 500;
+  color: var(--accent-color);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  transition: all 0.3s ease;
+  background-color: rgba(86, 8, 255, 0.05);
+}
+
+.faq-link:hover {
+  background-color: rgba(86, 8, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.faq-link svg {
+  margin-left: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.faq-link:hover svg {
+  transform: translateX(3px);
+} 
