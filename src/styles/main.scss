@@ -139,13 +139,13 @@ a:hover {
 @import 'components/projects';
 @import 'components/footer';
 @import 'components/card'; // Import for the new card styles
-@import 'components/seeMoreButton'; // Import for the new see more button
 @import 'components/contact';
+@import 'components/solutions'; // Import for the new solutions section styling
 
 .section-headline-large {
   font-family: 'Switzer', Helvetica, Arial, sans-serif;
-  font-size: clamp(3.5rem, 7vw, 7rem);
-  font-weight: 700; // Bold
+  font-size: clamp(4.5rem, 8vw, 8rem);
+  font-weight: 900; // Bold
   flex-wrap: wrap;
   margin-left: -4rem;
   align-items: flex-end;
@@ -168,7 +168,6 @@ a:hover {
 @media (max-width: 1200px) {
   .section-headline-large {
     margin-left: -3rem;
-    font-size: clamp(3rem, 6vw, 6rem);
   }
 }
 
@@ -197,5 +196,727 @@ a:hover {
       display: block;
       margin-top: 0.5rem;
     }
+  }
+}
+
+/* Services Section */
+.services-section {
+  padding: 4rem 4rem;
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
+  
+  .section-headline-large {
+    margin-bottom: 3rem;
+  }
+  
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 5rem;
+  }
+  
+  .service-card {
+    background-color: var(--card-background);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    }
+    
+    .service-icon {
+      margin-bottom: 1.5rem;
+      color: var(--accent-color);
+      
+      svg {
+        width: 48px;
+        height: 48px;
+      }
+    }
+    
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    
+    p {
+      color: var(--secondary-text-color);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+  }
+  
+  /* FAQ Section */
+  .faq-section {
+    margin-top: 3rem;
+    
+    h3 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      font-weight: 600;
+    }
+    
+    .faq-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 2rem;
+    }
+    
+    .faq-item {
+      background-color: var(--card-background);
+      border-radius: 12px;
+      padding: 2rem;
+      
+      h4 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+        color: var(--accent-color);
+      }
+      
+      p {
+        color: var(--secondary-text-color);
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+    }
+  }
+}
+
+/* FAQ SEO Section - New Form of SEO implementation */
+.faq-seo-section {
+  padding: 4rem 4rem;
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
+  position: relative;
+  
+  .section-headline-large {
+    margin-bottom: 2rem;
+  }
+  
+  .faq-seo-intro {
+    max-width: 800px;
+    margin-bottom: 3rem;
+    
+    p {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      font-family: 'Switzer', Helvetica, Arial, sans-serif;
+    }
+  }
+  
+  .faq-seo-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    width: 65%;
+  }
+  
+  .faq-seo-group {
+    margin-bottom: 1rem;
+    
+    .faq-seo-category {
+      font-size: 1.75rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent-color);
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent-color);
+      display: inline-block;
+      font-family: 'Switzer', Helvetica, Arial, sans-serif;
+      font-weight: 600;
+    }
+  }
+  
+  .faq-seo-item {
+    margin-bottom: 2.5rem;
+    max-width: 900px;
+    
+    h4 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      line-height: 1.4;
+      position: relative;
+      padding-right: 40px;
+      cursor: pointer;
+      font-family: 'Switzer', Helvetica, Arial, sans-serif;
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: var(--accent-color);
+      }
+      
+      .faq-indicator {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: transform 0.3s ease;
+        color: var(--accent-color);
+        font-size: 1.5rem;
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        text-align: center;
+        line-height: 24px;
+      }
+    }
+    
+    .faq-seo-answer {
+      background-color: rgba(86, 8, 255, 0.03);
+      border-left: 3px solid var(--accent-color);
+      padding: 1.5rem;
+      border-radius: 0 8px 8px 0;
+      overflow: hidden;
+      height: 0;
+      opacity: 0;
+      transition: height 0.3s ease, opacity 0.3s ease;
+      
+      &.open {
+        height: auto;
+        opacity: 1;
+      }
+      
+      p {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+        font-family: 'Switzer', Helvetica, Arial, sans-serif;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      
+      ul {
+        margin: 1rem 0 1.5rem 1.5rem;
+        
+        li {
+          margin-bottom: 0.5rem;
+          line-height: 1.5;
+          font-family: 'Switzer', Helvetica, Arial, sans-serif;
+          
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+      
+      strong {
+        color: var(--accent-color);
+        font-weight: 600;
+      }
+    }
+  }
+  
+  .faq-image-container {
+    position: absolute;
+    top: 10rem;
+    right: 4rem;
+    width: 25%;
+    max-width: 400px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    
+    .faq-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      transform: scale(1);
+      transition: transform 0.5s ease;
+      
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, rgba(86, 8, 255, 0.1), transparent);
+      pointer-events: none;
+    }
+  }
+}
+
+/* Media queries for responsive design */
+@media (max-width: 1200px) {
+  .faq-seo-section {
+    .faq-seo-container {
+      width: 60%;
+    }
+    
+    .faq-image-container {
+      width: 30%;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .faq-seo-section {
+    .faq-seo-container {
+      width: 100%;
+    }
+    
+    .faq-image-container {
+      position: relative;
+      top: auto;
+      right: auto;
+      width: 60%;
+      margin: 3rem auto 0;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .faq-seo-section {
+    padding: 3rem 2rem;
+    
+    .faq-seo-intro p {
+      font-size: 1.15rem;
+    }
+    
+    .faq-seo-item {
+      h4 {
+        font-size: 1.2rem;
+      }
+      
+      .faq-seo-answer {
+        padding: 1.25rem;
+      }
+    }
+    
+    .faq-image-container {
+      width: 80%;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .faq-seo-section {
+    padding: 2rem 1.5rem;
+    
+    .faq-seo-intro p {
+      font-size: 1.1rem;
+    }
+    
+    .faq-seo-group .faq-seo-category {
+      font-size: 1.5rem;
+    }
+    
+    .faq-seo-item {
+      h4 {
+        font-size: 1.1rem;
+      }
+      
+      .faq-seo-answer {
+        padding: 1rem;
+      }
+    }
+    
+    .faq-image-container {
+      width: 100%;
+    }
+  }
+}
+
+/* Remove "Hide original sections" rule since we'll be removing them completely */
+/* Hide original sections that are now combined */
+#about, #faq, #services {
+  display: none;
+}
+
+/* Remove the Combined Section styling since it's now in _solutions.scss */
+/* Combined Section (About + FAQ + Services) */
+.combined-section {
+  padding: 4rem 4rem;
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
+  position: relative;
+  overflow: hidden;
+  
+  .section-headline-large {
+    margin-bottom: 2.5rem;
+  }
+  
+  /* Intro Section */
+  .combined-intro {
+    max-width: 900px;
+    margin-bottom: 3rem;
+    
+    .intro-text {
+      p {
+        font-size: 1.3rem;
+        line-height: 1.6;
+        font-family: 'Switzer', Helvetica, Arial, sans-serif;
+        margin-bottom: 1.5rem;
+        
+        strong {
+          color: var(--accent-color);
+          font-weight: 600;
+        }
+      }
+      
+      .read-more-btn {
+        background-color: transparent;
+        border: 2px solid var(--accent-color);
+        color: var(--accent-color);
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        font-family: 'Switzer', Helvetica, Arial, sans-serif;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        
+        &:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 0;
+          height: 100%;
+          background-color: var(--accent-color);
+          transition: all 0.3s ease;
+          z-index: -1;
+        }
+        
+        &:hover {
+          color: white;
+          
+          &:before {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  
+  /* Mini Services Grid */
+  .services-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    
+    .service-mini-card {
+      background-color: rgba(86, 8, 255, 0.03);
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 3px solid var(--accent-color);
+      
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+      }
+      
+      .service-icon {
+        margin-bottom: 1rem;
+        color: var(--accent-color);
+      }
+      
+      h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+        font-weight: 600;
+        font-family: 'Switzer', Helvetica, Arial, sans-serif;
+      }
+      
+      p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        font-family: 'Switzer', Helvetica, Arial, sans-serif;
+      }
+    }
+  }
+  
+  /* Combined FAQ Container */
+  .combined-faq-container {
+    display: flex;
+    gap: 3rem;
+    
+    .combined-faq-image {
+      flex: 0 0 30%;
+      align-self: flex-start;
+      position: sticky;
+      top: 100px;
+      
+      .profile-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        margin-bottom: 1.5rem;
+        transform: scale(1);
+        transition: transform 0.5s ease;
+        
+        &:hover {
+          transform: scale(1.02);
+        }
+      }
+      
+      .contact-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 1rem;
+        
+        a {
+          color: var(--accent-color);
+          text-decoration: none;
+          font-size: 1rem;
+          transition: color 0.3s ease;
+          font-family: 'Switzer', Helvetica, Arial, sans-serif;
+          font-weight: 500;
+          
+          &:hover {
+            color: var(--link-hover-color);
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+    
+    .combined-faq-content {
+      flex: 1;
+      
+      .faq-section-title {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+        color: var(--accent-color);
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--accent-color);
+        display: inline-block;
+        font-family: 'Switzer', Helvetica, Arial, sans-serif;
+        font-weight: 600;
+      }
+      
+      .faq-seo-item {
+        margin-bottom: 1.5rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        background-color: white;
+        
+        h4 {
+          font-size: 1.15rem;
+          padding: 1.2rem;
+          margin: 0;
+          font-weight: 600;
+          line-height: 1.4;
+          position: relative;
+          padding-right: 40px;
+          cursor: pointer;
+          font-family: 'Switzer', Helvetica, Arial, sans-serif;
+          transition: color 0.3s ease;
+          background-color: #f8f8ff;
+          border-left: 3px solid var(--accent-color);
+          
+          &:hover {
+            color: var(--accent-color);
+          }
+          
+          .faq-indicator {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.3s ease;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            line-height: 24px;
+          }
+        }
+        
+        .faq-seo-answer {
+          padding: 0;
+          overflow: hidden;
+          height: 0;
+          opacity: 0;
+          transition: all 0.3s ease;
+          
+          &.open {
+            padding: 1.2rem;
+            height: auto;
+            opacity: 1;
+          }
+          
+          p {
+            margin: 0;
+            line-height: 1.6;
+            font-family: 'Switzer', Helvetica, Arial, sans-serif;
+            font-size: 1rem;
+          }
+          
+          strong {
+            color: var(--accent-color);
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Responsive Styles for Combined Section */
+@media (max-width: 1200px) {
+  .combined-section {
+    .services-mini-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .combined-faq-container {
+      .combined-faq-image {
+        flex: 0 0 35%;
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .combined-section {
+    padding: 3rem 3rem;
+    
+    .combined-faq-container {
+      flex-direction: column;
+      
+      .combined-faq-image {
+        position: relative;
+        top: auto;
+        width: 60%;
+        margin: 0 auto 2rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .combined-section {
+    padding: 3rem 2rem;
+    
+    .combined-intro {
+      .intro-text p {
+        font-size: 1.1rem;
+      }
+    }
+    
+    .services-mini-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    .combined-faq-container {
+      .combined-faq-image {
+        width: 80%;
+      }
+      
+      .combined-faq-content {
+        .faq-section-title {
+          font-size: 1.5rem;
+        }
+        
+        .faq-seo-item h4 {
+          font-size: 1.05rem;
+          padding: 1rem;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .combined-section {
+    padding: 2rem 1.5rem;
+    
+    .section-headline-large {
+      margin-bottom: 1.5rem;
+    }
+    
+    .combined-intro {
+      .intro-text p {
+        font-size: 1rem;
+      }
+    }
+    
+    .combined-faq-container {
+      .combined-faq-image {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// See More Button Styles (moved from _seeMoreButton.scss)
+.see-more-button {
+  position: absolute; // Changed for bottom positioning
+  bottom: 3rem; // Position from the bottom
+  left: 50%;
+  transform: translateX(-50%); // Center horizontally
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; // Increased gap slightly
+  overflow: hidden;
+  border: 1px solid transparent; // Start with transparent border
+  background-color: transparent;
+  padding: 0.6rem 1.2rem; // Adjusted padding slightly
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--secondary-text-color); // Initial: White text
+  cursor: pointer;
+  // GSAP will handle transitions, but keep for border-radius as it's not in all GSAP tweens
+  transition: border-radius 450ms ease; 
+  font-family: 'Switzer', Helvetica, Arial, sans-serif;
+
+  .text-content {
+    position: relative;
+    z-index: 1;
+    // transform: translateX(0); // Removed initial offset, text is static
+    color: inherit; // Inherits color from button
+  }
+
+  .arrow-down {
+    position: relative; // No longer absolute, part of flex flow
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      width: 1rem; 
+      height: 1rem; 
+      stroke: var(--secondary-text-color); // Initial: White arrow
+      fill: none;
+    }
+  }
+
+  .circle-fill {
+    position: absolute;
+    top: 0; // Align to top for clip-path reveal
+    left: 0; // Align to left
+    width: 100%; // Cover full button width
+    height: 100%; // Cover full button height
+    // transform: translate(-50%, -50%); // No longer needed if top/left/width/height are 100%
+    background-color: rgba(255, 255, 255, 0.01); // Kept for backdrop filter
+    border-radius: 10%; // From user's previous change
+    opacity: 0; // Start invisible, GSAP will fade in with reveal
+    z-index: 0; // Behind text and arrow
+    clip-path: inset(0 0 100% 0); // Initial state: clipped to a line at the top (hidden from bottom)
+    // -webkit-clip-path: inset(0 0 100% 0); // Not typically needed for modern GSAP if GSAP handles prefixing
   }
 }

@@ -20,7 +20,6 @@ import { initPageLoadAnimation } from './animations/pageLoadAnimations';
 import { initHeroAnimations } from './animations/heroAnimations';
 import './components/ProjectCard'; // Web Component registration
 import { initSeeMoreButtonAnimations } from './animations/seeMoreButtonAnimations';
-import { initContactAnimations } from './animations/contactAnimations';
 import { initCustomCheckbox } from './components/ContactForm';
 import { initMobileNav } from './components/MobileNav'; // Import mobile nav
 
@@ -160,15 +159,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Animate headlines using our utility
-  const headlines = document.querySelectorAll('.section-headline-large');
-  headlines.forEach(headline => {
-    headlineAnimator.splitText(headline);
-    scrollFadeIn(headline, {
-      start: 'top 80%',
-      y: 100,
-      duration: 1
-    });
+  // Animate all section headlines (including hero) with the same 'pocket' style
+  const allHeadlines = document.querySelectorAll('.section-headline-large');
+  allHeadlines.forEach(headline => {
+    const splitText = headlineAnimator.splitText(headline);
+    if (splitText) {
+      headlineAnimator.animateHeadline(splitText, {
+        stagger: 0.05,
+        duration: 0.8,
+        ease: 'power2.out',
+        y: 100,
+        delay: 0.2,
+        scrollTrigger: headline.classList.contains('hero-title') ? false : {
+          trigger: headline,
+          start: 'top 80%',
+          end: 'top 20%',
+          toggleActions: 'play none none reverse'
+        }
+      });
+    }
   });
 
   // Convert existing project cards to web components
@@ -208,26 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Initialize other section headlines with scroll trigger
-  const sectionHeadlines = document.querySelectorAll('.section-headline-large:not(.hero-title)');
-  sectionHeadlines.forEach(headline => {
-    const splitText = headlineAnimator.splitText(headline);
-    if (splitText) {
-      headlineAnimator.animateHeadline(splitText, {
-        stagger: 0.03,
-        duration: 0.6,
-        ease: 'power2.out',
-        y: 50,
-        scrollTrigger: {
-          trigger: headline,
-          start: 'top 80%',
-          end: 'top 20%',
-          toggleActions: 'play none none reverse'
-        }
-      });
-    }
-  });
-
   // Initialize hero animations (including navbar scroll effect)
   initHeroAnimations();
 
@@ -248,8 +237,305 @@ document.addEventListener('DOMContentLoaded', () => {
     // and CSS hover in _header.scss changes opacity.
   }
 
+  // Initialize FAQ SEO section animations
+  const initFaqSeoAnimations = () => {
+    const faqItems = document.querySelectorAll('.faq-seo-item');
+    
+    if (faqItems.length > 0) {
+      faqItems.forEach((item, index) => {
+        const question = item.querySelector('h4');
+        const answer = item.querySelector('.faq-seo-answer');
+        
+        // Set initial state
+        gsap.set(item, { opacity: 0, y: 30 });
+        
+        // Create scroll trigger for each FAQ item
+        ScrollTrigger.create({
+          trigger: item,
+          start: 'top 85%',
+          once: true,
+          onEnter: () => {
+            gsap.to(item, {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: 'power2.out',
+              delay: index * 0.1
+            });
+          }
+        });
+        
+        // Make sure we have proper height for animation
+        const height = answer.offsetHeight;
+        
+        // Reset for initial closed state
+        gsap.set(answer, { 
+          height: 0,
+          opacity: 0,
+          overflow: 'hidden'
+        });
+        
+        // Create accordion functionality
+        if (question && answer) {
+          // Create plus/minus indicator if it doesn't exist
+          if (!question.querySelector('.faq-indicator')) {
+            const indicator = document.createElement('span');
+            indicator.className = 'faq-indicator';
+            indicator.innerHTML = '+';
+            question.appendChild(indicator);
+          }
+          
+          // Add click event to toggle answer
+          question.addEventListener('click', () => {
+            const isOpen = answer.classList.contains('open');
+            
+            // Close any open answers except this one
+            document.querySelectorAll('.faq-seo-answer.open').forEach(openAnswer => {
+              if (openAnswer !== answer) {
+                const openQuestion = openAnswer.previousElementSibling;
+                const openIndicator = openQuestion.querySelector('.faq-indicator');
+                
+                gsap.to(openAnswer, {
+                  height: 0,
+                  opacity: 0,
+                  duration: 0.4,
+                  ease: 'power2.out',
+                  onComplete: () => {
+                    openAnswer.classList.remove('open');
+                  }
+                });
+                
+                if (openIndicator) {
+                  gsap.to(openIndicator, {
+                    rotation: 0,
+                    duration: 0.3,
+                    ease: 'power1.out'
+                  });
+                }
+              }
+            });
+            
+            // Toggle current answer
+            const indicator = question.querySelector('.faq-indicator');
+            
+            if (!isOpen) {
+              answer.classList.add('open');
+              gsap.to(answer, {
+                height: 'auto',
+                opacity: 1,
+                duration: 0.5,
+                ease: 'power2.out'
+              });
+              
+              if (indicator) {
+                gsap.to(indicator, {
+                  rotation: 135,
+                  duration: 0.3,
+                  ease: 'power1.out'
+                });
+              }
+            } else {
+              gsap.to(answer, {
+                height: 0,
+                opacity: 0,
+                duration: 0.4,
+                ease: 'power2.out',
+                onComplete: () => {
+                  answer.classList.remove('open');
+                }
+              });
+              
+              if (indicator) {
+                gsap.to(indicator, {
+                  rotation: 0,
+                  duration: 0.3,
+                  ease: 'power1.out'
+                });
+              }
+            }
+          });
+        }
+      });
+    }
+    
+    // Add parallax effect to the FAQ image
+    const faqImage = document.querySelector('.faq-image');
+    if (faqImage) {
+      ScrollTrigger.create({
+        trigger: '.faq-seo-section',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true,
+        onUpdate: (self) => {
+          const yMove = self.progress * 50; // 50px of movement
+          gsap.set(faqImage, {
+            y: yMove,
+            ease: 'none'
+          });
+        }
+      });
+    }
+  };
+
+  // Initialize FAQ animations
+  initFaqSeoAnimations();
+  
+  // ADDED: Initialize the combined section FAQ items
+  const initCombinedSection = () => {
+    // Handle FAQ items in the combined section
+    const combinedFaqItems = document.querySelectorAll('.combined-section .faq-seo-item');
+    
+    if (combinedFaqItems.length > 0) {
+      combinedFaqItems.forEach((item, index) => {
+        const question = item.querySelector('h4');
+        const answer = item.querySelector('.faq-seo-answer');
+        
+        // Create scroll trigger animation for each item
+        gsap.set(item, { opacity: 0, y: 20 });
+        ScrollTrigger.create({
+          trigger: item,
+          start: 'top 85%',
+          once: true,
+          onEnter: () => {
+            gsap.to(item, {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              ease: 'power2.out',
+              delay: index * 0.08
+            });
+          }
+        });
+        
+        // Add plus/minus indicator
+        if (question && !question.querySelector('.faq-indicator')) {
+          const indicator = document.createElement('span');
+          indicator.className = 'faq-indicator';
+          indicator.innerHTML = '+';
+          question.appendChild(indicator);
+        }
+        
+        // Set up accordion functionality
+        if (question && answer) {
+          // Default closed state
+          gsap.set(answer, { 
+            height: 0,
+            opacity: 0,
+            overflow: 'hidden'
+          });
+          
+          question.addEventListener('click', () => {
+            const isOpen = answer.classList.contains('open');
+            const indicator = question.querySelector('.faq-indicator');
+            
+            // Close other open items
+            combinedFaqItems.forEach(otherItem => {
+              if (otherItem !== item) {
+                const otherAnswer = otherItem.querySelector('.faq-seo-answer');
+                const otherIndicator = otherItem.querySelector('.faq-indicator');
+                
+                if (otherAnswer && otherAnswer.classList.contains('open')) {
+                  gsap.to(otherAnswer, {
+                    height: 0,
+                    opacity: 0,
+                    duration: 0.3,
+                    ease: 'power2.out',
+                    onComplete: () => {
+                      otherAnswer.classList.remove('open');
+                    }
+                  });
+                  
+                  if (otherIndicator) {
+                    gsap.to(otherIndicator, {
+                      rotation: 0,
+                      duration: 0.3,
+                      ease: 'power1.out'
+                    });
+                  }
+                }
+              }
+            });
+            
+            // Toggle current item
+            if (!isOpen) {
+              answer.classList.add('open');
+              gsap.to(answer, {
+                height: 'auto',
+                opacity: 1,
+                duration: 0.4,
+                ease: 'power2.out'
+              });
+              
+              if (indicator) {
+                gsap.to(indicator, {
+                  rotation: 135,
+                  duration: 0.3,
+                  ease: 'power1.out'
+                });
+              }
+            } else {
+              gsap.to(answer, {
+                height: 0,
+                opacity: 0,
+                duration: 0.3,
+                ease: 'power2.out',
+                onComplete: () => {
+                  answer.classList.remove('open');
+                }
+              });
+              
+              if (indicator) {
+                gsap.to(indicator, {
+                  rotation: 0,
+                  duration: 0.3,
+                  ease: 'power1.out'
+                });
+              }
+            }
+          });
+        }
+      });
+    }
+    
+    // Handle the profile image parallax effect
+    const profileImage = document.querySelector('.combined-section .profile-image');
+    if (profileImage) {
+      ScrollTrigger.create({
+        trigger: '.combined-section',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true,
+        onUpdate: (self) => {
+          const yMove = self.progress * 30; // 30px of movement (subtle)
+          gsap.set(profileImage, {
+            y: yMove,
+            ease: 'none'
+          });
+        }
+      });
+    }
+    
+    // Ensure the "read more" button in the combined section also opens the lebenslauf card
+    const combinedReadMoreBtn = document.querySelector('.combined-section .read-more-btn');
+    const blurOverlay = document.querySelector('.blur-overlay');
+    const lebenslaufCard = document.querySelector('.lebenslauf-card');
+    
+    if (combinedReadMoreBtn && blurOverlay && lebenslaufCard) {
+      combinedReadMoreBtn.addEventListener('click', () => {
+        // Show blur overlay
+        blurOverlay.classList.add('visible');
+        // Show lebenslauf card with animation
+        lebenslaufCard.classList.add('visible');
+        // Prevent body scrolling
+        document.body.classList.add('modal-open');
+      });
+    }
+  };
+  
+  // Initialize the combined section
+  initCombinedSection();
+  
   // Initialize contact animations and form
-  initContactAnimations();
   initCustomCheckbox();
 
   // --- Remove GSAP zoom/brightness hover effect for project images ---
