@@ -1,18 +1,15 @@
-/* Combined Solutions Section (About + FAQ + Services) */
-.combined-section {
+/* FAQ Section (formerly Combined Solutions Section) */
+.faq-section {
     padding: 4rem 4rem;
     background-color: var(--background-color);
     color: var(--primary-text-color);
     position: relative;
     overflow: hidden;
     
-    .section-headline-large {
-      margin-bottom: 2.5rem;
-    }
-    
+
     /* Intro Section */
-    .combined-intro {
-      max-width: 900px;
+    .faq-intro {
+      //max-width: 900px;
       margin-bottom: 3rem;
       
       .intro-text {
@@ -30,13 +27,12 @@
         
         .read-more-btn {
           background-color: transparent;
-          border: 2px solid var(--accent-color);
           color: var(--accent-color);
           padding: 0.8rem 1.5rem;
+          border: 2px solid var(--primary-text-color);
           font-size: 1rem;
           font-weight: 500;
           cursor: pointer;
-          border-radius: 5px;
           transition: all 0.3s ease;
           font-family: 'Switzer', Helvetica, Arial, sans-serif;
           position: relative;
@@ -69,7 +65,7 @@
     /* Mini Services Grid */
     .services-mini-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem;
       margin-bottom: 3rem;
       
@@ -78,7 +74,6 @@
         border-radius: 8px;
         padding: 1.5rem;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border-left: 3px solid var(--accent-color);
         
         &:hover {
           transform: translateY(-5px);
@@ -106,11 +101,11 @@
     }
     
     /* Combined FAQ Container */
-    .combined-faq-container {
+    .faq-container {
       display: flex;
       gap: 3rem;
       
-      .combined-faq-image {
+      .faq-image {
         flex: 0 0 30%;
         align-self: flex-start;
         position: sticky;
@@ -152,7 +147,7 @@
         }
       }
       
-      .combined-faq-content {
+      .faq-content {
         flex: 1;
         
         .faq-section-title {
@@ -276,91 +271,3 @@
       }
     }
   }
-  
-  /* Responsive Styles for Combined Section */
-  @media (max-width: 1200px) {
-    .combined-section {
-      .services-mini-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .combined-faq-container {
-        .combined-faq-image {
-          flex: 0 0 35%;
-        }
-      }
-    }
-  }
-  
-  @media (max-width: 992px) {
-    .combined-section {
-      padding: 3rem 3rem;
-      
-      .combined-faq-container {
-        flex-direction: column;
-        
-        .combined-faq-image {
-          position: relative;
-          top: auto;
-          width: 60%;
-          margin: 0 auto 2rem;
-        }
-      }
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .combined-section {
-      padding: 3rem 2rem;
-      
-      .combined-intro {
-        .intro-text p {
-          font-size: 1.1rem;
-        }
-      }
-      
-      .services-mini-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-      
-      .combined-faq-container {
-        .combined-faq-image {
-          width: 80%;
-        }
-        
-        .combined-faq-content {
-          .faq-section-title {
-            font-size: 1.5rem;
-          }
-          
-          .faq-seo-item h4 {
-            font-size: 1.05rem;
-            padding: 1rem;
-          }
-        }
-      }
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .combined-section {
-      padding: 2rem 1.5rem;
-      
-      .section-headline-large {
-        margin-bottom: 1.5rem;
-      }
-      
-      .combined-intro {
-        .intro-text p {
-          font-size: 1rem;
-        }
-      }
-      
-      .combined-faq-container {
-        .combined-faq-image {
-          width: 100%;
-        }
-      }
-    }
-  } 

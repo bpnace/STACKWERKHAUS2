@@ -40,8 +40,6 @@
       body.fadein { opacity: 1; }
       .blur-overlay { opacity: 0; pointer-events: none; }
       .blur-overlay.visible { opacity: 1; pointer-events: auto; }
-      .lebenslauf-card, .legal-card { opacity: 0; pointer-events: none; transform: translate(-50%, 100%); }
-      .lebenslauf-card.visible, .legal-card.visible { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
       .hero { 
         min-height: 100vh; 
         display: flex; 
@@ -330,11 +328,11 @@
             </section>
 
             <!-- NEUER KOMBINIERTER BEREICH: About + FAQ + Dienstleistungen -->
-            <section id="services-faq" class="combined-section" aria-labelledby="combined-heading">
-                <h2 id="combined-heading" class="section-headline-large">Der Bauplan<span class="headline-tag">STWKHS—'25</span></h2>
+            <section id="services-faq" class="faq-section" aria-labelledby="faq-heading">
+                <h2 id="faq-heading" class="section-headline-large">Der Bauplan<span class="headline-tag">STWKHS—'25</span></h2>
                 
                 <!-- Kurze Intro mit About und Button für Lebenslauf -->
-                <div class="combined-intro">
+                <div class="faq-intro">
                     <div class="intro-text">
                         <p><strong>Ich bin Tarik aus Berlin</strong> – dein Partner für digitale Lösungen, die wirklich funktionieren. Ob Freelancer, kleines Business oder Start-up: Wir entwickeln gemeinsam genau das, was zu dir passt. Ohne Fachjargon – einfach klar, kreativ und zielgerichtet.</p>
                         <button class="read-more-btn">Meine Reise & Expertise</button>
@@ -345,12 +343,7 @@
                 <div class="services-mini-grid">
                     <div class="service-mini-card">
                         <div class="service-icon">
-                            <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M40 8H8C5.8 8 4 9.8 4 12V36C4 38.2 5.8 40 8 40H40C42.2 40 44 38.2 44 36V12C44 9.8 42.2 8 40 8ZM8 36V12H40V36H8Z" fill="currentColor"/>
-                                <path d="M16 24L12 28L16 32" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M32 24L36 28L32 32" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M28 20L20 36" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                            <img width="32" height="32" src="https://img.icons8.com/windows/32/web.png" alt="web"/>
                         </div>
                         <h3>Webentwicklung</h3>
                         <p>Responsive Websites und Apps mit optimaler Performance für alle Geräte.</p>
@@ -358,10 +351,7 @@
                     
                     <div class="service-mini-card">
                         <div class="service-icon">
-                            <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M24 4C12.96 4 4 12.96 4 24C4 35.04 12.96 44 24 44C35.04 44 44 35.04 44 24C44 12.96 35.04 4 24 4ZM24 40C15.18 40 8 32.82 8 24C8 15.18 15.18 8 24 8C32.82 8 40 15.18 40 24C40 32.82 32.82 40 24 40Z" fill="currentColor"/>
-                                <path d="M24 16C19.6 16 16 19.6 16 24C16 28.4 19.6 32 24 32C28.4 32 32 28.4 32 24C32 19.6 28.4 16 24 16ZM24 28C21.8 28 20 26.2 20 24C20 21.8 21.8 20 24 20C26.2 20 28 21.8 28 24C28 26.2 26.2 28 24 28Z" fill="currentColor"/>
-                            </svg>
+                            <img width="32" height="32" src="https://img.icons8.com/material-rounded/24/design.png" alt="design"/>
                         </div>
                         <h3>UI/UX Design</h3>
                         <p>Intuitive Designs, die Funktionalität und Ästhetik perfekt verbinden.</p>
@@ -369,10 +359,7 @@
                     
                     <div class="service-mini-card">
                         <div class="service-icon">
-                            <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M40 12H26L24 8H12C9.8 8 8 9.8 8 12V16H40V12Z" fill="currentColor"/>
-                                <path d="M40 16H8V36C8 38.2 9.8 40 12 40H36C38.2 40 40 38.2 40 36V16Z" fill="currentColor" fill-opacity="0.6"/>
-                            </svg>
+                          <img width="32" height="32" src="https://img.icons8.com/fluency-systems-filled/48/fingerprint.png" alt="fingerprint"/>
                         </div>
                         <h3>Branding</h3>
                         <p>Entwicklung einzigartiger Markenidentitäten für bleibenden Eindruck.</p>
@@ -380,12 +367,7 @@
                     
                     <div class="service-mini-card">
                         <div class="service-icon">
-                            <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M42 8H6C4.9 8 4 8.9 4 10V38C4 39.1 4.9 40 6 40H42C43.1 40 44 39.1 44 38V10C44 8.9 43.1 8 42 8ZM40 36H8V12H40V36Z" fill="currentColor"/>
-                                <path d="M21.6 21.4C23.1 19.9 25.5 19.9 27 21.4L30.6 25L34.2 21.4C35.7 19.9 38.1 19.9 39.6 21.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M14.4 26.6C12.9 28.1 10.5 28.1 9 26.6L12.6 23L9 19.4C7.5 17.9 10.5 14.9 12 16.4L15.6 20L19.2 16.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <circle cx="24" cy="24" r="2" fill="currentColor"/>
-                            </svg>
+                          <img width="32" height="32" src="https://img.icons8.com/ios-filled/50/sparkling--v1.png" alt="sparkling--v1"/>
                         </div>
                         <h3>KI-Integration</h3>
                         <p>Smarte KI-Lösungen für bessere Nutzererfahrung und Automatisierung.</p>
@@ -393,8 +375,8 @@
                 </div>
                 
                 <!-- FAQ Accordion mit direkten Antworten -->
-                <div class="combined-faq-container">
-                    <div class="combined-faq-image">
+                <div class="faq-container">
+                    <div class="faq-image">
                         <img src="assets/images/IMG_5717.webp" alt="Tarik Marshall" class="profile-image">
                         <div class="contact-links">
                             <a href="mailto:info@stackwerkhaus.de">Email</a>
@@ -403,7 +385,7 @@
                         </div>
                     </div>
                     
-                    <div class="combined-faq-content">
+                    <div class="faq-content">
                         <h3 class="faq-section-title">Häufig gestellte Fragen</h3>
                         
                         <div class="faq-seo-item">
@@ -642,8 +624,9 @@
             </div>
         </footer>
     </div>
-    
-    <!-- Modal Cards - MOVED OUTSIDE SCROLL CONTAINER -->
+
+    <!-- Modal Overlays and Cards moved outside scroll container for proper behavior -->
+    <div class="blur-overlay"></div>
     <div 
       class="lebenslauf-card" 
       role="dialog" 
@@ -694,8 +677,6 @@
         </div>
       </div>
     </div>
-    
-    <!-- Impressum Popup -->
     <div 
       class="legal-card impressum-card" 
       role="dialog" 
@@ -740,8 +721,6 @@
         </div>
       </div>
     </div>
-    
-    <!-- Datenschutzerklärung Popup -->
     <div 
       class="legal-card datenschutz-card" 
       role="dialog" 
@@ -757,7 +736,6 @@
       <h2 id="datenschutz-title">Datenschutzerklärung</h2>
       <div class="legal-content" id="datenschutz-content">
         <p>Diese Datenschutzerklärung klärt dich über die Art, den Umfang und Zweck der Verarbeitung von personenbezogenen Daten (nachfolgend "Daten") innerhalb meines Onlineangebotes auf.</p>
-        
         <div class="legal-section">
           <h3>Verantwortlicher</h3>
           <p>Tarik Marshall<br>
@@ -766,23 +744,19 @@
           10713 Berlin<br>
           E-Mail: info@stackwerkhaus.de</p>
         </div>
-        
         <div class="legal-section">
           <h3>Zugriffsdaten und Hosting</h3>
           <p>Beim Besuch dieser Website werden automatisch Informationen (sogenannte Server-Logfiles) wie IP-Adresse, Zeitpunkt des Zugriffs, Browsertyp usw. erhoben. Diese Daten dienen ausschließlich der Sicherstellung eines störungsfreien Betriebs und werden nicht zur Identifikation deiner Person verwendet.</p>
           <p>Das Hosting erfolgt über die STRATO AG, Otto-Ostrowski-Straße 7, 10249 Berlin. Mit dem Anbieter wurde ein Vertrag zur Auftragsverarbeitung geschlossen.</p>
         </div>
-        
         <div class="legal-section">
           <h3>Kontaktformular</h3>
           <p>Wenn du mich über das Kontaktformular kontaktierst, werden deine Angaben zwecks Bearbeitung der Anfrage sowie für mögliche Anschlussfragen gespeichert. Diese Daten werden nicht ohne deine ausdrückliche Einwilligung weitergegeben.</p>
         </div>
-        
         <div class="legal-section">
           <h3>Cookies und Tracking</h3>
           <p>Aktuell werden keine Tracking-Cookies verwendet. Zukünftig kann funktionales Tracking (z. B. für Terminbuchungen via Calendly) hinzukommen. In diesem Fall wird eine aktualisierte Cookie- und Datenschutzerklärung bereitgestellt.</p>
         </div>
-        
         <div class="legal-section">
           <h3>Rechtsgrundlagen der Verarbeitung</h3>
           <ul>
@@ -790,12 +764,10 @@
             <li>Art. 6 Abs. 1 lit. f DSGVO – berechtigtes Interesse an einer funktionierenden Website</li>
           </ul>
         </div>
-        
         <div class="legal-section">
           <h3>Deine Rechte</h3>
           <p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung sowie Datenübertragbarkeit. Zudem kannst du jederzeit Widerspruch gegen die Verarbeitung deiner Daten einlegen.</p>
         </div>
-        
         <div class="legal-section">
           <h3>Beschwerderecht</h3>
           <p>Du hast das Recht, dich bei der zuständigen Aufsichtsbehörde zu beschweren:<br>
@@ -803,7 +775,6 @@
           Alt-Moabit 59-61, 10555 Berlin<br>
           E-Mail: mailbox@datenschutz-berlin.de</p>
         </div>
-        
         <div class="legal-section">
           <h3>Änderungen dieser Datenschutzerklärung</h3>
           <p>Ich behalte mir vor, diese Erklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht.</p>

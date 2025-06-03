@@ -380,18 +380,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize FAQ animations
   initFaqSeoAnimations();
   
-  // ADDED: Initialize the combined section FAQ items
-  const initCombinedSection = () => {
-    // Handle FAQ items in the combined section
-    const combinedFaqItems = document.querySelectorAll('.combined-section .faq-seo-item');
+  // ADDED: Initialize the FAQ section FAQ items
+  const initFaqSection = () => {
+    // Handle FAQ items in the FAQ section
+    const faqItems = document.querySelectorAll('.faq-section .faq-seo-item');
     
-    if (combinedFaqItems.length > 0) {
-      combinedFaqItems.forEach((item, index) => {
+    if (faqItems.length > 0) {
+      faqItems.forEach((item, index) => {
         const question = item.querySelector('h4');
         const answer = item.querySelector('.faq-seo-answer');
         
-        // Create scroll trigger animation for each item
-        gsap.set(item, { opacity: 0, y: 20 });
+        // Set initial state
+        gsap.set(item, { opacity: 0, y: 30 });
+        
+        // Create scroll trigger for each FAQ item
         ScrollTrigger.create({
           trigger: item,
           start: 'top 85%',
@@ -400,69 +402,72 @@ document.addEventListener('DOMContentLoaded', () => {
             gsap.to(item, {
               opacity: 1,
               y: 0,
-              duration: 0.6,
+              duration: 0.8,
               ease: 'power2.out',
-              delay: index * 0.08
+              delay: index * 0.1
             });
           }
         });
         
-        // Add plus/minus indicator
-        if (question && !question.querySelector('.faq-indicator')) {
-          const indicator = document.createElement('span');
-          indicator.className = 'faq-indicator';
-          indicator.innerHTML = '+';
-          question.appendChild(indicator);
-        }
+        // Make sure we have proper height for animation
+        const height = answer.offsetHeight;
         
-        // Set up accordion functionality
+        // Reset for initial closed state
+        gsap.set(answer, { 
+          height: 0,
+          opacity: 0,
+          overflow: 'hidden'
+        });
+        
+        // Create accordion functionality
         if (question && answer) {
-          // Default closed state
-          gsap.set(answer, { 
-            height: 0,
-            opacity: 0,
-            overflow: 'hidden'
-          });
+          // Create plus/minus indicator if it doesn't exist
+          if (!question.querySelector('.faq-indicator')) {
+            const indicator = document.createElement('span');
+            indicator.className = 'faq-indicator';
+            indicator.innerHTML = '+';
+            question.appendChild(indicator);
+          }
           
+          // Add click event to toggle answer
           question.addEventListener('click', () => {
             const isOpen = answer.classList.contains('open');
-            const indicator = question.querySelector('.faq-indicator');
             
-            // Close other open items
-            combinedFaqItems.forEach(otherItem => {
-              if (otherItem !== item) {
-                const otherAnswer = otherItem.querySelector('.faq-seo-answer');
-                const otherIndicator = otherItem.querySelector('.faq-indicator');
+            // Close any open answers except this one
+            document.querySelectorAll('.faq-seo-answer.open').forEach(openAnswer => {
+              if (openAnswer !== answer) {
+                const openQuestion = openAnswer.previousElementSibling;
+                const openIndicator = openQuestion.querySelector('.faq-indicator');
                 
-                if (otherAnswer && otherAnswer.classList.contains('open')) {
-                  gsap.to(otherAnswer, {
-                    height: 0,
-                    opacity: 0,
-                    duration: 0.3,
-                    ease: 'power2.out',
-                    onComplete: () => {
-                      otherAnswer.classList.remove('open');
-                    }
-                  });
-                  
-                  if (otherIndicator) {
-                    gsap.to(otherIndicator, {
-                      rotation: 0,
-                      duration: 0.3,
-                      ease: 'power1.out'
-                    });
+                gsap.to(openAnswer, {
+                  height: 0,
+                  opacity: 0,
+                  duration: 0.4,
+                  ease: 'power2.out',
+                  onComplete: () => {
+                    openAnswer.classList.remove('open');
                   }
+                });
+                
+                if (openIndicator) {
+                  gsap.to(openIndicator, {
+                    rotation: 0,
+                    duration: 0.3,
+                    ease: 'power1.out'
+                  });
                 }
               }
             });
             
-            // Toggle current item
+            // Toggle current answer
+            const indicator = question.querySelector('.faq-indicator');
+            
             if (!isOpen) {
               answer.classList.add('open');
               gsap.to(answer, {
                 height: 'auto',
                 opacity: 1,
-                duration: 0.4,
+                duration: 0.5,
                 ease: 'power2.out'
               });
               
@@ -477,7 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
               gsap.to(answer, {
                 height: 0,
                 opacity: 0,
-                duration: 0.3,
+                duration: 0.4,
                 ease: 'power2.out',
                 onComplete: () => {
                   answer.classList.remove('open');
@@ -498,10 +503,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // Handle the profile image parallax effect
-    const profileImage = document.querySelector('.combined-section .profile-image');
+    const profileImage = document.querySelector('.faq-section .profile-image');
     if (profileImage) {
       ScrollTrigger.create({
-        trigger: '.combined-section',
+        trigger: '.faq-section',
         start: 'top bottom',
         end: 'bottom top',
         scrub: true,
@@ -515,25 +520,53 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
     
-    // Ensure the "read more" button in the combined section also opens the lebenslauf card
-    const combinedReadMoreBtn = document.querySelector('.combined-section .read-more-btn');
+    // Ensure the "read more" button in the FAQ section also opens the lebenslauf card
+    const faqReadMoreBtn = document.querySelector('.faq-section .read-more-btn');
     const blurOverlay = document.querySelector('.blur-overlay');
     const lebenslaufCard = document.querySelector('.lebenslauf-card');
+    const closeLebenslaufBtn = lebenslaufCard ? lebenslaufCard.querySelector('.close-card-btn') : null;
     
-    if (combinedReadMoreBtn && blurOverlay && lebenslaufCard) {
-      combinedReadMoreBtn.addEventListener('click', () => {
-        // Show blur overlay
+    if (faqReadMoreBtn && blurOverlay && lebenslaufCard) {
+      faqReadMoreBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         blurOverlay.classList.add('visible');
-        // Show lebenslauf card with animation
         lebenslaufCard.classList.add('visible');
-        // Prevent body scrolling
         document.body.classList.add('modal-open');
+        if (window.lenisInstance) window.lenisInstance.stop();
+        // Body scroll lock pattern
+        const scrollY = window.scrollY;
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${scrollY}px`;
+        document.body.style.width = '100vw';
+        document.body.style.overflow = 'hidden';
+        document.body.dataset.scrollY = scrollY;
+        // Scroll modal content to top
+        const content = lebenslaufCard.querySelector('.lebenslauf-content');
+        if (content) content.scrollTop = 0;
+        return false;
+      });
+    }
+
+    if (closeLebenslaufBtn && blurOverlay && lebenslaufCard) {
+      closeLebenslaufBtn.addEventListener('click', () => {
+        blurOverlay.classList.remove('visible');
+        lebenslaufCard.classList.remove('visible');
+        document.body.classList.remove('modal-open');
+        if (window.lenisInstance) window.lenisInstance.start();
+        // Restore body scroll
+        const scrollY = document.body.dataset.scrollY ? parseInt(document.body.dataset.scrollY, 10) : 0;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        document.body.style.overflow = '';
+        delete document.body.dataset.scrollY;
+        window.scrollTo(0, scrollY);
       });
     }
   };
   
-  // Initialize the combined section
-  initCombinedSection();
+  // Initialize the FAQ section
+  initFaqSection();
   
   // Initialize contact animations and form
   initCustomCheckbox();
@@ -643,6 +676,62 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // --- Custom modal logic for legal cards (Impressum, Datenschutz) ---
+  const impressumBtn = document.getElementById('impressum-btn');
+  const datenschutzBtn = document.getElementById('datenschutz-btn');
+  const impressumCard = document.querySelector('.impressum-card');
+  const datenschutzCard = document.querySelector('.datenschutz-card');
+  const closeLegalBtns = document.querySelectorAll('.legal-card .close-card-btn');
+
+  function openLegalModal(card) {
+    if (!card) return;
+    card.classList.add('visible');
+    document.body.classList.add('modal-open');
+    if (window.lenisInstance) window.lenisInstance.stop();
+    // Body scroll lock pattern
+    const scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100vw';
+    document.body.style.overflow = 'hidden';
+    document.body.dataset.scrollY = scrollY;
+  }
+
+  function closeLegalModal(card) {
+    if (!card) return;
+    card.classList.remove('visible');
+    document.body.classList.remove('modal-open');
+    if (window.lenisInstance) window.lenisInstance.start();
+    // Restore body scroll
+    const scrollY = document.body.dataset.scrollY ? parseInt(document.body.dataset.scrollY, 10) : 0;
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    document.body.style.overflow = '';
+    delete document.body.dataset.scrollY;
+    window.scrollTo(0, scrollY);
+  }
+
+  if (impressumBtn && impressumCard) {
+    impressumBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openLegalModal(impressumCard);
+    });
+  }
+  if (datenschutzBtn && datenschutzCard) {
+    datenschutzBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openLegalModal(datenschutzCard);
+    });
+  }
+  closeLegalBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const card = btn.closest('.legal-card');
+      closeLegalModal(card);
+    });
+  });
 });
 
 // --- Webpack HMR Handling --- 

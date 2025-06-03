@@ -142,13 +142,16 @@ a:hover {
 @import 'components/projects';
 
 .section-headline-large {
+  overflow: hidden;
+  display: block;
+  line-height: 0;
   font-family: 'Switzer', Helvetica, Arial, sans-serif;
   font-size: clamp(4.5rem, 8vw, 8rem);
   font-weight: 900; // Bold
   flex-wrap: wrap;
+  line-height: 1.1;
   margin-left: -4rem;
   align-items: flex-end;
-  line-height: 1.1;
   text-transform: uppercase;
   margin-bottom: 2rem;
   position: relative;
@@ -161,6 +164,16 @@ a:hover {
     display: inline-block;
     vertical-align: middle;
     text-transform: none;
+  }
+  
+  .headline-word {
+    display: inline-block;
+    margin-right: 0.15em;
+  }
+  
+  .headline-letter {
+    display: inline-block;
+    will-change: transform, opacity;
   }
 }
 

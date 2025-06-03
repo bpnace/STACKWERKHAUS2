@@ -41,10 +41,10 @@
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 100%);
-  width: 90%;
-  max-width: 800px;
-  height: 80vh;
-  max-height: 80vh;
+  width: 55vw;
+  max-width: 55vw;
+  height: 90%;
+  max-height: 90%;
   min-height: 0;
   background-color: var(--background-color); /* Solid background */
   box-shadow: 0 12px 48px rgba(0,0,0,0.4); /* Strong shadow for contrast */
@@ -55,7 +55,7 @@
   pointer-events: none;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.25s;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s;
   
   &.visible {
     transform: translate(-50%, 0);
@@ -297,16 +297,16 @@
 /* Consolidated from _modal.scss: */
 .lebenslauf-card {
   position: fixed;
-  top: 50%;
+  bottom: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 700px;
-  height: 70vh;
-  max-height: 70vh;
+  transform: translate(-50%, 100%);
+  width: 60vw;
+  max-width: 60vw;
+  height: 90vh;
+  max-height: 90vh;
   background-color: var(--background-color, #FFFFFF);
   color: var(--primary-text-color, #141414);
-  border-radius: 12px;
+  border-radius: 12px 12px 0 0;
   box-shadow: 0 10px 30px rgba(0,0,0,0.2), 0 0 0 1px rgba(var(--primary-text-color-rgb, '20, 20, 20'), 0.05);
   padding: 2rem;
   opacity: 0;
@@ -317,6 +317,13 @@
   display: flex;
   flex-direction: column;
   min-height: 0;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s;
+}
+
+.lebenslauf-card.visible {
+  transform: translate(-50%, 0);
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .lebenslauf-card > * {
@@ -383,6 +390,4 @@
 
 body.modal-open {
   overflow: hidden !important;
-  position: fixed;
-  width: 100vw;
 } 
