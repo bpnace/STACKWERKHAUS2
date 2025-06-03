@@ -237,162 +237,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // and CSS hover in _header.scss changes opacity.
   }
 
-  // Initialize FAQ SEO section animations
-  const initFaqSeoAnimations = () => {
-    const faqItems = document.querySelectorAll('.faq-seo-item');
-    
-    if (faqItems.length > 0) {
-      faqItems.forEach((item, index) => {
-        const question = item.querySelector('h4');
-        const answer = item.querySelector('.faq-seo-answer');
-        
-        // Set initial state
-        gsap.set(item, { opacity: 0, y: 30 });
-        
-        // Create scroll trigger for each FAQ item
-        ScrollTrigger.create({
-          trigger: item,
-          start: 'top 85%',
-          once: true,
-          onEnter: () => {
-            gsap.to(item, {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              ease: 'power2.out',
-              delay: index * 0.1
-            });
-          }
-        });
-        
-        // Make sure we have proper height for animation
-        const height = answer.offsetHeight;
-        
-        // Reset for initial closed state
-        gsap.set(answer, { 
-          height: 0,
-          opacity: 0,
-          overflow: 'hidden'
-        });
-        
-        // Create accordion functionality
-        if (question && answer) {
-          // Create plus/minus indicator if it doesn't exist
-          if (!question.querySelector('.faq-indicator')) {
-            const indicator = document.createElement('span');
-            indicator.className = 'faq-indicator';
-            indicator.innerHTML = '+';
-            question.appendChild(indicator);
-          }
-          
-          // Add click event to toggle answer
-          question.addEventListener('click', () => {
-            const isOpen = answer.classList.contains('open');
-            
-            // Close any open answers except this one
-            document.querySelectorAll('.faq-seo-answer.open').forEach(openAnswer => {
-              if (openAnswer !== answer) {
-                const openQuestion = openAnswer.previousElementSibling;
-                const openIndicator = openQuestion.querySelector('.faq-indicator');
-                
-                gsap.to(openAnswer, {
-                  height: 0,
-                  opacity: 0,
-                  duration: 0.4,
-                  ease: 'power2.out',
-                  onComplete: () => {
-                    openAnswer.classList.remove('open');
-                  }
-                });
-                
-                if (openIndicator) {
-                  gsap.to(openIndicator, {
-                    rotation: 0,
-                    duration: 0.3,
-                    ease: 'power1.out'
-                  });
-                }
-              }
-            });
-            
-            // Toggle current answer
-            const indicator = question.querySelector('.faq-indicator');
-            
-            if (!isOpen) {
-              answer.classList.add('open');
-              gsap.to(answer, {
-                height: 'auto',
-                opacity: 1,
-                duration: 0.5,
-                ease: 'power2.out'
-              });
-              
-              if (indicator) {
-                gsap.to(indicator, {
-                  rotation: 135,
-                  duration: 0.3,
-                  ease: 'power1.out'
-                });
-              }
-            } else {
-              gsap.to(answer, {
-                height: 0,
-                opacity: 0,
-                duration: 0.4,
-                ease: 'power2.out',
-                onComplete: () => {
-                  answer.classList.remove('open');
-                }
-              });
-              
-              if (indicator) {
-                gsap.to(indicator, {
-                  rotation: 0,
-                  duration: 0.3,
-                  ease: 'power1.out'
-                });
-              }
-            }
-          });
-        }
-      });
-    }
-    
-    // Add parallax effect to the FAQ image
-    const faqImage = document.querySelector('.faq-image');
-    if (faqImage) {
-      ScrollTrigger.create({
-        trigger: '.faq-seo-section',
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: true,
-        onUpdate: (self) => {
-          const yMove = self.progress * 50; // 50px of movement
-          gsap.set(faqImage, {
-            y: yMove,
-            ease: 'none'
-          });
-        }
-      });
-    }
-  };
-
-  // Initialize FAQ animations
-  initFaqSeoAnimations();
-  
-  // ADDED: Initialize the FAQ section FAQ items
+  // --- FAQ Section Animation and Accordion Logic ---
   const initFaqSection = () => {
     // Handle FAQ items in the FAQ section
-    const faqItems = document.querySelectorAll('.faq-section .faq-seo-item');
-    
+    const faqItems = document.querySelectorAll('.faq-section .faq-item');
     if (faqItems.length > 0) {
       faqItems.forEach((item, index) => {
         const question = item.querySelector('h4');
-        const answer = item.querySelector('.faq-seo-answer');
-        
+        const answer = item.querySelector('.faq-answer');
         // Set initial state
         gsap.set(item, { opacity: 0, y: 30 });
-        
         // Create scroll trigger for each FAQ item
         ScrollTrigger.create({
           trigger: item,
@@ -408,17 +262,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
           }
         });
-        
         // Make sure we have proper height for animation
         const height = answer.offsetHeight;
-        
         // Reset for initial closed state
         gsap.set(answer, { 
           height: 0,
           opacity: 0,
           overflow: 'hidden'
         });
-        
         // Create accordion functionality
         if (question && answer) {
           // Create plus/minus indicator if it doesn't exist
@@ -428,17 +279,14 @@ document.addEventListener('DOMContentLoaded', () => {
             indicator.innerHTML = '+';
             question.appendChild(indicator);
           }
-          
           // Add click event to toggle answer
           question.addEventListener('click', () => {
             const isOpen = answer.classList.contains('open');
-            
             // Close any open answers except this one
-            document.querySelectorAll('.faq-seo-answer.open').forEach(openAnswer => {
+            document.querySelectorAll('.faq-section .faq-answer.open').forEach(openAnswer => {
               if (openAnswer !== answer) {
                 const openQuestion = openAnswer.previousElementSibling;
                 const openIndicator = openQuestion.querySelector('.faq-indicator');
-                
                 gsap.to(openAnswer, {
                   height: 0,
                   opacity: 0,
@@ -446,9 +294,9 @@ document.addEventListener('DOMContentLoaded', () => {
                   ease: 'power2.out',
                   onComplete: () => {
                     openAnswer.classList.remove('open');
+                    openAnswer.style.height = '';
                   }
                 });
-                
                 if (openIndicator) {
                   gsap.to(openIndicator, {
                     rotation: 0,
@@ -458,19 +306,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
               }
             });
-            
             // Toggle current answer
             const indicator = question.querySelector('.faq-indicator');
-            
             if (!isOpen) {
               answer.classList.add('open');
               gsap.to(answer, {
-                height: 'auto',
+                height: answer.scrollHeight,
                 opacity: 1,
                 duration: 0.5,
                 ease: 'power2.out'
               });
-              
               if (indicator) {
                 gsap.to(indicator, {
                   rotation: 135,
@@ -486,9 +331,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 ease: 'power2.out',
                 onComplete: () => {
                   answer.classList.remove('open');
+                  answer.style.height = '';
                 }
               });
-              
               if (indicator) {
                 gsap.to(indicator, {
                   rotation: 0,
@@ -501,7 +346,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }
-    
     // Handle the profile image parallax effect
     const profileImage = document.querySelector('.faq-section .profile-image');
     if (profileImage) {
@@ -519,13 +363,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }
-    
     // Ensure the "read more" button in the FAQ section also opens the lebenslauf card
     const faqReadMoreBtn = document.querySelector('.faq-section .read-more-btn');
     const blurOverlay = document.querySelector('.blur-overlay');
     const lebenslaufCard = document.querySelector('.lebenslauf-card');
     const closeLebenslaufBtn = lebenslaufCard ? lebenslaufCard.querySelector('.close-card-btn') : null;
-    
     if (faqReadMoreBtn && blurOverlay && lebenslaufCard) {
       faqReadMoreBtn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -546,7 +388,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
       });
     }
-
     if (closeLebenslaufBtn && blurOverlay && lebenslaufCard) {
       closeLebenslaufBtn.addEventListener('click', () => {
         blurOverlay.classList.remove('visible');
@@ -564,7 +405,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   };
-  
   // Initialize the FAQ section
   initFaqSection();
   

@@ -161,11 +161,9 @@
           font-weight: 600;
         }
         
-        .faq-seo-item {
-          margin-bottom: 1.5rem;
+        .faq-item {
           border-radius: 8px;
           overflow: hidden;
-          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
           background-color: white;
           
           h4 {
@@ -180,7 +178,6 @@
             font-family: 'Switzer', Helvetica, Arial, sans-serif;
             transition: color 0.3s ease;
             background-color: #f8f8ff;
-            border-left: 3px solid var(--accent-color);
             
             &:hover {
               color: var(--accent-color);
@@ -202,40 +199,37 @@
             }
           }
           
-          .faq-seo-answer {
-            padding: 0;
+          .faq-answer {
+            height: 0;
+            opacity: 0;
+            padding: 0.2rem;
             overflow: hidden;
+            transition: height 0.3s ease, opacity 0.3s ease;
+            will-change: height;
+          }
+          .faq-answer.open {
             height: auto;
             opacity: 1;
-            transition: all 0.3s ease;
-            padding: 1.2rem;
-            
-            &.open {
-              padding: 1.2rem;
-              height: auto;
-              opacity: 1;
-            }
-            
-            p {
-              margin: 0;
-              line-height: 1.6;
-              font-family: 'Switzer', Helvetica, Arial, sans-serif;
-              font-size: 1rem;
-            }
-            
-            strong {
-              color: var(--accent-color);
-              font-weight: 600;
-            }
-            
-            .answer-summary {
-              margin-top: 1.2rem;
-              padding: 0.8rem;
-              background-color: rgba(86, 8, 255, 0.05);
-              border-radius: 8px;
-              border-left: 3px solid var(--accent-color);
-              font-size: 0.95rem;
-            }
+          }
+          
+          p {
+            margin: 0;
+            line-height: 1.6;
+            font-family: 'Switzer', Helvetica, Arial, sans-serif;
+            font-size: 1rem;
+          }
+          
+          strong {
+            color: var(--accent-color);
+            font-weight: 600;
+          }
+          
+          .answer-summary {
+            margin-top: 1.2rem;
+            padding: 0.8rem;
+            background-color: rgba(86, 8, 255, 0.05);
+            border-radius: 8px;
+            font-size: 0.95rem;
           }
         }
         
