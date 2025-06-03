@@ -684,6 +684,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const datenschutzCard = document.querySelector('.datenschutz-card');
   const closeLegalBtns = document.querySelectorAll('.legal-card .close-card-btn');
 
+  const blurOverlay = document.querySelector('.blur-overlay');
+
   function openLegalModal(card) {
     if (!card) return;
     card.classList.add('visible');
@@ -696,6 +698,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.width = '100vw';
     document.body.style.overflow = 'hidden';
     document.body.dataset.scrollY = scrollY;
+    // Show blur overlay
+    if (blurOverlay) blurOverlay.classList.add('visible');
   }
 
   function closeLegalModal(card) {
@@ -711,6 +715,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = '';
     delete document.body.dataset.scrollY;
     window.scrollTo(0, scrollY);
+    // Hide blur overlay
+    if (blurOverlay) blurOverlay.classList.remove('visible');
   }
 
   if (impressumBtn && impressumCard) {
