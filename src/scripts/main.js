@@ -22,6 +22,7 @@ import './components/ProjectCard'; // Web Component registration
 import { initSeeMoreButtonAnimations } from './animations/seeMoreButtonAnimations';
 import { initCustomCheckbox } from './components/ContactForm';
 import { initMobileNav } from './components/MobileNav'; // Import mobile nav
+import { initContactSection } from './components/contact';
 
 gsap.registerPlugin(ScrollTrigger); // Only register ScrollTrigger, not Draggable
 
@@ -578,6 +579,8 @@ document.addEventListener('DOMContentLoaded', () => {
       closeLegalModal(card);
     });
   });
+
+  initContactSection();
 });
 
 // --- Webpack HMR Handling --- 
