@@ -1,6 +1,6 @@
 # Tarik Marshall Portfolio Website
 
-A modern, animated portfolio for Tarik Marshall, built with a focus on design, performance, and smooth user experience.
+A modern, animated portfolio for Tarik Marshall (STACKWERKHAUS), built with a focus on design, performance, smooth user experience, and **Answer Engine Optimization (AEO)** for maximum AI visibility.
 
 ---
 
@@ -8,164 +8,461 @@ A modern, animated portfolio for Tarik Marshall, built with a focus on design, p
 1. [Project Overview](#project-overview)
 2. [Features](#features)
 3. [Tech Stack](#tech-stack)
-4. [Folder Structure](#folder-structure)
-5. [Color Scheme & Typography](#color-scheme--typography)
-6. [Layout & Content](#layout--content)
-7. [GSAP Animations](#gsap-animations)
-8. [Responsive Design](#responsive-design)
-9. [Accessibility](#accessibility)
-10. [Build & Development](#build--development)
-11. [Deployment](#deployment)
-12. [Assets & Fonts](#assets--fonts)
+4. [AEO (Answer Engine Optimization)](#aeo-answer-engine-optimization)
+5. [Folder Structure](#folder-structure)
+6. [Color Scheme & Typography](#color-scheme--typography)
+7. [Layout & Content](#layout--content)
+8. [GSAP Animations](#gsap-animations)
+9. [Responsive Design](#responsive-design)
+10. [Accessibility](#accessibility)
+11. [Build & Development](#build--development)
+12. [SEO & AEO Setup](#seo--aeo-setup)
+13. [Deployment](#deployment)
+14. [Assets & Fonts](#assets--fonts)
 
 ---
 
 ## Project Overview
-- **Purpose:** Personal portfolio to showcase projects, skills, and capabilities.
-- **Design:** Minimalist, light theme, large typography, smooth GSAP animations.
+- **Purpose:** Professional portfolio and business website for STACKWERKHAUS design studio
+- **Target Market:** Berlin-based businesses, startups, and SMEs seeking web development services
+- **Design:** Minimalist, light theme, large typography, smooth GSAP animations
+- **Pricing:** €2,000-€5,000 for professional websites
+- **AEO Optimized:** Designed for visibility in AI search engines (ChatGPT, Perplexity, Google AI)
 
 ---
 
 ## Features
-- Animated hero, about, and project sections using GSAP and ScrollTrigger
-- Responsive, mobile-first layout
-- Modern project card hover effects (blur, overlay)
-- Modular SCSS for easy theming and maintenance
-- Custom smooth scrolling with Lenis
-- Accessibility best practices
+
+### Core Website Features
+- **Animated Hero Section**: Parallax background with Berlin cityscape and letter-by-letter text animations
+- **Combined FAQ/Services Section**: Interactive accordion with detailed pricing and service information
+- **Project Portfolio**: Custom web components with pixelated hover effects and video reveals
+- **Contact Integration**: Formspree form handling + Calendly booking integration
+- **Legal Compliance**: GDPR-compliant modals for Impressum and Datenschutz
+- **Mobile Navigation**: Smooth mobile menu with GSAP animations
+
+### AEO (Answer Engine Optimization) Features
+- **AI-Optimized Content**: Direct answers formatted for AI parsing and citation
+- **Enhanced Structured Data**: 8 FAQ schemas + HowTo schemas for website development
+- **llms.txt File**: AI-friendly content specifically for language model consumption
+- **AI Crawler Support**: Explicit allowance for GPTBot, ChatGPT-User, CCBot, PerplexityBot
+- **Answer-First Format**: Bold, quotable answers in first 1-2 sentences
+- **Pricing Transparency**: Clear cost breakdowns for AI understanding
+
+### Technical Features
+- **Custom Web Components**: Modular project cards with shadow DOM
+- **Advanced Animations**: GSAP ScrollTrigger, parallax effects, custom blur plugin
+- **Performance Optimized**: Webpack code splitting, lazy loading, font optimization
+- **Mobile-First Design**: Responsive breakpoints with touch-friendly interactions
+- **Smooth Scrolling**: Lenis integration for buttery-smooth scroll experience
 
 ---
 
 ## Tech Stack
-- **HTML5**
-- **CSS3 / SCSS** (modular, component-based)
-- **JavaScript (ES6+)**
-- **GSAP** (GreenSock Animation Platform)
-- **ScrollTrigger** (GSAP plugin)
-- **Lenis** (smooth scrolling)
-- **Webpack** (bundling, dev server)
-- **Babel** (ES6+ transpilation)
+- **HTML5** with semantic structure and ARIA accessibility
+- **CSS3 / SCSS** (modular, component-based architecture)
+- **JavaScript (ES6+)** with modern module system
+- **GSAP** (GreenSock Animation Platform) with ScrollTrigger
+- **Lenis** (smooth scrolling library)
+- **Webpack 5** (bundling, dev server, optimization)
+- **Babel** (ES6+ transpilation with core-js polyfills)
 - **Node.js & NPM** (package management)
+
+---
+
+## AEO (Answer Engine Optimization)
+
+### What is AEO?
+Answer Engine Optimization (AEO) is SEO for AI search engines. It's about becoming the source an AI pulls from when someone asks a question - not just ranking for keywords, but being the answer.
+
+### AEO Implementation
+Following [Sam Hogan's AEO strategy](https://www.samhogan.sh/blog/a-new-form-of-seo), this website includes:
+
+#### 1. Enhanced Structured Data
+- **8 FAQ schemas** with direct, AI-parseable answers
+- **HowTo schema** for website development process
+- **LocalBusiness schema** for Berlin presence
+- **Organization schema** with complete contact details
+
+#### 2. AI-Optimized Content Format
+- **Answer-first approach**: Direct answers in first 1-2 sentences
+- **Question headlines** matching real search queries
+- **Structured lists** with pricing and timeline breakdowns
+- **Bold key information** for easy AI extraction
+
+#### 3. llms.txt File
+Located at `/llms.txt` - contains AI-friendly content including:
+- Quick answers to common questions
+- Detailed service descriptions
+- Pricing structure and timelines
+- Contact and location information
+- Technology stack details
+
+#### 4. AI Crawler Optimization
+- **Enhanced robots.txt** with explicit AI bot permissions
+- **Crawl delays** to be respectful to AI services
+- **Sitemap optimization** with high-priority AEO content
+
+### AEO Testing & Submission
+After deployment, submit to:
+1. **Google Search Console**: Submit sitemap and request indexing
+2. **Bing Webmaster Tools**: Submit sitemap and use IndexNow
+3. **llms-txt.site**: Submit for AI index inclusion
+4. **Test with Perplexity**: Ask questions about Berlin web development
+5. **Monitor with tools**: Profound, Goodie AI, HubSpot AI Search Grader
 
 ---
 
 ## Folder Structure
 ```
-project-root/
+STACKWERKHAUS2/
 ├── public/
 │   ├── assets/
-│   │   ├── images/      # Project and hero images
-│   │   │   └── favicon.ico
-│   │   └── dist/            # Webpack build output
+│   │   ├── images/          # Hero, project, and profile images
+│   │   ├── projects/        # Project portfolio images
+│   │   ├── video/           # Logo animations and project videos
+│   │   ├── fonts/           # Switzer font family (woff, woff2)
+│   │   └── favicon.ico
+│   └── dist/                # Webpack build output (generated)
 ├── src/
-│   ├── index.html       # Main HTML file
+│   ├── index.html           # Main HTML template with AEO schemas
 │   ├── scripts/
-│   │   ├── main.js      # Entry point
-│   │   └── animations/  # GSAP animation modules
-│   ├── styles/
-│   │   ├── main.scss    # Main SCSS entry
-│   │   └── components/  # Modular SCSS (header, hero, about, projects, etc.)
-├── .babelrc
-├── webpack.config.js
-├── package.json
-└── README.md
+│   │   ├── main.js          # Entry point with Lenis & GSAP setup
+│   │   ├── animations/      # GSAP animation modules
+│   │   │   ├── heroAnimations.js
+│   │   │   ├── pageLoadAnimations.js
+│   │   │   └── seeMoreButtonAnimations.js
+│   │   ├── components/      # Modular JavaScript components
+│   │   │   ├── ProjectCard.js      # Web component for projects
+│   │   │   ├── MobileNav.js        # Mobile navigation
+│   │   │   ├── ContactForm.js      # Form handling
+│   │   │   ├── contact.js          # Contact section
+│   │   │   └── iridescence.js      # Visual effects
+│   │   └── utils/           # Utility functions
+│   │       ├── animationUtils.js   # Animation helpers
+│   │       ├── focusTrap.js        # Accessibility
+│   │       └── popupManager.js     # Modal management
+│   └── styles/
+│       ├── main.scss        # Main SCSS entry with variables
+│       └── components/      # Modular SCSS components
+│           ├── _header.scss
+│           ├── _hero.scss
+│           ├── _faq.scss
+│           ├── _projects.scss
+│           ├── _contact.scss
+│           ├── _footer.scss
+│           └── _card.scss
+├── llms.txt                 # AI-optimized content for LLMs
+├── robots.txt               # Enhanced with AI crawler support
+├── sitemap.xml              # AEO-optimized sitemap
+├── impressum.md             # Legal information (German)
+├── datenschutzerklaerung.md # Privacy policy (German)
+├── .babelrc                 # Babel configuration
+├── webpack.config.js        # Webpack build configuration
+├── package.json             # Dependencies and scripts
+└── README.md                # This file
 ```
 
 ---
 
 ## Color Scheme & Typography
+
 ### Color Scheme
-| Element        | Color      |
-| -------------- | ---------- |
-| Background     | #FFFFFF    |
-| Primary Text   | #141414    |
-| Accent Color   | #5608ff    |
-| Link Hover     | #000000    |
+| Element        | Color      | Usage |
+| -------------- | ---------- | ----- |
+| Background     | #EDF2F4    | Main background |
+| Primary Text   | #141414    | Headings and body text |
+| Secondary Text | #f6f6f6    | Light text on dark backgrounds |
+| Accent Color   | #C1121F    | Links, buttons, highlights |
+| Accent Dark    | #780000    | Hover states |
 
 ### Typography
-- **Font:** 'Switzer', Helvetica, Arial, sans-serif (all headings and body)
-- **Font files:** Located in `public/assets/fonts/`
+- **Font Family**: 'Switzer' (Regular, Medium, Bold, Italic)
+- **Fallbacks**: Helvetica, Arial, sans-serif
+- **Font Display**: swap (for performance)
+- **Font Files**: Located in `public/assets/fonts/` (woff2 + woff formats)
 
 ---
 
 ## Layout & Content
-- **Header:** Logo (SVG), navigation links, CTA
-- **Hero:** Large animated title, subtitle, scroll indicator
-- **About:** Bio, portrait, contact links
-- **Projects:**
-  - Two project cards (image, title, subtitle, hover blur effect)
-  - Easily extendable for more projects
-- **Capabilities:** Grid of skills, GSAP draggable
-- **Footer:** Contact prompt, social links, signature
+
+### Header
+- **Logo**: SVG with animated video mask on hover
+- **Navigation**: Desktop nav + responsive mobile menu
+- **CTA**: Direct link to contact section
+
+### Hero Section
+- **Background**: Berlin cityscape (hero1.webp) with parallax scrolling
+- **Title**: "Von Rohbau bis Launch" with letter-by-letter animation
+- **Subtitle**: Value proposition with clear messaging
+- **Credits**: Photo attribution for transparency
+
+### Services/FAQ Section (AEO-Optimized)
+- **About Introduction**: Personal introduction with expertise button
+- **Service Grid**: 4 core services (Web Dev, UI/UX, Branding, AI)
+- **FAQ Accordion**: 7 detailed Q&A pairs optimized for AI parsing
+- **Profile Image**: Parallax effect with contact links
+
+### Projects Section
+- **Project Cards**: Custom web components with pixelated hover effects
+- **Video Integration**: Smooth video reveals on hover
+- **Placeholder Card**: Call-to-action with iridescence effect
+
+### Contact Section
+- **Contact Form**: Formspree integration with file upload
+- **Calendly Integration**: Direct booking widget
+- **Custom Checkboxes**: Animated GDPR consent
+
+### Footer
+- **Social Links**: Instagram and LinkedIn
+- **Legal Buttons**: Modal triggers for Impressum/Datenschutz
+- **Animated Logo**: Seamless scrolling text animation
 
 ---
 
 ## GSAP Animations
-- **Page Load:** Fade-in, staggered hero text
-- **Scroll Animations:**
-  - About: Image/text slide in from opposite sides
-  - Projects: Cards fade/scale in
-  - Capabilities: Draggable grid
-- **Project Card Hover:** CSS blur/fade effect (optionally extendable with GSAP)
-- **Animation modules:** Located in `src/scripts/animations/`
+
+### Page Load Animations
+- **Fade-in**: Smooth page entrance with opacity transition
+- **Staggered Text**: Letter-by-letter reveals for headlines
+- **Hero Animation**: Immediate title animation on load
+
+### Scroll-Based Animations
+- **Parallax Hero**: True parallax scrolling at 0.4x speed
+- **Section Headlines**: Staggered letter animations on scroll
+- **FAQ Items**: Fade-in with stagger delays
+- **Profile Image**: Subtle parallax movement
+
+### Interactive Animations
+- **Project Cards**: Pixelated image reveals with random grid
+- **Mobile Menu**: Smooth slide-in with staggered links
+- **Accordion**: Height and opacity transitions
+- **Footer Logo**: Seamless infinite scroll loop
+
+### Custom GSAP Features
+- **Blur Plugin**: Custom GSAP plugin for filter effects
+- **ScrollTrigger Integration**: Synchronized with Lenis smooth scroll
+- **Force3D Optimization**: Hardware acceleration for performance
 
 ---
 
 ## Responsive Design
-- Uses CSS Grid and Flexbox
-- Media queries for tablet/mobile breakpoints
-- Touch support for interactive elements
+
+### Breakpoints
+- **Desktop**: 1200px+
+- **Tablet**: 768px - 1199px
+- **Mobile**: 320px - 767px
+
+### Mobile Features
+- **Hamburger Menu**: Animated 3-line toggle
+- **Touch Interactions**: Optimized for touch devices
+- **Responsive Typography**: Clamp() functions for fluid scaling
+- **Modal Adaptations**: Full-screen modals on mobile
+
+### Performance Considerations
+- **Mobile-First CSS**: Progressive enhancement approach
+- **Touch Detection**: Different interactions for touch vs mouse
+- **Image Optimization**: WebP format with fallbacks
 
 ---
 
 ## Accessibility
-- Semantic HTML structure
-- Alt text for all images
-- Keyboard navigation (focus styles on cards/links)
-- Sufficient color contrast
+
+### ARIA Implementation
+- **Semantic HTML**: Proper landmark roles and heading hierarchy
+- **Modal Management**: Focus trapping and ARIA attributes
+- **Button States**: aria-expanded for menu toggles
+- **Screen Reader Support**: sr-only classes and descriptive labels
+
+### Keyboard Navigation
+- **Tab Order**: Logical focus flow through interactive elements
+- **Escape Key**: Modal dismissal functionality
+- **Enter/Space**: Button activation support
+
+### Visual Accessibility
+- **Color Contrast**: WCAG 2.1 AA compliant ratios
+- **Focus Indicators**: Visible focus states for all interactive elements
+- **Alternative Text**: Descriptive alt attributes for all images
 
 ---
 
 ## Build & Development
-### Scripts
-- `npm install` — Install dependencies
-- `npm start` — Start dev server with hot reload (Webpack, localhost:8080)
-- `npm run build` — Production build (output to `public/dist/`)
 
-### Webpack
-- Entry: `src/scripts/main.js`
-- HTML template: `src/index.html`
-- SCSS: Compiled and extracted in production
-- Assets: Copied from `public/assets/` to `public/dist/assets/`
+### Development Scripts
+```bash
+npm install          # Install all dependencies
+npm start           # Start dev server (localhost:3000)
+npm run build       # Production build
+```
+
+### Webpack Configuration
+- **Entry Point**: `src/scripts/main.js`
+- **Output**: `public/dist/` directory
+- **Dev Server**: Hot reload on port 3000
+- **Code Splitting**: Vendor and GSAP bundles separated
+- **Asset Optimization**: Image and font copying
+- **Source Maps**: Available in development mode
+
+### Development Features
+- **Hot Module Replacement**: Live updates without refresh
+- **SCSS Compilation**: Automatic Sass processing
+- **Babel Transpilation**: ES6+ to browser-compatible JavaScript
+- **Asset Pipeline**: Automatic copying of public assets
+
+---
+
+## SEO & AEO Setup
+
+### Initial SEO Foundation
+- **Meta Tags**: Comprehensive meta information
+- **Open Graph**: Social media sharing optimization
+- **Structured Data**: Multiple JSON-LD schemas
+- **Sitemap**: XML sitemap with image metadata
+- **Robots.txt**: Search engine crawler instructions
+
+### AEO (Answer Engine Optimization) Setup
+
+#### Immediate Actions Required:
+1. **Google Search Console**
+   - Add property: `https://stackwerkhaus.de`
+   - Verify ownership (HTML file upload or DNS)
+   - Submit sitemap: `https://stackwerkhaus.de/sitemap.xml`
+   - Request indexing for key pages
+
+2. **Bing Webmaster Tools**
+   - Add site: `https://stackwerkhaus.de`
+   - Submit sitemap
+   - Enable IndexNow for faster indexing
+
+3. **AI Index Submission**
+   - Submit to [llms-txt.site](https://llms-txt.site)
+   - Content available at: `https://stackwerkhaus.de/llms.txt`
+
+#### Testing & Monitoring
+- **Perplexity Testing**: Ask questions about Berlin web development
+- **ChatGPT Testing**: Search for STACKWERKHAUS services
+- **Monitoring Tools**: Profound, Goodie AI, HubSpot AI Search Grader
+
+#### Expected Timeline
+- **Week 1**: Submit to search engines and indexes
+- **Week 2-3**: Content gets crawled and indexed
+- **Week 3-4**: Start seeing AI citations and mentions
 
 ---
 
 ## Deployment
-- **Recommended:** Netlify, Vercel, or GitHub Pages
-- **To deploy:**
-  1. Run `npm run build`
-  2. Upload contents of `public/dist/` to your host
-- **Performance:**
-  - Minified CSS/JS
-  - Optimized images
-  - Lazy loading recommended for large images
+
+### Recommended Platforms
+- **Netlify**: Automatic builds from Git, global CDN
+- **Vercel**: Edge deployment with excellent performance
+- **GitHub Pages**: Free hosting for static sites
+
+### Deployment Steps
+1. **Build**: Run `npm run build`
+2. **Upload**: Deploy contents of `public/dist/` directory
+3. **DNS**: Point domain to hosting provider
+4. **SSL**: Enable HTTPS (usually automatic)
+5. **Submit**: Add to search engines and AI indexes
+
+### Post-Deployment Checklist
+- [ ] Submit sitemap to Google Search Console
+- [ ] Submit sitemap to Bing Webmaster Tools
+- [ ] Submit to llms-txt.site for AI visibility
+- [ ] Test AEO with Perplexity and ChatGPT
+- [ ] Monitor performance with Core Web Vitals
+- [ ] Set up monitoring for AI mentions
 
 ---
 
 ## Assets & Fonts
-- **Images:** Place in `public/assets/images/`
-- **Fonts:** Switzer font family in `public/assets/fonts/`
-- **Favicon:** `public/assets/favicon.ico`
+
+### Images
+- **Hero Image**: `hero1.webp` (Berlin cityscape)
+- **Profile**: `IMG_5717.webp` (Tarik Marshall)
+- **Projects**: Located in `public/assets/projects/`
+- **Logo**: SVG format for crisp rendering
+
+### Fonts
+- **Switzer Family**: Regular, Medium, Bold, Italic
+- **Formats**: WOFF2 (primary) + WOFF (fallback)
+- **Performance**: Font-display: swap for fast loading
+
+### Videos
+- **Logo Animation**: WebM + MP4 formats
+- **Project Reveals**: WebM format for smooth playback
+
+---
+
+## Performance Optimizations
+
+### Build Optimizations
+- **Code Splitting**: Vendor bundles separated
+- **Tree Shaking**: Unused code elimination
+- **Minification**: CSS and JavaScript compression
+- **Asset Optimization**: Image and font compression
+
+### Runtime Optimizations
+- **Lazy Loading**: Images load as needed
+- **Preloading**: Critical resources prioritized
+- **GSAP Performance**: Force3D and will-change properties
+- **Smooth Scrolling**: Hardware-accelerated scrolling
+
+### Core Web Vitals
+- **LCP**: Hero image preloaded and optimized
+- **FID**: Minimal JavaScript blocking
+- **CLS**: Reserved space for dynamic content
 
 ---
 
 ## Credits & License
-- Design and development: Tarik Marshall
-- Inspired by [chriskalafatis.com](https://www.chriskalafatis.com/)
-- Licensed under ISC
+
+### Design & Development
+- **Tarik Marshall** - STACKWERKHAUS
+- **Inspired by**: [chriskalafatis.com](https://www.chriskalafatis.com/)
+- **AEO Strategy**: Based on [Sam Hogan's methodology](https://www.samhogan.sh/blog/a-new-form-of-seo)
+
+### Photography
+- **Hero Image**: Sebastian Herrmann via Unsplash
+- **Profile Photos**: Tarik Marshall
+
+### License
+- **ISC License**
+- **Commercial Use**: Portfolio and business website
 
 ---
 
-## Notes
-- For detailed animation and layout logic, see the `src/scripts/animations/` and `src/styles/components/` folders.
-- For further customization, edit SCSS variables in `src/styles/main.scss`. 
+## Contact & Support
+
+**STACKWERKHAUS**
+- **Website**: [stackwerkhaus.de](https://stackwerkhaus.de)
+- **Email**: info@stackwerkhaus.de
+- **Phone**: +49 176 31378294
+- **Location**: Berlin, Germany
+
+**Social Media**
+- **Instagram**: [@stackwerkhaus](https://www.instagram.com/stackwerkhaus)
+- **LinkedIn**: [Tarik Marshall](https://www.linkedin.com/in/tarik-arthur-marshall-6112b2239)
+
+---
+
+## Notes for Developers
+
+### Customization
+- **Colors**: Update CSS custom properties in `src/styles/main.scss`
+- **Animations**: Modify GSAP settings in `src/scripts/animations/`
+- **Content**: Update FAQ answers for better AEO performance
+- **Structured Data**: Modify JSON-LD schemas in `src/index.html`
+
+### Adding New Content
+- **Projects**: Add images to `public/assets/projects/` and update HTML
+- **FAQ Items**: Add to both HTML and JSON-LD schema
+- **Services**: Update service grid and llms.txt file
+- **Contact**: Update all contact references consistently
+
+### AEO Best Practices
+- **Answer-First Format**: Start with direct answers in bold
+- **Question Headlines**: Use exact questions people ask
+- **Structured Lists**: Break down complex information
+- **Update llms.txt**: Keep AI content current and comprehensive
+
+For detailed animation and layout logic, see the respective files in `src/scripts/animations/` and `src/styles/components/`. 
