@@ -1,45 +1,162 @@
 # Datenschutzerklärung
 
-Diese Datenschutzerklärung klärt dich über die Art, den Umfang und Zweck der Verarbeitung von personenbezogenen Daten (nachfolgend „Daten“) innerhalb meines Onlineangebotes auf.
+Diese Datenschutzerklärung informiert Sie über die Art, den Umfang und Zweck der Verarbeitung von personenbezogenen Daten (nachfolgend „Daten") auf unserer Website und in unserem Dienstleistungsgeschäft.
 
-## Verantwortlicher
+## 1. Verantwortlicher
+
+**Verantwortlich für die Datenverarbeitung:**
 
 Tarik Marshall  
 STACKWERKHAUS  
 Sigmaringer Str. 27  
 10713 Berlin  
-E-Mail: info@stackwerkhaus.de
+Deutschland
 
-## Zugriffsdaten und Hosting
+**Kontakt:** 
+<span data-mail="info" style="display:none;">&#x69;&#x6E;&#x66;&#x6F;</span>
+<span data-separator="at" style="display:none;">&#x40;</span>
+<span data-domain="stackwerkhaus" style="display:none;">&#x73;&#x74;&#x61;&#x63;&#x6B;&#x77;&#x65;&#x72;&#x6B;&#x68;&#x61;&#x75;&#x73;</span>
+<span data-tld="de" style="display:none;">&#x2E;&#x64;&#x65;</span>
 
-Beim Besuch dieser Website werden automatisch Informationen (sogenannte Server-Logfiles) wie IP-Adresse, Zeitpunkt des Zugriffs, Browsertyp usw. erhoben. Diese Daten dienen ausschließlich der Sicherstellung eines störungsfreien Betriebs und werden nicht zur Identifikation deiner Person verwendet.
+## 2. Datenerfassung auf dieser Website
 
-Das Hosting erfolgt über die STRATO AG, Otto-Ostrowski-Straße 7, 10249 Berlin. Mit dem Anbieter wurde ein Vertrag zur Auftragsverarbeitung geschlossen.
+### 2.1 Server-Log-Dateien
 
-## Kontaktformular
+Beim Besuch unserer Website werden automatisch folgende Informationen erfasst:
+- IP-Adresse des zugreifenden Rechners
+- Datum und Uhrzeit des Zugriffs
+- Name und URL der abgerufenen Datei
+- Website, von der aus der Zugriff erfolgt (Referrer-URL)
+- Verwendeter Browser und ggf. das Betriebssystem Ihres Rechners
 
-Wenn du mich über das Kontaktformular kontaktierst, werden deine Angaben zwecks Bearbeitung der Anfrage sowie für mögliche Anschlussfragen gespeichert. Diese Daten werden nicht ohne deine ausdrückliche Einwilligung weitergegeben.
+**Rechtsgrundlage:** Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse)  
+**Zweck:** Sicherstellung eines störungsfreien Betriebs der Website  
+**Speicherdauer:** Die Daten werden nach 7 Tagen automatisch gelöscht
 
-## Cookies und Tracking
+### 2.2 Hosting
 
-Aktuell werden keine Tracking-Cookies verwendet. Zukünftig kann funktionales Tracking (z. B. für Terminbuchungen via Calendly) hinzukommen. In diesem Fall wird eine aktualisierte Cookie- und Datenschutzerklärung bereitgestellt.
+**Hosting-Provider:** STRATO AG  
+Otto-Ostrowski-Straße 7, 10249 Berlin  
+Mit dem Anbieter wurde ein Vertrag zur Auftragsverarbeitung (AVV) nach Art. 28 DSGVO geschlossen.
 
-## Rechtsgrundlagen der Verarbeitung
+## 3. Kontaktaufnahme
 
-- Art. 6 Abs. 1 lit. b DSGVO – zur Erfüllung eines Vertrags oder vorvertraglicher Maßnahmen  
-- Art. 6 Abs. 1 lit. f DSGVO – berechtigtes Interesse an einer funktionierenden Website
+### 3.1 Kontaktformular
 
-## Deine Rechte
+Bei der Nutzung unseres Kontaktformulars werden folgende Daten verarbeitet:
+- Name (Pflichtfeld)
+- E-Mail-Adresse (Pflichtfeld)
+- Telefonnummer (optional)
+- Nachricht (Pflichtfeld)
+- Angehängte Dateien (optional)
 
-Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung sowie Datenübertragbarkeit. Zudem kannst du jederzeit Widerspruch gegen die Verarbeitung deiner Daten einlegen.
+**Rechtsgrundlage:** Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen)  
+**Zweck:** Bearbeitung Ihrer Anfrage und Kontaktaufnahme  
+**Speicherdauer:** Bis zu 3 Jahre nach Abschluss der Geschäftsbeziehung
 
-## Beschwerderecht
+### 3.2 E-Mail-Kommunikation
 
-Du hast das Recht, dich bei der zuständigen Aufsichtsbehörde zu beschweren:  
-Berliner Beauftragte für Datenschutz und Informationsfreiheit  
-Alt-Moabit 59-61, 10555 Berlin  
-E-Mail: mailbox@datenschutz-berlin.de
+Bei der Kommunikation per E-Mail werden die übertragenen Daten gespeichert.
 
-## Änderungen dieser Datenschutzerklärung
+**Rechtsgrundlage:** Art. 6 Abs. 1 lit. b DSGVO  
+**Speicherdauer:** Bis zu 3 Jahre nach Abschluss der Geschäftsbeziehung
 
-Ich behalte mir vor, diese Erklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht.
+## 4. Projektabwicklung
+
+### 4.1 Kundendaten
+
+Für die Projektabwicklung verarbeiten wir:
+- Firmen-/Personendaten
+- Kontaktdaten
+- Rechnungsdaten
+- Projektbezogene Kommunikation
+- Projektdateien und -inhalte
+
+**Rechtsgrundlage:** Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung)  
+**Speicherdauer:** 10 Jahre (steuerliche Aufbewahrungspflichten)
+
+### 4.2 Zahlungsabwicklung
+
+Zahlungsdaten werden nur zur Rechnungsstellung und Zahlungsabwicklung verwendet.  
+**Speicherdauer:** 10 Jahre (steuerliche Aufbewahrungspflichten)
+
+## 5. Externe Dienste
+
+### 5.1 Calendly (Terminbuchung)
+
+Für Terminbuchungen nutzen wir Calendly, Inc. (USA).
+- **Datenübertragung:** Name, E-Mail-Adresse, Terminwünsche
+- **Rechtsgrundlage:** Art. 6 Abs. 1 lit. b DSGVO
+- **Datenschutz:** [Calendly Privacy Policy](https://calendly.com/privacy)
+
+### 5.2 Formspree (Formular-Verarbeitung)
+
+Für die Kontaktformular-Verarbeitung nutzen wir Formspree, Inc. (USA).
+- **Datenübertragung:** Formulardaten werden an Formspree übertragen
+- **Rechtsgrundlage:** Art. 6 Abs. 1 lit. b DSGVO
+- **Datenschutz:** [Formspree Privacy Policy](https://formspree.io/legal/privacy-policy/)
+
+## 6. Cookies und Tracking
+
+### 6.1 Cookies
+
+Unsere Website verwendet derzeit keine Tracking-Cookies. Technisch notwendige Cookies werden nur für die Funktionalität der Website verwendet.
+
+### 6.2 Analytics
+
+Aktuell werden keine Analytics-Tools verwendet. Bei zukünftiger Einführung wird diese Datenschutzerklärung entsprechend aktualisiert.
+
+## 7. Ihre Rechte als Betroffene
+
+Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:
+
+### 7.1 Auskunftsrecht (Art. 15 DSGVO)
+Sie haben das Recht, Auskunft über die von uns verarbeiteten Daten zu erhalten.
+
+### 7.2 Berichtigungsrecht (Art. 16 DSGVO)
+Sie haben das Recht auf Berichtigung unrichtiger Daten.
+
+### 7.3 Löschungsrecht (Art. 17 DSGVO)
+Sie haben das Recht auf Löschung Ihrer Daten, soweit keine Aufbewahrungspflichten bestehen.
+
+### 7.4 Einschränkung der Verarbeitung (Art. 18 DSGVO)
+Sie haben das Recht, die Einschränkung der Verarbeitung zu verlangen.
+
+### 7.5 Datenübertragbarkeit (Art. 20 DSGVO)
+Sie haben das Recht auf Datenübertragbarkeit.
+
+### 7.6 Widerspruchsrecht (Art. 21 DSGVO)
+Sie können der Verarbeitung widersprechen, soweit sie auf berechtigten Interessen basiert.
+
+### 7.7 Widerruf der Einwilligung
+Erteilte Einwilligungen können Sie jederzeit widerrufen.
+
+## 8. Beschwerderecht
+
+Sie haben das Recht, sich bei einer Aufsichtsbehörde zu beschweren:
+
+**Berliner Beauftragte für Datenschutz und Informationsfreiheit**  
+Friedrichstr. 219  
+10969 Berlin  
+
+**Telefon:** 030 13889-0  
+**E-Mail:** mailbox@datenschutz-berlin.de  
+**Website:** [https://www.datenschutz-berlin.de](https://www.datenschutz-berlin.de)
+
+## 9. Datensicherheit
+
+Wir verwenden geeignete technische und organisatorische Maßnahmen zum Schutz Ihrer Daten:
+- SSL/TLS-Verschlüsselung
+- Sichere Server-Infrastruktur
+- Regelmäßige Sicherheitsupdates
+- Zugriffskontrollen
+
+## 10. Änderungen dieser Datenschutzerklärung
+
+Diese Datenschutzerklärung wird regelmäßig überprüft und bei Bedarf aktualisiert. Die aktuelle Version ist stets auf unserer Website verfügbar.
+
+**Stand:** Dezember 2024
+
+---
+
+**Hinweis:** Diese Datenschutzerklärung wurde sorgfältig erstellt und entspricht den aktuellen Anforderungen der DSGVO. Bei Fragen wenden Sie sich gerne an uns.

@@ -519,14 +519,39 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Custom modal logic for legal cards (Impressum, Datenschutz) ---
+  // --- Custom modal logic for legal cards (Impressum, Datenschutz, AGB) ---
   const impressumBtn = document.getElementById('impressum-btn');
   const datenschutzBtn = document.getElementById('datenschutz-btn');
+  const agbBtn = document.getElementById('agb-btn');
   const impressumCard = document.querySelector('.impressum-card');
   const datenschutzCard = document.querySelector('.datenschutz-card');
+  const agbCard = document.querySelector('.agb-card');
   const closeLegalBtns = document.querySelectorAll('.legal-card .close-card-btn');
 
   const blurOverlay = document.querySelector('.blur-overlay');
+
+  // Contact information unobfuscation for legitimate users
+  function unobfuscateContactInfo() {
+    const contactProtected = document.querySelectorAll('.contact-protected');
+    contactProtected.forEach(element => {
+      const spans = element.querySelectorAll('span[style*="display:none"]');
+      if (spans.length > 0) {
+        let unobfuscatedText = '';
+        spans.forEach(span => {
+          span.style.display = 'inline';
+          unobfuscatedText += span.textContent;
+        });
+        
+        // Make contact info clickable for better UX
+        if (element.dataset.contact === 'email') {
+          element.innerHTML = `<a href="mailto:${unobfuscatedText}">${unobfuscatedText}</a>`;
+        } else if (element.dataset.contact === 'phone') {
+          const cleanPhone = unobfuscatedText.replace(/\s+/g, '');
+          element.innerHTML = `<a href="tel:${cleanPhone}">${unobfuscatedText}</a>`;
+        }
+      }
+    });
+  }
 
   function openLegalModal(card) {
     if (!card) return;
@@ -564,13 +589,21 @@ document.addEventListener('DOMContentLoaded', () => {
   if (impressumBtn && impressumCard) {
     impressumBtn.addEventListener('click', (e) => {
       e.preventDefault();
+      unobfuscateContactInfo(); // Unobfuscate when user clicks
       openLegalModal(impressumCard);
     });
   }
   if (datenschutzBtn && datenschutzCard) {
     datenschutzBtn.addEventListener('click', (e) => {
       e.preventDefault();
+      unobfuscateContactInfo(); // Unobfuscate when user clicks
       openLegalModal(datenschutzCard);
+    });
+  }
+  if (agbBtn && agbCard) {
+    agbBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openLegalModal(agbCard);
     });
   }
   closeLegalBtns.forEach(btn => {
