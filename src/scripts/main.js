@@ -13,14 +13,17 @@ import Lenis from 'lenis'; // Import Lenis for smooth scrolling
 // Import our new utilities
 import { headlineAnimator, scrollFadeIn, createParallax } from './utils/animationUtils';
 import { FocusTrap } from './utils/focusTrap';
+import popupManager from './utils/popupManager'; // Import the new popup manager
 
 // Import animation modules
 import { initPageLoadAnimation } from './animations/pageLoadAnimations';
 import { initHeroAnimations } from './animations/heroAnimations';
 import './components/ProjectCard'; // Web Component registration
 import { initSeeMoreButtonAnimations } from './animations/seeMoreButtonAnimations';
-import { initContactAnimations } from './animations/contactAnimations';
 import { initCustomCheckbox } from './components/ContactForm';
+import { initMobileNav } from './components/MobileNav'; // Import mobile nav
+import { initContactSection } from './components/contact';
+import { createIridescenceEffect } from './components/iridescence';
 
 gsap.registerPlugin(ScrollTrigger); // Only register ScrollTrigger, not Draggable
 
@@ -87,68 +90,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. Sync ScrollTrigger with Lenis
   lenis.on('scroll', ScrollTrigger.update);
 
+  // Initialize mobile navigation
+  initMobileNav();
+
   // 3. GSAP Ticker (Optional - alternative way to drive Lenis, not usually needed with raf loop)
   // gsap.ticker.add((time) => {
   //   lenis.raf(time * 1000); // Lenis expects milliseconds
   // });
   // gsap.ticker.lagSmoothing(0);
 
-  // --- Lebenslauf Card Modal Logic ---
-  const readMoreBtn = document.querySelector('.read-more-btn');
-  const blurOverlay = document.querySelector('.blur-overlay');
-  const lebenslaufCard = document.querySelector('.lebenslauf-card');
-  const closeCardBtn = document.querySelector('.close-card-btn');
-  const focusTrap = new FocusTrap(lebenslaufCard);
-
-  function openCard() {
-    blurOverlay.classList.add('visible');
-    lebenslaufCard.classList.add('visible');
-    document.body.classList.add('modal-open'); // Prevent background scroll
-    focusTrap.trap();
-    // Animate blur in
-    gsap.to(blurOverlay, { blur: 8, opacity: 1, duration: 0.5, ease: 'power2.out' });
-  }
-
-  function closeCard() {
-    // Animate blur out, then hide overlay
-    gsap.to(blurOverlay, { blur: 0, opacity: 0, duration: 0.4, ease: 'power2.in', onComplete: () => {
-      blurOverlay.classList.remove('visible');
-      lebenslaufCard.classList.remove('visible');
-      document.body.classList.remove('modal-open');
-      // Reset filter property to avoid accumulation
-      blurOverlay.style.filter = '';
-      focusTrap.release();
-    }});
-  }
-
-  if (readMoreBtn) readMoreBtn.addEventListener('click', openCard);
-  if (closeCardBtn) closeCardBtn.addEventListener('click', closeCard);
-  if (blurOverlay) blurOverlay.addEventListener('click', closeCard);
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lebenslaufCard.classList.contains('visible')) {
-      closeCard();
-    }
-  });
-
-  // Ensure mouse wheel always scrolls the lebenslauf card when open
-  lebenslaufCard.addEventListener('wheel', function(e) {
-    if (lebenslaufCard.classList.contains('visible')) {
-      // Only scroll the card, not the background
-      e.stopPropagation();
-      // Allow default scroll
-    }
-  }, { passive: false });
-
   // 5. Initialize all Page Animations
   // These functions should now internally use the default scroller (window)
   initPageLoadAnimation(); 
 
   // 6. Initial GSAP .set() calls for FOUC prevention and stability
-  // (Removed for modal elements to prevent FOUC)
-  // if (lebenslaufCard) gsap.set(lebenslaufCard, { opacity: 0, yPercent: 100 });
-  // if (blurOverlay) gsap.set(blurOverlay, { opacity: 0 });
-  // if (readMoreBtn) gsap.set(readMoreBtn, { opacity: 1 });
-
   const headerLogoEl = document.querySelector('header .logo');
   const headerNavLinksEl = document.querySelectorAll('header nav a');
   const headerCtaEl = document.querySelector('header .header-cta');
@@ -206,22 +161,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Initialize Modal with Focus Trap
-  const heroSection = document.querySelector('.hero');
-  // REMOVE createParallax for hero section to avoid conflict
-  // if (heroSection) {
-  //   createParallax(heroSection, { speed: 0.4 });
-  // }
-
-  // Animate headlines using our utility
-  const headlines = document.querySelectorAll('.section-headline-large');
-  headlines.forEach(headline => {
-    headlineAnimator.splitText(headline);
-    scrollFadeIn(headline, {
-      start: 'top 80%',
-      y: 100,
-      duration: 1
-    });
+  // Animate all section headlines (including hero) with the same 'pocket' style
+  const allHeadlines = document.querySelectorAll('.section-headline-large');
+  allHeadlines.forEach(headline => {
+    const splitText = headlineAnimator.splitText(headline);
+    if (splitText) {
+      headlineAnimator.animateHeadline(splitText, {
+        stagger: 0.05,
+        duration: 0.8,
+        ease: 'power2.out',
+        y: 100,
+        delay: 0.2,
+        scrollTrigger: headline.classList.contains('hero-title') ? false : {
+          trigger: headline,
+          start: 'top 80%',
+          end: 'top 20%',
+          toggleActions: 'play none none reverse'
+        }
+      });
+    }
   });
 
   // Convert existing project cards to web components
@@ -261,26 +219,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Initialize other section headlines with scroll trigger
-  const sectionHeadlines = document.querySelectorAll('.section-headline-large:not(.hero-title)');
-  sectionHeadlines.forEach(headline => {
-    const splitText = headlineAnimator.splitText(headline);
-    if (splitText) {
-      headlineAnimator.animateHeadline(splitText, {
-        stagger: 0.03,
-        duration: 0.6,
-        ease: 'power2.out',
-        y: 50,
-        scrollTrigger: {
-          trigger: headline,
-          start: 'top 80%',
-          end: 'top 20%',
-          toggleActions: 'play none none reverse'
-        }
-      });
-    }
-  });
-
   // Initialize hero animations (including navbar scroll effect)
   initHeroAnimations();
 
@@ -301,8 +239,178 @@ document.addEventListener('DOMContentLoaded', () => {
     // and CSS hover in _header.scss changes opacity.
   }
 
+  // --- FAQ Section Animation and Accordion Logic ---
+  const initFaqSection = () => {
+    // Handle FAQ items in the FAQ section
+    const faqItems = document.querySelectorAll('.faq-section .faq-item');
+    if (faqItems.length > 0) {
+      faqItems.forEach((item, index) => {
+        const question = item.querySelector('h4');
+        const answer = item.querySelector('.faq-answer');
+        // Set initial state
+        gsap.set(item, { opacity: 0, y: 30 });
+        // Create scroll trigger for each FAQ item
+        ScrollTrigger.create({
+          trigger: item,
+          start: 'top 85%',
+          once: true,
+          onEnter: () => {
+            gsap.to(item, {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: 'power2.out',
+              delay: index * 0.1
+            });
+          }
+        });
+        // Make sure we have proper height for animation
+        const height = answer.offsetHeight;
+        // Reset for initial closed state
+        gsap.set(answer, { 
+          height: 0,
+          opacity: 0,
+          overflow: 'hidden'
+        });
+        // Create accordion functionality
+        if (question && answer) {
+          // Create plus/minus indicator if it doesn't exist
+          if (!question.querySelector('.faq-indicator')) {
+            const indicator = document.createElement('span');
+            indicator.className = 'faq-indicator';
+            indicator.innerHTML = '+';
+            question.appendChild(indicator);
+          }
+          // Add click event to toggle answer
+          question.addEventListener('click', () => {
+            const isOpen = answer.classList.contains('open');
+            // Close any open answers except this one
+            document.querySelectorAll('.faq-section .faq-answer.open').forEach(openAnswer => {
+              if (openAnswer !== answer) {
+                const openQuestion = openAnswer.previousElementSibling;
+                const openIndicator = openQuestion.querySelector('.faq-indicator');
+                gsap.to(openAnswer, {
+                  height: 0,
+                  opacity: 0,
+                  duration: 0.4,
+                  ease: 'power2.out',
+                  onComplete: () => {
+                    openAnswer.classList.remove('open');
+                    openAnswer.style.height = '';
+                  }
+                });
+                if (openIndicator) {
+                  gsap.to(openIndicator, {
+                    rotation: 0,
+                    duration: 0.3,
+                    ease: 'power1.out'
+                  });
+                }
+              }
+            });
+            // Toggle current answer
+            const indicator = question.querySelector('.faq-indicator');
+            if (!isOpen) {
+              answer.classList.add('open');
+              gsap.to(answer, {
+                height: answer.scrollHeight,
+                opacity: 1,
+                duration: 0.5,
+                ease: 'power2.out'
+              });
+              if (indicator) {
+                gsap.to(indicator, {
+                  rotation: 135,
+                  duration: 0.3,
+                  ease: 'power1.out'
+                });
+              }
+            } else {
+              gsap.to(answer, {
+                height: 0,
+                opacity: 0,
+                duration: 0.4,
+                ease: 'power2.out',
+                onComplete: () => {
+                  answer.classList.remove('open');
+                  answer.style.height = '';
+                }
+              });
+              if (indicator) {
+                gsap.to(indicator, {
+                  rotation: 0,
+                  duration: 0.3,
+                  ease: 'power1.out'
+                });
+              }
+            }
+          });
+        }
+      });
+    }
+    // Handle the profile image parallax effect
+    const profileImage = document.querySelector('.faq-section .profile-image');
+    if (profileImage) {
+      ScrollTrigger.create({
+        trigger: '.faq-section',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true,
+        onUpdate: (self) => {
+          const yMove = self.progress * 30; // 30px of movement (subtle)
+          gsap.set(profileImage, {
+            y: yMove,
+            ease: 'none'
+          });
+        }
+      });
+    }
+    // Ensure the "read more" button in the FAQ section also opens the lebenslauf card
+    const faqReadMoreBtn = document.querySelector('.faq-section .read-more-btn');
+    const blurOverlay = document.querySelector('.blur-overlay');
+    const lebenslaufCard = document.querySelector('.lebenslauf-card');
+    const closeLebenslaufBtn = lebenslaufCard ? lebenslaufCard.querySelector('.close-card-btn') : null;
+    if (faqReadMoreBtn && blurOverlay && lebenslaufCard) {
+      faqReadMoreBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        blurOverlay.classList.add('visible');
+        lebenslaufCard.classList.add('visible');
+        document.body.classList.add('modal-open');
+        if (window.lenisInstance) window.lenisInstance.stop();
+        // Body scroll lock pattern
+        const scrollY = window.scrollY;
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${scrollY}px`;
+        document.body.style.width = '100vw';
+        document.body.style.overflow = 'hidden';
+        document.body.dataset.scrollY = scrollY;
+        // Scroll modal content to top
+        const content = lebenslaufCard.querySelector('.lebenslauf-content');
+        if (content) content.scrollTop = 0;
+        return false;
+      });
+    }
+    if (closeLebenslaufBtn && blurOverlay && lebenslaufCard) {
+      closeLebenslaufBtn.addEventListener('click', () => {
+        blurOverlay.classList.remove('visible');
+        lebenslaufCard.classList.remove('visible');
+        document.body.classList.remove('modal-open');
+        if (window.lenisInstance) window.lenisInstance.start();
+        // Restore body scroll
+        const scrollY = document.body.dataset.scrollY ? parseInt(document.body.dataset.scrollY, 10) : 0;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        document.body.style.overflow = '';
+        delete document.body.dataset.scrollY;
+        window.scrollTo(0, scrollY);
+      });
+    }
+  };
+  // Initialize the FAQ section
+  initFaqSection();
+  
   // Initialize contact animations and form
-  initContactAnimations();
   initCustomCheckbox();
 
   // --- Remove GSAP zoom/brightness hover effect for project images ---
@@ -408,6 +516,85 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reset position without visual jump by adjusting the x position
         gsap.set(footerLogoTrack, { x: 0 });
       }
+    });
+  }
+
+  // --- Custom modal logic for legal cards (Impressum, Datenschutz) ---
+  const impressumBtn = document.getElementById('impressum-btn');
+  const datenschutzBtn = document.getElementById('datenschutz-btn');
+  const impressumCard = document.querySelector('.impressum-card');
+  const datenschutzCard = document.querySelector('.datenschutz-card');
+  const closeLegalBtns = document.querySelectorAll('.legal-card .close-card-btn');
+
+  const blurOverlay = document.querySelector('.blur-overlay');
+
+  function openLegalModal(card) {
+    if (!card) return;
+    card.classList.add('visible');
+    document.body.classList.add('modal-open');
+    if (window.lenisInstance) window.lenisInstance.stop();
+    // Body scroll lock pattern
+    const scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100vw';
+    document.body.style.overflow = 'hidden';
+    document.body.dataset.scrollY = scrollY;
+    // Show blur overlay
+    if (blurOverlay) blurOverlay.classList.add('visible');
+  }
+
+  function closeLegalModal(card) {
+    if (!card) return;
+    card.classList.remove('visible');
+    document.body.classList.remove('modal-open');
+    if (window.lenisInstance) window.lenisInstance.start();
+    // Restore body scroll
+    const scrollY = document.body.dataset.scrollY ? parseInt(document.body.dataset.scrollY, 10) : 0;
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    document.body.style.overflow = '';
+    delete document.body.dataset.scrollY;
+    window.scrollTo(0, scrollY);
+    // Hide blur overlay
+    if (blurOverlay) blurOverlay.classList.remove('visible');
+  }
+
+  if (impressumBtn && impressumCard) {
+    impressumBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openLegalModal(impressumCard);
+    });
+  }
+  if (datenschutzBtn && datenschutzCard) {
+    datenschutzBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openLegalModal(datenschutzCard);
+    });
+  }
+  closeLegalBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const card = btn.closest('.legal-card');
+      closeLegalModal(card);
+    });
+  });
+
+  initContactSection();
+
+  // Add iridescence effect to the 'Dein Projekt?' placeholder card only
+  const deinProjektCard = Array.from(document.querySelectorAll('.project.placeholder-card')).find(card => {
+    const title = card.querySelector('.title');
+    return title && title.textContent.trim() === 'Dein Projekt?';
+  });
+  if (deinProjektCard) {
+    createIridescenceEffect({
+      container: deinProjektCard,
+      color: [1, 1, 1],
+      speed: 1.0,
+      amplitude: 0.1,
+      mouseReact: true,
     });
   }
 });

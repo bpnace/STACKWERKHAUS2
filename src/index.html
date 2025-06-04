@@ -6,8 +6,16 @@
     <title>STACKWERKHAUS - Dein Berliner Design Studio</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="STACKWERKHAUS - Dein Berliner Design Studio für digitale Produkte und Markenerlebnisse. Webentwicklung, Branding und UI/UX Design.">
-    <meta name="keywords" content="Design Studio, Berlin, Webentwicklung, Branding, UI/UX Design, Digital Design">
+    <meta name="description" content="STACKWERKHAUS - Dein Berliner Design Studio für digitale Produkte und Markenerlebnisse. Professionelle Webentwicklung, Branding und UI/UX Design in Berlin. Website-Kosten zwischen 2.000€ und 5.000€. KI-Integration für bessere Nutzererfahrung.">
+    <meta name="keywords" content="Design Studio Berlin, Webentwicklung Berlin, Branding Berlin, UI/UX Design Berlin, Website Kosten Berlin, KI-Integration, Webdesign Berlin, Web-Apps Berlin">
+    
+    <!-- Enhanced SEO tags -->
+    <meta name="author" content="Tarik Marshall">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="google" content="notranslate">
+    <meta name="geo.region" content="DE-BE">
+    <meta name="geo.placename" content="Berlin">
     
     <!-- Open Graph -->
     <meta property="og:title" content="STACKWERKHAUS - Dein Berliner Design Studio">
@@ -30,8 +38,7 @@
     <style>
       body { opacity: 0; transition: opacity 1.2s cubic-bezier(0.4,0,0.2,1); }
       body.fadein { opacity: 1; }
-      .blur-overlay, .lebenslauf-card { opacity: 0; pointer-events: none; transform: translate(-50%, 100%); }
-      .lebenslauf-card.visible { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
+      .blur-overlay { opacity: 0; pointer-events: none; }
       .blur-overlay.visible { opacity: 1; pointer-events: auto; }
       .hero { 
         min-height: 100vh; 
@@ -45,6 +52,27 @@
         background-image: url('assets/images/hero1.webp');
         background-size: cover;
         background-position: center;
+      }
+      .footer-legal {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+      }
+      .legal-btn {
+        background: none;
+        border: none;
+        color: var(--secondary-text-color);
+        font-size: 1rem;
+        cursor: pointer;
+        text-decoration: none;
+        opacity: 0.8;
+        transition: opacity 0.3s;
+        padding: 0;
+        margin: 0;
+        font-family: inherit;
+      }
+      .legal-btn:hover {
+        opacity: 1;
       }
     </style>
 
@@ -67,13 +95,187 @@
       },
       "url": "https://stackwerkhaus.de",
       "telephone": "",
-      "priceRange": "€€"
+      "priceRange": "€€",
+      "founder": {
+        "@type": "Person",
+        "name": "Tarik Marshall",
+        "jobTitle": "Gründer & UI/UX Designer",
+        "sameAs": [
+          "https://www.linkedin.com/in/tarik-arthur-marshall-6112b2239", 
+          "https://www.instagram.com/stackwerkhaus"
+        ]
+      },
+      "knowsAbout": [
+        "Webentwicklung",
+        "UI/UX Design",
+        "KI-Implementation",
+        "Branding",
+        "Responsive Websites",
+        "Web-App Entwicklung"
+      ],
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "name": "Webentwicklung",
+          "description": "Moderne, responsive Websites und Web-Apps für Unternehmen in Berlin"
+        },
+        {
+          "@type": "Offer",
+          "name": "UI/UX Design",
+          "description": "Nutzerzentriertes Design für digitale Produkte"
+        },
+        {
+          "@type": "Offer",
+          "name": "KI-Integration",
+          "description": "Integration von KI-Lösungen für smarte Websites und Anwendungen"
+        },
+        {
+          "@type": "Offer",
+          "name": "Branding",
+          "description": "Entwicklung einzigartiger Markenidentitäten für Unternehmen in Berlin"
+        }
+      ]
+    }
+    </script>
+    
+    <!-- FAQ Schema für verbesserte Sichtbarkeit -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Was kostet eine professionelle Website in Berlin?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Die Kosten für eine professionelle Website in Berlin variieren je nach Umfang und Anforderungen. Basiswebsites beginnen bei ca. 2.000€, während komplexere Projekte mit E-Commerce-Funktionalität oder individualisierten Designs zwischen 5.000€ und 15.000€ liegen können. Bei STACKWERKHAUS bieten wir maßgeschneiderte Lösungen, die genau auf Ihre Bedürfnisse und Ihr Budget zugeschnitten sind."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wie lange dauert die Entwicklung einer Website?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Die Entwicklungszeit einer Website hängt vom Umfang des Projekts ab. Einfachere Websites können innerhalb von 4-6 Wochen fertiggestellt werden, während komplexere Projekte 2-4 Monate benötigen können. Bei STACKWERKHAUS arbeiten wir effizient, um Ihre Website termingerecht zu liefern, ohne Kompromisse bei der Qualität einzugehen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wie kann KI meine Website verbessern?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "KI bietet konkrete Vorteile durch: Lokale Personalisierung (standortbasierte Inhalte), intelligente Chatbots (24/7 Kundensupport), automatisierte SEO-Texterstellung und datenbasierte Nutzeranalysen – alles strategisch eingesetzt für bessere Conversion und Nutzererfahrung auf deiner Website."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Welche technischen Lösungen eignen sich für Berliner Unternehmen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Für Kleinunternehmen empfehle ich WordPress mit individuell entwickeltem Theme, für wachsende Unternehmen Headless CMS mit React/Next.js, und für Online-Shops WooCommerce oder Shopify mit lokalen Funktionen. Die Technologie wird an deine Anforderungen angepasst, um optimale Ergebnisse für deinen Berliner Standort zu erzielen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Gibt es laufende Kosten nach dem Launch meiner Website?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja, für den langfristigen Erfolg deiner Website fallen typische laufende Kosten an: Hosting: 5-15€/Monat, Domain: ca. 15€/Jahr, SSL-Zertifikat: meist kostenlos. Optional: Wartungspaket ab 50€/Monat für Updates, Sicherheit und kleine Änderungen – alles transparent kalkuliert ohne versteckte Gebühren."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Schema.org Organization for AI Knowledge -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "STACKWERKHAUS",
+      "image": "https://stackwerkhaus.de/assets/images/logo.webp",
+      "description": "Design Studio für digitale Produkte und Markenerlebnisse in Berlin",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Berlin",
+        "addressRegion": "Berlin",
+        "postalCode": "10713",
+        "addressCountry": "DE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "52.4796992",
+        "longitude": "13.3130005"
+      },
+      "url": "https://stackwerkhaus.de",
+      "telephone": "+4917631378294",
+      "sameAs": [
+        "https://www.instagram.com/stackwerkhaus",
+        "https://www.linkedin.com/in/tarik-arthur-marshall-6112b2239"
+      ]
+    }
+    </script>
+
+    <!-- HowTo Schema for Website Development Process -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Wie entwickelt STACKWERKHAUS eine Website für Berliner Unternehmen",
+      "description": "Der Prozess der Webentwicklung bei STACKWERKHAUS von der Konzeption bis zum Launch in 5 Schritten",
+      "totalTime": "PT8W",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "EUR",
+        "value": "2000-5000"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Konzeption & Briefing",
+          "text": "Wir erfassen deine Anforderungen, definieren Ziele und erstellen ein Konzept für deine Website.",
+          "image": "https://stackwerkhaus.de/assets/images/konzeption.webp",
+          "url": "https://stackwerkhaus.de/#services-faq"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Design & Feedback",
+          "text": "Wir gestalten das Design deiner Website und holen dein Feedback ein, um es zu perfektionieren.",
+          "image": "https://stackwerkhaus.de/assets/images/design.webp",
+          "url": "https://stackwerkhaus.de/#services-faq"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Entwicklung & Programmierung",
+          "text": "Wir setzen das Design in Code um und entwickeln alle gewünschten Funktionen.",
+          "image": "https://stackwerkhaus.de/assets/images/entwicklung.webp",
+          "url": "https://stackwerkhaus.de/#services-faq"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Content-Integration & Testing",
+          "text": "Wir integrieren Inhalte und testen die Website auf verschiedenen Geräten und Browsern.",
+          "image": "https://stackwerkhaus.de/assets/images/testing.webp",
+          "url": "https://stackwerkhaus.de/#services-faq"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Launch & Optimierung",
+          "text": "Wir veröffentlichen deine Website und optimieren sie nach dem Launch für beste Performance.",
+          "image": "https://stackwerkhaus.de/assets/images/launch.webp",
+          "url": "https://stackwerkhaus.de/#services-faq"
+        }
+      ]
     }
     </script>
 </head>
 <body class="preload">
-    <!-- Header Component - Moved outside scroll container for fixed positioning -->
-    <header>
+    <!-- ARIA landmarks for better accessibility -->
+    <div class="blur-overlay" tabindex="-1" aria-hidden="true" style="display:block;"></div>
+
+    <!-- Header Component with enhanced semantics -->
+    <header role="banner">
         <div class="logo">
             <img src="assets/images/logo1.svg" alt="STACKWERKHAUS Logo">
             <video class="masked-video" playsinline muted loop autoplay>
@@ -81,22 +283,45 @@
                 <source src="assets/video/logo_bg1.mp4" type="video/mp4">
             </video>
         </div>
-        <nav>
-            <a href="#about">Hinter STWKHS</a>
+        <nav class="desktop-nav">
+            <a href="#services-faq">FAQ</a>
             <a href="#projects">Projekte</a>
         </nav>
         <div class="header-cta">
             <a href="#kontakt" class="cta-link">Kontakt!</a>
         </div>
+        
+        <!-- Mobile menu button -->
+        <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
     </header>
+
+    <!-- Mobile navigation overlay -->
+    <div class="mobile-nav-overlay">
+        <nav class="mobile-nav">
+            <a href="#services-faq">Lösungen</a>
+            <a href="#services-faq">FAQ</a>
+            <a href="#projects">Projekte</a>
+            <a href="#kontakt">Kontakt!</a>
+        </nav>
+        <button class="mobile-nav-close" aria-label="Menü schließen">
+          <svg width="32" height="32" viewBox="0 0 32 32" stroke="currentColor" fill="none">
+            <line x1="8" y1="8" x2="24" y2="24" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="24" y1="8" x2="8" y2="24" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+    </div>
 
     <!-- Main scrollable container -->
     <div data-scroll-container>
         <!-- Main Content Area -->
-        <main>
+        <main role="main">
             <!-- Hero Section Component -->
-            <section class="hero">
-                <h1 class="hero-title section-headline-large">
+            <section class="hero" aria-labelledby="hero-title">
+                <h1 id="hero-title" class="hero-title section-headline-large">
                     <span>Von Rohbau</span></br>
                     <span>bis Launch</span>
                 </h1>
@@ -108,32 +333,115 @@
                 </div>
             </section>
 
-            <!-- About Section Component -->
-            <section id="about" class="about-section">
-                <h2 class="section-headline-large"> Hinter STWKHS<span class="headline-tag">STWKHS—'25</span></h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <h2>Das Stackwerkhaus</h2>
-                        <p class="about-intro"><strong>Klar. Direkt. Digital.</strong> Ich helfe dir, deine Online-Präsenz easy aufs nächste Level zu bringen – mit smarter Technik, die einfach funktioniert und Spaß macht.</p>
-                        <p>Ich bin Tarik aus Berlin – dein Partner für smarte und digitale Lösungen. Ob du Freelancer bist, ein kleines Business führst oder einfach eine moderne Website suchst: Wir entwickeln gemeinsam genau das, was zu dir passt.
-                            Ohne Blabla, ohne Fachjargon – einfach klar, kreativ und auf den Punkt.</p>
+            <!-- NEUER KOMBINIERTER BEREICH: About + FAQ + Dienstleistungen -->
+            <section id="services-faq" class="faq-section" aria-labelledby="faq-heading">
+                <h2 id="faq-heading" class="section-headline-large">Der Bauplan<span class="headline-tag">STWKHS—'25</span></h2>
+                
+                <!-- Kurze Intro mit About und Button für Lebenslauf -->
+                <div class="faq-intro">
+                    <div class="intro-text">
+                        <p><strong>Ich bin Tarik aus Berlin</strong> – dein Partner für digitale Lösungen, die wirklich funktionieren. Ob Freelancer, kleines Business oder Start-up: Wir entwickeln gemeinsam genau das, was zu dir passt. Ohne Fachjargon – einfach klar, kreativ und zielgerichtet.</p>
                         <button class="read-more-btn">Meine Reise & Expertise</button>
-                        <div class="contact-links" style="text-align:center; margin-top:2rem;">
+                    </div>
+                </div>
+                
+                <!-- Services Grid -->
+                <div class="services-mini-grid">
+                    <div class="service-mini-card">
+                        <div class="service-icon">
+                            <img width="32" height="32" src="https://img.icons8.com/windows/32/web.png" alt="web"/>
+                        </div>
+                        <h3>Webentwicklung</h3>
+                        <p>Responsive Websites und Apps mit optimaler Performance für alle Geräte.</p>
+                    </div>
+                    
+                    <div class="service-mini-card">
+                        <div class="service-icon">
+                            <img width="32" height="32" src="https://img.icons8.com/material-rounded/24/design.png" alt="design"/>
+                        </div>
+                        <h3>UI/UX Design</h3>
+                        <p>Intuitive Designs, die Funktionalität und Ästhetik perfekt verbinden.</p>
+                    </div>
+                    
+                    <div class="service-mini-card">
+                        <div class="service-icon">
+                          <img width="32" height="32" src="https://img.icons8.com/fluency-systems-filled/48/fingerprint.png" alt="fingerprint"/>
+                        </div>
+                        <h3>Branding</h3>
+                        <p>Entwicklung einzigartiger Markenidentitäten für bleibenden Eindruck.</p>
+                    </div>
+                    
+                    <div class="service-mini-card">
+                        <div class="service-icon">
+                          <img width="32" height="32" src="https://img.icons8.com/ios-filled/50/sparkling--v1.png" alt="sparkling--v1"/>
+                        </div>
+                        <h3>KI-Integration</h3>
+                        <p>Smarte KI-Lösungen für bessere Nutzererfahrung und Automatisierung.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Accordion mit direkten Antworten -->
+                <div class="faq-container">
+                    <div class="faq-image">
+                        <img src="assets/images/IMG_5717.webp" alt="Tarik Marshall" class="profile-image">
+                        <div class="contact-links">
                             <a href="mailto:info@stackwerkhaus.de">Email</a>
-                            <a href="https://www.instagram.com/stackwerkhaus/" target="_blank">Instagram</a>
-                            <a href="https://twitter.com/stackwerkhaus" target="_blank">Twitter</a>
-                            <a href="https://www.linkedin.com/in/tarik-marshall/" target="_blank">LinkedIn</a>
+                            <a href="https://www.instagram.com/stackwerkhaus" target="_blank">Instagram</a>
+                            <a href="https://www.linkedin.com/in/tarik-arthur-marshall-6112b2239" target="_blank">LinkedIn</a>
                         </div>
                     </div>
-                    <div class="about-image">
-                        <img src="assets/images/IMG_5717.webp" alt="Tarik Marshall">
+                    
+                    <div class="faq-content">
+                        <h3 class="faq-section-title">Häufig gestellte Fragen</h3>
+                        
+                        <div class="faq-item">
+                            <h4>Was kostet eine professionelle Website für mein Unternehmen?</h4>
+                            <div class="faq-answer">
+                                <p><strong>Eine maßgeschneiderte Website kostet bei STACKWERKHAUS zwischen 2.000€ und 5.000€</strong>, je nach Umfang. Im Preis enthalten: Responsive Design, SEO-Grundoptimierung, CMS und Kontaktfunktionen – ohne versteckte Kosten.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h4>Wie lange dauert die Entwicklung einer Website?</h4>
+                            <div class="faq-answer">
+                                <p><strong>Die Entwicklungszeit einer Website hängt vom Umfang ab:</strong> Kleine Business-Website: 3-5 Wochen, Mittelgroße Website: 6-8 Wochen, E-Commerce: 8-12 Wochen. Nach dem Erstgespräch erhältst du binnen 5 Tagen einen detaillierten Zeitplan.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h4>Welche Lösungen eignen sich für kleine bis mittlere Unternehmen (KMU)?</h4>
+                            <div class="faq-answer">
+                                <p><strong>Für Kleinunternehmen empfehle ich WordPress mit individuell entwickeltem Theme</strong>, für wachsende Unternehmen Headless CMS mit React/Next.js, für Online-Shops WooCommerce oder Shopify mit lokalen Funktionen. Die Technologie wird an deine Anforderungen angepasst.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h4>Wie kann KI meine Website verbessern?</h4>
+                            <div class="faq-answer">
+                                <p><strong>KI bietet konkrete Vorteile durch:</strong> Lokale Personalisierung (standortbasierte Inhalte), intelligente Chatbots (24/7 Kundensupport), automatisierte SEO-Texterstellung und datenbasierte Nutzeranalysen – alles strategisch eingesetzt für bessere Conversion.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h4>Gibt es laufende Kosten nach dem Launch?</h4>
+                            <div class="faq-answer">
+                                <p><strong>Ja, für den langfristigen Erfolg fallen diese transparenten Kosten an:</strong> Hosting: 5-15€/Monat, Domain: ca. 15€/Jahr, SSL: meist kostenlos. Optional: Wartungspaket ab 50€/Monat für Updates, Sicherheit und kleine Änderungen – transparent kalkuliert.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h4>Ist eine günstige Website für 500€ sinnvoll für mein Unternehmen?</h4>
+                            <div class="faq-answer">
+                                <p><strong>Eine 500€-Website hat erhebliche Einschränkungen:</strong> meist nur vorgefertigte Templates ohne Individualisierung, begrenzte Anpassungsmöglichkeiten, kaum lokale SEO und oft versteckte Folgekosten. STACKWERKHAUS bietet ab 2.000€ professionelle, wachstumsfähige Lösungen mit lokaler SEO-Optimierung.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <!-- Projects Section Component -->
-            <section id="projects" class="projects-section">
-                <h2 class="section-headline-large">Projekte <span class="headline-tag">STWKHS—'25</span></h2>
+            <section id="projects" class="projects-section" aria-labelledby="projects-heading">
+                <h2 id="projects-heading" class="section-headline-large">Projekte <span class="headline-tag">STWKHS—'25</span></h2>
                 <div class="project-grid">
                     <a class="project" href="#" tabindex="0">
                         <div class="img-wrapper">
@@ -161,36 +469,30 @@
                         <span>UI/UX & App Design</span>
                     </a>
                     <!-- Placeholder Card inviting viewer -->
-                    <a class="project placeholder-card smooth-scroll" href="#kontakt" tabindex="0" style="background: var(--primary-text-color); display: flex; flex-direction: column; justify-content: space-between; min-height: 320px; position: relative; overflow: hidden; padding: 2.5rem; transition: transform 0.3s ease;">
-                        <div style="position: absolute; top: 0; right: 0; width: 150px; height: 150px; overflow: hidden;">
-                            <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: -50px; right: -50px; opacity: 0.08;">
-                                <path d="M100 0L200 100L100 200L0 100L100 0Z" fill="var(--accent-color)"/>
-                            </svg>
+                    <a class="project placeholder-card smooth-scroll" href="#kontakt" tabindex="0" style="background: var(--primary-text-color); aspect-ratio: 4/5; height: auto; position: relative; overflow: hidden;">
+                        <div class="img-wrapper">
+                            <div class="svg-bg">
+                                <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: -50px; right: -50px; opacity: 0.08;">
+                                    <path d="M100 0L200 100L100 200L0 100L100 0Z" fill="var(--accent-color)"/>
+                                </svg>
+                            </div>
+                            <!-- iridescence canvas will be injected here by JS -->
                         </div>
-                        <div style="z-index: 2; text-align: left;">
+                        <div class="content" style="z-index: 3; text-align: left;">
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M24 4L29.2908 19.7092L45 24L29.2908 28.2908L24 44L18.7092 28.2908L3 24L18.7092 19.7092L24 4Z" stroke="var(--accent-color)" stroke-width="2.5" fill="none"/>
                             </svg>
-                            <h2 class="title" style="margin: 1.5rem 0 0.5rem 0; text-align: left; color: var(--secondary-text-color); font-size: 2.2rem;">Dein Projekt?</h2>
-                        </div>
-                        <div style="z-index: 2; margin-top: 2rem;">
-                            <span style="text-align: left; color: var(--secondary-text-color); font-weight: 500; display: block; margin-bottom: 1.5rem; opacity: 0.9;">Werde Teil des STACKWERKHAUS Portfolios</span>
-                            <div style="display: flex; align-items: center;">
-                                <span style="color: var(--accent-color); font-weight: 600; display: inline-flex; align-items: center; transition: transform 0.3s ease;">
-                                    Jetzt anfragen 
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 8px; transition: transform 0.3s ease;">
-                                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </span>
-                            </div>
+                            <h2 class="title" style="margin: 1.5rem 0 0.5rem 0; text-align: left; font-size: 2rem;">Dein Projekt?</h2>
+                            <span class="subtitle" style="color: var(--secondary-text-color); font-size: 1.15rem; font-weight: 500;">Werde Teil des STACKWERKHAUS Portfolios</span>
+                            <span style="color: #C1121F; font-size: 1.25rem; font-weight: 700; margin-top: 1.5rem; display: inline-block;">Jetzt anfragen &nbsp;→</span>
                         </div>
                     </a>
                 </div>
             </section>
 
             <!-- Contact Section Component -->
-            <section id="kontakt" class="contact">
-                <h2 class="section-headline-large">Kontakt <span class="headline-tag">STWKHS—'25</span></h2>
+            <section id="kontakt" class="contact" aria-labelledby="kontakt-heading">
+                <h2 id="kontakt-heading" class="section-headline-large">Kontakt <span class="headline-tag">STWKHS—'25</span></h2>
                 <div class="contact-grid">
                     <!-- Contact Form Card -->
                     <div class="contact-card">
@@ -257,58 +559,22 @@
                     </div>
                     
                     <!-- Contact Info Card -->
-                    <div class="contact-info-card">
-                        <div class="contact-info-content">
-                            <h2 class="contact-info-title">Kontaktinfo</h2>
-                            
-                            <div class="contact-info-item">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-width="1.5"/>
-                                    <path d="M2 12H4M12 2V4M22 12H20M12 22V20M19.0784 19.0784L17.6642 17.6642M19.0784 4.99994L17.6642 6.41415M4.92157 19.0784L6.33578 17.6642M4.92157 4.99994L6.33578 6.41415" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                                </svg>
-                                <div>
-                                    <h3>Standort</h3>
-                                    <p>Berlin, Deutschland</p>
-                                </div>
-                            </div>
-                            
-                            <div class="contact-info-item">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M22 12.2039V13.725C22 17.6258 22 19.5763 20.8284 20.7881C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.7881C2 19.5763 2 17.6258 2 13.725V12.2039C2 9.91549 2 8.77128 2.5192 7.82274C3.0384 6.87421 3.98695 6.28551 5.88403 5.10813L7.88403 3.86687C9.88939 2.62229 10.8921 2 12 2C13.1079 2 14.1106 2.62229 16.116 3.86687L18.116 5.10812C20.0131 6.28551 20.9616 6.87421 21.4808 7.82274" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                                    <path d="M15 18H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                                </svg>
-                                <div>
-                                    <h3>E-Mail</h3>
-                                    <a href="mailto:info@stackwerkhaus.de">info@stackwerkhaus.de</a>
-                                </div>
-                            </div>
-                            
-                            <div class="contact-info-item">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M2 16.1C2 19.6287 4.85786 22.5 8.36364 22.5C11.8694 22.5 14.7273 19.6287 14.7273 16.1C14.7273 14.1786 13.8754 12.4459 12.5091 11.25H4.21818C2.85186 12.4459 2 14.1786 2 16.1Z" stroke="currentColor" stroke-width="1.5"/>
-                                    <path d="M14.7273 16.1C14.7273 19.6287 17.5851 22.5 21.0909 22.5C21.0909 22.5 22 22.5 22 21.5857C22 20.6714 21.0909 16.1 21.0909 16.1C21.0909 12.5713 18.233 9.7 14.7273 9.7C14.7273 9.7 14.7273 12.5713 14.7273 16.1Z" stroke="currentColor" stroke-width="1.5"/>
-                                    <path d="M8.36364 9.7C11.8694 9.7 14.7273 6.82868 14.7273 3.3C14.7273 3.3 13.8182 1.5 8.36364 1.5C2.90909 1.5 2 3.3 2 3.3C2 6.82868 4.85786 9.7 8.36364 9.7Z" stroke="currentColor" stroke-width="1.5"/>
-                                </svg>
-                                <div>
-                                    <h3>Social Media</h3>
-                                    <div class="social-links-inline">
-                                        <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
-                                        <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="contact-info-card" id="contact-info-card"></div>
                 </div>
             </section>
         </main>
 
         <!-- Footer Component -->
-        <footer class="footer">
+        <footer class="footer" role="contentinfo">
             <div class="footer-social">
-                <a href="#">Instagram</a>
-                <a href="#">Twitter</a>
-                <a href="#">LinkedIn</a>
+                <div class="social-links-left">
+                    <a href="https://www.instagram.com/stackwerkhaus" target="_blank">Instagram</a>
+                    <a href="https://www.linkedin.com/in/tarik-arthur-marshall-6112b2239" target="_blank">LinkedIn</a>
+                </div>
+                <div class="footer-legal">
+                    <button class="legal-btn" id="impressum-btn">Impressum</button>
+                    <button class="legal-btn" id="datenschutz-btn">Datenschutzerklärung</button>
+                </div>
             </div>
             <div class="footer-logo-scroll">
                 <div class="footer-logo-track">
@@ -316,47 +582,170 @@
                 </div>
             </div>
         </footer>
-        <div class="blur-overlay" tabindex="-1" aria-hidden="true"></div>
-        <div 
-          class="lebenslauf-card" 
-          role="dialog" 
-          aria-modal="true" 
-          aria-labelledby="lebenslauf-title"
-          aria-describedby="lebenslauf-description">
-          <button 
-            class="close-card-btn" 
-            aria-label="Schließen"
-            type="button">
-            &times;
-          </button>
-          <h2 id="lebenslauf-title">Tarik Marshall: Digitale Evolution durch Technologie & KI</h2>
-          <p id="lebenslauf-description">Mein Weg und die Expertise, die STACKWERKHAUS antreibt – für Ihren digitalen Erfolg.</p>
-          <div class="lebenslauf-section">
-            <h3>Philosophie & Ansatz</h3>
-            <p>Ich verbinde strategisches Denken mit der Präzision neuester Technologien und der Effizienz von KI-Systemen, um digitale Produkte zu schaffen, die nicht nur ästhetisch überzeugen, sondern vor allem nachhaltige Werte für Ihr Unternehmen generieren. Effizienz, Skalierbarkeit und Nutzerzentrierung stehen im Mittelpunkt meiner Arbeit.</p>
-          </div>
-          <div class="lebenslauf-section">
-            <h3>Kernkompetenzen & Technologien</h3>
-            <ul>
-              <li><strong>Web & App Entwicklung:</strong> Full-Stack Lösungen mit Fokus auf moderne JavaScript Frameworks (z.B. React, Vue, Node.js), Python, und Headless CMS-Architekturen.</li>
-              <li><strong>KI-Integration:</strong> Einsatz von KI-Agenten und Machine Learning Modellen zur Prozessoptimierung, Personalisierung und für innovative Features.</li>
-              <li><strong>UI/UX & Branding:</strong> Gestaltung intuitiver Benutzeroberflächen und starker Markenidentitäten, die Ihre Zielgruppe ansprechen.</li>
-              <li><strong>Agile Projektmethoden:</strong> Transparente und iterative Entwicklungsprozesse für schnelle Ergebnisse und kontinuierliche Verbesserung.</li>
-              <li><strong>Performance & Kosten-Effizienz:</strong> Optimierung von Ladezeiten, Code-Qualität und Infrastruktur für maximale Rentabilität.</li>
-              <li><em>Weitere Skills hier einfügen (z.B. spezifische Software, Datenbanken, Cloud-Plattformen aus Ihrem CV)</em></li>
-            </ul>
-          </div>
-          <div class="lebenslauf-section">
-            <h3>Ausgewählte Erfahrungen & Projekte</h3>
-            <p><em>Hier können Sie 2-3 prägnante Beispiele Ihrer wichtigsten Projekte oder Karrierestationen aus Ihrem CV einfügen. Betonen Sie Herausforderungen, Lösungen und Ergebnisse.</em></p>
-            <ul>
-              <li><strong>Beispiel Projekt 1:</strong> Entwicklung einer KI-gestützten Analyseplattform für KMU zur Markttrend-Erkennung. Ergebnis: 30% schnellere Entscheidungsfindung für Kunden.</li>
-              <li><strong>Beispiel Rolle:</strong> Lead Developer bei [Vorheriger Arbeitgeber/Projekt], verantwortlich für [Ihre Hauptaufgaben und Erfolge].</li>
-              <li><em>Fügen Sie hier weitere relevante Punkte hinzu.</em></li>
-            </ul>
-          </div>
-        </div>
     </div>
+
+    <!-- Modal Overlays and Cards moved outside scroll container for proper behavior -->
+    <div class="blur-overlay"></div>
+    <div 
+      class="lebenslauf-card" 
+      role="dialog" 
+      aria-modal="true" 
+      aria-labelledby="lebenslauf-title"
+      aria-describedby="lebenslauf-description">
+      <button 
+        class="close-card-btn" 
+        aria-label="Schließen"
+        type="button">
+        &times;
+      </button>
+      <h2 id="lebenslauf-title">Tarik Marshall: <br>Digitale Evolution durch Technologie & KI</h2>
+      <p id="lebenslauf-description">Mein Weg und die Expertise, die STACKWERKHAUS antreibt – für Ihren digitalen Erfolg.</p>
+      <div class="lebenslauf-content">
+        <div class="lebenslauf-section">
+          <h3>Philosophie & Ansatz</h3>
+          <p>Ich verbinde meine langjährige B2B/B2C-Erfahrung mit technischer Expertise und KI-Innovation, um digitale Produkte zu schaffen, die nicht nur ästhetisch überzeugen, sondern vor allem nachhaltige Werte für Ihr Unternehmen generieren. Mein Ansatz beruht auf tiefgehendem Kundenverständnis – ich extrahiere die entscheidenden Informationen, um maßgeschneiderte Lösungen zu entwickeln, die genau Ihre Zielgruppe ansprechen. In einem Deutschland, das bei KI-Adoption noch aufholt, biete ich Ihnen einen entscheidenden Wettbewerbsvorteil.</p>
+        </div>
+        <div class="lebenslauf-section">
+          <h3>Kernkompetenzen & Technologien</h3>
+          <ul>
+            <li><strong>Web & App Entwicklung:</strong> Full-Stack Lösungen mit TypeScript, React, Next.js, Node.js und modernen Headless CMS-Architekturen.</li>
+            <li><strong>KI-Integration:</strong> Einsatz von KI-Agenten und Machine Learning Modellen zur Prozessoptimierung, Personalisierung und für innovative Nutzererlebnisse.</li>
+            <li><strong>UI/UX Design:</strong> Gestaltung intuitiver Benutzeroberflächen mit Figma und Canva, die Ihre Markenidentität stärken und Nutzer begeistern.</li>
+            <li><strong>Projektmanagement:</strong> Transparente Organisation mit Notion und agilen Methoden für effiziente Zusammenarbeit und schnelle Ergebnisse.</li>
+            <li><strong>Business & Strategie:</strong> 7+ Jahre Erfahrung als Key Account Manager im B2B/B2C-Bereich mit mittelständischen und großen Unternehmen.</li>
+            <li><strong>Kommunikation:</strong> Fähigkeit, komplexe technische Konzepte verständlich zu vermitteln und Kundenbedürfnisse präzise zu erfassen.</li>
+          </ul>
+        </div>
+        <div class="lebenslauf-section">
+          <h3>Beruflicher Werdegang</h3>
+          <ul>
+            <li><strong>STACKWERKHAUS:</strong> Gründer und Inhaber eines Design Studios mit Fokus auf KI-gestützte Webentwicklung und digitale Transformation.</li>
+            <li><strong>Key Account Management:</strong> 7-8 Jahre Erfahrung in verschiedenen B2B/B2C-Sektoren, Betreuung mittelständischer bis großer Unternehmen.</li>
+            <li><strong>Agenturerfahrung:</strong> Langjährige Zusammenarbeit mit diversen Agenturen im Bereich Webdesign und digitale Produktentwicklung.</li>
+            <li><strong>Ausbildung:</strong> Abschluss im Bereich Webdesign mit kontinuierlicher Weiterbildung in neuen Technologien und KI-Anwendungen.</li>
+          </ul>
+        </div>
+        <div class="lebenslauf-section">
+          <h3>Leitprinzipien & Werte</h3>
+          <ul>
+            <li><strong>Tech trifft Business:</strong> Die Verbindung von Verkaufspsychologie und technischem Know-how schafft digitale Produkte, die nicht nur funktionieren, sondern auch konvertieren.</li>
+            <li><strong>KI als Multiplikator:</strong> Ich setze KI nicht als Ersatz, sondern als Verstärker menschlicher Kreativität ein – für bessere Ergebnisse in kürzerer Zeit zu fairen Preisen.</li>
+            <li><strong>Transparenz & Partnerschaft:</strong> Klare Kommunikation, ehrliches Feedback und ein partnerschaftlicher Ansatz bilden die Grundlage jeder erfolgreichen Zusammenarbeit.</li>
+            <li><strong>Berliner Innovation:</strong> Als Teil der Berliner Tech-Szene bringe ich frische Perspektiven und zukunftsweisende Lösungen in Ihr Unternehmen – immer einen Schritt voraus.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div 
+      class="legal-card impressum-card" 
+      role="dialog" 
+      aria-modal="true" 
+      aria-labelledby="impressum-title"
+      aria-describedby="impressum-content">
+      <button 
+        class="close-card-btn" 
+        aria-label="Schließen"
+        type="button">
+        &times;
+      </button>
+      <h2 id="impressum-title">Impressum</h2>
+      <div class="legal-content" id="impressum-content">
+        <div class="legal-section">
+          <h3>Angaben gemäß § 5 TMG</h3>
+          <p>Tarik Marshall<br>
+          STACKWERKHAUS<br>
+          Sigmaringer Str. 27<br>
+          10713 Berlin<br>
+          Deutschland</p>
+        </div>
+        <div class="legal-section">
+          <h3>Kontakt</h3>
+          <p>Telefon: 0176 31378294<br>
+          E-Mail: info@stackwerkhaus.de<br>
+          Website: <a href="https://www.stackwerkhaus.de">www.stackwerkhaus.de</a></p>
+        </div>
+        <div class="legal-section">
+          <h3>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
+          <p>Tarik Marshall<br>
+          Sigmaringer Str. 27<br>
+          10713 Berlin</p>
+        </div>
+        <div class="legal-section">
+          <h3>Umsatzsteuer-ID</h3>
+          <p>Noch nicht vorhanden</p>
+        </div>
+        <div class="legal-section">
+          <h3>Berufshaftpflichtversicherung</h3>
+          <p>Derzeit nicht vorhanden</p>
+        </div>
+      </div>
+    </div>
+    <div 
+      class="legal-card datenschutz-card" 
+      role="dialog" 
+      aria-modal="true" 
+      aria-labelledby="datenschutz-title"
+      aria-describedby="datenschutz-content">
+      <button 
+        class="close-card-btn" 
+        aria-label="Schließen"
+        type="button">
+        &times;
+      </button>
+      <h2 id="datenschutz-title">Datenschutzerklärung</h2>
+      <div class="legal-content" id="datenschutz-content">
+        <p>Diese Datenschutzerklärung klärt dich über die Art, den Umfang und Zweck der Verarbeitung von personenbezogenen Daten (nachfolgend "Daten") innerhalb meines Onlineangebotes auf.</p>
+        <div class="legal-section">
+          <h3>Verantwortlicher</h3>
+          <p>Tarik Marshall<br>
+          STACKWERKHAUS<br>
+          Sigmaringer Str. 27<br>
+          10713 Berlin<br>
+          E-Mail: info@stackwerkhaus.de</p>
+        </div>
+        <div class="legal-section">
+          <h3>Zugriffsdaten und Hosting</h3>
+          <p>Beim Besuch dieser Website werden automatisch Informationen (sogenannte Server-Logfiles) wie IP-Adresse, Zeitpunkt des Zugriffs, Browsertyp usw. erhoben. Diese Daten dienen ausschließlich der Sicherstellung eines störungsfreien Betriebs und werden nicht zur Identifikation deiner Person verwendet.</p>
+          <p>Das Hosting erfolgt über die STRATO AG, Otto-Ostrowski-Straße 7, 10249 Berlin. Mit dem Anbieter wurde ein Vertrag zur Auftragsverarbeitung geschlossen.</p>
+        </div>
+        <div class="legal-section">
+          <h3>Kontaktformular</h3>
+          <p>Wenn du mich über das Kontaktformular kontaktierst, werden deine Angaben zwecks Bearbeitung der Anfrage sowie für mögliche Anschlussfragen gespeichert. Diese Daten werden nicht ohne deine ausdrückliche Einwilligung weitergegeben.</p>
+        </div>
+        <div class="legal-section">
+          <h3>Cookies und Tracking</h3>
+          <p>Aktuell werden keine Tracking-Cookies verwendet. Zukünftig kann funktionales Tracking (z. B. für Terminbuchungen via Calendly) hinzukommen. In diesem Fall wird eine aktualisierte Cookie- und Datenschutzerklärung bereitgestellt.</p>
+        </div>
+        <div class="legal-section">
+          <h3>Rechtsgrundlagen der Verarbeitung</h3>
+          <ul>
+            <li>Art. 6 Abs. 1 lit. b DSGVO – zur Erfüllung eines Vertrags oder vorvertraglicher Maßnahmen</li>
+            <li>Art. 6 Abs. 1 lit. f DSGVO – berechtigtes Interesse an einer funktionierenden Website</li>
+          </ul>
+        </div>
+        <div class="legal-section">
+          <h3>Deine Rechte</h3>
+          <p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung sowie Datenübertragbarkeit. Zudem kannst du jederzeit Widerspruch gegen die Verarbeitung deiner Daten einlegen.</p>
+        </div>
+        <div class="legal-section">
+          <h3>Beschwerderecht</h3>
+          <p>Du hast das Recht, dich bei der zuständigen Aufsichtsbehörde zu beschweren:<br>
+          Berliner Beauftragte für Datenschutz und Informationsfreiheit<br>
+          Alt-Moabit 59-61, 10555 Berlin<br>
+          E-Mail: mailbox@datenschutz-berlin.de</p>
+        </div>
+        <div class="legal-section">
+          <h3>Änderungen dieser Datenschutzerklärung</h3>
+          <p>Ich behalte mir vor, diese Erklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht.</p>
+        </div>
+      </div>
+    </div>
+    
     <!-- <script src="dist/bundle.js"></script> JS will be injected by HtmlWebpackPlugin -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Removed popup functionality code - now handled by popupManager.js
+      });
+    </script>
 </body>
 </html> 

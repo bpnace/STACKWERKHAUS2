@@ -1,167 +1,41 @@
-/* Switzer Font Faces (inlined from switzer.css) */
+/* Switzer Font Faces (consolidated for better performance) */
 @font-face {
-  font-family: 'Switzer-Thin';
-  src: url('../../public/assets/fonts/Switzer-Thin.woff2') format('woff2'),
-       url('../../public/assets/fonts/Switzer-Thin.woff') format('woff'),
-       url('../../public/assets/fonts/Switzer-Thin.ttf') format('truetype');
-  font-weight: 100;
-  font-display: swap;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Switzer-ThinItalic';
-  src: url('../../public/assets/fonts/Switzer-ThinItalic.woff2') format('woff2'),
-       url('../../public/assets/fonts/Switzer-ThinItalic.woff') format('woff'),
-       url('../../public/assets/fonts/Switzer-ThinItalic.ttf') format('truetype');
-  font-weight: 100;
-  font-display: swap;
-  font-style: italic;
-}
-@font-face {
-  font-family: 'Switzer-Extralight';
-  src: url('../../public/assets/fonts/Switzer-Extralight.woff2') format('woff2'),
-       url('../../public/assets/fonts/Switzer-Extralight.woff') format('woff'),
-       url('../../public/assets/fonts/Switzer-Extralight.ttf') format('truetype');
-  font-weight: 200;
-  font-display: swap;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Switzer-ExtralightItalic';
-  src: url('../../public/assets/fonts/Switzer-ExtralightItalic.woff2') format('woff2'),
-       url('../../public/assets/fonts/Switzer-ExtralightItalic.woff') format('woff'),
-       url('../../public/assets/fonts/Switzer-ExtralightItalic.ttf') format('truetype');
-  font-weight: 200;
-  font-display: swap;
-  font-style: italic;
-}
-@font-face {
-  font-family: 'Switzer-Light';
-  src: url('../../public/assets/fonts/Switzer-Light.woff2') format('woff2'),
-       url('../../public/assets/fonts/Switzer-Light.woff') format('woff'),
-       url('../../public/assets/fonts/Switzer-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-display: swap;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Switzer-LightItalic';
-  src: url('../../public/assets/fonts/Switzer-LightItalic.woff2') format('woff2'),
-       url('../../public/assets/fonts/Switzer-LightItalic.woff') format('woff'),
-       url('../../public/assets/fonts/Switzer-LightItalic.ttf') format('truetype');
-  font-weight: 300;
-  font-display: swap;
-  font-style: italic;
-}
-@font-face {
-  font-family: 'Switzer-Regular';
+  font-family: 'Switzer';
   src: url('../../public/assets/fonts/Switzer-Regular.woff2') format('woff2'),
-       url('../../public/assets/fonts/Switzer-Regular.woff') format('woff'),
-       url('../../public/assets/fonts/Switzer-Regular.ttf') format('truetype');
+       url('../../public/assets/fonts/Switzer-Regular.woff') format('woff');
   font-weight: 400;
   font-display: swap;
   font-style: normal;
 }
+
 @font-face {
-  font-family: 'Switzer-Italic';
+  font-family: 'Switzer';
   src: url('../../public/assets/fonts/Switzer-Italic.woff2') format('woff2'),
-       url('../../public/assets/fonts/Switzer-Italic.woff') format('woff'),
-       url('../../public/assets/fonts/Switzer-Italic.ttf') format('truetype');
+       url('../../public/assets/fonts/Switzer-Italic.woff') format('woff');
   font-weight: 400;
-  font-display: swap;
-  font-style: italic;
-}
-@font-face {
-  font-family: 'Switzer-Medium';
-  src: url('../../public/assets/fonts/Switzer-Medium.woff2') format('woff2'),
-       url('../../public/assets/fonts/Switzer-Medium.woff') format('woff'),
-       url('../../public/assets/fonts/Switzer-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-display: swap;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Switzer-MediumItalic';
-  src: url('../../public/assets/fonts/Switzer-MediumItalic.woff2') format('woff2'),
-       url('../../public/assets/fonts/Switzer-MediumItalic.woff') format('woff'),
-       url('../../public/assets/fonts/Switzer-MediumItalic.ttf') format('truetype');
-  font-weight: 500;
-  font-display: swap;
-  font-style: italic;
-}
-@font-face {
-  font-family: 'Switzer-Semibold';
-  src: url('../../public/assets/fonts/Switzer-Semibold.woff2') format('woff2'),
-       url('../../public/assets/fonts/Switzer-Semibold.woff') format('woff'),
-       url('../../public/assets/fonts/Switzer-Semibold.ttf') format('truetype');
-  font-weight: 600;
-  font-display: swap;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Switzer-SemiboldItalic';
-  src: url('../../public/assets/fonts/Switzer-SemiboldItalic.woff2') format('woff2'),
-       url('../../public/assets/fonts/Switzer-SemiboldItalic.woff') format('woff'),
-       url('../../public/assets/fonts/Switzer-SemiboldItalic.ttf') format('truetype');
-  font-weight: 600;
-  font-display: swap;
-  font-style: italic;
-}
-@font-face {
-  font-family: 'Switzer-Bold';
-  src: url('../../public/assets/fonts/Switzer-Bold.woff2') format('woff2'),
-       url('../../public/assets/fonts/Switzer-Bold.woff') format('woff'),
-       url('../../public/assets/fonts/Switzer-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-display: swap;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Switzer-BoldItalic';
-  src: url('../../public/assets/fonts/Switzer-BoldItalic.woff2') format('woff2'),
-       url('../../public/assets/fonts/Switzer-BoldItalic.woff') format('woff'),
-       url('../../public/assets/fonts/Switzer-BoldItalic.ttf') format('truetype');
-  font-weight: 700;
-  font-display: swap;
-  font-style: italic;
-}
-@font-face {
-  font-family: 'Switzer-Extrabold';
-  src: url('../../public/assets/fonts/Switzer-Extrabold.woff2') format('woff2'),
-       url('../../public/assets/fonts/Switzer-Extrabold.woff') format('woff'),
-       url('../../public/assets/fonts/Switzer-Extrabold.ttf') format('truetype');
-  font-weight: 800;
-  font-display: swap;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Switzer-ExtraboldItalic';
-  src: url('../../public/assets/fonts/Switzer-ExtraboldItalic.woff2') format('woff2'),
-       url('../../public/assets/fonts/Switzer-ExtraboldItalic.woff') format('woff'),
-       url('../../public/assets/fonts/Switzer-ExtraboldItalic.ttf') format('truetype');
-  font-weight: 800;
-  font-display: swap;
-  font-style: italic;
-}
-@font-face {
-  font-family: 'Switzer-Black';
-  src: url('../../public/assets/fonts/Switzer-Black.woff2') format('woff2'),
-       url('../../public/assets/fonts/Switzer-Black.woff') format('woff'),
-       url('../../public/assets/fonts/Switzer-Black.ttf') format('truetype');
-  font-weight: 900;
-  font-display: swap;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Switzer-BlackItalic';
-  src: url('../../public/assets/fonts/Switzer-BlackItalic.woff2') format('woff2'),
-       url('../../public/assets/fonts/Switzer-BlackItalic.woff') format('woff'),
-       url('../../public/assets/fonts/Switzer-BlackItalic.ttf') format('truetype');
-  font-weight: 900;
   font-display: swap;
   font-style: italic;
 }
 
+@font-face {
+  font-family: 'Switzer';
+  src: url('../../public/assets/fonts/Switzer-Medium.woff2') format('woff2'),
+       url('../../public/assets/fonts/Switzer-Medium.woff') format('woff');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('../../public/assets/fonts/Switzer-Bold.woff2') format('woff2'),
+       url('../../public/assets/fonts/Switzer-Bold.woff') format('woff');
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+/* Special states */
 body.preload {
   opacity: 0 !important;
 }
@@ -172,7 +46,8 @@ body.fadein {
 }
 
 body.preload .blur-overlay,
-body.preload .lebenslauf-card {
+body.preload .lebenslauf-card,
+body.preload .legal-card {
   opacity: 0 !important;
   pointer-events: none !important;
   transform: translate(-50%, 100%) !important;
@@ -194,12 +69,12 @@ body.preload .lebenslauf-card {
 
 /* Color Scheme Variables */
 :root {
-  --background-color: #FFFFFF;
+  --background-color: #EDF2F4;
   --primary-text-color: #141414;
   --primary-text-light: #555;
   --secondary-text-color: #f6f6f6;
-  --accent-color: #5608ff;
-  --accent-color-darkened: #4d07e6; // Added 10% darker shade
+  --accent-color: #C1121F;
+  --accent-color-darkened: #780000; // Added 10% darker shade
   --link-hover-color: #000000;
 }
 
@@ -208,6 +83,34 @@ body {
   font-family: 'Switzer', Helvetica, Arial, sans-serif;
   background-color: var(--background-color);
   color: var(--primary-text-color);
+}
+
+body.modal-open,
+body.menu-open {
+  overflow: hidden;
+}
+
+/* Responsive Base Typography */
+html {
+  font-size: 16px; /* Base font size */
+}
+
+@media (max-width: 1200px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
 }
 
 /* Basic Heading Styles */
@@ -232,47 +135,140 @@ a:hover {
 /* Component Imports */
 @import 'components/header';
 @import 'components/hero';
-@import 'components/about';
-@import 'components/projects';
+@import 'components/faq'; // Unified FAQ/solutions section styling
 @import 'components/footer';
 @import 'components/card'; // Import for the new card styles
-@import 'components/seeMoreButton'; // Import for the new see more button
 @import 'components/contact';
+@import 'components/projects';
 
 .section-headline-large {
+  overflow: hidden;
+  display: block;
+  line-height: 0;
   font-family: 'Switzer', Helvetica, Arial, sans-serif;
-  font-size: clamp(7rem, 6vw, 4rem);
-  font-weight: 700; // Bold
+  font-size: clamp(4.5rem, 8vw, 8rem);
+  font-weight: 900; // Bold
   flex-wrap: wrap;
+  line-height: 1.1;
   margin-left: -4rem;
   align-items: flex-end;
-  line-height: -3;
   text-transform: uppercase;
-  margin-bottom: 1.5rem; // Space below the headline
-  color: var(--primary-text-color); // Darker color for the headline for contrast on white bg
-
+  margin-bottom: 2rem;
+  position: relative;
+  
   .headline-tag {
-    font-size: 1rem; // Smaller size for the tag
-    font-weight: 600; // Medium weight
-    color: var(--primary-text-light); // Slightly lighter color for the tag
-    vertical-align: super; // Align with the top of the headline
-    margin-left: 0.5rem;
-    letter-spacing: 0.05em;
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: 0.7;
+    margin-left: 1rem;
+    display: inline-block;
+    vertical-align: middle;
     text-transform: none;
-    padding-top: 0.5rem; // Keep tag in its original case
-    display: inline-block; // Ensure proper display
-    opacity: 1 !important; // Prevent animation from affecting opacity
-    transform: none !important; // Prevent animation from affecting position
   }
-
+  
   .headline-word {
     display: inline-block;
-    margin-right: 0.25em;
+    margin-right: 0.15em;
   }
-
+  
   .headline-letter {
     display: inline-block;
-    transform-origin: bottom;
     will-change: transform, opacity;
+  }
+}
+
+@media (max-width: 1200px) {
+  .section-headline-large {
+    margin-left: -3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-headline-large {
+    margin-left: 0;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    margin-bottom: 1.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    .headline-tag {
+      font-size: 0.9rem;
+      margin-left: 0.75rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .section-headline-large {
+    margin-left: 0;
+    font-size: clamp(2rem, 10vw, 3.5rem);
+    margin-bottom: 1.25rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    .headline-tag {
+      font-size: 0.8rem;
+      margin-left: 0.5rem;
+      display: block;
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+
+// See More Button Styles (moved from _seeMoreButton.scss)
+.see-more-button {
+  position: absolute; // Changed for bottom positioning
+  bottom: 3rem; // Position from the bottom
+  left: 50%;
+  transform: translateX(-50%); // Center horizontally
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; // Increased gap slightly
+  overflow: hidden;
+  border: 1px solid transparent; // Start with transparent border
+  background-color: transparent;
+  padding: 0.6rem 1.2rem; // Adjusted padding slightly
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--secondary-text-color); // Initial: White text
+  cursor: pointer;
+  // GSAP will handle transitions, but keep for border-radius as it's not in all GSAP tweens
+  transition: border-radius 450ms ease; 
+  font-family: 'Switzer', Helvetica, Arial, sans-serif;
+
+  .text-content {
+    position: relative;
+    z-index: 1;
+    // transform: translateX(0); // Removed initial offset, text is static
+    color: inherit; // Inherits color from button
+  }
+
+  .arrow-down {
+    position: relative; // No longer absolute, part of flex flow
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      width: 1rem; 
+      height: 1rem; 
+      stroke: var(--secondary-text-color); // Initial: White arrow
+      fill: none;
+    }
+  }
+
+  .circle-fill {
+    position: absolute;
+    top: 0; // Align to top for clip-path reveal
+    left: 0; // Align to left
+    width: 100%; // Cover full button width
+    height: 100%; // Cover full button height
+    // transform: translate(-50%, -50%); // No longer needed if top/left/width/height are 100%
+    background-color: rgba(255, 255, 255, 0.01); // Kept for backdrop filter
+    border-radius: 10%; // From user's previous change
+    opacity: 0; // Start invisible, GSAP will fade in with reveal
+    z-index: 0; // Behind text and arrow
+    clip-path: inset(0 0 100% 0); // Initial state: clipped to a line at the top (hidden from bottom)
+    // -webkit-clip-path: inset(0 0 100% 0); // Not typically needed for modern GSAP if GSAP handles prefixing
   }
 }

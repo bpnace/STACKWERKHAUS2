@@ -9,8 +9,6 @@ footer {
   padding-bottom: 0;
   overflow: hidden;
 
-
-
   .social-links {
     margin-bottom: 3rem;
     a {
@@ -23,17 +21,36 @@ footer {
 
   .footer-social {
     display: flex;
-    justify-content: left;
+    justify-content: space-between;
     padding-left: 4rem;
-    gap: 2.5rem;
+    padding-right: 4rem;
     margin-bottom: 3.5rem;
     font-family: 'Switzer', Helvetica, Arial, sans-serif;
     font-size: 1rem;
+    color: var(--background-color);
     font-weight: 400;
-    a {
-      color: #fff;
+    
+    .social-links-left {
+      display: flex;
+      gap: 2.5rem;
+    }
+    
+    .footer-legal {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    a, .legal-btn {
+      color: var(--background-color);
       text-decoration: none;
       transition: color 0.2s;
+      font-family: 'Switzer', Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
       &:hover { color: var(--accent-color, #00b894); }
     }
   }
@@ -59,7 +76,7 @@ footer {
     font-family: 'Switzer', Helvetica, Arial, sans-serif;
     font-size: 20vw;
     font-weight: 900;
-    color: #fff;
+    color: var(--background-color);
     text-transform: uppercase;
     letter-spacing: 0;
     line-height: 0.85;
@@ -74,6 +91,12 @@ footer {
     }
   }
 
+  .footer-legal {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+
   /* Basic Responsive */
   @media (max-width: 768px) {
      padding: 4rem 2rem 2rem;
@@ -86,11 +109,29 @@ footer {
      .social-links a {
        margin: 0 0.5rem;
      }
+     
+     .footer-social {
+       flex-direction: column;
+       gap: 1.5rem;
+       padding-left: 2rem;
+       padding-right: 2rem;
+       
+       .social-links-left, .footer-legal {
+         justify-content: center;
+       }
+     }
   }
 
   @media (max-width: 700px) {
     .footer-logo-scroll { height: 22vw; min-height: 80px; max-height: 120px; }
     .footer-logo-track { font-size: 18vw; }
-    .footer-social { font-size: 1.1rem; gap: 1.2rem; margin-bottom: 2rem; }
+    .footer-social { 
+      font-size: 1.1rem; 
+      margin-bottom: 2rem; 
+      
+      a, .legal-btn {
+        font-size: 1.1rem;
+      }
+    }
   }
 } 
