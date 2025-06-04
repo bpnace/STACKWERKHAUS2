@@ -1,12 +1,17 @@
 .contact-testimonials {
-  display: flex;
+  //display: flex;
+  flex-direction: row;
   gap: 2rem;
   width: 100%;
   height: 100%;
   min-height: 350px;
-  max-height: 950px;
+  max-height: 1000px;
   overflow: hidden;
-  background: none;
+  background: var(--accent-color);
+  color: white;
+  border-radius: 12px;
+  position: relative;
+  box-shadow: 0 4px 24px var(--accent-color);
 
   &__col {
     flex: 1 1 0;
@@ -39,6 +44,7 @@
     position: relative;
     font-size: 1rem;
     line-height: 1.5;
+    color: #222;
   }
 
   .testimonial-profile {
@@ -80,13 +86,57 @@
     margin-bottom: 0.5rem;
   }
 
-  @media (max-width: 700px) {
+  // Desktop (≥950px)
+  @media (min-width: 950px) {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px var(--accent-color);
+    max-width: 100%;
+  }
+
+  // Tablet (600px–949px)
+  @media (max-width: 949px) and (min-width: 600px) {
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px var(--accent-color);
+    max-width: 100%;
+    min-height: 350px;
+    height: auto;
     &__col {
       width: 100%;
       min-width: 0;
       margin-bottom: 1rem;
+      height: auto;
+      max-height: 1000px;
+    }
+  }
+
+  // Mobile (<600px)
+  @media (max-width: 599px) {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 0.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 6px var(--accent-color);
+    min-height: 200px;
+    height: auto;
+    &__col {
+      width: 100%;
+      min-width: 0;
+      margin-bottom: 0.5rem;
+      height: auto;
+      max-height: 1000px;
+    }
+    .testimonial-item {
+      padding: 1rem 0.75rem;
+      font-size: 0.98rem;
     }
   }
 } 

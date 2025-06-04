@@ -24,6 +24,19 @@ const testimonials = [
   { text: "Great results, great people. Highly recommended!", name: "Svenja Klein", role: "Marketing, LocalHero", img: "https://randomuser.me/api/portraits/women/39.jpg" }
 ];
 
+let currentMode = null; // 'single' or 'double'
+let resizeTimeout;
+let gsapTimelines = [];
+
+function clearTestimonials() {
+  gsapTimelines.forEach(tl => tl && tl.kill());
+  gsapTimelines = [];
+  const col1 = document.getElementById('testimonials-col-1');
+  const col2 = document.getElementById('testimonials-col-2');
+  if (col1) col1.innerHTML = '';
+  if (col2) col2.innerHTML = '';
+}
+
 function createTestimonialItem(t) {
   const item = document.createElement('div');
   item.className = 'testimonial-item';
@@ -40,42 +53,38 @@ function createTestimonialItem(t) {
   return item;
 }
 
-export function initContactTestimonials() {
-  const columns = [
-    document.getElementById('testimonials-col-1'),
-    document.getElementById('testimonials-col-2')
-  ];
-  columns.forEach(col => col && (col.innerHTML = ''));
+function renderTestimonials() {
+  clearTestimonials();
+  const isSingle = window.innerWidth < 950;
+  currentMode = isSingle ? 'single' : 'double';
+  const col1 = document.getElementById('testimonials-col-1');
+  const col2 = document.getElementById('testimonials-col-2');
+  if (!col1) return;
 
-  // Distribute testimonials round-robin
-  const colTestimonials = [[], []];
-  testimonials.forEach((t, i) => {
-    colTestimonials[i % 2].push(t);
-  });
-
-  columns.forEach((col, colIdx) => {
-    if (!col) return;
-    const tList = colTestimonials[colIdx];
-    // Create a wrapper for scrolling
+  if (isSingle) {
+    // Merge all testimonials into one column
     const wrapper = document.createElement('div');
     wrapper.className = 'testimonials-list';
-    col.appendChild(wrapper);
-    // Render one set
-    tList.forEach(t => wrapper.appendChild(createTestimonialItem(t)));
+    col1.appendChild(wrapper);
+    testimonials.forEach(t => wrapper.appendChild(createTestimonialItem(t)));
     // Duplicate until wrapper is at least (visible area + one set) tall
     setTimeout(() => {
-      const colHeight = col.offsetHeight;
+      const parent = col1.closest('.contact-info-card');
+      const colHeight = parent ? parent.offsetHeight : col1.offsetHeight;
       const itemEls = wrapper.querySelectorAll('.testimonial-item');
       if (itemEls.length === 0) return;
       const itemHeight = itemEls[0].offsetHeight + parseFloat(getComputedStyle(itemEls[0]).marginBottom);
-      const singleSetHeight = itemHeight * tList.length;
+      const singleSetHeight = itemHeight * testimonials.length;
+      // Duplicate testimonials at least once for seamless looping
       while (wrapper.scrollHeight < colHeight + singleSetHeight) {
-        tList.forEach(t => wrapper.appendChild(createTestimonialItem(t)));
+        testimonials.forEach(t => wrapper.appendChild(createTestimonialItem(t)));
       }
+      // Add one more set for seamlessness
+      testimonials.forEach(t => wrapper.appendChild(createTestimonialItem(t)));
       // Animate wrapper upward by (wrapper height - visible area)
       const scrollDistance = wrapper.scrollHeight - colHeight;
       gsap.set(wrapper, { y: 0 });
-      const duration = (colIdx === 0 ? 60 : 75); // Slightly offset
+      const duration = 120; // Slower scroll for single column
       const tl = gsap.timeline({ repeat: -1, defaults: { ease: 'none' } });
       tl.to(wrapper, {
         y: -scrollDistance,
@@ -84,6 +93,58 @@ export function initContactTestimonials() {
           gsap.set(wrapper, { y: 0 });
         }
       });
+      gsapTimelines.push(tl);
+    }, 200);
+    if (col2) col2.innerHTML = '';
+  } else {
+    // Two columns, round-robin
+    const colTestimonials = [[], []];
+    testimonials.forEach((t, i) => {
+      colTestimonials[i % 2].push(t);
+    });
+    [col1, col2].forEach((col, colIdx) => {
+      if (!col) return;
+      const tList = colTestimonials[colIdx];
+      const wrapper = document.createElement('div');
+      wrapper.className = 'testimonials-list';
+      col.appendChild(wrapper);
+      tList.forEach(t => wrapper.appendChild(createTestimonialItem(t)));
+      setTimeout(() => {
+        const colHeight = col.offsetHeight;
+        const itemEls = wrapper.querySelectorAll('.testimonial-item');
+        if (itemEls.length === 0) return;
+        const itemHeight = itemEls[0].offsetHeight + parseFloat(getComputedStyle(itemEls[0]).marginBottom);
+        const singleSetHeight = itemHeight * tList.length;
+        while (wrapper.scrollHeight < colHeight + singleSetHeight) {
+          tList.forEach(t => wrapper.appendChild(createTestimonialItem(t)));
+        }
+        const scrollDistance = wrapper.scrollHeight - colHeight;
+        gsap.set(wrapper, { y: 0 });
+        const duration = (colIdx === 0 ? 60 : 75);
+        const tl = gsap.timeline({ repeat: -1, defaults: { ease: 'none' } });
+        tl.to(wrapper, {
+          y: -scrollDistance,
+          duration: duration,
+          onRepeat: () => {
+            gsap.set(wrapper, { y: 0 });
+          }
+        });
+        gsapTimelines.push(tl);
+      }, 200);
+    });
+  }
+}
+
+export function initContactTestimonials() {
+  renderTestimonials();
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      // Only re-render if mode changes
+      const isSingle = window.innerWidth < 950;
+      if ((isSingle && currentMode !== 'single') || (!isSingle && currentMode !== 'double')) {
+        renderTestimonials();
+      }
     }, 200);
   });
 } 

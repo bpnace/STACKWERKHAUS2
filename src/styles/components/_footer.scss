@@ -27,6 +27,7 @@ footer {
     margin-bottom: 3.5rem;
     font-family: 'Switzer', Helvetica, Arial, sans-serif;
     font-size: 1rem;
+    color: var(--background-color);
     font-weight: 400;
     
     .social-links-left {
@@ -40,7 +41,7 @@ footer {
     }
     
     a, .legal-btn {
-      color: #fff;
+      color: var(--background-color);
       text-decoration: none;
       transition: color 0.2s;
       font-family: 'Switzer', Helvetica, Arial, sans-serif;
@@ -75,7 +76,7 @@ footer {
     font-family: 'Switzer', Helvetica, Arial, sans-serif;
     font-size: 20vw;
     font-weight: 900;
-    color: #fff;
+    color: var(--background-color);
     text-transform: uppercase;
     letter-spacing: 0;
     line-height: 0.85;

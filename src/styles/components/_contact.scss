@@ -304,79 +304,7 @@
 
 /* Contact Info Card */
 .contact-info-card {
-  background: var(--accent-color);
-  color: white;
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 4px 24px var(--accent-color);
-  min-height: 350px;
-}
-
-.contact-info-content {
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-  width: 100%;
-}
-
-.contact-info-title {
-  font-size: 1.75rem;
-  font-weight: 600;
-  margin-bottom: 2.5rem;
-}
-
-.contact-info-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 2rem;
-
-  svg {
-    flex-shrink: 0;
-    width: 35px;
-    height: 35px;
-    color: #fff;
-    opacity: 1;
-  }
-
-  h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-  }
-
-  p {
-    font-size: 0.95rem;
-    opacity: 0.9;
-    margin: 0;
-  }
-
-  a {
-    color: white;
-    text-decoration: none;
-    transition: opacity 0.3s;
-
-    &:hover {
-      opacity: 0.8;
-      text-decoration: underline;
-    }
-  }
-}
-
-.social-links-inline {
-  display: flex;
-  gap: 1rem;
-
-  a {
-    color: white;
-    text-decoration: none;
-    transition: opacity 0.3s;
-
-    &:hover {
-      opacity: 0.8;
-      text-decoration: underline;
-    }
-  }
+  // Styles moved to _contact-testimonials.scss
 }
 
 /* Responsive */
@@ -405,7 +333,8 @@
   }
   
   .contact-card, .contact-info-card {
-    padding: 2rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
   }
   
   .contact-form-header .contact-title {
@@ -419,7 +348,8 @@
 
 @media (max-width: 768px) {
   .contact {
-    padding: 3rem 2rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
   .contact-grid {
@@ -440,11 +370,13 @@
 
 @media (max-width: 480px) {
   .contact {
-    padding: 2.5rem 1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
   .contact-card, .contact-info-card {
-    padding: 1.5rem 1.25rem;
+    padding-left: 1.5rem;
+    padding-right: 1.25rem;
   }
 
   .contact-form-header .contact-title {
