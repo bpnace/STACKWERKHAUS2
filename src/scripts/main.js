@@ -23,6 +23,7 @@ import { initSeeMoreButtonAnimations } from './animations/seeMoreButtonAnimation
 import { initCustomCheckbox } from './components/ContactForm';
 import { initMobileNav } from './components/MobileNav'; // Import mobile nav
 import { initContactSection } from './components/contact';
+import { createIridescenceEffect } from './components/iridescence';
 
 gsap.registerPlugin(ScrollTrigger); // Only register ScrollTrigger, not Draggable
 
@@ -581,6 +582,21 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   initContactSection();
+
+  // Add iridescence effect to the 'Dein Projekt?' placeholder card only
+  const deinProjektCard = Array.from(document.querySelectorAll('.project.placeholder-card')).find(card => {
+    const title = card.querySelector('.title');
+    return title && title.textContent.trim() === 'Dein Projekt?';
+  });
+  if (deinProjektCard) {
+    createIridescenceEffect({
+      container: deinProjektCard,
+      color: [1, 1, 1],
+      speed: 1.0,
+      amplitude: 0.1,
+      mouseReact: true,
+    });
+  }
 });
 
 // --- Webpack HMR Handling --- 

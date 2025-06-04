@@ -307,6 +307,12 @@
             <a href="#projects">Projekte</a>
             <a href="#kontakt">Kontakt!</a>
         </nav>
+        <button class="mobile-nav-close" aria-label="Menü schließen">
+          <svg width="32" height="32" viewBox="0 0 32 32" stroke="currentColor" fill="none">
+            <line x1="8" y1="8" x2="24" y2="24" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="24" y1="8" x2="8" y2="24" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </button>
     </div>
 
     <!-- Main scrollable container -->
@@ -463,28 +469,22 @@
                         <span>UI/UX & App Design</span>
                     </a>
                     <!-- Placeholder Card inviting viewer -->
-                    <a class="project placeholder-card smooth-scroll" href="#kontakt" tabindex="0" style="background: var(--primary-text-color); display: flex; flex-direction: column; justify-content: space-between; min-height: 320px; position: relative; overflow: hidden; padding: 2.5rem; transition: transform 0.3s ease;">
-                        <div style="position: absolute; top: 0; right: 0; width: 150px; height: 150px; overflow: hidden;">
-                            <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: -50px; right: -50px; opacity: 0.08;">
-                                <path d="M100 0L200 100L100 200L0 100L100 0Z" fill="var(--accent-color)"/>
-                            </svg>
+                    <a class="project placeholder-card smooth-scroll" href="#kontakt" tabindex="0" style="background: var(--primary-text-color); aspect-ratio: 4/5; height: auto; position: relative; overflow: hidden;">
+                        <div class="img-wrapper">
+                            <div class="svg-bg">
+                                <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: -50px; right: -50px; opacity: 0.08;">
+                                    <path d="M100 0L200 100L100 200L0 100L100 0Z" fill="var(--accent-color)"/>
+                                </svg>
+                            </div>
+                            <!-- iridescence canvas will be injected here by JS -->
                         </div>
-                        <div style="z-index: 2; text-align: left;">
+                        <div class="content" style="z-index: 3; text-align: left;">
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M24 4L29.2908 19.7092L45 24L29.2908 28.2908L24 44L18.7092 28.2908L3 24L18.7092 19.7092L24 4Z" stroke="var(--accent-color)" stroke-width="2.5" fill="none"/>
                             </svg>
-                            <h2 class="title" style="margin: 1.5rem 0 0.5rem 0; text-align: left; color: var(--secondary-text-color); font-size: 2.2rem;">Dein Projekt?</h2>
-                        </div>
-                        <div style="z-index: 2; margin-top: 2rem;">
-                            <span style="text-align: left; color: var(--secondary-text-color); font-weight: 500; display: block; margin-bottom: 1.5rem; opacity: 0.9;">Werde Teil des STACKWERKHAUS Portfolios</span>
-                            <div style="display: flex; align-items: center;">
-                                <span style="color: var(--accent-color); font-weight: 600; display: inline-flex; align-items: center; transition: transform 0.3s ease;">
-                                    Jetzt anfragen 
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 8px; transition: transform 0.3s ease;">
-                                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </span>
-                            </div>
+                            <h2 class="title" style="margin: 1.5rem 0 0.5rem 0; text-align: left; font-size: 2rem;">Dein Projekt?</h2>
+                            <span class="subtitle" style="color: var(--secondary-text-color); font-size: 1.15rem; font-weight: 500;">Werde Teil des STACKWERKHAUS Portfolios</span>
+                            <span style="color: #C1121F; font-size: 1.25rem; font-weight: 700; margin-top: 1.5rem; display: inline-block;">Jetzt anfragen &nbsp;→</span>
                         </div>
                     </a>
                 </div>
