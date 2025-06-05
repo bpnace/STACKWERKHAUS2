@@ -1,5 +1,5 @@
 .projects-section {
-  padding: 6rem 4rem;
+  padding: 4rem 4rem;
   position: relative;
   z-index: 10;
   background-color: var(--primary-text-color);
@@ -13,8 +13,8 @@
 
   .project-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
     width: 100%;
     align-items: stretch;
     max-width: 1200px;
@@ -28,12 +28,11 @@
     background: transparent;
     overflow: hidden;
     width: 100%;
-    height: auto;
+    height: auto; // Will allow stretching by grid if row height is defined or content pushes
     margin: 0 auto;
     text-decoration: none;
     color: var(--secondary-text-color);
     transition: box-shadow 0.3s;
-    aspect-ratio: 4 / 5;
   }
   .project:focus {
     outline: 2px solid var(--accent-color);
@@ -42,10 +41,9 @@
   .img-wrapper {
     position: relative;
     width: 100%;
-    aspect-ratio: 4 / 5;
-    height: auto;
-    min-height: 260px;
-    max-height: 420px;
+    flex-grow: 1; // Allow img-wrapper to take available space
+    min-height: 260px; // Retaining min-height for now
+    max-height: 560px; // Retaining max-height for now
     display: flex;
     align-items: stretch;
     justify-content: center;
@@ -65,14 +63,10 @@
     z-index: 2;
     pointer-events: none;
   }
-  .img-wrapper .svg-bg {
-    position: absolute;
-    top: 0; right: 0;
-    width: 150px; height: 150px;
-    z-index: 1;
-    overflow: hidden;
+  .title {
+    margin-top: 1.3rem;
   }
-  .content {
+  .content { // This class is for the text block INSIDE image reveals, not general project titles
     position: relative;
     z-index: 3;
     text-align: left;
@@ -82,40 +76,12 @@
     flex-direction: column;
     align-items: flex-start;
   }
-  .title {
-    margin: 1.5rem 0 0.5rem 0;
-    font-size: 2rem;
-    margin-left: 0;
-  }
-  .subtitle {
-    font-size: 1.15rem;
-    color: var(--secondary-text-color);
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    display: block;
-  }
+  
+  // General styles for project titles and subtitles (direct children of .project)
+ 
+
 
   /* Placeholder Card styles */
-  .placeholder-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    max-height: 498px;
-
-    h2 {
-      color: var(--primary-text-color) !important;
-    }
-    .subtitle {
-      color: var(--primary-text-color) !important;
-    }
-    &:hover, &:focus {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-      
-      svg:last-child {
-        transform: translateX(5px);
-      }
-    }
-  }
-
   /* Enhanced Responsive */
   @media (max-width: 1200px) {
     padding: 4rem 3rem;
@@ -129,7 +95,7 @@
       font-size: 1.75rem;
     }
     
-    .subtitle {
+    .project > span {
       font-size: 1rem;
     }
   }
@@ -168,10 +134,6 @@
     .project-grid {
       gap: 2rem;
     }
-    
-    .placeholder-card {
-      padding: 2rem !important;
-    }
   }
 
   @media (max-width: 900px) {
@@ -180,14 +142,64 @@
       max-height: 320px;
     }
     .title { font-size: 1.5rem; }
-    .subtitle { font-size: 1rem; }
+    .project > span { font-size: 1rem; }
   }
   @media (max-width: 600px) {
     .img-wrapper {
       min-height: 120px;
       max-height: 200px;
     }
-    .content { padding: 1rem 0.5rem; }
+    // .content { padding: 1rem 0.5rem; } // .content is for image reveals, not general titles
+    .title {
+      padding: 0 0.5rem; 
+    }
+    .project > span {
+      padding: 0 0.5rem 0.5rem;
+    }
+  }
+
+  // Styles for the new animated placeholder card
+  .project--placeholder-animated {
+    background-color: var(--primary-text-color); 
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; // Center content vertically
+    align-items: center;   // Center content horizontally
+    text-align: center; // Ensure text inside is centered
+    padding: 2rem; // Add some padding
+    min-height: 300px; // Ensure a minimum height, adjust as needed
+
+    .placeholder-plus {
+      font-size: 3rem; // Adjust size as needed
+      color: var(--secondary-text-color);
+      margin-bottom: 1rem;
+      font-weight: 200; // Make it thinner
+    }
+
+    .title {
+      color: var(--secondary-text-color) !important; // Ensure color override
+      font-size: 1.5rem; // Adjust size as needed
+      margin-bottom: 1rem;
+    }
+
+    .placeholder-link {
+      display: inline-block; // Needed for padding and other block-like properties
+      background-color: var(--accent-color);
+      color: var(--secondary-text-color);
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px; // Rounded corners for button feel
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 1rem; // Space below the title
+      transition: background-color 0.3s ease;
+
+      &:hover,
+      &:focus {
+        background-color: var(--accent-color-darkened);
+        color: var(--secondary-text-color);
+        text-decoration: none;
+      }
+    }
   }
 }
 
@@ -195,43 +207,9 @@
   color: var(--secondary-text-color) !important;
 }
 
-.project.placeholder-card {
-  aspect-ratio: 4 / 5;
-  height: auto;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-
-  .title {
-    margin-left: -4rem;
-    font-size: 2rem;
-    margin: 1.5rem 0 0.5rem 0;
-    // Keep color as set in HTML for now
-  }
-
-  canvas {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 2; // Above SVG, below text
-    pointer-events: none;
-  }
-
-  .svg-bg {
-    position: absolute;
-    top: 0; right: 0;
-    width: 150px; height: 150px;
-    z-index: 1;
-    overflow: hidden;
-  }
-
-  .content {
-    position: relative;
-    z-index: 3; // Text and CTA always on top
-    text-align: left;
+// Media query for large screens (e.g., > 1024px)
+@media (min-width: 1025px) {
+  .project-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 } 
