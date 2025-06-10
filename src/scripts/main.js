@@ -647,6 +647,40 @@ document.addEventListener('DOMContentLoaded', () => {
   //     });
   //   }
   // }
+
+  // Preload Bloom project video when its card is near the viewport
+  const bloomCard = Array.from(document.querySelectorAll('.project .title')).find(
+    el => el.textContent.trim().toLowerCase().includes('bloom')
+  )?.closest('.project');
+  if (bloomCard) {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        const preloadVideo = document.createElement('video');
+        preloadVideo.src = 'assets/video/bloom_video.webm';
+        preloadVideo.preload = 'auto';
+        preloadVideo.style.display = 'none';
+        document.body.appendChild(preloadVideo);
+        observer.disconnect();
+      }
+    }, { threshold: 0.1 });
+    observer.observe(bloomCard);
+  }
+
+  // User-initiated preload for Bloom video (Safari compatibility)
+  function userInitiatedBloomPreload() {
+    const preloadVideo = document.createElement('video');
+    preloadVideo.src = 'assets/video/bloom_video.webm';
+    preloadVideo.preload = 'auto';
+    preloadVideo.muted = true;
+    preloadVideo.style.position = 'absolute';
+    preloadVideo.style.left = '-9999px';
+    preloadVideo.style.width = '1px';
+    preloadVideo.style.height = '1px';
+    document.body.appendChild(preloadVideo);
+    preloadVideo.load();
+    window.removeEventListener('pointerdown', userInitiatedBloomPreload);
+  }
+  window.addEventListener('pointerdown', userInitiatedBloomPreload, { once: true });
 });
 
 // --- Webpack HMR Handling --- 
