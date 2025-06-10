@@ -16,14 +16,14 @@ import { FocusTrap } from './utils/focusTrap';
 import popupManager from './utils/popupManager'; // Import the new popup manager
 
 // Import animation modules
-import { initPageLoadAnimation } from './animations/pageLoadAnimations';
+// import { initPageLoadAnimation } from './animations/pageLoadAnimations'; // Removing this import
 import { initHeroAnimations } from './animations/heroAnimations';
 import './components/ProjectCard'; // Web Component registration
 import { initSeeMoreButtonAnimations } from './animations/seeMoreButtonAnimations';
 import { initCustomCheckbox } from './components/ContactForm';
 import { initMobileNav } from './components/MobileNav'; // Import mobile nav
 import { initContactSection } from './components/contact';
-import { createIridescenceEffect } from './components/iridescence';
+// import { createIridescenceEffect } from './components/iridescence'; // Removing this import
 
 gsap.registerPlugin(ScrollTrigger); // Only register ScrollTrigger, not Draggable
 
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 5. Initialize all Page Animations
   // These functions should now internally use the default scroller (window)
-  initPageLoadAnimation(); 
+  // initPageLoadAnimation(); 
 
   // 6. Initial GSAP .set() calls for FOUC prevention and stability
   const headerLogoEl = document.querySelector('header .logo');
@@ -187,10 +187,23 @@ document.addEventListener('DOMContentLoaded', () => {
   if (projectGrid) {
     const projects = Array.from(projectGrid.querySelectorAll('.project'));
     projects.forEach(project => {
-      const title = project.querySelector('.title').textContent;
-      const subtitle = project.querySelector('span').textContent;
+      // If this is our new animated placeholder, skip the web component conversion
+      if (project.classList.contains('project--placeholder-animated')) {
+        return; 
+      }
+
+      const titleElement = project.querySelector('.title');
+      const subtitleElement = project.querySelector('span');
       const normalImgEl = project.querySelector('.normalImg');
-      if (!normalImgEl) return; // Skip if no image (e.g., placeholder card)
+
+      // Ensure all required elements for a standard project card are present
+      if (!titleElement || !subtitleElement || !normalImgEl) {
+        console.warn('Standard project card is missing expected elements, skipping web component conversion:', project);
+        return;
+      }
+
+      const title = titleElement.textContent;
+      const subtitle = subtitleElement.textContent;
       const normalImg = normalImgEl.src;
       const revealedImg = normalImgEl.getAttribute('data-revealed-img'); // <-- Read from HTML
 
@@ -241,54 +254,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- FAQ Section Animation and Accordion Logic ---
   const initFaqSection = () => {
-    // Handle FAQ items in the FAQ section
     const faqItems = document.querySelectorAll('.faq-section .faq-item');
     if (faqItems.length > 0) {
       faqItems.forEach((item, index) => {
-        const question = item.querySelector('h4');
-        const answer = item.querySelector('.faq-answer');
-        // Set initial state
+        // GSAP scroll-triggered animation for the item
         gsap.set(item, { opacity: 0, y: 30 });
-        // Create scroll trigger for each FAQ item
         ScrollTrigger.create({
           trigger: item,
-          start: 'top 85%',
-          once: true,
+          start: 'top 85%', // Start animation when item is 85% from top of viewport
+          once: true, // Animate only once
           onEnter: () => {
             gsap.to(item, {
               opacity: 1,
               y: 0,
               duration: 0.8,
               ease: 'power2.out',
-              delay: index * 0.1
+              delay: index * 0.12 // Stagger delay for each item
             });
           }
         });
-        // Make sure we have proper height for animation
-        const height = answer.offsetHeight;
-        // Reset for initial closed state
-        gsap.set(answer, { 
-          height: 0,
-          opacity: 0,
-          overflow: 'hidden'
-        });
-        // Create accordion functionality
-        if (question && answer) {
-          // Create plus/minus indicator if it doesn't exist
-          if (!question.querySelector('.faq-indicator')) {
-            const indicator = document.createElement('span');
-            indicator.className = 'faq-indicator';
-            indicator.innerHTML = '+';
-            question.appendChild(indicator);
-          }
-          // Add click event to toggle answer
-          question.addEventListener('click', () => {
-            const isOpen = answer.classList.contains('open');
-            // Close any open answers except this one
+
+        const questionElement = item.querySelector('h4');
+        const answerElement = item.querySelector('.faq-answer');
+
+        if (questionElement && answerElement) {
+          const questionText = questionElement.textContent.trim();
+          const answerId = `faq-answer-${index}`; // Unique ID for ARIA
+
+          // Create a button element for the question
+          const button = document.createElement('button');
+          button.classList.add('faq-question-btn');
+          button.setAttribute('aria-expanded', 'false');
+          button.setAttribute('aria-controls', answerId);
+          // Set button inner HTML to include question text and animated SVG icon
+          button.innerHTML = `<span>${questionText}</span><svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>`;
+          
+          // Replace h4 with the button
+          questionElement.parentNode.replaceChild(button, questionElement);
+
+          // Prepare answer element for GSAP animation
+          answerElement.id = answerId;
+          gsap.set(answerElement, { height: 0, opacity: 0, overflow: 'hidden', display: 'none' });
+
+          button.addEventListener('click', () => {
+            const isOpen = answerElement.classList.contains('open');
+            const icon = button.querySelector('.faq-icon');
+
+            // Close other open answers
             document.querySelectorAll('.faq-section .faq-answer.open').forEach(openAnswer => {
-              if (openAnswer !== answer) {
-                const openQuestion = openAnswer.previousElementSibling;
-                const openIndicator = openQuestion.querySelector('.faq-indicator');
+              if (openAnswer !== answerElement) {
+                const otherButton = openAnswer.previousElementSibling; // Assumes button is direct sibling
+                const otherIcon = otherButton ? otherButton.querySelector('.faq-icon') : null;
+                
                 gsap.to(openAnswer, {
                   height: 0,
                   opacity: 0,
@@ -296,55 +313,43 @@ document.addEventListener('DOMContentLoaded', () => {
                   ease: 'power2.out',
                   onComplete: () => {
                     openAnswer.classList.remove('open');
-                    openAnswer.style.height = '';
+                    openAnswer.style.display = 'none'; 
                   }
                 });
-                if (openIndicator) {
-                  gsap.to(openIndicator, {
-                    rotation: 0,
-                    duration: 0.3,
-                    ease: 'power1.out'
-                  });
-                }
+                if (otherButton) otherButton.setAttribute('aria-expanded', 'false');
+                if (otherIcon) gsap.to(otherIcon, { rotation: 0, duration: 0.3 });
               }
             });
+
             // Toggle current answer
-            const indicator = question.querySelector('.faq-indicator');
             if (!isOpen) {
-              answer.classList.add('open');
-              gsap.to(answer, {
-                height: answer.scrollHeight,
+              answerElement.classList.add('open');
+              answerElement.style.display = 'block'; // Make it visible for GSAP to measure height
+              button.setAttribute('aria-expanded', 'true');
+              gsap.to(answerElement, {
+                height: 'auto', // GSAP calculates natural height
                 opacity: 1,
                 duration: 0.5,
                 ease: 'power2.out'
               });
-              if (indicator) {
-                gsap.to(indicator, {
-                  rotation: 135,
-                  duration: 0.3,
-                  ease: 'power1.out'
-                });
-              }
+              if (icon) gsap.to(icon, { rotation: 45, duration: 0.3 }); // '+' to 'x'
             } else {
-              gsap.to(answer, {
+              button.setAttribute('aria-expanded', 'false');
+              gsap.to(answerElement, {
                 height: 0,
                 opacity: 0,
                 duration: 0.4,
                 ease: 'power2.out',
                 onComplete: () => {
-                  answer.classList.remove('open');
-                  answer.style.height = '';
+                  answerElement.classList.remove('open');
+                  answerElement.style.display = 'none';
                 }
               });
-              if (indicator) {
-                gsap.to(indicator, {
-                  rotation: 0,
-                  duration: 0.3,
-                  ease: 'power1.out'
-                });
-              }
+              if (icon) gsap.to(icon, { rotation: 0, duration: 0.3 });
             }
           });
+        } else {
+          console.warn('Skipping FAQ item due to missing h4 or .faq-answer:', item);
         }
       });
     }
@@ -616,20 +621,66 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initContactSection();
 
-  // Add iridescence effect to the 'Dein Projekt?' placeholder card only
-  const deinProjektCard = Array.from(document.querySelectorAll('.project.placeholder-card')).find(card => {
-    const title = card.querySelector('.title');
-    return title && title.textContent.trim() === 'Dein Projekt?';
-  });
-  if (deinProjektCard) {
-    createIridescenceEffect({
-      container: deinProjektCard,
-      color: [1, 1, 1],
-      speed: 1.0,
-      amplitude: 0.1,
-      mouseReact: true,
-    });
+  // Initialize iridescence for the new animated placeholder card
+  // const animatedPlaceholderCard = document.querySelector('.project--placeholder-animated');
+  // if (animatedPlaceholderCard) {
+  //   const animatedFrame = animatedPlaceholderCard.querySelector('.project__animated-frame');
+  //   const animationContent = animatedPlaceholderCard.querySelector('.project__animation-content');
+
+  //   if (animatedFrame) {
+  //     createIridescenceEffect({
+  //       container: animatedFrame,
+  //       color: [1, 1, 1], 
+  //       speed: 1.0,
+  //       amplitude: 0.1,
+  //       mouseReact: true,
+  //     });
+  //   }
+
+  //   if (animationContent) {
+  //     createIridescenceEffect({
+  //       container: animationContent,
+  //       color: [1, 1, 1], 
+  //       speed: 1.0,
+  //       amplitude: 0.1, 
+  //       mouseReact: true,
+  //     });
+  //   }
+  // }
+
+  // Preload Bloom project video when its card is near the viewport
+  const bloomCard = Array.from(document.querySelectorAll('.project .title')).find(
+    el => el.textContent.trim().toLowerCase().includes('bloom')
+  )?.closest('.project');
+  if (bloomCard) {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        const preloadVideo = document.createElement('video');
+        preloadVideo.src = 'assets/video/bloom_video.webm';
+        preloadVideo.preload = 'auto';
+        preloadVideo.style.display = 'none';
+        document.body.appendChild(preloadVideo);
+        observer.disconnect();
+      }
+    }, { threshold: 0.1 });
+    observer.observe(bloomCard);
   }
+
+  // User-initiated preload for Bloom video (Safari compatibility)
+  function userInitiatedBloomPreload() {
+    const preloadVideo = document.createElement('video');
+    preloadVideo.src = 'assets/video/bloom_video.webm';
+    preloadVideo.preload = 'auto';
+    preloadVideo.muted = true;
+    preloadVideo.style.position = 'absolute';
+    preloadVideo.style.left = '-9999px';
+    preloadVideo.style.width = '1px';
+    preloadVideo.style.height = '1px';
+    document.body.appendChild(preloadVideo);
+    preloadVideo.load();
+    window.removeEventListener('pointerdown', userInitiatedBloomPreload);
+  }
+  window.addEventListener('pointerdown', userInitiatedBloomPreload, { once: true });
 });
 
 // --- Webpack HMR Handling --- 

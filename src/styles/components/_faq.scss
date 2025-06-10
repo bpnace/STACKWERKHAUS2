@@ -169,6 +169,7 @@
 
           //background-color: white;
           
+          /*
           h4 {
             font-size: 1.15rem;
             padding: 0.5rem;
@@ -201,6 +202,45 @@
               line-height: 24px;
             }
           }
+          */
+
+          .faq-question-btn {
+            display: flex; // To align text and icon
+            justify-content: space-between; // Pushes icon to the right
+            align-items: center;
+            width: 100%;
+            padding: 0.75rem 1rem; // Adjust padding as needed
+            margin: 0.5rem 0; // Add some vertical spacing between questions
+            font-size: 1.1rem; // From your image, text looks a bit smaller than h4
+            font-weight: 500; // Less bold than typical h4
+            line-height: 1.4;
+            border: none;
+            text-align: left; // Ensure text is aligned left
+            background-color: transparent;
+            color: var(--primary-text-color); // Text color
+            cursor: pointer;
+            font-family: 'Switzer', Helvetica, Arial, sans-serif;
+            //transition: color 0.3s ease, border-color 0.3s ease;
+            position: relative; 
+
+            &:hover {
+              color: var(--accent-color);
+              //border-color: var(--accent-color);
+            }
+
+            span { // Targets the text span we created in JS
+              flex-grow: 1; // Allows text to take available space
+            }
+
+            .faq-icon {
+              width: 24px; // Explicit size for the SVG
+              height: 24px;
+              stroke: var(--accent-color); // Icon color
+              transition: transform 0.3s ease;
+              flex-shrink: 0; // Prevent icon from shrinking
+              margin-left: 1rem; // Space between text and icon
+            }
+          }
           
           .faq-answer {
             height: 0;
@@ -231,7 +271,7 @@
             margin-top: 1.2rem;
             padding: 0.8rem;
             background-color: rgba(86, 8, 255, 0.05);
-            border-radius: 8px;
+            //border-radius: 8px;
             font-size: 0.95rem;
           }
         }
@@ -247,7 +287,7 @@
           font-weight: 500;
           color: var(--accent-color);
           padding: 0.5rem 1rem;
-          border-radius: 8px;
+          //border-radius: 8px;
           transition: all 0.3s ease;
           background-color: rgba(86, 8, 255, 0.05);
           
@@ -302,9 +342,9 @@
         .faq-section-title {
           font-size: 1.3rem;
         }
-        .faq-item h4 {
+        .faq-item .faq-question-btn {
           font-size: 1rem;
-          padding: 0.5rem 0.25rem;
+          padding: 0.75rem 0.75rem;
         }
         .faq-answer p {
           font-size: 0.95rem;

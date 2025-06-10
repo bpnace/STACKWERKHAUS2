@@ -60,7 +60,7 @@ A modern, animated portfolio for Tarik Marshall (STACKWERKHAUS), built with a fo
 
 ## Tech Stack
 - **HTML5** with semantic structure and ARIA accessibility
-- **CSS3 / SCSS** (modular, component-based architecture)
+- **CSS3 / SCSS** (modular, component-based architecture, using modern `@use` rules)
 - **JavaScript (ES6+)** with modern module system
 - **GSAP** (GreenSock Animation Platform) with ScrollTrigger
 - **Lenis** (smooth scrolling library)
@@ -119,6 +119,8 @@ STACKWERKHAUS2/
 ├── public/
 │   ├── assets/
 │   │   ├── images/          # Hero, project, and profile images
+│   │   │   ├── hero1.webp    # Hero image
+│   │   │   └── IMG_5717.webp # Profile photo
 │   │   ├── projects/        # Project portfolio images
 │   │   ├── video/           # Logo animations and project videos
 │   │   ├── fonts/           # Switzer font family (woff, woff2)
@@ -130,14 +132,12 @@ STACKWERKHAUS2/
 │   │   ├── main.js          # Entry point with Lenis & GSAP setup
 │   │   ├── animations/      # GSAP animation modules
 │   │   │   ├── heroAnimations.js
-│   │   │   ├── pageLoadAnimations.js
 │   │   │   └── seeMoreButtonAnimations.js
 │   │   ├── components/      # Modular JavaScript components
 │   │   │   ├── ProjectCard.js      # Web component for projects
 │   │   │   ├── MobileNav.js        # Mobile navigation
 │   │   │   ├── ContactForm.js      # Form handling
-│   │   │   ├── contact.js          # Contact section
-│   │   │   └── iridescence.js      # Visual effects
+│   │   │   └── contact.js          # Contact section
 │   │   └── utils/           # Utility functions
 │   │       ├── animationUtils.js   # Animation helpers
 │   │       ├── focusTrap.js        # Accessibility
@@ -206,7 +206,7 @@ STACKWERKHAUS2/
 ### Projects Section
 - **Project Cards**: Custom web components with pixelated hover effects
 - **Video Integration**: Smooth video reveals on hover
-- **Placeholder Card**: Call-to-action with iridescence effect
+- **Placeholder Card**: A static card with a "+" symbol, "Mehr in Kürze" text, and a link "Werde Teil des STACKWERKHAUS" leading to the contact section.
 
 ### Contact Section
 - **Contact Form**: Formspree integration with file upload
@@ -305,7 +305,7 @@ npm run build       # Production build
 
 ### Development Features
 - **Hot Module Replacement**: Live updates without refresh
-- **SCSS Compilation**: Automatic Sass processing
+- **SCSS Compilation**: Automatic Sass processing (using modern `@use` rules).
 - **Babel Transpilation**: ES6+ to browser-compatible JavaScript
 - **Asset Pipeline**: Automatic copying of public assets
 
