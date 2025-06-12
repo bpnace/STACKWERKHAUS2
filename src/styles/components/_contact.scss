@@ -196,6 +196,29 @@
   }
 }
 
+.terms-label-inline {
+  font-size: 0.875rem;
+  color: var(--primary-text-light);
+  margin: 0;
+  
+  .datenschutz-link {
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    font-size: inherit;
+    font-family: inherit;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: 500;
+    
+    &:hover {
+      color: var(--accent-color-darkened);
+    }
+  }
+}
+
 /* Submit Button */
 .contact-submit-button {
   display: flex;

@@ -16,7 +16,6 @@
         p {
           font-size: 1.3rem;
           line-height: 1.6;
-          font-family: 'Switzer', Helvetica, Arial, sans-serif;
           margin-bottom: 1.5rem;
           
           strong {
@@ -34,7 +33,6 @@
           font-weight: 500;
           cursor: pointer;
           transition: all 0.3s ease;
-          font-family: 'Switzer', Helvetica, Arial, sans-serif;
           position: relative;
           overflow: hidden;
           z-index: 1;
@@ -90,13 +88,11 @@
           font-size: 1.2rem;
           margin-bottom: 0.8rem;
           font-weight: 600;
-          font-family: 'Switzer', Helvetica, Arial, sans-serif;
         }
         
         p {
           font-size: 0.95rem;
           line-height: 1.5;
-          font-family: 'Switzer', Helvetica, Arial, sans-serif;
         }
       }
     }
@@ -118,12 +114,6 @@
           border-radius: 8px;
           box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
           margin-bottom: 1.5rem;
-          transform: scale(1);
-          transition: transform 0.5s ease;
-          
-          &:hover {
-            transform: scale(1.02);
-          }
         }
         
         .contact-links {
@@ -137,7 +127,6 @@
             text-decoration: none;
             font-size: 1rem;
             transition: color 0.3s ease;
-            font-family: 'Switzer', Helvetica, Arial, sans-serif;
             font-weight: 500;
             
             &:hover {
@@ -158,51 +147,12 @@
           padding-bottom: 0.5rem;
           border-bottom: 2px solid var(--accent-color);
           display: inline-block;
-          font-family: 'Switzer', Helvetica, Arial, sans-serif;
           font-weight: 600;
         }
         
         .faq-item {
           border-bottom: 1px solid var(--primary-text-light);
           overflow: hidden;
-          padding-bottom: 1rem;
-
-          //background-color: white;
-          
-          /*
-          h4 {
-            font-size: 1.15rem;
-            padding: 0.5rem;
-            margin: 0;
-            font-weight: 600;
-            line-height: 1.4;
-            position: relative;
-            padding-right: 40px;
-            cursor: pointer;
-            font-family: 'Switzer', Helvetica, Arial, sans-serif;
-            transition: color 0.3s ease;
-            //background-color: #f8f8ff;
-            
-            &:hover {
-              color: var(--accent-color);
-            }
-            
-            .faq-indicator {
-              position: absolute;
-              right: 15px;
-              top: 50%;
-              transform: translateY(-50%);
-              transition: transform 0.3s ease;
-              color: var(--accent-color);
-              font-size: 1.5rem;
-              display: inline-block;
-              width: 24px;
-              height: 24px;
-              text-align: center;
-              line-height: 24px;
-            }
-          }
-          */
 
           .faq-question-btn {
             display: flex; // To align text and icon
@@ -218,9 +168,7 @@
             text-align: left; // Ensure text is aligned left
             background-color: transparent;
             color: var(--primary-text-color); // Text color
-            cursor: pointer;
-            font-family: 'Switzer', Helvetica, Arial, sans-serif;
-            //transition: color 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;            //transition: color 0.3s ease, border-color 0.3s ease;
             position: relative; 
 
             &:hover {
@@ -247,19 +195,54 @@
             opacity: 0;
             padding: 0.2rem;
             overflow: hidden;
-            transition: height 0.3s ease, opacity 0.3s ease;
-            will-change: height;
+            transition: height 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            will-change: height, opacity;
+            margin-bottom: 0.5rem;
+            margin-left: 0.5rem;
+            
+            h5 {
+              font-size: 1.05rem;
+              font-weight: 600;
+              margin-top: 1.2rem;
+              margin-bottom: 0.5rem;
+              color: var(--primary-text-color);
+            }
+            
+            ul {
+              margin-top: 0.8rem;
+              margin-bottom: 1.2rem;
+              padding-left: 1.2rem;
+              
+              li {
+                margin-bottom: 0.6rem;
+                line-height: 1.5;
+                position: relative;
+                
+                &:last-child {
+                  margin-bottom: 0;
+                }
+                
+                strong {
+                  font-weight: 600;
+                }
+              }
+            }
           }
+          
           .faq-answer.open {
             height: auto;
             opacity: 1;
+            padding: 0.2rem 1rem 1rem 0.5rem;
           }
           
           p {
-            margin: 0;
+            margin: 0 0 0.8rem 0;
             line-height: 1.6;
-            font-family: 'Switzer', Helvetica, Arial, sans-serif;
             font-size: 1rem;
+            
+            &:last-child {
+              margin-bottom: 0;
+            }
           }
           
           strong {
@@ -321,22 +304,7 @@
         position: static;
         top: auto;
       }
-      .faq-image {
-        align-self: center;
-        margin-bottom: 1.5rem;
-        .profile-image {
-          max-width: 320px;
-          margin: 0 auto 1rem auto;
-          display: block;
-        }
-        .contact-links {
-          justify-content: center;
-          gap: 1rem;
-          a {
-            font-size: 1rem;
-          }
-        }
-      }
+      
       .faq-content {
         padding: 0;
         .faq-section-title {
@@ -359,7 +327,6 @@
     .faq-container {
       gap: 1.2rem;
       .faq-image .profile-image {
-        max-width: 90vw;
       }
       .faq-content .faq-section-title {
         font-size: 1.1rem;
