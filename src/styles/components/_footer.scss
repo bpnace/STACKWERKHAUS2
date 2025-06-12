@@ -84,10 +84,21 @@ footer {
     will-change: transform;
     transform: translateY(20%);
     box-sizing: border-box;
+    width: max-content; // Ensure it takes up all the space it needs
+    animation: scrollText 30s linear infinite; // Add continuous scrolling animation
     span {
       display: block;
       margin: 0;
       padding: 0;
+    }
+  }
+  
+  @keyframes scrollText {
+    0% {
+      transform: translateY(20%) translateX(0);
+    }
+    100% {
+      transform: translateY(20%) translateX(-50%); // Scroll by 50% of width for seamless loop
     }
   }
 

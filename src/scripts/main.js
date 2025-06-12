@@ -619,6 +619,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Add event listener for datenschutz link in contact form
+  const datenschutzLink = document.getElementById('datenschutz-link');
+  if (datenschutzLink) {
+    datenschutzLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      unobfuscateContactInfo(); // Unobfuscate when user clicks
+      openLegalModal(datenschutzCard);
+    });
+  }
+
   initContactSection();
 
   // Initialize iridescence for the new animated placeholder card
