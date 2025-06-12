@@ -310,42 +310,56 @@ document.addEventListener('DOMContentLoaded', () => {
                   height: 0,
                   opacity: 0,
                   duration: 0.4,
-                  ease: 'power2.out',
+                  ease: 'power3.out',
                   onComplete: () => {
                     openAnswer.classList.remove('open');
                     openAnswer.style.display = 'none'; 
                   }
                 });
                 if (otherButton) otherButton.setAttribute('aria-expanded', 'false');
-                if (otherIcon) gsap.to(otherIcon, { rotation: 0, duration: 0.3 });
+                if (otherIcon) gsap.to(otherIcon, { rotation: 0, duration: 0.3, ease: 'power2.inOut' });
               }
             });
 
             // Toggle current answer
             if (!isOpen) {
+              // Measure height before animation for smoother transition
               answerElement.classList.add('open');
-              answerElement.style.display = 'block'; // Make it visible for GSAP to measure height
+              answerElement.style.display = 'block';
+              answerElement.style.height = 'auto';
+              const height = answerElement.offsetHeight;
+              answerElement.style.height = '0px';
+              
+              // Animate to the measured height
               button.setAttribute('aria-expanded', 'true');
               gsap.to(answerElement, {
-                height: 'auto', // GSAP calculates natural height
+                height: height,
                 opacity: 1,
                 duration: 0.5,
-                ease: 'power2.out'
+                ease: 'power3.out',
+                onComplete: () => {
+                  // Set to auto after animation completes for responsive behavior
+                  answerElement.style.height = 'auto';
+                }
               });
-              if (icon) gsap.to(icon, { rotation: 45, duration: 0.3 }); // '+' to 'x'
+              if (icon) gsap.to(icon, { rotation: 45, duration: 0.3, ease: 'power2.inOut' }); // '+' to 'x'
             } else {
               button.setAttribute('aria-expanded', 'false');
+              // First set explicit height for smooth animation
+              answerElement.style.height = answerElement.offsetHeight + 'px';
+              
+              // Then animate to zero
               gsap.to(answerElement, {
                 height: 0,
                 opacity: 0,
                 duration: 0.4,
-                ease: 'power2.out',
+                ease: 'power3.out',
                 onComplete: () => {
                   answerElement.classList.remove('open');
                   answerElement.style.display = 'none';
                 }
               });
-              if (icon) gsap.to(icon, { rotation: 0, duration: 0.3 });
+              if (icon) gsap.to(icon, { rotation: 0, duration: 0.3, ease: 'power2.inOut' });
             }
           });
         } else {
