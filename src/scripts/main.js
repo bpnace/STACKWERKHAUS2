@@ -367,23 +367,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }
-    // Handle the profile image parallax effect
-    const profileImage = document.querySelector('.faq-section .profile-image');
-    if (profileImage) {
-      ScrollTrigger.create({
-        trigger: '.faq-section',
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: true,
-        onUpdate: (self) => {
-          const yMove = self.progress * 30; // 30px of movement (subtle)
-          gsap.set(profileImage, {
-            y: yMove,
-            ease: 'none'
-          });
-        }
-      });
-    }
+    
+    // Profilbild-Parallax wurde entfernt für eine saubere Neuimplementierung
+    
     // Ensure the "read more" button in the FAQ section also opens the lebenslauf card
     const faqReadMoreBtn = document.querySelector('.faq-section .read-more-btn');
     const blurOverlay = document.querySelector('.blur-overlay');
