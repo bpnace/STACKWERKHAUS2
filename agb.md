@@ -89,6 +89,9 @@ Der Kunde stellt sicher, dass alle bereitgestellten Inhalte und Materialien frei
 ### 5.3 Referenzrecht
 STACKWERKHAUS behält sich das Recht vor, realisierte Projekte zu Referenzzwecken zu verwenden und zu veröffentlichen.
 
+### 5.4 Urhebervermerk
+STACKWERKHAUS ist berechtigt, auf der für den Kunden erstellten Website im Footer oder Impressum einen dezenten Hinweis auf die eigene Urheberschaft zu platzieren. Dieser Hinweis darf in Form eines Textlinks oder Logos gestaltet sein und auf die Website von STACKWERKHAUS verlinken. Die Entfernung dieses Hinweises durch den Kunden ist nur nach ausdrücklicher schriftlicher Zustimmung und gegebenenfalls gegen eine separate Vergütung (Buyout) gestattet.
+
 ---
 
 ## § 6 Gewährleistung und Haftung
@@ -105,6 +108,9 @@ STACKWERKHAUS behält sich das Recht vor, realisierte Projekte zu Referenzzwecke
 
 ### 6.3 Datenverlust
 Für Datenverlust haftet STACKWERKHAUS nur, soweit dieser durch angemessene Datensicherungsmaßnahmen nicht wiederherstellbar gewesen wäre.
+
+### 6.4 Abnahme
+Nach Fertigstellung der Website wird STACKWERKHAUS den Kunden zur Abnahme auffordern. Die Abnahme gilt als stillschweigend erteilt, wenn der Kunde nicht innerhalb von 14 Tagen nach der Aufforderung wesentliche Mängel schriftlich rügt. Die produktive Nutzung der Website durch den Kunden gilt ebenfalls als Abnahme.
 
 ---
 
@@ -152,7 +158,11 @@ Bei Kündigung sind bereits erbrachte Teilleistungen zu vergüten. Dem Kunden we
 
 ## § 10 Datenschutz
 
+### 10.1 Datenschutz
 Für die Verarbeitung personenbezogener Daten gelten die Bestimmungen der DSGVO und unsere Datenschutzerklärung.
+
+### 10.2 Vertraulichkeit
+Beide Vertragsparteien verpflichten sich, alle ihnen im Rahmen der Zusammenarbeit zur Kenntnis gelangten Geschäfts- und Betriebsgeheimnisse der jeweils anderen Partei streng vertraulich zu behandeln. Diese Verpflichtung gilt auch über das Vertragsende hinaus.
 
 ---
 

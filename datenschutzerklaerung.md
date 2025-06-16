@@ -96,6 +96,9 @@ Für die Kontaktformular-Verarbeitung nutzen wir Formspree, Inc. (USA).
 - **Rechtsgrundlage:** Art. 6 Abs. 1 lit. b DSGVO
 - **Datenschutz:** [Formspree Privacy Policy](https://formspree.io/legal/privacy-policy/)
 
+### 5.3 Social-Media-Präsenzen
+Wir unterhalten Onlinepräsenzen innerhalb sozialer Netzwerke (Instagram, LinkedIn), um mit den dort aktiven Kunden, Interessenten und Nutzern kommunizieren und sie dort über unsere Leistungen informieren zu können. Wir weisen darauf hin, dass dabei Daten der Nutzer außerhalb des Raumes der Europäischen Union verarbeitet werden können. Beim Aufruf der jeweiligen Netzwerke gelten die Geschäftsbedingungen und die Datenverarbeitungsrichtlinien der jeweiligen Betreiber.
+
 ## 6. Cookies und Tracking
 
 ### 6.1 Cookies
