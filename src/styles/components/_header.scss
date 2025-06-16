@@ -81,7 +81,6 @@ header {
     justify-content: center;
 
     a {
-      font-family: 'Switzer', Helvetica, Arial, sans-serif;
       margin: 0 1.5rem;
       font-size: 1rem;
       color: var(--secondary-text-color);
@@ -115,7 +114,6 @@ header {
 
   .header-cta {
     .cta-link {
-      font-family: 'Switzer', Helvetica, Arial, sans-serif;
       font-size: 1rem;
       color: var(--accent-color);
       font-weight: 700;
@@ -207,6 +205,9 @@ header.scrolled {
   cursor: pointer;
   padding: 0.5rem;
   z-index: 1200;
+  position: relative;
+  width: 30px;
+  height: 30px;
   
   .bar {
     display: block;
@@ -215,11 +216,46 @@ header.scrolled {
     margin: 5px auto;
     background-color: var(--secondary-text-color);
     transition: all 0.3s ease-in-out;
+    position: absolute;
+    left: 3px;
+  }
+  
+  .bar:nth-child(1) {
+    top: 8px;
+  }
+  
+  .bar:nth-child(2) {
+    top: 14px;
+  }
+  
+  .bar:nth-child(3) {
+    top: 20px;
   }
   
   &:focus {
     outline: 2px solid var(--accent-color);
     outline-offset: 2px;
+  }
+}
+
+// X animation for menu toggle
+header.menu-open .mobile-menu-toggle {
+  z-index: 1200; // Ensure it's above the overlay
+  
+  .bar {
+    background-color: var(--secondary-text-color) !important; // Force white color with !important
+  }
+  
+  .bar:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+  
+  .bar:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .bar:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
   }
 }
 
@@ -230,7 +266,7 @@ header.scrolled {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.9);
-  z-index: 1150;
+  z-index: 1150; // Lower than the menu toggle
   display: flex;
   justify-content: center;
   align-items: center;
@@ -248,6 +284,7 @@ header.scrolled {
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+    z-index: 1151; // Higher than overlay but lower than toggle
     
     a {
       font-size: 1.5rem;
@@ -288,50 +325,57 @@ header.scrolled {
   }
 }
 
+// Hide the separate close button since we're using the morphing menu button
 .mobile-nav-close {
-  position: absolute;
-  top: 1.5rem;
-  right: 3.9rem;
-  background: none;
-  border: none;
-  z-index: 1201;
-  cursor: pointer;
-  padding: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  svg {
-    stroke: var(--accent-color);
-    width: 2rem;
-    height: 2rem;
-    transition: stroke 0.2s;
-  }
-  &:hover svg {
-    stroke: var(--secondary-text-color);
-  }
+  display: none;
 }
 
 // Media query for mobile devices
 @media (max-width: 768px) {
   header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; // Center the logo
     align-items: center;
     height: 3.2rem;
     padding: 0.25rem 1rem;
+    position: fixed;
+    width: 100%;
+    
     .logo {
       display: block;
+      position: relative;
+      z-index: 1100;
     }
+    
     .desktop-nav,
     .header-cta {
       display: none !important;
     }
+    
     .mobile-menu-toggle {
       display: block;
       position: absolute;
       right: 1rem;
-      top: 0.5rem;
+      top: 50%;
+      transform: translateY(-50%);
       z-index: 1200;
+    }
+    
+    &.scrolled {
+      background-color: var(--background-color);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      
+      .logo img {
+        filter: brightness(0) invert(0);
+      }
+    }
+    
+    &:not(.scrolled) {
+      background-color: transparent;
+      
+      .logo img {
+        filter: brightness(0) invert(1);
+      }
     }
   }
 }
@@ -340,9 +384,9 @@ header.scrolled {
   header {
     height: 2.6rem;
     padding: 0.1rem 0.5rem;
+    
     .mobile-menu-toggle {
       right: 0.5rem;
-      top: 0.2rem;
     }
   }
 }
