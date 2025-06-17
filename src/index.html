@@ -75,20 +75,19 @@
         gap: 1rem;
         justify-content: flex-end;
       }
-      .legal-btn {
+      .footer-social a, .legal-btn {
         background: none;
         border: none;
         color: var(--secondary-text-color);
         font-size: 1rem;
         cursor: pointer;
         text-decoration: none;
-        opacity: 0.8;
-        transition: opacity 0.3s;
+        transition: color 0.2s;
         padding: 0;
         margin: 0;
       }
-      .legal-btn:hover {
-        opacity: 1;
+      .footer-social a:hover, .legal-btn:hover {
+        color: var(--accent-color);
       }
     </style>
 
@@ -514,7 +513,7 @@
                     <div class="contact-card">
                         <div class="contact-form-header">
                           <h2 class="contact-title">Bereit für den nächsten Schritt?</h2>
-                          <p class="contact-description">Ob MVP, Landingpage oder kompletter Webauftritt – ich helfe dir, schnell live zu gehen.</p>
+                          <p class="contact-description">Dann lass uns gemeinsam deine Website an den Start bringen – einfach, schnell und ohne Technikstress.</p>
                         </div>
                         
                         <form action="https://formspree.io/f/xrgnkzvg" method="POST" class="contact-form" id="contact-form" enctype="multipart/form-data">
