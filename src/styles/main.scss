@@ -3,9 +3,11 @@
 @use 'components/hero';
 @use 'components/faq'; // Unified FAQ/solutions section styling
 @use 'components/footer';
-@use 'components/card'; // Import for the new card styles
+// @use 'components/card'; // Removed - no longer needed
 @use 'components/contact';
 @use 'components/projects';
+@use 'components/lebenslauf-page'; // Import for the new lebenslauf page styles
+@use 'components/contact-testimonials'; // Import for contact testimonials
 
 /* Switzer Variable Font Face */
 @font-face {
@@ -25,14 +27,6 @@ body.preload {
 body.fadein {
   transition: opacity 1.2s cubic-bezier(0.4,0,0.2,1);
   opacity: 1 !important;
-}
-
-body.preload .blur-overlay,
-body.preload .lebenslauf-card,
-body.preload .legal-card {
-  opacity: 0 !important;
-  pointer-events: none !important;
-  transform: translate(-50%, 100%) !important;
 }
 
 // Main SCSS file 
@@ -97,7 +91,6 @@ html {
 
 /* Basic Heading Styles */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Switzer', Helvetica, Arial, sans-serif;
   font-weight: bold; // Default bold (700) for headings
   margin-bottom: 1rem; /* Basic spacing */
 }
@@ -118,7 +111,7 @@ a:hover {
   overflow: hidden;
   display: block;
   line-height: 0;
-  font-family: 'Switzer', Helvetica, Arial, sans-serif;
+
   font-size: clamp(4.5rem, 8vw, 8rem);
   font-weight: 900; // Bold
   flex-wrap: wrap;
@@ -207,7 +200,6 @@ a:hover {
   cursor: pointer;
   // GSAP will handle transitions, but keep for border-radius as it's not in all GSAP tweens
   transition: border-radius 450ms ease; 
-  font-family: 'Switzer', Helvetica, Arial, sans-serif;
 
   .text-content {
     position: relative;

@@ -56,8 +56,7 @@
     <style>
       body { opacity: 0; transition: opacity 1.2s cubic-bezier(0.4,0,0.2,1); }
       body.fadein { opacity: 1; }
-      .blur-overlay { opacity: 0; pointer-events: none; }
-      .blur-overlay.visible { opacity: 1; pointer-events: auto; }
+      .mobile-nav-overlay { opacity: 0; pointer-events: none; }
       .hero { 
         min-height: 100vh; 
         display: flex; 
@@ -76,20 +75,19 @@
         gap: 1rem;
         justify-content: flex-end;
       }
-      .legal-btn {
+      .footer-social a, .legal-btn {
         background: none;
         border: none;
         color: var(--secondary-text-color);
         font-size: 1rem;
         cursor: pointer;
         text-decoration: none;
-        opacity: 0.8;
-        transition: opacity 0.3s;
+        transition: color 0.2s;
         padding: 0;
         margin: 0;
       }
-      .legal-btn:hover {
-        opacity: 1;
+      .footer-social a:hover, .legal-btn:hover {
+        color: var(--accent-color);
       }
     </style>
 
@@ -307,9 +305,6 @@
     </script>
 </head>
 <body class="preload">
-    <!-- ARIA landmarks for better accessibility -->
-    <div class="blur-overlay" tabindex="-1" aria-hidden="true" style="display:block;"></div>
-
     <!-- Header Component with enhanced semantics -->
     <header role="banner">
         <div class="logo">
@@ -320,7 +315,7 @@
             </video>
         </div>
         <nav class="desktop-nav">
-            <a href="#services-faq">Bauplan</a>
+            <a href="#services-faq">Über mich</a>
             <a href="#projects">Projekte</a>
         </nav>
         <div class="header-cta">
@@ -338,16 +333,10 @@
     <!-- Mobile navigation overlay -->
     <div class="mobile-nav-overlay">
         <nav class="mobile-nav">
-            <a href="#services-faq">Bauplan</a>
+            <a href="#services-faq">Über mich</a>
             <a href="#projects">Projekte</a>
             <a href="#kontakt">Kontakt</a>
         </nav>
-        <button class="mobile-nav-close" aria-label="Menü schließen">
-          <svg width="32" height="32" viewBox="0 0 32 32" stroke="currentColor" fill="none">
-            <line x1="8" y1="8" x2="24" y2="24" stroke-width="2.5" stroke-linecap="round"/>
-            <line x1="24" y1="8" x2="8" y2="24" stroke-width="2.5" stroke-linecap="round"/>
-          </svg>
-        </button>
     </div>
 
     <!-- Main scrollable container -->
@@ -368,18 +357,16 @@
                     Foto: <a href="https://unsplash.com/@herrherrmann" target="_blank" rel="noopener noreferrer">Sebastian Herrmann</a> / <a href="https://unsplash.com/photos/blick-auf-eine-stadt-bei-sonnenuntergang-5656" target="_blank" rel="noopener noreferrer">Unsplash</a>
                 </div>
             </section>
-
-            <!-- NEUER KOMBINIERTER BEREICH: About + FAQ + Dienstleistungen -->
             <section id="services-faq" class="faq-section" aria-labelledby="faq-heading">
-                <h2 id="faq-heading" class="section-headline-large">Bauplan<span class="headline-tag">STWKHS—'25</span></h2>
+                <h2 id="faq-heading" class="section-headline-large">Über mich<span class="headline-tag">STWKHS—'25</span></h2>
                 
-                <!-- Kurze Intro mit About und Button für Lebenslauf -->
+                <!-- Kurze Intro mit Über mich und Button für Lebenslauf -->
                 <div class="faq-intro">
                     <div class="intro-text">
                         <p><strong>Hey, ich bin Tarik aus Berlin – dein Ansprechpartner für deine Website.</strong> Ich mach's dir einfach: Du sagst mir, was du brauchst, und ich kümmere mich um den Rest.
                           Egal ob du Freelancer bist, ein kleines Business aufbaust oder als Dienstleister durchstartest – wir finden gemeinsam eine Lösung, die zu dir passt.
                           Keine Fachbegriffe, kein Technikstress. Du konzentrierst dich auf dein Geschäft – ich bring deine Website ans Netz. Einfach, schnell und ohne Kopfzerbrechen.</p>
-                        <button class="read-more-btn">Meine Reise & Expertise</button>
+                        <a href="lebenslauf.html" class="read-more-btn">Meine Reise & Expertise</a>
                     </div>
                 </div>
                 
@@ -431,7 +418,7 @@
                                 
                                 <h5>Preisaufschlüsselung:</h5>
                                 <ul>
-                                    <li><strong>Kleine Business-Website:</strong> 1.500€ - 3.000€ (bis zu 5 Seiten, bildschirmoptimiert)</li>
+                                    <li><strong>Kleine Business-Website / Landingpage:</strong> 999€ - 3.000€ (bis zu 5 Seiten, bildschirmoptimiert)</li>
                                     <li><strong>Mittelgroße Website:</strong> 3.000€ - 5.000€ (bis zu 10 Seiten, Kontaktformular, bildschirm- und suchmaschinenoptimiert)</li>
                                     <li><strong>Enterprise Website:</strong> auf Anfrage</li>
                                 </ul>
@@ -498,7 +485,7 @@
                     </a>
                     <a class="project" href="#" tabindex="0">
                         <div class="img-wrapper">
-                            <img class="img normalImg" src="assets/projects/recruitr.webp" alt="Project 2" data-revealed-img="assets/projects/recruitr2.webp" />
+                            <img class="img normalImg" src="assets/projects/recruitr.webp" alt="Project 2" data-revealed-img="assets/projects/recruitr3.webp" />
                         </div>
                         <h2 class="title">Recruitr</h2>
                         <span>Branding & Web</span>
@@ -526,7 +513,7 @@
                     <div class="contact-card">
                         <div class="contact-form-header">
                           <h2 class="contact-title">Bereit für den nächsten Schritt?</h2>
-                          <p class="contact-description">Ob MVP, Landingpage oder kompletter Webauftritt – ich helfe dir, schnell live zu gehen.</p>
+                          <p class="contact-description">Dann lass uns gemeinsam deine Website an den Start bringen – einfach, schnell und ohne Technikstress.</p>
                         </div>
                         
                         <form action="https://formspree.io/f/xrgnkzvg" method="POST" class="contact-form" id="contact-form" enctype="multipart/form-data">
@@ -560,7 +547,7 @@
                                     </button>
                                     <input type="checkbox" id="terms" name="terms" class="sr-only" required>
                                 </div>
-                                <label for="terms" class="terms-label-inline">Ich stimme den <button type="button" id="datenschutz-link" class="datenschutz-link">Datenschutzbestimmungen</button> zu</label>
+                                <label for="terms" class="terms-label-inline">Ich stimme den <a href="./datenschutz.html" class="datenschutz-link">Datenschutzbestimmungen</a> zu</label>
                             </div>
                             
                             <button type="submit" class="contact-submit-button">
@@ -593,16 +580,16 @@
         </main>
 
         <!-- Footer Component -->
-        <footer class="footer" role="contentinfo">
+        <footer id="footer" class="footer" role="contentinfo">
             <div class="footer-social">
                 <div class="social-links-left">
                     <a href="https://www.instagram.com/stackwerkhaus" target="_blank">Instagram</a>
                     <a href="https://www.linkedin.com/in/tarik-arthur-marshall-6112b2239" target="_blank">LinkedIn</a>
                 </div>
                 <div class="footer-legal">
-                    <button class="legal-btn" id="impressum-btn">Impressum</button>
-                    <button class="legal-btn" id="datenschutz-btn">Datenschutzerklärung</button>
-                    <button class="legal-btn" id="agb-btn">AGB</button>
+                    <a href="./impressum.html" class="legal-btn">Impressum</a>
+                    <a href="./datenschutz.html" class="legal-btn">Datenschutzerklärung</a>
+                    <a href="./agb.html" class="legal-btn">AGB</a>
                 </div>
             </div>
             <div class="footer-logo-scroll">
@@ -611,281 +598,6 @@
                 </div>
             </div>
         </footer>
-    </div>
-
-    <!-- Modal Overlays and Cards moved outside scroll container for proper behavior -->
-    <div class="blur-overlay"></div>
-    <div 
-      class="lebenslauf-card" 
-      role="dialog" 
-      aria-modal="true" 
-      aria-labelledby="lebenslauf-title"
-      aria-describedby="lebenslauf-description">
-      <button 
-        class="close-card-btn" 
-        aria-label="Schließen"
-        type="button">
-        &times;
-      </button>
-      <h2 id="lebenslauf-title">Tarik Marshall: <br>Digitale Evolution durch Technologie & KI</h2>
-      <p id="lebenslauf-description">Mein Weg und die Expertise, die STACKWERKHAUS antreibt – für Ihren digitalen Erfolg.</p>
-      <div class="lebenslauf-content">
-        <div class="lebenslauf-section">
-          <h3>Philosophie & Ansatz</h3>
-          <p>Ich verbinde meine langjährige B2B/B2C-Erfahrung mit technischer Expertise und KI-Innovation, um digitale Produkte zu schaffen, die nicht nur ästhetisch überzeugen, sondern vor allem nachhaltige Werte für Ihr Unternehmen generieren. Mein Ansatz beruht auf tiefgehendem Kundenverständnis – ich extrahiere die entscheidenden Informationen, um maßgeschneiderte Lösungen zu entwickeln, die genau Ihre Zielgruppe ansprechen. In einem Deutschland, das bei KI-Adoption noch aufholt, biete ich Ihnen einen entscheidenden Wettbewerbsvorteil.</p>
-        </div>
-        <div class="lebenslauf-section">
-          <h3>Kernkompetenzen & Technologien</h3>
-          <ul>
-            <li><strong>Web & App Entwicklung:</strong> Full-Stack Lösungen mit TypeScript, React, Next.js, Node.js und modernen Headless CMS-Architekturen.</li>
-            <li><strong>KI-Integration:</strong> Einsatz von KI-Agenten und Machine Learning Modellen zur Prozessoptimierung, Personalisierung und für innovative Nutzererlebnisse.</li>
-            <li><strong>UI/UX Design:</strong> Gestaltung intuitiver Benutzeroberflächen mit Figma und Canva, die Ihre Markenidentität stärken und Nutzer begeistern.</li>
-            <li><strong>Projektmanagement:</strong> Transparente Organisation mit Notion und agilen Methoden für effiziente Zusammenarbeit und schnelle Ergebnisse.</li>
-            <li><strong>Business & Strategie:</strong> 7+ Jahre Erfahrung als Key Account Manager im B2B/B2C-Bereich mit mittelständischen und großen Unternehmen.</li>
-            <li><strong>Kommunikation:</strong> Fähigkeit, komplexe technische Konzepte verständlich zu vermitteln und Kundenbedürfnisse präzise zu erfassen.</li>
-          </ul>
-        </div>
-        <div class="lebenslauf-section">
-          <h3>Beruflicher Werdegang</h3>
-          <ul>
-            <li><strong>STACKWERKHAUS:</strong> Gründer und Inhaber eines Design Studios mit Fokus auf KI-gestützte Webentwicklung und digitale Transformation.</li>
-            <li><strong>Key Account Management:</strong> 7-8 Jahre Erfahrung in verschiedenen B2B/B2C-Sektoren, Betreuung mittelständischer bis großer Unternehmen.</li>
-            <li><strong>Agenturerfahrung:</strong> Langjährige Zusammenarbeit mit diversen Agenturen im Bereich Webdesign und digitale Produktentwicklung.</li>
-            <li><strong>Ausbildung:</strong> Abschluss im Bereich Webdesign mit kontinuierlicher Weiterbildung in neuen Technologien und KI-Anwendungen.</li>
-          </ul>
-        </div>
-        <div class="lebenslauf-section">
-          <h3>Leitprinzipien & Werte</h3>
-          <ul>
-            <li><strong>Tech trifft Business:</strong> Die Verbindung von Verkaufspsychologie und technischem Know-how schafft digitale Produkte, die nicht nur funktionieren, sondern auch konvertieren.</li>
-            <li><strong>KI als Multiplikator:</strong> Ich setze KI nicht als Ersatz, sondern als Verstärker menschlicher Kreativität ein – für bessere Ergebnisse in kürzerer Zeit zu fairen Preisen.</li>
-            <li><strong>Transparenz & Partnerschaft:</strong> Klare Kommunikation, ehrliches Feedback und ein partnerschaftlicher Ansatz bilden die Grundlage jeder erfolgreichen Zusammenarbeit.</li>
-            <li><strong>Berliner Innovation:</strong> Als Teil der Berliner Tech-Szene bringe ich frische Perspektiven und zukunftsweisende Lösungen in Ihr Unternehmen – immer einen Schritt voraus.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div 
-      class="legal-card impressum-card" 
-      role="dialog" 
-      aria-modal="true" 
-      aria-labelledby="impressum-title"
-      aria-describedby="impressum-content">
-      <button 
-        class="close-card-btn" 
-        aria-label="Schließen"
-        type="button">
-        &times;
-      </button>
-      <h2 id="impressum-title">Impressum</h2>
-      <div class="legal-content" id="impressum-content">
-        <div class="legal-section">
-          <h3>Angaben gemäß § 5 TMG</h3>
-          <p>Tarik Marshall<br>
-          STACKWERKHAUS<br>
-          Sigmaringer Str. 27<br>
-          10713 Berlin<br>
-          Deutschland</p>
-        </div>
-        <div class="legal-section">
-          <h3>Kontakt</h3>
-          <p>
-            <strong>Telefon:</strong> 
-            <span class="contact-protected" data-contact="phone">
-              <span style="display:none;">&#x30;&#x31;&#x37;&#x36;</span>
-              <span style="display:none;">&#x20;</span>
-              <span style="display:none;">&#x33;&#x31;&#x33;&#x37;</span>
-              <span style="display:none;">&#x38;&#x32;&#x39;&#x34;</span>
-            </span><br>
-            <strong>E-Mail:</strong> 
-            <span class="contact-protected" data-contact="email">
-              <span style="display:none;">&#x69;&#x6E;&#x66;&#x6F;</span>
-              <span style="display:none;">&#x40;</span>
-              <span style="display:none;">&#x73;&#x74;&#x61;&#x63;&#x6B;&#x77;&#x65;&#x72;&#x6B;&#x68;&#x61;&#x75;&#x73;</span>
-              <span style="display:none;">&#x2E;&#x64;&#x65;</span>
-            </span><br>
-            <strong>Website:</strong> <a href="https://www.stackwerkhaus.de">www.stackwerkhaus.de</a>
-          </p>
-        </div>
-        <div class="legal-section">
-          <h3>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
-          <p>Tarik Marshall<br>
-          Sigmaringer Str. 27<br>
-          10713 Berlin<br>
-          Deutschland</p>
-        </div>
-        <div class="legal-section">
-          <h3>Steuerliche Angaben</h3>
-          <p><strong>Umsatzsteuer-ID:</strong> Wird nach Beantragung ergänzt<br>
-          <strong>Finanzamt:</strong> Finanzamt Berlin Schöneberg</p>
-        </div>
-        <div class="legal-section">
-          <h3>Berufshaftpflichtversicherung</h3>
-          <p>Eine Berufshaftpflichtversicherung wird bei Aufnahme größerer Projekte abgeschlossen.</p>
-        </div>
-        <div class="legal-section">
-          <h3>EU-Streitschlichtung</h3>
-          <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank">https://ec.europa.eu/consumers/odr/</a></p>
-          <p>Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
-        </div>
-        <div class="legal-section">
-          <h3>Verbraucherstreitbeilegung</h3>
-          <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
-        </div>
-      </div>
-    </div>
-    <div 
-      class="legal-card datenschutz-card" 
-      role="dialog" 
-      aria-modal="true" 
-      aria-labelledby="datenschutz-title"
-      aria-describedby="datenschutz-content">
-      <button 
-        class="close-card-btn" 
-        aria-label="Schließen"
-        type="button">
-        &times;
-      </button>
-      <h2 id="datenschutz-title">Datenschutzerklärung</h2>
-      <div class="legal-content" id="datenschutz-content">
-        <p>Diese Datenschutzerklärung informiert Sie über die Art, den Umfang und Zweck der Verarbeitung von personenbezogenen Daten auf unserer Website und in unserem Dienstleistungsgeschäft.</p>
-        <div class="legal-section">
-          <h3>1. Verantwortlicher</h3>
-          <p><strong>Verantwortlich für die Datenverarbeitung:</strong></p>
-          <p>Tarik Marshall<br>
-          STACKWERKHAUS<br>
-          Sigmaringer Str. 27<br>
-          10713 Berlin<br>
-          Deutschland</p>
-          <p>
-            <strong>Kontakt:</strong> 
-            <span class="contact-protected" data-contact="email">
-              <span style="display:none;">&#x69;&#x6E;&#x66;&#x6F;</span>
-              <span style="display:none;">&#x40;</span>
-              <span style="display:none;">&#x73;&#x74;&#x61;&#x63;&#x6B;&#x77;&#x65;&#x72;&#x6B;&#x68;&#x61;&#x75;&#x73;</span>
-              <span style="display:none;">&#x2E;&#x64;&#x65;</span>
-            </span>
-          </p>
-        </div>
-        <div class="legal-section">
-          <h3>2. Datenerfassung auf dieser Website</h3>
-          <h4>2.1 Server-Log-Dateien</h4>
-          <p>Beim Besuch unserer Website werden automatisch Informationen (sogenannte Server-Logfiles) wie IP-Adresse, Zeitpunkt des Zugriffs, Browsertyp usw. erhoben. Diese Daten dienen ausschließlich der Sicherstellung eines störungsfreien Betriebs und werden nicht zur Identifikation deiner Person verwendet.</p>
-          <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse)<br>
-          <strong>Zweck:</strong> Sicherstellung eines störungsfreien Betriebs<br>
-          <strong>Speicherdauer:</strong> 7 Tage</p>
-        </div>
-        <div class="legal-section">
-          <h3>3. Kontaktaufnahme</h3>
-          <p>Bei der Nutzung unseres Kontaktformulars werden folgende Daten verarbeitet: Name, E-Mail-Adresse, Telefonnummer (optional), Nachricht und angehängte Dateien (optional).</p>
-          <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO<br>
-          <strong>Zweck:</strong> Bearbeitung Ihrer Anfrage<br>
-          <strong>Speicherdauer:</strong> Bis zu 3 Jahre nach Abschluss der Geschäftsbeziehung</p>
-        </div>
-        <div class="legal-section">
-          <h3>4. Externe Dienste</h3>
-          <p><strong>Calendly:</strong> Für Terminbuchungen nutzen wir Calendly, Inc. (USA). Datenübertragung: Name, E-Mail-Adresse, Terminwünsche.</p>
-          <p><strong>Formspree:</strong> Für die Kontaktformular-Verarbeitung nutzen wir Formspree, Inc. (USA).</p>
-        </div>
-        <div class="legal-section">
-          <h3>5. Ihre Rechte</h3>
-          <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung sowie Datenübertragbarkeit. Zudem können Sie jederzeit Widerspruch gegen die Verarbeitung einlegen.</p>
-        </div>
-        <div class="legal-section">
-          <h3>6. Beschwerderecht</h3>
-          <p><strong>Berliner Beauftragte für Datenschutz und Informationsfreiheit</strong><br>
-          Friedrichstr. 219, 10969 Berlin<br>
-          Telefon: 030 13889-0<br>
-          Website: <a href="https://www.datenschutz-berlin.de" target="_blank">www.datenschutz-berlin.de</a></p>
-        </div>
-        <div class="legal-section">
-          <p><strong>Stand:</strong> Dezember 2024</p>
-        </div>
-      </div>
-    </div>
-    <div 
-      class="legal-card agb-card" 
-      role="dialog" 
-      aria-modal="true" 
-      aria-labelledby="agb-title"
-      aria-describedby="agb-content">
-      <button 
-        class="close-card-btn" 
-        aria-label="Schließen"
-        type="button">
-        &times;
-      </button>
-      <h2 id="agb-title">Allgemeine Geschäftsbedingungen (AGB)</h2>
-      <div class="legal-content" id="agb-content">
-        <p><strong>STACKWERKHAUS - Tarik Marshall</strong><br>
-        Gültig ab: 19. Dezember 2024</p>
-        
-        <div class="legal-section">
-          <h3>§ 1 Geltungsbereich und Vertragspartner</h3>
-          <h4>1.1 Anbieter</h4>
-          <p>Diese Allgemeinen Geschäftsbedingungen gelten für alle Leistungen von:</p>
-          <p><strong>STACKWERKHAUS</strong><br>
-          Inhaber: Tarik Marshall<br>
-          Adresse: Sigmaringer Str. 27, 10713 Berlin<br>
-          Kontakt: [Siehe Impressum für aktuelle Kontaktdaten]</p>
-          
-          <h4>1.2 Geltungsbereich</h4>
-          <p>Diese AGB gelten für alle Verträge zwischen STACKWERKHAUS und Kunden über die Erbringung von Dienstleistungen im Bereich Webentwicklung, UI/UX Design, Branding und verwandten digitalen Services.</p>
-        </div>
-        
-        <div class="legal-section">
-          <h3>§ 2 Vertragsschluss und Leistungsumfang</h3>
-          <p><strong>Angebot und Annahme:</strong> Alle Angebote sind freibleibend. Ein Vertrag kommt durch schriftliche Auftragsbestätigung oder Beginn der Leistungserbringung zustande.</p>
-          <p><strong>Projektphasen:</strong> Webentwicklungsprojekte werden typischerweise in folgenden Phasen abgewickelt:</p>
-          <ul>
-            <li>Konzeption & Briefing (1-2 Wochen)</li>
-            <li>Design & Prototyping (2-3 Wochen)</li>
-            <li>Entwicklung & Programmierung (2-6 Wochen)</li>
-            <li>Testing & Launch (1 Woche)</li>
-          </ul>
-        </div>
-        
-        <div class="legal-section">
-          <h3>§ 3 Preise und Zahlungsbedingungen</h3>
-          <p><strong>Preise:</strong> Alle Preise verstehen sich als Nettopreise zzgl. der gesetzlichen Umsatzsteuer. Zusatzleistungen werden nach Aufwand berechnet (Stundensatz: 95€ netto).</p>
-          <p><strong>Zahlungsmodalitäten:</strong></p>
-          <ul>
-            <li>Anzahlung: 50% bei Projektbeginn</li>
-            <li>Zwischenzahlung: 30% bei Designfreigabe</li>
-            <li>Schlusszahlung: 20% bei Projektabschluss</li>
-            <li>Zahlungsziel: 14 Tage netto</li>
-          </ul>
-        </div>
-        
-        <div class="legal-section">
-          <h3>§ 4 Mitwirkungspflichten des Kunden</h3>
-          <p>Der Kunde verpflichtet sich zur rechtzeitigen Bereitstellung aller erforderlichen Informationen, Materialien und Zugänge. Freigaben sind innerhalb von 5 Werktagen zu erteilen. Nachträgliche Änderungen nach erteilter Freigabe werden gesondert berechnet.</p>
-        </div>
-        
-        <div class="legal-section">
-          <h3>§ 5 Urheberrecht und Nutzungsrechte</h3>
-          <p>Alle von STACKWERKHAUS erstellten Werke unterliegen dem Urheberrecht. Nach vollständiger Bezahlung erhält der Kunde die für den vereinbarten Zweck erforderlichen Nutzungsrechte. STACKWERKHAUS behält sich das Recht vor, realisierte Projekte zu Referenzzwecken zu verwenden.</p>
-        </div>
-        
-        <div class="legal-section">
-          <h3>§ 6 Gewährleistung und Haftung</h3>
-          <p>Mängel sind unverzüglich schriftlich zu rügen. STACKWERKHAUS hat das Recht zur Nachbesserung. Die Haftung ist auf Vorsatz und grobe Fahrlässigkeit beschränkt und auf den vorhersehbaren, typischen Schaden begrenzt.</p>
-        </div>
-        
-        <div class="legal-section">
-          <h3>§ 7 Wartung und Support</h3>
-          <p>Wartungsleistungen sind optional und werden separat vereinbart. Support wird während der Geschäftszeiten (Mo-Fr, 9-18 Uhr) geleistet. Wartungsverträge haben eine Mindestlaufzeit von 12 Monaten.</p>
-        </div>
-        
-        <div class="legal-section">
-          <h3>§ 8 Schlussbestimmungen</h3>
-          <p>Es gilt ausschließlich deutsches Recht unter Ausschluss des UN-Kaufrechts. Gerichtsstand ist Berlin. Sollten einzelne Bestimmungen unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
-        </div>
-        
-        <div class="legal-section">
-          <p><strong>Stand:</strong> Dezember 2024</p>
-        </div>
-      </div>
     </div>
     
     <!-- <script src="dist/bundle.js"></script> JS will be injected by HtmlWebpackPlugin -->

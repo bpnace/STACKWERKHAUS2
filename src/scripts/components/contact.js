@@ -6,7 +6,6 @@ export function initContactSection() {
   container.innerHTML = `
     <div class="contact-testimonials">
       <div class="contact-testimonials__col" id="testimonials-col-1"></div>
-      <div class="contact-testimonials__col" id="testimonials-col-2"></div>
     </div>
   `;
   initContactTestimonials();

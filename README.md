@@ -1,5 +1,8 @@
 # Tarik Marshall Portfolio Website
 
+![Status](https://img.shields.io/badge/status-in%20development-orange)
+![Version](https://img.shields.io/badge/version-1.2-blue)
+
 A modern, animated portfolio for Tarik Marshall (STACKWERKHAUS), built with a focus on design, performance, smooth user experience, and **Answer Engine Optimization (AEO)** for maximum AI visibility.
 
 ---
@@ -15,10 +18,17 @@ A modern, animated portfolio for Tarik Marshall (STACKWERKHAUS), built with a fo
 8. [GSAP Animations](#gsap-animations)
 9. [Responsive Design](#responsive-design)
 10. [Accessibility](#accessibility)
-11. [Build & Development](#build--development)
-12. [SEO & AEO Setup](#seo--aeo-setup)
-13. [Deployment](#deployment)
-14. [Assets & Fonts](#assets--fonts)
+11. [Prerequisites](#prerequisites)
+12. [Browser Compatibility](#browser-compatibility)
+13. [Build & Development](#build--development)
+14. [SEO & AEO Setup](#seo--aeo-setup)
+15. [Deployment](#deployment)
+16. [Assets & Fonts](#assets--fonts)
+17. [Performance Optimizations](#performance-optimizations)
+18. [Maintenance & Updates](#maintenance--updates)
+19. [Credits & License](#credits--license)
+20. [Contact & Support](#contact--support)
+21. [Notes for Developers](#notes-for-developers)
 
 ---
 
@@ -286,6 +296,45 @@ STACKWERKHAUS2/
 
 ---
 
+## Prerequisites
+
+### Development Environment
+- **Node.js**: Recent version (recommended)
+- **npm**: Package manager for JavaScript
+
+### Getting Started
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/STACKWERKHAUS2.git
+
+# Navigate to project directory
+cd STACKWERKHAUS2
+
+# Install dependencies
+npm install
+
+# Start development server
+npm start
+```
+
+---
+
+## Browser Compatibility
+
+### Supported Browsers
+- **Google Chrome**: Latest versions
+- **Apple Safari**: Latest versions
+
+### Testing
+The website has been primarily tested on the latest versions of Chrome and Safari.
+
+### Responsive Testing
+- **Desktop**: 1200px+
+- **Tablet**: 768px - 1199px
+- **Mobile**: 320px - 767px
+
+---
+
 ## Build & Development
 
 ### Development Scripts
@@ -411,6 +460,19 @@ npm run build       # Production build
 - **LCP**: Hero image preloaded and optimized
 - **FID**: Minimal JavaScript blocking
 - **CLS**: Reserved space for dynamic content
+
+---
+
+## Maintenance & Updates
+
+### Update Schedule
+- **Monthly**: The site is updated at least once per month with new content, features, or optimizations.
+
+### Update Process
+1. **Content Review**: Check for outdated information and update accordingly
+2. **Project Additions**: Add new completed projects to the portfolio section
+3. **Performance Checks**: Run Lighthouse audits to ensure continued performance
+4. **AEO Updates**: Refine content based on AI search trends and user questions
 
 ---
 

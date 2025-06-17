@@ -39,7 +39,6 @@
 
   .hero-title {
     position: relative;
-    font-family: 'Switzer-Bold', Helvetica, Arial, sans-serif;
     z-index: 1;
     line-height: 0;
     margin-left: 0 !important; // Override section-headline-large margin
@@ -68,12 +67,12 @@
   .hero-subtitle {
     position: relative;
     z-index: 1;
-    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    opacity: 0.8;
+    font-size: clamp(1rem, 2.2vw, 1.4rem);
     max-width: 600px;
     margin-bottom: 2rem;
     text-align: left;
     color: var(--secondary-text-color);
-    font-family: 'Switzer', Helvetica, Arial, sans-serif;
   }
 }
 
@@ -97,7 +96,6 @@
   color: #fff;
   opacity: 0.5;
   font-size: 0.95rem;
-  font-family: 'Switzer', Helvetica, Arial, sans-serif;
   z-index: 2;
   text-align: right;
   pointer-events: auto;
@@ -116,6 +114,7 @@
 @media (max-width: 1024px) {
   .hero {
     padding: 2rem 3rem;
+    font-weight: 700;
     
     .hero-title {
       font-size: clamp(3rem, 8vw, 5rem);

@@ -5,7 +5,8 @@
   "main": "src/scripts/main.js",
   "scripts": {
     "build": "webpack --mode=production",
-    "start": "NODE_ENV=development webpack serve --open"
+    "start": "NODE_ENV=development webpack serve --open",
+    "dev": "NODE_ENV=development webpack serve"
   },
   "keywords": [
     "portfolio",

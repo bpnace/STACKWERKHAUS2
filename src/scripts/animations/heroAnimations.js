@@ -14,7 +14,9 @@ export function initHeroAnimations() {
       start: "bottom 80px", // When hero bottom reaches header height
       end: "bottom 80px",
       onEnter: () => headerEl.classList.add("scrolled"),
-      onLeaveBack: () => headerEl.classList.remove("scrolled")
+      onLeaveBack: () => headerEl.classList.remove("scrolled"),
+      // Make sure this works on mobile too
+      invalidateOnRefresh: true
     });
   }
 

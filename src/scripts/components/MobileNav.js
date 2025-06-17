@@ -13,6 +13,10 @@ export function initMobileNav() {
   
   if (!mobileMenuToggle || !mobileNavOverlay || !header) return;
   
+  // Ensure mobile nav is properly hidden on initialization
+  gsap.set(mobileNavOverlay, { opacity: 0, pointerEvents: 'none' });
+  mobileNavOverlay.classList.remove('active');
+  
   // Toggle mobile menu
   function toggleMobileMenu() {
     const isOpen = mobileNavOverlay.classList.contains('active');
@@ -79,18 +83,6 @@ export function initMobileNav() {
       toggleMobileMenu();
     }
   });
-
-  // Add close button logic
-  const mobileNavClose = document.querySelector('.mobile-nav-close');
-  if (mobileNavClose) {
-    mobileNavClose.addEventListener('click', () => {
-      mobileNavOverlay.classList.remove('active');
-      header.classList.remove('menu-open');
-      mobileMenuToggle.setAttribute('aria-expanded', 'false');
-      document.body.classList.remove('menu-open');
-      if (window.lenisInstance) window.lenisInstance.start();
-    });
-  }
 
   // Close menu when clicking outside nav
   mobileNavOverlay.addEventListener('mousedown', (e) => {

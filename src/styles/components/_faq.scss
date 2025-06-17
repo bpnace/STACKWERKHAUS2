@@ -326,11 +326,16 @@
     padding: 1rem 0.5rem;
     .faq-container {
       gap: 1.2rem;
-      .faq-image .profile-image {
+      .faq-image {
+        display: none; // Hide profile image on mobile
       }
       .faq-content .faq-section-title {
         font-size: 1.1rem;
       }
+    }
+    
+    .faq-intro .read-more-btn {
+      display: none; // Hide read more button on mobile
     }
   }
 }

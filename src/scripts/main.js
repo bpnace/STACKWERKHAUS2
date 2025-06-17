@@ -6,24 +6,22 @@ import 'regenerator-runtime/runtime'; */
 import '../styles/main.scss'; // Import main SCSS file for Webpack
 
 // Main JavaScript file 
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger'; // Import ScrollTrigger
-import Lenis from 'lenis'; // Import Lenis for smooth scrolling
+import 'regenerator-runtime/runtime';
+import 'core-js/stable';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import Lenis from 'lenis';
 
 // Import our new utilities
 import { headlineAnimator, scrollFadeIn, createParallax } from './utils/animationUtils';
-import { FocusTrap } from './utils/focusTrap';
-import popupManager from './utils/popupManager'; // Import the new popup manager
 
 // Import animation modules
-// import { initPageLoadAnimation } from './animations/pageLoadAnimations'; // Removing this import
 import { initHeroAnimations } from './animations/heroAnimations';
 import './components/ProjectCard'; // Web Component registration
 import { initSeeMoreButtonAnimations } from './animations/seeMoreButtonAnimations';
 import { initCustomCheckbox } from './components/ContactForm';
 import { initMobileNav } from './components/MobileNav'; // Import mobile nav
 import { initContactSection } from './components/contact';
-// import { createIridescenceEffect } from './components/iridescence'; // Removing this import
 
 gsap.registerPlugin(ScrollTrigger); // Only register ScrollTrigger, not Draggable
 
@@ -64,8 +62,14 @@ gsap.registerPlugin(ScrollTrigger); // Only register ScrollTrigger, not Draggabl
 })();
 
 window.addEventListener('load', () => {
-  document.body.classList.remove('preload');
-  document.body.classList.add('fadein');
+  // Initialize mobile navigation first
+  initMobileNav();
+  
+  // Then remove preload class and add fadein class
+  setTimeout(() => {
+    document.body.classList.remove('preload');
+    document.body.classList.add('fadein');
+  }, 100);
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -76,8 +80,10 @@ document.addEventListener('DOMContentLoaded', () => {
     orientation: 'vertical',
     gestureOrientation: 'vertical',
     smoothWheel: true,
+    wheelMultiplier: 1,
     smoothTouch: false,
     touchMultiplier: 2,
+    infinite: false,
   });
   // Store on window for HMR or other potential global access if needed
   window.lenisInstance = lenis;
@@ -372,45 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Ensure the "read more" button in the FAQ section also opens the lebenslauf card
     const faqReadMoreBtn = document.querySelector('.faq-section .read-more-btn');
-    const blurOverlay = document.querySelector('.blur-overlay');
-    const lebenslaufCard = document.querySelector('.lebenslauf-card');
-    const closeLebenslaufBtn = lebenslaufCard ? lebenslaufCard.querySelector('.close-card-btn') : null;
-    if (faqReadMoreBtn && blurOverlay && lebenslaufCard) {
-      faqReadMoreBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        blurOverlay.classList.add('visible');
-        lebenslaufCard.classList.add('visible');
-        document.body.classList.add('modal-open');
-        if (window.lenisInstance) window.lenisInstance.stop();
-        // Body scroll lock pattern
-        const scrollY = window.scrollY;
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${scrollY}px`;
-        document.body.style.width = '100vw';
-        document.body.style.overflow = 'hidden';
-        document.body.dataset.scrollY = scrollY;
-        // Scroll modal content to top
-        const content = lebenslaufCard.querySelector('.lebenslauf-content');
-        if (content) content.scrollTop = 0;
-        return false;
-      });
-    }
-    if (closeLebenslaufBtn && blurOverlay && lebenslaufCard) {
-      closeLebenslaufBtn.addEventListener('click', () => {
-        blurOverlay.classList.remove('visible');
-        lebenslaufCard.classList.remove('visible');
-        document.body.classList.remove('modal-open');
-        if (window.lenisInstance) window.lenisInstance.start();
-        // Restore body scroll
-        const scrollY = document.body.dataset.scrollY ? parseInt(document.body.dataset.scrollY, 10) : 0;
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        document.body.style.overflow = '';
-        delete document.body.dataset.scrollY;
-        window.scrollTo(0, scrollY);
-      });
-    }
+    // Lebenslauf card popup functionality removed - now using a separate page
   };
   // Initialize the FAQ section
   initFaqSection();
@@ -525,16 +493,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- Custom modal logic for legal cards (Impressum, Datenschutz, AGB) ---
-  const impressumBtn = document.getElementById('impressum-btn');
-  const datenschutzBtn = document.getElementById('datenschutz-btn');
-  const agbBtn = document.getElementById('agb-btn');
-  const impressumCard = document.querySelector('.impressum-card');
-  const datenschutzCard = document.querySelector('.datenschutz-card');
-  const agbCard = document.querySelector('.agb-card');
-  const closeLegalBtns = document.querySelectorAll('.legal-card .close-card-btn');
-
-  const blurOverlay = document.querySelector('.blur-overlay');
-
+  // Legal popups have been replaced with dedicated pages
+  
   // Contact information unobfuscation for legitimate users
   function unobfuscateContactInfo() {
     const contactProtected = document.querySelectorAll('.contact-protected');
@@ -558,76 +518,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function openLegalModal(card) {
-    if (!card) return;
-    card.classList.add('visible');
-    document.body.classList.add('modal-open');
-    if (window.lenisInstance) window.lenisInstance.stop();
-    // Body scroll lock pattern
-    const scrollY = window.scrollY;
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.width = '100vw';
-    document.body.style.overflow = 'hidden';
-    document.body.dataset.scrollY = scrollY;
-    // Show blur overlay
-    if (blurOverlay) blurOverlay.classList.add('visible');
-  }
-
-  function closeLegalModal(card) {
-    if (!card) return;
-    card.classList.remove('visible');
-    document.body.classList.remove('modal-open');
-    if (window.lenisInstance) window.lenisInstance.start();
-    // Restore body scroll
-    const scrollY = document.body.dataset.scrollY ? parseInt(document.body.dataset.scrollY, 10) : 0;
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.width = '';
-    document.body.style.overflow = '';
-    delete document.body.dataset.scrollY;
-    window.scrollTo(0, scrollY);
-    // Hide blur overlay
-    if (blurOverlay) blurOverlay.classList.remove('visible');
-  }
-
-  if (impressumBtn && impressumCard) {
-    impressumBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      unobfuscateContactInfo(); // Unobfuscate when user clicks
-      openLegalModal(impressumCard);
-    });
-  }
-  if (datenschutzBtn && datenschutzCard) {
-    datenschutzBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      unobfuscateContactInfo(); // Unobfuscate when user clicks
-      openLegalModal(datenschutzCard);
-    });
-  }
-  if (agbBtn && agbCard) {
-    agbBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      openLegalModal(agbCard);
-    });
-  }
-  closeLegalBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const card = btn.closest('.legal-card');
-      closeLegalModal(card);
-    });
-  });
-
-  // Add event listener for datenschutz link in contact form
-  const datenschutzLink = document.getElementById('datenschutz-link');
-  if (datenschutzLink) {
-    datenschutzLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      unobfuscateContactInfo(); // Unobfuscate when user clicks
-      openLegalModal(datenschutzCard);
-    });
-  }
+  // Automatically unobfuscate contact info on page load
+  unobfuscateContactInfo();
 
   initContactSection();
 
