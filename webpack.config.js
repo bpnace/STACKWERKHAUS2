@@ -18,7 +18,7 @@ module.exports = (env, argv) => {
       filename: isProduction ? '[name].[contenthash].js' : '[name].js',
       path: path.resolve(__dirname, 'public/dist'),
       assetModuleFilename: 'assets/[name][ext][query]', // Define output path for assets
-      publicPath: '/' // Set to root path
+      publicPath: '' // Set to empty string for relative paths
     },
     resolve: {
       alias: {
@@ -33,6 +33,22 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         template: './src/index.html', // Path to your source index.html
         filename: 'index.html'       // Output filename in the dist directory
+      }),
+      new HtmlWebpackPlugin({
+        template: './src/lebenslauf.html', // Path to your source lebenslauf.html
+        filename: 'lebenslauf.html'       // Output filename in the dist directory
+      }),
+      new HtmlWebpackPlugin({
+        template: './src/impressum.html', // Path to your source impressum.html
+        filename: 'impressum.html'       // Output filename in the dist directory
+      }),
+      new HtmlWebpackPlugin({
+        template: './src/datenschutz.html', // Path to your source datenschutz.html
+        filename: 'datenschutz.html'       // Output filename in the dist directory
+      }),
+      new HtmlWebpackPlugin({
+        template: './src/agb.html', // Path to your source agb.html
+        filename: 'agb.html'       // Output filename in the dist directory
       }),
       new CopyWebpackPlugin({
         patterns: [
@@ -73,9 +89,14 @@ module.exports = (env, argv) => {
       ],
     },
     devServer: {
-      static: {
-        directory: path.join(__dirname, 'public')
-      },
+      static: [
+        {
+          directory: path.join(__dirname, 'public')
+        },
+        {
+          directory: path.join(__dirname, 'src')
+        }
+      ],
       host: '0.0.0.0',
       allowedHosts: 'all',
       port: 3000,

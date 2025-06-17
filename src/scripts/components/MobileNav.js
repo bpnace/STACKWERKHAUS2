@@ -13,6 +13,10 @@ export function initMobileNav() {
   
   if (!mobileMenuToggle || !mobileNavOverlay || !header) return;
   
+  // Ensure mobile nav is properly hidden on initialization
+  gsap.set(mobileNavOverlay, { opacity: 0, pointerEvents: 'none' });
+  mobileNavOverlay.classList.remove('active');
+  
   // Toggle mobile menu
   function toggleMobileMenu() {
     const isOpen = mobileNavOverlay.classList.contains('active');

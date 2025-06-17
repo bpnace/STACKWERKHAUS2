@@ -44,50 +44,50 @@ function renderTestimonials() {
   if (!col1) return;
 
   // Always use single column layout
-  const wrapper = document.createElement('div');
-  wrapper.className = 'testimonials-list';
-  col1.appendChild(wrapper);
+    const wrapper = document.createElement('div');
+    wrapper.className = 'testimonials-list';
+    col1.appendChild(wrapper);
   
   // Add testimonials to the wrapper
-  testimonials.forEach(t => wrapper.appendChild(createTestimonialItem(t)));
+    testimonials.forEach(t => wrapper.appendChild(createTestimonialItem(t)));
   
   // Duplicate testimonials for seamless scrolling
-  setTimeout(() => {
-    const parent = col1.closest('.contact-info-card');
-    const colHeight = parent ? parent.offsetHeight : col1.offsetHeight;
-    const itemEls = wrapper.querySelectorAll('.testimonial-item');
+    setTimeout(() => {
+      const parent = col1.closest('.contact-info-card');
+      const colHeight = parent ? parent.offsetHeight : col1.offsetHeight;
+      const itemEls = wrapper.querySelectorAll('.testimonial-item');
     
-    if (itemEls.length === 0) return;
+      if (itemEls.length === 0) return;
     
-    const itemHeight = itemEls[0].offsetHeight + parseFloat(getComputedStyle(itemEls[0]).marginBottom);
-    const singleSetHeight = itemHeight * testimonials.length;
+      const itemHeight = itemEls[0].offsetHeight + parseFloat(getComputedStyle(itemEls[0]).marginBottom);
+      const singleSetHeight = itemHeight * testimonials.length;
     
-    // Duplicate testimonials at least once for seamless looping
-    while (wrapper.scrollHeight < colHeight + singleSetHeight) {
+      // Duplicate testimonials at least once for seamless looping
+      while (wrapper.scrollHeight < colHeight + singleSetHeight) {
+        testimonials.forEach(t => wrapper.appendChild(createTestimonialItem(t)));
+      }
+    
+      // Add one more set for seamlessness
       testimonials.forEach(t => wrapper.appendChild(createTestimonialItem(t)));
-    }
-    
-    // Add one more set for seamlessness
-    testimonials.forEach(t => wrapper.appendChild(createTestimonialItem(t)));
     
     // Animate wrapper upward
-    const scrollDistance = wrapper.scrollHeight - colHeight;
-    gsap.set(wrapper, { y: 0 });
+      const scrollDistance = wrapper.scrollHeight - colHeight;
+      gsap.set(wrapper, { y: 0 });
     
     // Adjust speed based on mobile/desktop
     const duration = isMobile ? 90 : 120; // Slightly faster on mobile
     
-    const tl = gsap.timeline({ repeat: -1, defaults: { ease: 'none' } });
-    tl.to(wrapper, {
-      y: -scrollDistance,
-      duration: duration,
-      onRepeat: () => {
-        gsap.set(wrapper, { y: 0 });
-      }
-    });
+      const tl = gsap.timeline({ repeat: -1, defaults: { ease: 'none' } });
+      tl.to(wrapper, {
+        y: -scrollDistance,
+        duration: duration,
+        onRepeat: () => {
+          gsap.set(wrapper, { y: 0 });
+        }
+      });
     
-    gsapTimelines.push(tl);
-  }, 200);
+        gsapTimelines.push(tl);
+      }, 200);
 }
 
 export function initContactTestimonials() {
@@ -97,7 +97,7 @@ export function initContactTestimonials() {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
       // Re-render on resize to adjust for mobile/desktop
-      renderTestimonials();
+        renderTestimonials();
     }, 200);
   });
 } 
