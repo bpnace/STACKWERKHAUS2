@@ -22,6 +22,7 @@ import { initSeeMoreButtonAnimations } from './animations/seeMoreButtonAnimation
 import { initCustomCheckbox } from './components/ContactForm';
 import { initMobileNav } from './components/MobileNav'; // Import mobile nav
 import { initContactSection } from './components/contact';
+import { initTextRevealAnimation } from './animations/textRevealAnimation';
 
 gsap.registerPlugin(ScrollTrigger); // Only register ScrollTrigger, not Draggable
 
@@ -243,6 +244,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize hero see-more button animation
   initSeeMoreButtonAnimations();
+  
+  // Initialize text reveal animation for service cards
+  initTextRevealAnimation();
 
   // Logo video hover effect
   const logoVideo = document.querySelector('.logo .masked-video');

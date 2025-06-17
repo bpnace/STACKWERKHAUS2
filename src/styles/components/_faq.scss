@@ -63,9 +63,17 @@
     /* Mini Services Grid */
     .services-mini-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
       margin-bottom: 3rem;
+      
+      @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+      }
       
       .service-mini-card {
         //background-color: rgba(86, 8, 255, 0.03);
@@ -93,6 +101,18 @@
         p {
           font-size: 0.95rem;
           line-height: 1.5;
+          
+          .text-reveal-wrapper {
+            display: inline-block;
+            overflow: hidden;
+            
+            .text-reveal-char {
+              display: inline-block;
+              transform-origin: bottom center;
+              will-change: transform, opacity;
+              perspective: 1000px;
+            }
+          }
         }
       }
     }
