@@ -75,8 +75,7 @@
         position: relative;
         overflow: hidden;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08); /* Default subtle shadow */
-        transition: box-shadow 0.3s ease; /* Smooth transition for non-GSAP properties */
-        cursor: pointer; /* Indicate interactivity */
+        transition: box-shadow 0.3s ease; /* Smooth transition for non-GSAP properties */ /* Indicate interactivity */
         transform-style: preserve-3d; /* Enable 3D transformations */
         backface-visibility: hidden; /* Prevent flickering */
         

@@ -309,9 +309,9 @@
     <header role="banner">
         <div class="logo">
             <img src="assets/images/logo1.svg" alt="STACKWERKHAUS Logo">
-            <video class="masked-video" playsinline muted loop autoplay preload="metadata">
-                    <source src="assets/video/logo_bg1.webm" type="video/webm">
-                    <source src="assets/video/logo_bg1.mp4" type="video/mp4">
+                            <video class="masked-video lazy-video" playsinline muted loop data-autoplay>
+                    <source data-src="assets/video/logo_bg1.webm" type="video/webm">
+                    <source data-src="assets/video/logo_bg1.mp4" type="video/mp4">
                 </video>
         </div>
         <nav class="desktop-nav">
@@ -374,7 +374,7 @@
                 <div class="services-mini-grid">
                     <div class="service-mini-card">
                         <div class="service-icon">
-                            <img width="32" height="32" loading="lazy" src="https://img.icons8.com/windows/32/web.png" alt="web"/>
+                            <img width="32" height="32" src="https://img.icons8.com/windows/32/web.png" alt="web"/>
                         </div>
                         <h3>Webentwicklung</h3>
                         <p>Moderne Websites, die auf jedem Gerät gut aussehen und reibungslos funktionieren – egal ob Smartphone, Tablet oder Computer.</p>
@@ -382,7 +382,7 @@
                     
                     <div class="service-mini-card">
                         <div class="service-icon">
-                            <img width="32" height="32" loading="lazy" src="https://img.icons8.com/ios-glyphs/90/vector.png" alt="vector"/>
+                            <img width="32" height="32" src="https://img.icons8.com/ios-glyphs/90/vector.png" alt="vector"/>
                         </div>
                         <h3>UI/UX Design</h3>
                         <p>Deine Website soll nicht nur schön sein, sondern sich auch gut anfühlen. Ich achte darauf, dass alles klar, einfach und stimmig ist.</p>
@@ -390,7 +390,7 @@
                     
                     <div class="service-mini-card">
                         <div class="service-icon">
-                          <img width="32" height="32" loading="lazy" src="https://img.icons8.com/fluency-systems-filled/48/fingerprint.png" alt="fingerprint"/>
+                          <img width="32" height="32" src="https://img.icons8.com/fluency-systems-filled/48/fingerprint.png" alt="fingerprint"/>
                         </div>
                         <h3>Branding</h3>
                         <p>Gemeinsam finden wir einen Look, der zu dir passt. Logo, Farben und Stil, die dich und dein Business echt widerspiegeln.</p>
@@ -400,7 +400,7 @@
                 <!-- FAQ Accordion mit direkten Antworten -->
                 <div class="faq-container">
                     <div class="faq-image">
-                        <img loading="lazy" src="https://placehold.co/400x500/e2e8f0/1e293b?text=Profile+Image" alt="Profile Placeholder" class="profile-image">
+                        <img src="https://placehold.co/400x500/e2e8f0/1e293b?text=Profile+Image" alt="Profile Placeholder" class="profile-image">
                         <div class="contact-links">
                             <a href="#" class="email-link" onclick="window.location.href='mailto:' + 'info' + '@' + 'stackwerkhaus.de'; return false;">Email</a>
                             <a href="https://www.instagram.com/stackwerkhaus" target="_blank">Instagram</a>
@@ -478,14 +478,14 @@
                 <div class="project-grid">
                     <a class="project" href="#" tabindex="0">
                         <div class="img-wrapper">
-                            <img class="img normalImg" loading="lazy" src="assets/projects/bloom1.webp" alt="Project 1" data-revealed-img="assets/video/bloom_video.webm" />
+                            <img class="img normalImg" src="assets/projects/bloom1.webp" alt="Project 1" data-revealed-img="assets/video/bloom_video.webm" />
                         </div>
                         <h2 class="title">Bloom</h2>
                         <span>Full Homepage</span>
                     </a>
                     <a class="project" href="#" tabindex="0">
                         <div class="img-wrapper">
-                            <img class="img normalImg" loading="lazy" src="assets/projects/recruitr.webp" alt="Project 2" data-revealed-img="assets/projects/recruitr3.webp" />
+                            <img class="img normalImg" src="assets/projects/recruitr.webp" alt="Project 2" data-revealed-img="assets/projects/recruitr3.webp" />
                         </div>
                         <h2 class="title">Recruitr</h2>
                         <span>Branding & Web</span>
@@ -493,7 +493,7 @@
                     <!-- New Project Card 3 -->
                     <a class="project" href="#" tabindex="0">
                         <div class="img-wrapper">
-                            <img class="img normalImg" loading="lazy" src="assets/projects/uncloud1.webp" alt="Project 3" data-revealed-img="assets/projects/uncloud_app.webp" />
+                            <img class="img normalImg" src="assets/projects/uncloud1.webp" alt="Project 3" data-revealed-img="assets/projects/uncloud_app.webp" />
                         </div>
                         <h2 class="title">uncloud - Mental health App</h2>
                         <span>UI/UX & App Design</span>

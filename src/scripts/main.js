@@ -14,7 +14,6 @@ import Lenis from 'lenis';
 
 // Import our new utilities
 import { headlineAnimator, scrollFadeIn, createParallax } from './utils/animationUtils';
-import { initLazyLoading, convertToDataSrcPattern } from './utils/lazyLoadUtils';
 
 // Import animation modules
 import { initHeroAnimations } from './animations/heroAnimations';
@@ -24,6 +23,7 @@ import { initServiceCardAnimations } from './animations/serviceCardAnimations';
 import { initCustomCheckbox } from './components/ContactForm';
 import { initMobileNav } from './components/MobileNav'; // Import mobile nav
 import { initContactSection } from './components/contact';
+import { initLazyVideos, initLazyProjectVideos } from './utils/lazyLoadUtils';
 
 gsap.registerPlugin(ScrollTrigger); // Only register ScrollTrigger, not Draggable
 
@@ -124,15 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 8. Fade in the body
   gsap.to(document.body, { opacity: 1, duration: 0.5, delay: 0.1 });
-  
-  // 9. Initialize lazy loading
-  initLazyLoading();
-  
-  // 10. Convert appropriate elements to use data-src pattern for more efficient loading
-  // Run this after a small delay to ensure critical content loads first
-  setTimeout(() => {
-    convertToDataSrcPattern();
-  }, 1000);
 
   // Smooth scroll for header nav links using Lenis
   const headerNavLinks = document.querySelectorAll('header nav a, .header-cta a');
@@ -257,6 +248,10 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Initialize service card animations with embossed effect
   initServiceCardAnimations();
+  
+  // Initialize lazy loading for videos
+  initLazyVideos();
+  initLazyProjectVideos();
 
   // Logo video hover effect
   const logoVideo = document.querySelector('.logo .masked-video');

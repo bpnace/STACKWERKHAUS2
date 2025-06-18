@@ -10,8 +10,6 @@ class ProjectCard extends HTMLElement {
     const image = this.getAttribute('image');
     const revealedImage = this.getAttribute('revealed-image');
     const isVideo = revealedImage && (revealedImage.endsWith('.webm') || revealedImage.endsWith('.mp4'));
-    // Special handling for bloom_video.webm which is larger
-    const isLargeVideo = isVideo && revealedImage.includes('bloom_video');
     
     this.shadowRoot.innerHTML = `
       <style>
@@ -106,13 +104,15 @@ class ProjectCard extends HTMLElement {
       <div class="project">
         <div class="img-wrapper" data-pixelated-image-reveal>
           <div class="pixelated-image-card__default">
-            <img class="pixelated-image-card__img" loading="lazy" src="${image}" alt="${title}" />
+            <img class="pixelated-image-card__img" src="${image}" alt="${title}" />
           </div>
           <div class="pixelated-image-card__active" data-pixelated-image-reveal-active>
-                          ${isVideo
-                ? `<video class="pixelated-image-card__video${isLargeVideo ? ' lazy-load' : ''}" ${isLargeVideo ? 'data-src' : 'src'}="${revealedImage}" muted loop playsinline preload="none" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></video>`
-                : `<img class="pixelated-image-card__img" loading="lazy" src="${revealedImage}" alt="${title} revealed" />`
-              }
+            ${isVideo
+              ? `<video class="pixelated-image-card__video" muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;display:block;">
+                  <source data-src="${revealedImage}" type="${revealedImage.endsWith('.webm') ? 'video/webm' : 'video/mp4'}">
+                </video>`
+              : `<img class="pixelated-image-card__img" loading="lazy" src="${revealedImage}" alt="${title} revealed" />`
+            }
           </div>
           <div class="pixelated-image-card__pixels" data-pixelated-image-reveal-grid></div>
         </div>
@@ -125,6 +125,14 @@ class ProjectCard extends HTMLElement {
       if (isVideo) {
         const video = this.shadowRoot.querySelector('.pixelated-image-card__video');
         if (video) {
+          // Check if video is already loaded
+          const source = video.querySelector('source');
+          if (source && source.hasAttribute('data-src') && !source.hasAttribute('src')) {
+            // Load the video first
+            source.src = source.dataset.src;
+            source.removeAttribute('data-src');
+            video.load();
+          }
           video.currentTime = 0;
           video.play();
         }
