@@ -19,10 +19,10 @@ import { headlineAnimator, scrollFadeIn, createParallax } from './utils/animatio
 import { initHeroAnimations } from './animations/heroAnimations';
 import './components/ProjectCard'; // Web Component registration
 import { initSeeMoreButtonAnimations } from './animations/seeMoreButtonAnimations';
+import { initServiceCardAnimations } from './animations/serviceCardAnimations';
 import { initCustomCheckbox } from './components/ContactForm';
 import { initMobileNav } from './components/MobileNav'; // Import mobile nav
 import { initContactSection } from './components/contact';
-import { initTextRevealAnimation } from './animations/textRevealAnimation';
 
 gsap.registerPlugin(ScrollTrigger); // Only register ScrollTrigger, not Draggable
 
@@ -245,8 +245,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize hero see-more button animation
   initSeeMoreButtonAnimations();
   
-  // Initialize text reveal animation for service cards
-  initTextRevealAnimation();
+  // Initialize service card animations with embossed effect
+  initServiceCardAnimations();
 
   // Logo video hover effect
   const logoVideo = document.querySelector('.logo .masked-video');

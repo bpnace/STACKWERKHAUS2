@@ -63,56 +63,41 @@
     /* Mini Services Grid */
     .services-mini-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem;
       margin-bottom: 3rem;
-      
-      @media (max-width: 768px) {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      @media (max-width: 480px) {
-        grid-template-columns: 1fr;
-      }
+      perspective: 1000px; /* Add perspective to the container */
       
       .service-mini-card {
-        //background-color: rgba(86, 8, 255, 0.03);
-        //border-radius: 8px;
         padding: 1.5rem;
-        border-bottom: 1px solid var(--primary-text-light);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 8px; /* Rounded corners for better 3D effect */
+        background-color: var(--background-color);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08); /* Default subtle shadow */
+        transition: box-shadow 0.3s ease; /* Smooth transition for non-GSAP properties */
+        cursor: pointer; /* Indicate interactivity */
+        transform-style: preserve-3d; /* Enable 3D transformations */
+        backface-visibility: hidden; /* Prevent flickering */
         
-        &:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-        }
-        
+        /* Create depth for child elements */
         .service-icon {
           margin-bottom: 1rem;
           color: var(--accent-color);
+          transform: translateZ(10px); /* Push slightly forward in 3D space */
         }
         
         h3 {
           font-size: 1.2rem;
           margin-bottom: 0.8rem;
           font-weight: 600;
+          transform: translateZ(15px); /* Push forward in 3D space */
         }
         
         p {
           font-size: 0.95rem;
           line-height: 1.5;
-          
-          .text-reveal-wrapper {
-            display: inline-block;
-            overflow: hidden;
-            
-            .text-reveal-char {
-              display: inline-block;
-              transform-origin: bottom center;
-              will-change: transform, opacity;
-              perspective: 1000px;
-            }
-          }
+          transform: translateZ(5px); /* Push slightly forward in 3D space */
         }
       }
     }
