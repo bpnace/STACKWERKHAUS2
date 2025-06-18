@@ -6,7 +6,7 @@
   <!-- Homepage - Highest Priority -->
   <url>
     <loc>https://stackwerkhaus.de/</loc>
-    <lastmod>2024-06-19</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -19,7 +19,7 @@
   <!-- AI-optimized content file for LLMs -->
   <url>
     <loc>https://stackwerkhaus.de/llms.txt</loc>
-    <lastmod>2024-06-19</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -27,7 +27,7 @@
   <!-- FAQ/Services Section - High Priority for AEO -->
   <url>
     <loc>https://stackwerkhaus.de/#services-faq</loc>
-    <lastmod>2024-06-19</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -35,7 +35,7 @@
   <!-- Projects Section -->
   <url>
     <loc>https://stackwerkhaus.de/#projects</loc>
-    <lastmod>2024-06-19</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -55,7 +55,7 @@
   <!-- Contact Section -->
   <url>
     <loc>https://stackwerkhaus.de/#kontakt</loc>
-    <lastmod>2024-06-19</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -63,28 +63,28 @@
   <!-- Legal Pages -->
   <url>
     <loc>https://stackwerkhaus.de/impressum.html</loc>
-    <lastmod>2024-06-19</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://stackwerkhaus.de/datenschutz.html</loc>
-    <lastmod>2024-06-19</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://stackwerkhaus.de/agb.html</loc>
-    <lastmod>2024-06-19</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://stackwerkhaus.de/lebenslauf.html</loc>
-    <lastmod>2024-06-19</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
