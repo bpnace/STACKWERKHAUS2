@@ -38,6 +38,11 @@
     outline: 2px solid var(--accent-color);
     outline-offset: 2px;
   }
+  
+  // Remove focus outline for the placeholder animated card
+  .project--placeholder-animated:focus {
+    outline: none;
+  }
   .img-wrapper {
     position: relative;
     width: 100%;
@@ -185,7 +190,8 @@
       pointer-events: none; // Ensure it doesn't interfere with clicks
     }
     
-    &:hover::after {
+    &:hover::after,
+    &:focus::after {
       opacity: 1;
     }
 
