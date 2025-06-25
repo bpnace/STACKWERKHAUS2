@@ -2,7 +2,7 @@ import { gsap } from 'gsap';
 
 const testimonials = [
   // German testimonials
-  { text: "Stackwerkhaus hat unsere Vision perfekt umgesetzt. Die neue Website hat unsere Kundenzahlen verdoppelt und das Nutzererlebnis auf ein neues Level gehoben. Tarik versteht es, Technik und Design harmonisch zu verbinden.", name: "Viktoria Lindner", role: "CEO, Bloom", img: "assets/testi/Viki.webp" },
+  { text: "Stackwerkhaus hat unsere Vision perfekt umgesetzt. Die neue Website hat unsere Kundenzahlen verdoppelt und das Nutzererlebnis auf ein neues Level gehoben.", name: "Viktoria Lindner", role: "CEO, Bloom", img: "assets/testi/Viki.webp" },
   { text: "Stackwerkhaus hat unser Branding revolutioniert. Schnelle Umsetzung und kreative Ideen!", name: "Lena Hoffmann", role: "Marketing Lead, UrbanNest", img: "https://randomuser.me/api/portraits/women/12.jpg" },
   { text: "Die Zusammenarbeit war unkompliziert und professionell. Absolute Empfehlung!", name: "Jonas Weber", role: "CTO, Greenlytic", img: "https://randomuser.me/api/portraits/men/15.jpg" },
   { text: "Innovative Lösungen und ein tolles Team. Wir freuen uns auf weitere Projekte!", name: "Sophie Bauer", role: "Co-Founder, MindfulTech", img: "https://randomuser.me/api/portraits/women/23.jpg" },

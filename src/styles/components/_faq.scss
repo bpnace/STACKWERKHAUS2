@@ -1,6 +1,6 @@
 /* FAQ Section (formerly Combined Solutions Section) */
 .faq-section {
-    padding: 4rem 4rem;
+    padding: 5rem 4rem;
     background-color: var(--background-color);
     color: var(--primary-text-color);
     position: relative;
@@ -111,6 +111,101 @@
         align-self: flex-start;
         position: sticky;
         top: 100px;
+        
+        /* Process Timeline Styles */
+        .process-timeline {
+          background-color: var(--background-color);
+          border-radius: 8px;
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+          padding: 1.5rem;
+          margin-bottom: 1.5rem;
+          
+          .timeline-title {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+          }
+          
+          .timeline-steps {
+            position: relative;
+            
+            &::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              left: 12px;
+              width: 2px;
+              background-color: var(--accent-color);
+              opacity: 0.3;
+              z-index: 1;
+            }
+            
+            .timeline-step {
+              display: flex;
+              margin-bottom: 1.5rem;
+              position: relative;
+              z-index: 2;
+              
+              &:last-child {
+                margin-bottom: 0;
+              }
+              
+              .step-icon {
+                flex: 0 0 24px;
+                height: 24px;
+                border-radius: 50%;
+                background-color: var(--background-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 1rem;
+                color: var(--accent-color);
+                position: relative;
+                z-index: 3;
+                
+                svg {
+                  width: 24px;
+                  height: 24px;
+                }
+              }
+              
+              .step-content {
+                flex: 1;
+                
+                h4 {
+                  font-size: 1.1rem;
+                  margin: 0 0 0.3rem;
+                  color: var(--primary-text-color);
+                  font-weight: 600;
+                }
+                
+                p {
+                  font-size: 0.9rem;
+                  margin: 0;
+                  color: var(--primary-text-color);
+                  opacity: 0.8;
+                  line-height: 1.4;
+                }
+              }
+              
+              /* Hover effect for timeline steps */
+              &:hover {
+                .step-icon {
+                  transform: scale(1.1);
+                  transition: transform 0.3s ease;
+                }
+                
+                .step-content h4 {
+                  color: var(--accent-color);
+                  transition: color 0.3s ease;
+                }
+              }
+            }
+          }
+        }
         
         .profile-image {
           width: 100%;
@@ -294,7 +389,50 @@
         }
       }
     }
-  }
+    
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+      .faq-container {
+        flex-direction: column;
+        
+        .faq-image {
+          position: relative;
+          top: 0;
+          width: 100%;
+          max-width: 500px;
+          margin: 0 auto 2rem;
+          
+          .process-timeline {
+            max-width: 100%;
+          }
+        }
+      }
+    }
+    
+    @media (max-width: 768px) {
+      padding: 4rem 2rem;
+      
+      .services-mini-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      padding: 3rem 1.5rem;
+      
+      .faq-container .faq-image .process-timeline {
+        padding: 1rem;
+        
+        .timeline-steps .timeline-step .step-content h4 {
+          font-size: 1rem;
+        }
+        
+        .timeline-steps .timeline-step .step-content p {
+          font-size: 0.85rem;
+        }
+      }
+    }
+}
 
 @media (max-width: 900px) {
   .faq-section {
