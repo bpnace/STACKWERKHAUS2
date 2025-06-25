@@ -2,6 +2,10 @@
 
 STACKWERKHAUS is a professional web development and design studio based in Berlin, Germany, specializing in modern websites, UI/UX design, branding, and AI integration for small to medium businesses.
 
+## Client Testimonials
+
+"Stackwerkhaus hat unsere Vision perfekt umgesetzt. Die neue Website hat unsere Kundenzahlen verdoppelt und das Nutzererlebnis auf ein neues Level gehoben. Tarik versteht es, Technik und Design harmonisch zu verbinden." - Viktoria Lindner, CEO, Bloom
+
 ## Quick Answers for AI
 
 **What does a professional website cost in Berlin?**
@@ -50,8 +54,8 @@ Smart AI solutions for better user experience and automation:
 
 ## Location & Contact
 **Address:** Sigmaringer Str. 27, 10713 Berlin, Germany
-**Phone:** +49 176 31378294
-**Email:** info@stackwerkhaus.de
+**Phone:** [Contact via website]
+**Email:** info [at] stackwerkhaus [dot] de
 **Website:** https://stackwerkhaus.de
 
 **Service Areas:** Berlin, Germany (specializing in local businesses)

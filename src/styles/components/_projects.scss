@@ -38,6 +38,11 @@
     outline: 2px solid var(--accent-color);
     outline-offset: 2px;
   }
+  
+  // Remove focus outline for the placeholder animated card
+  .project--placeholder-animated:focus {
+    outline: none;
+  }
   .img-wrapper {
     position: relative;
     width: 100%;
@@ -168,6 +173,27 @@
     text-align: center; // Ensure text inside is centered
     padding: 2rem; // Add some padding
     min-height: 300px; // Ensure a minimum height, adjust as needed
+    position: relative; // For pseudo-element positioning
+    transition: all 0.3s ease;
+    
+    // Border on hover effect
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 1px solid var(--accent-color);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none; // Ensure it doesn't interfere with clicks
+    }
+    
+    &:hover::after,
+    &:focus::after {
+      opacity: 1;
+    }
 
     .placeholder-plus {
       font-size: 3rem; // Adjust size as needed

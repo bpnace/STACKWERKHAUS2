@@ -108,8 +108,10 @@ class ProjectCard extends HTMLElement {
           </div>
           <div class="pixelated-image-card__active" data-pixelated-image-reveal-active>
             ${isVideo
-              ? `<video class="pixelated-image-card__video" src="${revealedImage}" muted loop playsinline preload="auto" style="width:100%;height:100%;object-fit:cover;display:block;"></video>`
-              : `<img class="pixelated-image-card__img" src="${revealedImage}" alt="${title} revealed" />`
+              ? `<video class="pixelated-image-card__video" muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;display:block;">
+                  <source data-src="${revealedImage}" type="${revealedImage.endsWith('.webm') ? 'video/webm' : 'video/mp4'}">
+                </video>`
+              : `<img class="pixelated-image-card__img" loading="lazy" src="${revealedImage}" alt="${title} revealed" />`
             }
           </div>
           <div class="pixelated-image-card__pixels" data-pixelated-image-reveal-grid></div>
@@ -123,6 +125,14 @@ class ProjectCard extends HTMLElement {
       if (isVideo) {
         const video = this.shadowRoot.querySelector('.pixelated-image-card__video');
         if (video) {
+          // Check if video is already loaded
+          const source = video.querySelector('source');
+          if (source && source.hasAttribute('data-src') && !source.hasAttribute('src')) {
+            // Load the video first
+            source.src = source.dataset.src;
+            source.removeAttribute('data-src');
+            video.load();
+          }
           video.currentTime = 0;
           video.play();
         }

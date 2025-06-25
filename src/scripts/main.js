@@ -19,9 +19,11 @@ import { headlineAnimator, scrollFadeIn, createParallax } from './utils/animatio
 import { initHeroAnimations } from './animations/heroAnimations';
 import './components/ProjectCard'; // Web Component registration
 import { initSeeMoreButtonAnimations } from './animations/seeMoreButtonAnimations';
+import { initServiceCardAnimations } from './animations/serviceCardAnimations';
 import { initCustomCheckbox } from './components/ContactForm';
 import { initMobileNav } from './components/MobileNav'; // Import mobile nav
 import { initContactSection } from './components/contact';
+import { initLazyVideos, initLazyProjectVideos } from './utils/lazyLoadUtils';
 
 gsap.registerPlugin(ScrollTrigger); // Only register ScrollTrigger, not Draggable
 
@@ -243,6 +245,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize hero see-more button animation
   initSeeMoreButtonAnimations();
+  
+  // Initialize service card animations with embossed effect
+  initServiceCardAnimations();
+  
+  // Initialize lazy loading for videos
+  initLazyVideos();
+  initLazyProjectVideos();
 
   // Logo video hover effect
   const logoVideo = document.querySelector('.logo .masked-video');
@@ -583,6 +592,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.removeEventListener('pointerdown', userInitiatedBloomPreload);
   }
   window.addEventListener('pointerdown', userInitiatedBloomPreload, { once: true });
+
+  // Initialize timeline animations
+  initTimelineAnimations();
 });
 
 // --- Webpack HMR Handling --- 
@@ -599,5 +611,55 @@ if (module.hot) {
         ScrollTrigger.refresh(true);
       }, 150);
     }
+  });
+} 
+
+// Initialize timeline animations
+function initTimelineAnimations() {
+  if (!document.querySelector('.process-timeline')) return;
+  
+  const timelineSteps = document.querySelectorAll('.timeline-step');
+  
+  // Create a timeline for the initial animation
+  const timelineTL = gsap.timeline({
+    defaults: { duration: 0.5, ease: 'power2.out' }
+  });
+  
+  // Animate the title
+  timelineTL.from('.timeline-title', { 
+    y: 20, 
+    opacity: 0 
+  });
+  
+  // Animate each step with a stagger
+  timelineTL.from(timelineSteps, { 
+    x: -30, 
+    opacity: 0, 
+    stagger: 0.15 
+  }, '-=0.2');
+  
+  // Create hover animations for each step
+  timelineSteps.forEach(step => {
+    const icon = step.querySelector('.step-icon');
+    const heading = step.querySelector('h4');
+    
+    // Create a hover timeline for each step
+    const hoverTL = gsap.timeline({ paused: true });
+    
+    // Add animations to the timeline
+    hoverTL
+      .to(icon, { 
+        scale: 1.2, 
+        color: 'var(--accent-color)', 
+        duration: 0.3 
+      })
+      .to(heading, { 
+        color: 'var(--accent-color)', 
+        duration: 0.3 
+      }, 0);
+    
+    // Add event listeners for hover
+    step.addEventListener('mouseenter', () => hoverTL.play());
+    step.addEventListener('mouseleave', () => hoverTL.reverse());
   });
 } 
