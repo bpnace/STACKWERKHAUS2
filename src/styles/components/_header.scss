@@ -2,14 +2,15 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 4rem; // Always tall padding
+  padding: 1.5rem 4rem; // Always consistent padding
+  height: 80px; // Fixed height for consistency
   position: fixed; // Make header fixed for Locomotive scroll
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1100;
   background-color: transparent; // Start transparent
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease; // Padding transition removed for testing
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
 
   &.scrolled { // Styles when scrolled
     background-color: var(--background-color);
@@ -150,7 +151,7 @@ header {
 
 header.scrolled {
   background-color: var(--background-color);
-  padding: 1.5rem 4rem;
+  // Keep same padding as non-scrolled state
 
   .logo img {
     filter: brightness(0) invert(0);
@@ -204,109 +205,109 @@ header.scrolled {
   border: none;
   cursor: pointer;
   padding: 0.5rem;
-  z-index: 1200;
+  z-index: 3000; // Higher z-index to ensure it's above everything
   position: relative;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   
   .bar {
     display: block;
     width: 24px;
-    height: 2px;
+    height: 3px; // Thicker for better visibility
     margin: 5px auto;
-    background-color: var(--secondary-text-color);
+    background-color: var(--background-color);
     transition: all 0.3s ease-in-out;
-    position: absolute;
-    left: 3px;
-  }
-  
-  .bar:nth-child(1) {
-    top: 8px;
-  }
-  
-  .bar:nth-child(2) {
-    top: 14px;
-  }
-  
-  .bar:nth-child(3) {
-    top: 20px;
+    border-radius: 2px; // Rounded edges
   }
   
   &:focus {
     outline: 2px solid var(--accent-color);
     outline-offset: 2px;
   }
-}
-
-// X animation for menu toggle
-header.menu-open .mobile-menu-toggle {
-  z-index: 1200; // Ensure it's above the overlay
   
-  .bar {
-    background-color: var(--secondary-text-color) !important; // Force white color with !important
-  }
-  
-  .bar:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
-  }
-  
-  .bar:nth-child(2) {
-    opacity: 0;
-  }
-  
-  .bar:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
+  &:hover .bar {
+    background-color: var(--accent-color-hover, var(--accent-color));
   }
 }
 
+/* Completely redesigned mobile nav overlay */
 .mobile-nav-overlay {
   position: fixed;
   top: 0;
-  left: 0;
+  right: 0; // Position from right for slide-in effect
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  z-index: 1150; // Lower than the menu toggle
+  height: 100vh;
+  background-color: var(--accent-color);
+  z-index: 9000; // High z-index but below the toggle button
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-  visibility: hidden; // Add visibility property
+  visibility: hidden;
+  pointer-events: auto; // Always capture pointer events
+  will-change: transform, opacity; // Optimize for performance
   
-  &.active {
-    opacity: 1;
-    pointer-events: auto;
-    visibility: visible; // Show when active
+  /* Dedicated close button for mobile menu */
+  .mobile-close-button {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 99999;
+    padding: 0;
+    
+    .close-bar {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 24px;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      
+      &:first-child {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+      
+      &:last-child {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+    }
+    
+    &:focus {
+      outline: none;
+    }
   }
   
   .mobile-nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
-    z-index: 1151; // Higher than overlay but lower than toggle
+    justify-content: center;
+    width: 100%;
+    height: 100%;
     
     a {
-      font-size: 1.5rem;
-      color: var(--secondary-text-color);
+      font-size: 2rem;
+      color: white; // Use plain white for better visibility
       text-decoration: none;
       position: relative;
-      transition: color 0.3s ease;
-      transform: translateY(20px);
-      opacity: 0;
-      transition: transform 0.4s ease, opacity 0.4s ease;
+      margin: 1rem 0;
+      font-weight: 500;
+      padding: 10px; // Larger touch target
       
       &::after {
         content: '';
         position: absolute;
         left: 0;
-        bottom: -8px;
+        bottom: -5px;
         width: 0;
         height: 2px;
-        background-color: var(--accent-color);
-        transition: width 0.5s ease-in-out;
+        background-color: white;
+        transition: width 0.3s ease-in-out;
       }
       
       &:hover::after {
@@ -314,39 +315,27 @@ header.menu-open .mobile-menu-toggle {
       }
     }
   }
-  
-  &.active .mobile-nav a {
-    transform: translateY(0);
-    opacity: 1;
-    
-    @for $i from 1 through 5 {
-      &:nth-child(#{$i}) {
-        transition-delay: 0.1s * $i;
-      }
-    }
-  }
-}
-
-// Hide the separate close button since we're using the morphing menu button
-.mobile-nav-close {
-  display: none;
 }
 
 // Media query for mobile devices
 @media (max-width: 768px) {
   header {
     display: flex;
-    justify-content: center; // Center the logo
+    justify-content: space-between; // Space between logo and toggle
     align-items: center;
-    height: 3.2rem;
-    padding: 0.25rem 1rem;
+    padding: 1rem 1.5rem;
+    height: 60px; // Fixed height for mobile
     position: fixed;
     width: 100%;
     
     .logo {
       display: block;
       position: relative;
-      z-index: 1100;
+      z-index: 3000; // Same as toggle button to stay on top
+      
+      img {
+        height: 20px; // Consistent size
+      }
     }
     
     .desktop-nav,
@@ -357,47 +346,48 @@ header.menu-open .mobile-menu-toggle {
     .mobile-menu-toggle {
       display: block;
       position: absolute;
-      right: 1rem;
+      right: 1.5rem;
       top: 50%;
       transform: translateY(-50%);
-      z-index: 1200;
     }
-    
-    &.scrolled {
-      background-color: var(--background-color);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      
-      .logo img {
-        filter: brightness(0) invert(0);
-      }
-    }
-    
-    &:not(.scrolled) {
-      background-color: transparent;
-      
-      .logo img {
-        filter: brightness(0) invert(1);
-      }
-    }
+  }
+  
+  // Ensure consistent header appearance in both scrolled and non-scrolled states
+  header.scrolled {
+    height: 60px;
+    padding: 1rem 1.5rem;
+  }
+  
+  // Ensure logo and toggle are visible on any background
+  header.scrolled .logo img {
+    filter: brightness(0) invert(0); // Dark logo on light background
+  }
+  
+  header:not(.scrolled):not(.menu-open) .logo img {
+    filter: brightness(0) invert(1); // Light logo on dark background
+  }
+  
+  header.menu-open .logo img {
+    filter: brightness(0) invert(0); // Dark logo when menu is open
+  }
+  
+  header.scrolled .mobile-menu-toggle .bar {
+    background-color: var(--primary-text-color);
+  }
+  
+  // Remove conflicting styles
+  header.scrolled.menu-open .mobile-menu-toggle .bar {
+    background-color: white !important;
   }
 }
 
 @media (max-width: 480px) {
   header {
-    height: 2.6rem;
-    padding: 0.1rem 0.5rem;
-    
-    .mobile-menu-toggle {
-      right: 0.5rem;
-    }
+    //padding: 0.75rem 1rem;
   }
-}
-
-header.scrolled .mobile-menu-toggle .bar {
-  background-color: var(--primary-text-color);
-}
-
-header.menu-open .mobile-menu-toggle .bar,
-header.scrolled.menu-open .mobile-menu-toggle .bar {
-  background-color: var(--secondary-text-color);
+  
+  .mobile-nav-overlay .mobile-nav a {
+    font-size: 1.75rem;
+    margin: 0.75rem 0;
+  }
 } 
