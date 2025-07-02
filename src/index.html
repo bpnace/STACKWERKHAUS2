@@ -59,7 +59,6 @@
     <style>
       body { opacity: 0; transition: opacity 1.2s cubic-bezier(0.4,0,0.2,1); }
       body.fadein { opacity: 1; }
-      .mobile-nav-overlay { opacity: 0; pointer-events: none; }
       .hero { 
         min-height: 100vh; 
         display: flex; 
@@ -340,6 +339,11 @@
             <a href="#projects">Projekte</a>
             <a href="#kontakt">Kontakt</a>
         </nav>
+        <!-- Add a dedicated close button that's always visible -->
+        <button class="mobile-close-button" aria-label="Close menu">
+            <span class="close-bar"></span>
+            <span class="close-bar"></span>
+        </button>
     </div>
 
     <!-- Main scrollable container -->

@@ -98,9 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. Sync ScrollTrigger with Lenis
   lenis.on('scroll', ScrollTrigger.update);
 
-  // Initialize mobile navigation
-  initMobileNav();
-
   // 3. GSAP Ticker (Optional - alternative way to drive Lenis, not usually needed with raf loop)
   // gsap.ticker.add((time) => {
   //   lenis.raf(time * 1000); // Lenis expects milliseconds
@@ -134,8 +131,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const target = document.querySelector(href);
         if (target) {
           e.preventDefault();
+          // Calculate offset based on screen size
+          const isMobile = window.innerWidth <= 768;
+          const offset = isMobile ? -80 : 0; // Negative offset for mobile to show section titles
+          
           // Use easeInOutSine for slow-fast-slow effect
-          lenis.scrollTo(target, { offset: 0, duration: 1.2, easing: (t) => -(Math.cos(Math.PI * t) - 1) / 2 });
+          lenis.scrollTo(target, { 
+            offset: offset, 
+            duration: 1.2, 
+            easing: (t) => -(Math.cos(Math.PI * t) - 1) / 2 
+          });
         }
       }
     });
@@ -149,8 +154,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = document.querySelector(href);
       if (target) {
         e.preventDefault();
+        // Calculate offset based on screen size
+        const isMobile = window.innerWidth <= 768;
+        const offset = isMobile ? -80 : 0; // Negative offset for mobile to show section titles
+        
         // Use the same easing as navigation links
-        lenis.scrollTo(target, { offset: 0, duration: 1.2, easing: (t) => -(Math.cos(Math.PI * t) - 1) / 2 });
+        lenis.scrollTo(target, { 
+          offset: offset, 
+          duration: 1.2, 
+          easing: (t) => -(Math.cos(Math.PI * t) - 1) / 2 
+        });
       }
     });
   });
@@ -162,7 +175,10 @@ document.addEventListener('DOMContentLoaded', () => {
     headerLogo.addEventListener('click', function(e) {
       e.preventDefault();
       if (window.lenisInstance) {
-        window.lenisInstance.scrollTo(0, { duration: 1.2, easing: (t) => -(Math.cos(Math.PI * t) - 1) / 2 });
+        window.lenisInstance.scrollTo(0, { 
+          duration: 1.2, 
+          easing: (t) => -(Math.cos(Math.PI * t) - 1) / 2 
+        });
       } else {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
@@ -616,32 +632,39 @@ if (module.hot) {
 
 // Initialize timeline animations
 function initTimelineAnimations() {
+  // Exit early if the process-timeline doesn't exist
   if (!document.querySelector('.process-timeline')) return;
   
   const timelineSteps = document.querySelectorAll('.timeline-step');
+  if (timelineSteps.length === 0) return; // Exit if no steps found
   
   // Create a timeline for the initial animation
   const timelineTL = gsap.timeline({
     defaults: { duration: 0.5, ease: 'power2.out' }
   });
   
-  // Animate the title
-  timelineTL.from('.timeline-title', { 
-    y: 20, 
-    opacity: 0 
-  });
+  // Animate the title only if it exists
+  const timelineTitle = document.querySelector('.timeline-title');
+  if (timelineTitle) {
+    timelineTL.from(timelineTitle, { 
+      y: 20, 
+      opacity: 0 
+    });
+  }
   
   // Animate each step with a stagger
   timelineTL.from(timelineSteps, { 
     x: -30, 
     opacity: 0, 
     stagger: 0.15 
-  }, '-=0.2');
+  }, timelineTitle ? '-=0.2' : 0); // Only use negative offset if title was animated
   
   // Create hover animations for each step
   timelineSteps.forEach(step => {
     const icon = step.querySelector('.step-icon');
     const heading = step.querySelector('h4');
+    
+    if (!icon || !heading) return; // Skip this step if elements are missing
     
     // Create a hover timeline for each step
     const hoverTL = gsap.timeline({ paused: true });
