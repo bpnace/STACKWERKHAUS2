@@ -1,14 +1,66 @@
 import { gsap } from 'gsap';
 
 const testimonials = [
-  // German testimonials
-  { text: "Stackwerkhaus hat unsere Vision perfekt umgesetzt. Die neue Website hat unsere Kundenzahlen verdoppelt und das Nutzererlebnis auf ein neues Level gehoben.", name: "Viktoria Lindner", role: "CEO, Bloom", img: "assets/testi/Viki.webp" },
-  { text: "Stackwerkhaus hat unser Branding revolutioniert. Schnelle Umsetzung und kreative Ideen!", name: "Lena Hoffmann", role: "Marketing Lead, UrbanNest", img: "https://randomuser.me/api/portraits/women/12.jpg" },
-  { text: "Die Zusammenarbeit war unkompliziert und professionell. Absolute Empfehlung!", name: "Jonas Weber", role: "CTO, Greenlytic", img: "https://randomuser.me/api/portraits/men/15.jpg" },
-  { text: "Innovative Lösungen und ein tolles Team. Wir freuen uns auf weitere Projekte!", name: "Sophie Bauer", role: "Co-Founder, MindfulTech", img: "https://randomuser.me/api/portraits/women/23.jpg" },
-  { text: "Schnell, kreativ, digital. Stackwerkhaus ist unser Partner für Webprojekte.", name: "Lukas Fischer", role: "CEO, BerlinBytes", img: "https://randomuser.me/api/portraits/men/21.jpg" },
-  { text: "Die Ergebnisse waren beeindruckend und die Kommunikation stets transparent.", name: "Julia Schmitt", role: "CEO, MediaLab", img: "https://randomuser.me/api/portraits/women/31.jpg" },
-  { text: "Stackwerkhaus hat unsere Website modernisiert und für mehr Leads gesorgt.", name: "Tim Neumann", role: "Head of Sales, Finovate", img: "https://randomuser.me/api/portraits/men/33.jpg" }
+  {
+    text: "Stackwerkhaus hat unsere Website von Grund auf neu konzipiert. Klar strukturiert, technisch sauber und absolut zielgruppenorientiert. Seit dem Relaunch verzeichnen wir signifikant mehr Leads.",
+    name: "Viktoria Lindner",
+    role: "CEO, Bloom",
+    img: "assets/testi/Viki.webp"
+  },
+  {
+    text: "Wir wollten einen modernen Auftritt mit Charakter. Bekommen haben wir ein starkes Markenerlebnis. Stackwerkhaus war dabei kreativ, schnell und super organisiert.",
+    name: "Lena Hoffmann",
+    role: "Marketing Lead, UrbanNest",
+    img: "https://randomuser.me/api/portraits/women/12.jpg"
+  },
+  {
+    text: "Einfach top! Technisch solide, kommunikativ stark. Genau das, was man sich von einer Agentur wünscht.",
+    name: "Jonas Weber",
+    role: "CTO, Greenlytic",
+    img: "https://randomuser.me/api/portraits/men/15.jpg"
+  },
+  {
+    text: "Selten ein Team erlebt, das so gut zuhört und daraus clevere und funktionale Lösungen entwickelt. Stackwerkhaus denkt nicht nur mit, sie denken voraus.",
+    name: "Sophie Bauer",
+    role: "Co-Founder, MindfulTech",
+    img: "https://randomuser.me/api/portraits/women/23.jpg"
+  },
+  {
+    text: "Schnell, digital, zuverlässig. Unsere Website läuft. Und wir auch, dank der neuen Anfragen.",
+    name: "Lukas Fischer",
+    role: "CEO, BerlinBytes",
+    img: "https://randomuser.me/api/portraits/men/21.jpg"
+  },
+  {
+    text: "Die Kommunikation war glasklar. Das Ergebnis richtig stark. So geht Zusammenarbeit auf Augenhöhe.",
+    name: "Julia Schmitt",
+    role: "CEO, MediaLab",
+    img: "https://randomuser.me/api/portraits/women/31.jpg"
+  },
+  {
+    text: "Wir hatten eine veraltete Seite. Jetzt haben wir ein echtes Vertriebstool. Stackwerkhaus hat das Ding gerockt 💪",
+    name: "Tim Neumann",
+    role: "Head of Sales, Finovate",
+    img: "https://randomuser.me/api/portraits/men/33.jpg"
+  },
+  {
+    text: "Unsere neue SaaS-Landingpage lädt doppelt so schnell und konvertiert deutlich besser. Stackwerkhaus weiß, was sie tun.",
+    name: "Sebastian Krüger",
+    role: "Product Manager, CloudSync",
+    img: "https://randomuser.me/api/portraits/men/40.jpg"
+  },
+  {
+    text: "Vom Kick-off bis zum Launch hat alles reibungslos funktioniert. Klare Prozesse, kreative Ideen, zuverlässige Umsetzung.",
+    name: "Carla Neumann",
+    role: "Head of Operations, EventHive",
+    img: "https://randomuser.me/api/portraits/women/45.jpg"
+  },
+  {
+    text: "Also ehrlich: Wir dachten, das wird 'ne Baustelle. Stattdessen war alles fix, klar kommuniziert und läuft jetzt wie 'ne Eins. Richtig gut gemacht, Stackwerkhaus!",
+    name: "Marc Richter",
+    role: "CMO, LegalEase",
+    img: "https://randomuser.me/api/portraits/men/48.jpg"
+  }
 ];
 
 let resizeTimeout;
