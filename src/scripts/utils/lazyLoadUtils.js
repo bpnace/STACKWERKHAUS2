@@ -90,12 +90,18 @@ export function initLazyProjectVideos() {
         
         // Only proceed if it's a video
         if (videoSrc && (videoSrc.endsWith('.webm') || videoSrc.endsWith('.mp4'))) {
-          // Create a preload link for the video
-          const link = document.createElement('link');
-          link.rel = 'preload';
-          link.href = videoSrc;
-          link.as = 'video';
-          document.head.appendChild(link);
+          // Preload the video in a more compatible way
+          const preloadVideo = document.createElement('video');
+          preloadVideo.preload = 'metadata';
+          preloadVideo.src = videoSrc;
+          preloadVideo.style.display = 'none';
+          preloadVideo.muted = true;
+          document.body.appendChild(preloadVideo);
+          
+          // Remove the preload video after it's loaded
+          preloadVideo.addEventListener('loadedmetadata', () => {
+            document.body.removeChild(preloadVideo);
+          });
         }
         
         observer.unobserve(projectCard);

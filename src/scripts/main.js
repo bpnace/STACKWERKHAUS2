@@ -1,13 +1,7 @@
-/* Remove the following lines as Babel will auto-inject polyfills with 'usage': */
-/* Prepending polyfill imports for polyfill support as per Babel config */
-/* import 'core-js/stable';
-import 'regenerator-runtime/runtime'; */
+// Import styles for Vite
+import '../styles/main.scss';
 
-import '../styles/main.scss'; // Import main SCSS file for Webpack
-
-// Main JavaScript file 
-import 'regenerator-runtime/runtime';
-import 'core-js/stable';
+// Main JavaScript file
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
@@ -583,7 +577,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         const preloadVideo = document.createElement('video');
-        preloadVideo.src = 'assets/video/bloom_video.webm';
+        // Use a direct path in development
+        preloadVideo.src = '/assets/video/bloom_video.webm';
         preloadVideo.preload = 'auto';
         preloadVideo.style.display = 'none';
         document.body.appendChild(preloadVideo);
@@ -596,7 +591,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // User-initiated preload for Bloom video (Safari compatibility)
   function userInitiatedBloomPreload() {
     const preloadVideo = document.createElement('video');
-    preloadVideo.src = 'assets/video/bloom_video.webm';
+    // Use a direct path in development, or the base URL in production
+    preloadVideo.src = '/assets/video/bloom_video.webm';
     preloadVideo.preload = 'auto';
     preloadVideo.muted = true;
     preloadVideo.style.position = 'absolute';
@@ -613,9 +609,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initTimelineAnimations();
 });
 
-// --- Webpack HMR Handling --- 
-if (module.hot) {
-  module.hot.accept((err) => {
+// --- Vite HMR Handling --- 
+if (import.meta.hot) {
+  import.meta.hot.accept((err) => {
     if (err) {
       console.error('Cannot apply HMR update.', err);
     } else {

@@ -74,8 +74,7 @@ A modern, animated portfolio for Tarik Marshall (STACKWERKHAUS), built with a fo
 - **JavaScript (ES6+)** with modern module system
 - **GSAP** (GreenSock Animation Platform) with ScrollTrigger
 - **Lenis** (smooth scrolling library)
-- **Webpack 5** (bundling, dev server, optimization)
-- **Babel** (ES6+ transpilation with core-js polyfills)
+- **Vite** (fast bundling, dev server, optimization)
 - **Node.js & NPM** (package management)
 
 ---
@@ -168,7 +167,7 @@ STACKWERKHAUS2/
 ├── impressum.md             # Legal information (German)
 ├── datenschutzerklaerung.md # Privacy policy (German)
 ├── .babelrc                 # Babel configuration
-├── webpack.config.js        # Webpack build configuration
+├── vite.config.js           # Vite build configuration
 ├── package.json             # Dependencies and scripts
 └── README.md                # This file
 ```
@@ -337,26 +336,55 @@ The website has been primarily tested on the latest versions of Chrome and Safar
 
 ## Build & Development
 
-### Development Scripts
+### Prerequisites
+- Node.js (v14+)
+- NPM (v6+)
+
+### Installation
 ```bash
-npm install          # Install all dependencies
-npm start           # Start dev server (localhost:3000)
-npm run build       # Production build
+# Clone the repository
+git clone https://github.com/yourusername/stackwerkhaus.git
+
+# Navigate to project directory
+cd stackwerkhaus
+
+# Install dependencies
+npm install
 ```
 
-### Webpack Configuration
-- **Entry Point**: `src/scripts/main.js`
-- **Output**: `public/dist/` directory
-- **Dev Server**: Hot reload on port 3000
-- **Code Splitting**: Vendor and GSAP bundles separated
-- **Asset Optimization**: Image and font copying
-- **Source Maps**: Available in development mode
+### Development
+```bash
+# Start development server with hot reloading
+npm run dev
 
-### Development Features
-- **Hot Module Replacement**: Live updates without refresh
-- **SCSS Compilation**: Automatic Sass processing (using modern `@use` rules).
-- **Babel Transpilation**: ES6+ to browser-compatible JavaScript
-- **Asset Pipeline**: Automatic copying of public assets
+# The site will be available at http://localhost:3000
+```
+
+### Production Build
+```bash
+# Build for production
+npm run build
+
+# Preview production build locally
+npm run preview
+```
+
+### Deployment
+```bash
+# Build and prepare for deployment
+npm run build-deploy
+
+# Deploy using the deploy script (requires SSH access)
+./deploy.sh
+```
+
+### Key Features of Vite Setup
+- **Fast Development**: Near-instant server start and HMR
+- **Optimized Build**: Efficient production builds with proper code splitting
+- **Asset Handling**: Automatic processing of images, fonts, and other assets
+- **CSS Processing**: SCSS compilation with source maps
+- **Environment Variables**: Different settings for development and production
+- **Path Aliasing**: Simplified imports with path aliases
 
 ---
 

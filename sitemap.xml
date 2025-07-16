@@ -24,41 +24,7 @@
     <priority>0.9</priority>
   </url>
   
-  <!-- FAQ/Services Section - High Priority for AEO -->
-  <url>
-    <loc>https://stackwerkhaus.de/#services-faq</loc>
-    <lastmod>2025-06-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <!-- Projects Section -->
-  <url>
-    <loc>https://stackwerkhaus.de/#projects</loc>
-    <lastmod>2025-06-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://stackwerkhaus.de/assets/projects/bloom1.webp</image:loc>
-      <image:title>Bloom - Full Homepage Project</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://stackwerkhaus.de/assets/projects/recruitr.webp</image:loc>
-      <image:title>Recruitr - Branding &amp; Web Project</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://stackwerkhaus.de/assets/projects/uncloud1.webp</image:loc>
-      <image:title>uncloud - Mental Health App UI/UX Design</image:title>
-    </image:image>
-  </url>
-  
-  <!-- Contact Section -->
-  <url>
-    <loc>https://stackwerkhaus.de/#kontakt</loc>
-    <lastmod>2025-06-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  <!-- Legal Pages -->
   
   <!-- Legal Pages -->
   <url>

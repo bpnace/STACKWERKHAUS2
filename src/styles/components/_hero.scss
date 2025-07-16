@@ -11,7 +11,7 @@
   // margin-top: 80px; // Keep commented out for now, LocoScroll handles spacing
 
   // Background Image properties
-  background-image: url('~assets/images/hero1.webp'); // Using webpack alias syntax
+  background-image: url('/assets/images/hero1.webp'); // Using absolute path for Vite
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
