@@ -1,0 +1,56 @@
+User-agent: *
+Allow: /
+Allow: /assets/
+Allow: /llms.txt
+Disallow: /src/
+Disallow: /*.scss$
+Disallow: /*.js.map$
+Disallow: /webpack.config.js
+Disallow: /.babelrc
+
+# Sitemap location
+Sitemap: https://stackwerkhaus.de/sitemap.xml
+
+# AI Crawlers - Explicitly allow for AEO
+User-agent: GPTBot
+Allow: /
+Allow: /llms.txt
+
+User-agent: ChatGPT-User
+Allow: /
+Allow: /llms.txt
+
+User-agent: CCBot
+Allow: /
+Allow: /llms.txt
+
+User-agent: ClaudeBot
+Allow: /
+Allow: /llms.txt
+
+User-agent: PerplexityBot
+Allow: /
+Allow: /llms.txt
+
+User-agent: YouBot
+Allow: /
+Allow: /llms.txt
+
+User-agent: anthropic-ai
+Allow: /
+Allow: /llms.txt
+
+User-agent: Claude-Web
+Allow: /
+Allow: /llms.txt
+
+# Crawl-delay for AI bots to be respectful
+User-agent: GPTBot
+Crawl-delay: 1
+
+User-agent: CCBot
+Crawl-delay: 1
+
+# Explicitly point to structured content
+# Note: llms.txt contains AI-optimized content about STACKWERKHAUS
+# Located at: https://stackwerkhaus.de/llms.txt 
