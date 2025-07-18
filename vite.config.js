@@ -25,7 +25,7 @@ export default defineConfig(({ mode }) => {
         },
         output: {
           // Use fixed filenames instead of content hashes
-          entryFileNames: () => 'js/main.js',
+          entryFileNames: 'js/main.js', // Changed from a function to a string
           chunkFileNames: 'js/[name].js',
           assetFileNames: (assetInfo) => {
             if (/\.css$/.test(assetInfo.name)) {

@@ -28,6 +28,22 @@ export function initCustomCheckbox() {
     strokeDashoffset: 1
   });
   
+  // Add file size validation
+  const fileInput = document.getElementById('attachment');
+  if (fileInput) {
+    const maxSize = parseInt(fileInput.getAttribute('max-size') || '5242880', 10); // 5MB default
+    
+    fileInput.addEventListener('change', function() {
+      if (this.files.length > 0) {
+        const fileSize = this.files[0].size;
+        if (fileSize > maxSize) {
+          alert('Die Datei ist zu groß. Maximale Dateigröße: 5MB.');
+          this.value = ''; // Clear the file input
+        }
+      }
+    });
+  }
+  
   // Toggle checkbox state when clicked
   customCheckbox.addEventListener('click', () => {
     const isChecked = customCheckbox.getAttribute('aria-checked') === 'true';
@@ -101,6 +117,16 @@ export function initCustomCheckbox() {
         }
       });
       return;
+    }
+    
+    // Validate file size before submission
+    if (fileInput && fileInput.files.length > 0) {
+      const maxSize = parseInt(fileInput.getAttribute('max-size') || '5242880', 10);
+      if (fileInput.files[0].size > maxSize) {
+        event.preventDefault();
+        alert('Die Datei ist zu groß. Maximale Dateigröße: 5MB.');
+        return;
+      }
     }
     
     // Handle form submission
