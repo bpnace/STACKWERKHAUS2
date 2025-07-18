@@ -583,3 +583,18 @@
   margin-top: 0.1rem;
   margin-bottom: 0.2rem;
 }
+
+.checkbox-error {
+  border-color: var(--error-color) !important;
+  box-shadow: 0 0 0 2px var(--error-color) !important;
+}
+
+.terms-error {
+  color: var(--error-color) !important;
+  font-weight: 600;
+}
+
+.checkbox-specific-error {
+  margin-top: 10px;
+  font-weight: 600;
+}

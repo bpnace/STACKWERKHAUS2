@@ -65,6 +65,8 @@ const testimonials = [
 
 let resizeTimeout;
 let gsapTimelines = [];
+let isIntersecting = false;
+let observer;
 
 function clearTestimonials() {
   gsapTimelines.forEach(tl => tl && tl.kill());
@@ -97,50 +99,104 @@ function renderTestimonials() {
   if (!col1) return;
 
   // Always use single column layout
-    const wrapper = document.createElement('div');
-    wrapper.className = 'testimonials-list';
-    col1.appendChild(wrapper);
+  const wrapper = document.createElement('div');
+  wrapper.className = 'testimonials-list';
+  col1.appendChild(wrapper);
   
   // Add testimonials to the wrapper
-    testimonials.forEach(t => wrapper.appendChild(createTestimonialItem(t)));
+  testimonials.forEach(t => wrapper.appendChild(createTestimonialItem(t)));
   
   // Duplicate testimonials for seamless scrolling
-    setTimeout(() => {
-      const parent = col1.closest('.contact-info-card');
-      const colHeight = parent ? parent.offsetHeight : col1.offsetHeight;
-      const itemEls = wrapper.querySelectorAll('.testimonial-item');
+  setTimeout(() => {
+    const parent = col1.closest('.contact-info-card');
+    const colHeight = parent ? parent.offsetHeight : col1.offsetHeight;
+    const itemEls = wrapper.querySelectorAll('.testimonial-item');
     
-      if (itemEls.length === 0) return;
+    if (itemEls.length === 0) return;
     
-      const itemHeight = itemEls[0].offsetHeight + parseFloat(getComputedStyle(itemEls[0]).marginBottom);
-      const singleSetHeight = itemHeight * testimonials.length;
+    const itemHeight = itemEls[0].offsetHeight + parseFloat(getComputedStyle(itemEls[0]).marginBottom);
+    const singleSetHeight = itemHeight * testimonials.length;
     
-      // Duplicate testimonials at least once for seamless looping
-      while (wrapper.scrollHeight < colHeight + singleSetHeight) {
-        testimonials.forEach(t => wrapper.appendChild(createTestimonialItem(t)));
-      }
-    
-      // Add one more set for seamlessness
+    // Duplicate testimonials at least once for seamless looping
+    while (wrapper.scrollHeight < colHeight + singleSetHeight) {
       testimonials.forEach(t => wrapper.appendChild(createTestimonialItem(t)));
+    }
     
-    // Animate wrapper upward
-      const scrollDistance = wrapper.scrollHeight - colHeight;
+    // Add one more set for seamlessness
+    testimonials.forEach(t => wrapper.appendChild(createTestimonialItem(t)));
+    
+    // Setup animation only when testimonials are visible in viewport
+    setupAnimationWithIntersection(wrapper, colHeight, isMobile);
+  }, 200);
+}
+
+// Function to start/pause animation based on visibility
+function setupAnimationWithIntersection(wrapper, colHeight, isMobile) {
+  const parentContainer = document.getElementById('contact-info-card');
+  if (!parentContainer) return;
+  
+  // Create animation but pause it initially
+  const scrollDistance = wrapper.scrollHeight - colHeight;
+  gsap.set(wrapper, { y: 0 });
+  
+  // Adjust speed based on mobile/desktop
+  const duration = isMobile ? 90 : 120; // Slightly faster on mobile
+  
+  const tl = gsap.timeline({
+    repeat: -1,
+    defaults: { ease: 'none' },
+    paused: true // Start paused
+  });
+  
+  tl.to(wrapper, {
+    y: -scrollDistance,
+    duration: duration,
+    onRepeat: () => {
       gsap.set(wrapper, { y: 0 });
+    }
+  });
+  
+  gsapTimelines.push(tl);
+  
+  // Setup intersection observer
+  if (observer) {
+    observer.disconnect();
+  }
+  
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Start animation when visible
+        isIntersecting = true;
+        tl.play();
+      } else {
+        // Pause animation when not visible
+        isIntersecting = false;
+        tl.pause();
+      }
+    });
+  }, {
+    threshold: 0.1, // Trigger when at least 10% is visible
+    rootMargin: '0px'
+  });
+  
+  observer.observe(parentContainer);
+  
+  // Add event listeners to prevent scroll issues on mobile
+  if (isMobile) {
+    // Prevent touch events on the testimonials container from affecting page scroll
+    parentContainer.addEventListener('touchstart', e => {
+      if (isIntersecting) {
+        e.preventDefault();
+      }
+    }, { passive: false });
     
-    // Adjust speed based on mobile/desktop
-    const duration = isMobile ? 90 : 120; // Slightly faster on mobile
-    
-      const tl = gsap.timeline({ repeat: -1, defaults: { ease: 'none' } });
-      tl.to(wrapper, {
-        y: -scrollDistance,
-        duration: duration,
-        onRepeat: () => {
-          gsap.set(wrapper, { y: 0 });
-        }
-      });
-    
-        gsapTimelines.push(tl);
-      }, 200);
+    parentContainer.addEventListener('touchmove', e => {
+      if (isIntersecting) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+  }
 }
 
 export function initContactTestimonials() {
@@ -150,7 +206,15 @@ export function initContactTestimonials() {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
       // Re-render on resize to adjust for mobile/desktop
-        renderTestimonials();
+      renderTestimonials();
     }, 200);
   });
+  
+  // Clean up function to remove observers when component is unmounted
+  return function cleanup() {
+    if (observer) {
+      observer.disconnect();
+    }
+    clearTestimonials();
+  };
 } 

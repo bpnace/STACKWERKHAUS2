@@ -55,6 +55,13 @@ export function initCustomCheckbox() {
     // Update the actual checkbox for form validation
     actualCheckbox.checked = newState;
     
+    // If user checks the box, remove any error styling
+    if (newState) {
+      customCheckbox.classList.remove('checkbox-error');
+      const termsLabel = document.querySelector('.terms-label-inline');
+      if (termsLabel) termsLabel.classList.remove('terms-error');
+    }
+    
     // Animate the checkmark
     if (newState) {
       gsap.to(checkmark, {
@@ -100,20 +107,42 @@ export function initCustomCheckbox() {
   form.addEventListener('submit', (event) => {
     console.log('Form submit event triggered');
     
+    // Enhance checkbox validation with better visual feedback
     if (!actualCheckbox.checked) {
       event.preventDefault();
       console.log('Checkbox not checked, preventing submission');
       
-      // Add visual feedback
+      // Add visual feedback to both checkbox and label
       customCheckbox.classList.add('checkbox-error');
       
-      // Remove error styling after animation
+      // Also highlight the terms label to make it more noticeable
+      const termsLabel = document.querySelector('.terms-label-inline');
+      if (termsLabel) termsLabel.classList.add('terms-error');
+      
+      // Show error message specifically about checkbox
+      const checkboxErrorMsg = document.createElement('div');
+      checkboxErrorMsg.className = 'form-message form-message-error checkbox-specific-error';
+      checkboxErrorMsg.textContent = 'Bitte stimme den Datenschutzbestimmungen zu, um fortzufahren.';
+      
+      // Remove existing checkbox error message if any
+      const existingCheckboxError = form.querySelector('.checkbox-specific-error');
+      if (existingCheckboxError) existingCheckboxError.remove();
+      
+      // Add the new error message
+      form.appendChild(checkboxErrorMsg);
+      
+      // Scroll to error message
+      setTimeout(() => {
+        checkboxErrorMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+      
+      // Animate checkbox shake for better visibility
       gsap.to(customCheckbox, {
         x: [0, -5, 5, -5, 5, 0],
         duration: 0.4,
         ease: 'power2.inOut',
         onComplete: () => {
-          customCheckbox.classList.remove('checkbox-error');
+          // Don't remove error class here to keep the visual feedback
         }
       });
       return;
@@ -221,7 +250,7 @@ export function initCustomCheckbox() {
  */
 function showFormMessage(form, type, message) {
   // Remove any existing messages
-  const existingMessage = form.querySelector('.form-message');
+  const existingMessage = form.querySelector('.form-message:not(.checkbox-specific-error)');
   if (existingMessage) {
     existingMessage.remove();
   }
