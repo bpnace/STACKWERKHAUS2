@@ -12,6 +12,13 @@ export function initCustomCheckbox() {
   const checkmark = document.querySelector('.checkbox-checkmark');
   const form = document.getElementById('contact-form');
   
+  console.log('ContactForm initialization status:', {
+    customCheckbox: !!customCheckbox,
+    actualCheckbox: !!actualCheckbox,
+    checkmark: !!checkmark,
+    form: !!form
+  });
+  
   if (!customCheckbox || !actualCheckbox || !checkmark || !form) return;
   
   // Set initial GSAP properties for the checkmark
@@ -75,8 +82,11 @@ export function initCustomCheckbox() {
   
   // Handle form submission - ensure checkbox is required
   form.addEventListener('submit', (event) => {
+    console.log('Form submit event triggered');
+    
     if (!actualCheckbox.checked) {
       event.preventDefault();
+      console.log('Checkbox not checked, preventing submission');
       
       // Add visual feedback
       customCheckbox.classList.add('checkbox-error');
@@ -95,6 +105,7 @@ export function initCustomCheckbox() {
     
     // Handle form submission
     event.preventDefault();
+    console.log('Form valid, preparing submission');
     
     // Create a FormData object
     const formData = new FormData(form);
@@ -110,6 +121,17 @@ export function initCustomCheckbox() {
       <span>Senden...</span>
     `;
     
+    // Log form data for debugging
+    console.log('Form data:');
+    for (let pair of formData.entries()) {
+      // Don't log file content, just file name if present
+      if (pair[0] === 'attachment' && pair[1] instanceof File) {
+        console.log(pair[0], pair[1].name, `(${pair[1].size} bytes)`);
+      } else {
+        console.log(pair[0], pair[1]);
+      }
+    }
+    
     // Submit the form to Formspree
     fetch(form.action, {
       method: form.method,
@@ -119,12 +141,15 @@ export function initCustomCheckbox() {
       }
     })
     .then(response => {
+      console.log('Formspree response status:', response.status);
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
       }
       return response.json();
     })
     .then(data => {
+      console.log('Formspree success response:', data);
+      
       // Show success message
       showFormMessage(form, 'success', 'Vielen Dank! Deine Nachricht wurde erfolgreich gesendet.');
       
@@ -140,8 +165,8 @@ export function initCustomCheckbox() {
     })
     .catch(error => {
       // Show error message
+      console.error('Error submitting form:', error);
       showFormMessage(form, 'error', 'Entschuldigung, beim Senden ist ein Fehler aufgetreten. Bitte versuche es später noch einmal.');
-      console.error('Error:', error);
     })
     .finally(() => {
       // Reset button state
