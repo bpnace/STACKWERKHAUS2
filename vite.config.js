@@ -53,7 +53,34 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       // Copy additional files
-      copyFilesPlugin()
+      copyFilesPlugin(),
+      // Plugin to ensure consistent file naming
+      {
+        name: 'consistent-file-naming',
+        enforce: 'post',
+        generateBundle(options, bundle) {
+          // Find the entry chunk
+          const entryChunk = Object.values(bundle).find(
+            chunk => chunk.isEntry && chunk.type === 'chunk' && chunk.name === 'main'
+          );
+          
+          if (entryChunk) {
+            // Make sure the filename is exactly what we want
+            entryChunk.fileName = 'js/main.js';
+            
+            // Update references in HTML files
+            Object.values(bundle).forEach(chunk => {
+              if (chunk.type === 'asset' && chunk.fileName.endsWith('.html')) {
+                // Replace any references to main*.js with main.js
+                chunk.source = chunk.source.toString().replace(
+                  /src="\/js\/main[^"]*\.js"/g, 
+                  'src="/js/main.js"'
+                );
+              }
+            });
+          }
+        }
+      }
     ],
     resolve: {
       alias: {
